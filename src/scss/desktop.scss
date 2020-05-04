@@ -1,0 +1,105 @@
+* {
+	box-sizing: border-box;
+	margin: 0px;
+    padding: 0px;
+}
+
+body{
+    overflow-x: hidden;
+    overflow-y: overlay;
+    font-family: fantasy;
+}
+
+.desktop{
+    background-image: url('../media/bg.jpg');
+    background-size: contain;
+
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    color: white;
+}
+
+.iconGrid{
+    margin: 5px;
+    justify-content: start;
+    position: absolute;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(auto-fit, 55px);
+    grid-template-rows: repeat(auto-fit, 65px);
+
+    z-index: 2;
+
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+
+}
+
+.taskBar{
+    z-index: 3;
+
+    position: fixed;
+    bottom: 0px;
+    height: 35px;
+    width: 100%;
+    background: rgb(41, 41, 41);
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .startBtn{
+        left: 0px;
+        width: 46px;
+        height: 100%;
+        border: 0px;
+        background: rgb(41, 41, 41);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+            width: 25px;
+            height: 25px;
+        }
+    }
+    .taskBarItems{
+        height: 90%;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        overflow: hidden;
+        .taskBarItem{
+            height: 100%;
+            margin: 0px 2px;
+
+            background: orange;
+            color: black;
+            width: 150px;
+        }
+    }
+    .toolBar{
+        right: 0px;
+        height: 100%;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        
+        .minimizeAllBtn{
+            height: 100%;
+            width: 5px;
+            background: rgb(41, 41, 41);
+            border: 0px;
+            border-left: gray 1px solid;
+        }
+
+        .timeContainer{
+            margin: 0px 15px 0px 15px;
+        }
+    }
+}
