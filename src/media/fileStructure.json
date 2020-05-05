@@ -1,0 +1,44 @@
+[
+    {
+        "path":"Drive:/",
+        "title":"desktop",
+        "icon-src":"",
+        "extension":".fld"
+    },
+    {
+        "path":"Drive:/desktop/",
+        "title":"testowe zdjęcie2",
+        "icon-src":"",
+        "extension":".img"
+    },
+    {
+        "path":"Drive:/desktop/",
+        "title":"folder1",
+        "icon-src":"",
+        "extension":".fld"
+    },
+    {
+        "path":"Drive:/desktop/",
+        "title":"folder2",
+        "icon-src":"./logo192.png",
+        "extension":".fld"
+    },
+    {
+        "path":"Drive:/desktop/",
+        "title":"folder3",
+        "icon-src":"",
+        "extension":".fld"
+    },
+    {
+        "path":"Drive:/desktop/",
+        "title":"folder4",
+        "icon-src":"",
+        "extension":".fld"
+    },
+    {
+        "path":"Drive:/desktop/folder1/",
+        "title":"testowe zdjęcie",
+        "icon-src":"",
+        "extension":".img"
+    }
+]
