@@ -7,7 +7,7 @@ const Icon = () => {
     return(
         <div className="icon">
             <div className="bg"></div>
-            <img src={ test } />
+            <img src={ test } alt="fileIcon" />
             <label>Mineswepper</label>
         </div>
     );

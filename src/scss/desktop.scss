@@ -11,16 +11,18 @@ body{
 }
 
 .desktop{
-    background-image: url('../media/bg.jpg');
-    background-size: contain;
+    z-index: 1;
 
+    background-image: url('../media/bg.jpg');
+    background-size: cover;
     width: 100vw;
     height: 100vh;
-    z-index: 1;
     color: white;
 }
 
 .iconGrid{
+    z-index: 2;
+
     margin: 5px;
     justify-content: start;
     position: absolute;
@@ -28,8 +30,6 @@ body{
     grid-gap: 5px;
     grid-template-columns: repeat(auto-fit, 55px);
     grid-template-rows: repeat(auto-fit, 65px);
-
-    z-index: 2;
 
     top: 0px;
     left: 0px;
@@ -39,7 +39,7 @@ body{
 }
 
 .taskBar{
-    z-index: 3;
+    z-index: 4;
 
     position: fixed;
     bottom: 0px;

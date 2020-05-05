@@ -1,6 +1,7 @@
 import React from 'react';
 import '../scss/desktop.scss'
 import Icon from './Icon'
+import Explorer from './Explorer'
 
 import Logo from '../media/win_logo.png'
 
@@ -17,6 +18,8 @@ function Desktop() {
 
     return (
     <div className="desktop">
+        <Explorer />
+
         <div className="iconGrid">     
             { loopItems() }
         </div>
@@ -35,7 +38,6 @@ function Desktop() {
                 
             </div>  
         </div>
-
     </div>
     );
 }
