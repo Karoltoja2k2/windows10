@@ -1,0 +1,13 @@
+.explorerContainer{
+    background: whitesmoke;
+    position: absolute;
+    z-index: inherit;
+    top: 25px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+
+    .toolBar{
+        width: 100px;
+    }
+}

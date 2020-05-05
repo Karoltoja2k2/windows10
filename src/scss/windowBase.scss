@@ -1,0 +1,44 @@
+.defaultContainer{
+    top: 100px;
+    left: 100px;
+    width: 500px;
+    height: 300px;
+    position: absolute;
+    z-index: 3;
+    resize: both;
+    overflow: auto;
+    background: darkgreen;
+
+    .bar{
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 25px;
+        background: green;
+        z-index: inherit;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        label{
+            margin-left: 10px;
+            font-size: 13px;
+        }
+        .barButtons{
+            margin-right: 2px;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: end;
+            align-items: center;
+            button{
+                margin-left: 2px;
+                width: 15px;
+                height: 15px;
+                border: 0px;
+                border-radius: 5px;
+            }
+        }
+    }
+}
