@@ -28,11 +28,10 @@ const WindowBase = (props: any) => {
 
     const [windowContent, setWindowContent] = useState()
     function OpenFile(){
-        console.log(props)
-        if (props.extension == '.fld'){
-            return <FileExplorer file={props}/>
-        } else if (props.extension == '.img') {
-            return <PhotoDisplay file={props}/>
+        if (props.fileObj.file.extension == '.fld'){
+            return <FileExplorer fileObj={props.fileObj} Navigate={props.Navigate}/>
+        } else if (props.fileObj.file.extension == '.img') {
+            return <PhotoDisplay fileObj={props.fileObj}/>
         }
     }
 
@@ -50,11 +49,11 @@ const WindowBase = (props: any) => {
                 }
             }}>
 
-        <label>{props.title}</label>
+        <label>{props.fileObj.file.title}</label>
                 <div className="barButtons">
                     <button>_</button>
                     <button>||</button>
-                    <button>X</button>
+                    <button onClick={() => {props.CloseWindow(props.fileObj)}}>X</button>
                 </div>
             </div>
 
