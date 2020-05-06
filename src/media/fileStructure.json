@@ -1,43 +1,85 @@
 [
     {
         "path":"Drive:/",
+        "contentPath":"Drive:/desktop/",
         "title":"desktop",
         "icon-src":"",
         "extension":".fld"
     },
     {
         "path":"Drive:/desktop/",
+        "contentPath":"Drive:/desktop/testowe zdjęcie2/",
         "title":"testowe zdjęcie2",
         "icon-src":"",
         "extension":".img"
     },
     {
         "path":"Drive:/desktop/",
+        "contentPath":"Drive:/desktop/folder1/",
         "title":"folder1",
         "icon-src":"",
         "extension":".fld"
     },
     {
         "path":"Drive:/desktop/",
+        "contentPath":"Drive:/desktop/folder2/",
         "title":"folder2",
         "icon-src":"./logo192.png",
         "extension":".fld"
     },
     {
         "path":"Drive:/desktop/",
+        "contentPath":"Drive:/desktop/folder3/",
         "title":"folder3",
         "icon-src":"",
         "extension":".fld"
     },
     {
         "path":"Drive:/desktop/",
+        "contentPath":"Drive:/desktop/folder4/",
         "title":"folder4",
         "icon-src":"",
         "extension":".fld"
     },
     {
         "path":"Drive:/desktop/folder1/",
+        "contentPath":"Drive:/desktop/testowe zdjęcie/",
         "title":"testowe zdjęcie",
+        "icon-src":"",
+        "extension":".img"
+    },
+    {
+        "path":"Drive:/desktop/folder2/",
+        "contentPath":"Drive:/desktop/testowe zdjęcie/",
+        "title":"testowe zdjęcie",
+        "icon-src":"",
+        "extension":".img"
+    },
+    {
+        "path":"Drive:/desktop/folder3/",
+        "contentPath":"Drive:/desktop/testowe zdjęcie/",
+        "title":"testowe zdjęcie",
+        "icon-src":"",
+        "extension":".img"
+    },
+    {
+        "path":"Drive:/desktop/folder1/",
+        "contentPath":"Drive:/desktop/folder1/testowe zdjęcie3/",
+        "title":"testowe zdjęcie3",
+        "icon-src":"",
+        "extension":".img"
+    },
+    {
+        "path":"Drive:/desktop/folder1/",
+        "contentPath":"Drive:/desktop/folder1/kolejnyFolder/",
+        "title":"kolejnyFolder",
+        "icon-src":"",
+        "extension":".fld"
+    },
+    {
+        "path":"Drive:/desktop/folder1/kolejnyFolder/",
+        "contentPath":"Drive:/desktop/folder1/kolejnyFolder/zdjęcie/",
+        "title":"zdjęcie",
         "icon-src":"",
         "extension":".img"
     }

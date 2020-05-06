@@ -10,4 +10,21 @@
     .toolBar{
         width: 100px;
     }
+
+    .iconGrid{    
+        margin: 5px;
+        justify-content: start;
+        position: absolute;
+        display: grid;
+        grid-gap: 5px;
+        grid-template-columns: repeat(auto-fit, 55px);
+        grid-template-rows: repeat(auto-fit, 65px);
+    
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+    
+    }
 }
+
