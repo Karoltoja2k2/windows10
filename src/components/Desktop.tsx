@@ -23,23 +23,63 @@ function Desktop() {
         setLmbDown(lmbDown => state);
     }
 
+    const [windowsCount, setWindowsCount] = useState(1);
     const [openWindows, setOpenWindows] = useState<any[]>([])
-    function OpenWindow(file: any) {
-        console.log(file)
-        setOpenWindows([...openWindows, file])
-        console.log(openWindows)
+    function OpenWindow(fileObj: any) {
+        if (fileObj.id == 0){
+            fileObj.id = windowsCount;
+            setOpenWindows([...openWindows, fileObj])
+            setWindowsCount(windowsCount + 1)
+        }
     }
+
+    function Navigate(file:any){
+        var extension = file.file.extension
+        console.log(openWindows)
+        if (extension){
+            if(extension == '.fld'){
+                OpenFolder(file)
+            } else {
+                OpenFile(file)
+            }
+        }
+    }
+
+    function OpenFile(file: any){
+        file.id = windowsCount;
+        setOpenWindows([...openWindows, file])
+        setWindowsCount(windowsCount + 1)
+    }
+
     useEffect(() => {
         console.log(openWindows)
     }, [openWindows])
-    
 
-    function CloseWindow() {
-        // var newList = openWindows.filter()
-        console.log('qwe')
+    function OpenFolder(folder:any) {
+        if (folder.id == 0){
+            // open if not open
+            folder.id = windowsCount;
+            setOpenWindows([...openWindows, folder])
+            setWindowsCount(windowsCount + 1)
+
+        } else {
+            // navigate if open
+            var threadedWinIndex = openWindows.findIndex(x => x.id == folder.id)
+            var threadedWin = openWindows.splice(threadedWinIndex, 1)
+            threadedWin[0].file = folder.file
+
+            setOpenWindows([...openWindows, threadedWin[0]])   
+        }
     }
 
+    function CloseWindow(fileObj:any) {
+        var newList = openWindows.filter(x => x.id != fileObj.id)
+        setOpenWindows(newList);
+    }
 
+    function NavigateToWin(){
+
+    }
 
 
     return (
@@ -71,10 +111,11 @@ function Desktop() {
                 openWindows.map((obj: any, index: number) => (
                     <WindowBase 
                         lmbDown={lmbDown} 
-                        setLmbDown={changeLmbDown} 
-                        position={position} 
-                        title={obj.title} 
-                        file={obj.file} 
+                        setLmbDown={changeLmbDown}
+                        position={position}
+                        Navigate={Navigate}
+                        CloseWindow={CloseWindow}
+                        fileObj={obj}
                     />
                 ))
             }
@@ -82,7 +123,7 @@ function Desktop() {
             <div className="iconGrid">
                 {
                     DesktopIcons.map((obj:any, index:number) => (
-                        <Icon OpenWindow={OpenWindow} file={obj}/>
+                        <Icon Navigate={Navigate} fileObj={{file: obj, id: 0}}/>
                     ))
                 }
             </div>
