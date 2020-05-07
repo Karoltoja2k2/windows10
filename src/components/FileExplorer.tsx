@@ -6,7 +6,7 @@ import Icon from './Icon'
 
 
 const FileExplorer = (props:any) => {
-    var iconsInFolder = FileStructure.filter(x => x.path == props.fileObj.file.contentPath)
+    var iconsInFolder = FileStructure.filter(x => x.path == props.openFile.file.contentPath)
     return (
         <div className="explorerContainer">
             <div className="toolBar">
@@ -16,7 +16,7 @@ const FileExplorer = (props:any) => {
                 {
                     iconsInFolder &&
                     iconsInFolder.map((file:any, index:number) => (
-                        <Icon fileObj={{file: file, id:props.fileObj.id}} Navigate={props.Navigate}/>
+                        <Icon fileReference={{file: file, id:props.openFile.id}} Navigate={props.Navigate}/>
                     ))
                 }
             </div>

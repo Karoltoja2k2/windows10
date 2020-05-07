@@ -6,13 +6,13 @@ import test from '../media/logo192.png';
 
 const Icon = (props: any) => {
     function OpenFileEvent(event: any) {
-        props.Navigate(props.fileObj)
+        props.Navigate(props.fileReference)
     }
     return (
         <div className="icon" onDoubleClick={(e) => OpenFileEvent(e)}>
             <div className="bg"></div>
             <img src={test} alt="fileIcon" />
-            <label>{props.fileObj.file.title}{props.fileObj.file.extension}</label>
+            <label>{props.fileReference.file.title}{props.fileReference.file.extension}</label>
         </div>
     );
 }
