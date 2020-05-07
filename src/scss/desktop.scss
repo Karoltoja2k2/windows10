@@ -82,11 +82,28 @@ body{
         .taskBarItem{
             height: 100%;
             margin: 0px 2px;
-
-            background: orange;
-            color: black;
+            border-bottom: 2px solid green;
+            background: transparent;
             width: 150px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            img{
+                height: 80%;
+            }
+            label{
+                color: white;
+                font-size: 12px;
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: 100;
+            }
+            
         }
+        :hover{
+            background: rgba(255, 255, 255, 0.109);
+            opacity: 100%;
+        }
+
     }
     .toolBar{
         right: 0px;
