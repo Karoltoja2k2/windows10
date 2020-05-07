@@ -3,57 +3,53 @@ import '../scss/windowBase.scss'
 import FileExplorer from './FileExplorer'
 import PhotoDisplay from './PhotoDisplay'
 
+
 const WindowBase = (props: any) => {
 
-    // WINDOW DRAG
-    const [position, setPosition] = useState({
-        top: 100,
-        left: 100
-    })
-    const [initOffset, setInitOffset] = useState({
-        top: 0,
-        left: 0
-    })
-    const [toolbarLmbDown, setToolbarLmbDown] = useState(false);
+    const [style, setStyle] = useState(props.openFile.style)
     useEffect(() => {
-        if (props.lmbDown && toolbarLmbDown) {
-            setPosition({
-                top: props.position.top - initOffset.top,
-                left: props.position.left - initOffset.left
-            })
-        } else if (props.lmbDown == false && toolbarLmbDown) {
-            setToolbarLmbDown(false)
-        }
-    }, [props.position])
+        setStyle(props.openFile.style)
+    }, [props.openFile.style])
 
-    const [windowContent, setWindowContent] = useState()
-    function OpenFile(){
-        if (props.fileObj.file.extension == '.fld'){
-            return <FileExplorer fileObj={props.fileObj} Navigate={props.Navigate}/>
-        } else if (props.fileObj.file.extension == '.img') {
-            return <PhotoDisplay fileObj={props.fileObj}/>
+    function OpenFile() {
+        if (props.openFile.file.extension == '.fld') {
+            return <FileExplorer openFile={props.openFile} Navigate={props.fnc.Navigate} />
+        } else if (props.openFile.file.extension == '.img') {
+            return <PhotoDisplay openFile={props.openFile} />
         }
     }
-
     return (
-        <div className="defaultContainer" style={position}>
-            <div className="bar" onMouseDown={(e) => {
-                e.preventDefault()
-                if (e.button == 0) {
-                    setInitOffset({
-                        top: e.pageY - position.top,
-                        left: e.pageX - position.left
-                    })
-                    props.setLmbDown(true)
-                    setToolbarLmbDown(true)
-                }
+        <div className="defaultContainer" style={style}>
             }}>
-
-        <label>{props.fileObj.file.title}</label>
+            <div
+                className="bar"
+                onMouseDown={(e) => {
+                    e.preventDefault();
+                    if (e.target === e.currentTarget){
+                        props.fnc.setMovingWin(props.openFile.id);
+                        props.fnc.setOffset({
+                            top: e.pageY - style.top,
+                            left: e.pageX - style.left
+                        })
+                    }
+                }}
+                onDoubleClick={(e) => {
+                    if (e.target === e.currentTarget) {
+                        props.fnc.FullScreenMode(props.openFile) 
+                    }
+                }}
+            >
+                <label>{props.openFile.file.title}</label>
                 <div className="barButtons">
-                    <button>_</button>
-                    <button>||</button>
-                    <button onClick={() => {props.CloseWindow(props.fileObj)}}>X</button>
+                <button onClick={(e) => { props.fnc.MinimizeWindow(props.openFile) }}>
+                        _
+                    </button>
+                    <button onClick={(e) => { props.fnc.FullScreenMode(props.openFile) }}>
+                        ||
+                    </button>
+                    <button onClick={(e) => { props.fnc.CloseWindow(props.openFile) }}>
+                        X
+                    </button>
                 </div>
             </div>
 
