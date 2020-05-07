@@ -21,6 +21,7 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        cursor: move;
         label{
             margin-left: 10px;
             font-size: 13px;
@@ -38,6 +39,7 @@
                 height: 15px;
                 border: 0px;
                 border-radius: 5px;
+                cursor: pointer;
             }
         }
     }
