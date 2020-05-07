@@ -72,14 +72,11 @@ function Desktop() {
     }
 
     function CloseWindow(openFile: any) {
+        setFocusedWin(0);
         var newList = openFiles.filter(x => x.id != openFile.id)
         console.log(newList)
         setOpenFiles(newList);
     }
-
-    useEffect(() => {
-        console.log(openFiles)
-    }, [openFiles])
 
     function MinimizeWindow(openFile: any) {
         var files = openFiles.slice();
@@ -96,6 +93,25 @@ function Desktop() {
 
     }
 
+    const [focusedWin, setFocusedWin] = useState(0)
+    useEffect(() => {
+        console.log('asd')
+        var windows = openFiles.slice();
+        windows.forEach(function(win){
+            if (win.id === focusedWin){
+                win.style = {
+                    ...win.style,
+                    zIndex: 4
+                }
+            } else {
+                win.style = {
+                    ...win.style,
+                    zIndex: 3
+                }
+            }
+        })
+    }, [focusedWin])
+
     const [offset, setOffset] = useState({
         top: 0,
         left: 0
@@ -103,20 +119,21 @@ function Desktop() {
     const [movingWin, setMovingWin] = useState(0)
     function Test(e: any) {
         if (movingWin !== 0) {
-            var files = openFiles.slice();
-            var file = files.find(x => x.id === movingWin)
+            var windows = openFiles.slice();
+            var file = windows.find(x => x.id === movingWin)
             file.style = {
                 ...file.style,
                 top: e.pageY - offset.top,
                 left: e.pageX - offset.left
             }
-            setOpenFiles(files);
+            setOpenFiles(windows);
         }
     }
 
     const WindowManagement = {
         setMovingWin: setMovingWin,
         setOffset: setOffset,
+        setFocusedWin: setFocusedWin,
         Navigate: Navigate,
         CloseWindow: CloseWindow,
         MinimizeWindow: MinimizeWindow,

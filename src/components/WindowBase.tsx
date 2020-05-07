@@ -19,8 +19,15 @@ const WindowBase = (props: any) => {
         }
     }
     return (
-        <div className="defaultContainer" style={style}>
-            }}>
+        <div 
+            className="defaultContainer" 
+            style={style} 
+            onMouseDown={ (e) => {
+                e.stopPropagation()
+                props.fnc.setFocusedWin(props.openFile.id)
+            }}
+        >
+
             <div
                 className="bar"
                 onMouseDown={(e) => {
