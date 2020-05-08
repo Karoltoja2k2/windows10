@@ -28,25 +28,42 @@ const WindowBase = (props: any) => {
         border: "solid 1px #ddd",
         background: "red"
     };
-    const [width, setWidth] = React.useState(300);
-    const [height, setHeight] = React.useState(200);
+
+    // document.addEventListener('mousemove', (e) => {
+    //     e.stopImmediatePropagation()
+    //     setStyle({
+    //         ...style,
+    //         
+    //     })
+    // })
+
 
     return (
-            <div
-                className="defaultContainer"
-                style={style}
+
+                <Resizable
+                className="resizableWindow"
+                    size={{ width: style.width, height: style.height }}
+                    style={style}
+                    onResizeStop={(e, direction, ref, d) => {
+                        props.fnc.SetStyle(props.openFile.id, {
+                            ...style,
+                            width: style.width + d.width,
+                            height: style.height + d.height
+                        })
+                    }}
+                >
+
+                <div
+                className="resizableWindowContainer"
                 onMouseDown={(e) => {
                     e.stopPropagation()
                     e.preventDefault()
-                    console.log(e.target)
                     props.fnc.setFocusedWin(props.openFile.id)
-                    console.log(e.currentTarget.offsetHeight)
                 }}
                 onMouseUp={(e) => {
                     console.log('asd')
                 }}
             >
-
 
                 <div
                     className="bar"
@@ -82,7 +99,9 @@ const WindowBase = (props: any) => {
                 </div>
 
                 {OpenFile()}
-            </div>
+                </div>
+
+                </Resizable>
     );
 }
 

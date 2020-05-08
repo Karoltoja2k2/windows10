@@ -43,7 +43,8 @@ function Desktop() {
             top: openFilesCount * 10 + 100,
             height: 400,
             width:600,
-            zIndex: 4
+            zIndex: 4,
+            position: 'absolute'
         })
         console.log(oF)
         setOpenFiles([...openFiles, oF])
@@ -57,7 +58,8 @@ function Desktop() {
                 top: openFilesCount * 10 + 100,
                 height: 400,
                 width:600,
-                zIndex: 4
+                zIndex: 4,
+                position: 'absolute'
             })
             setOpenFiles([...openFiles, oF])
             setOpenFilesCount(openFilesCount + 1)
@@ -116,6 +118,15 @@ function Desktop() {
         })
     }, [focusedWin])
 
+    function SetStyle(id:number, styleToSet:any){
+        console.log(id)
+        var windows = openFiles.slice();
+        var file = windows.find(x => x.id === id)
+        file.style = styleToSet;
+
+        setOpenFiles(windows);
+    }
+
     const [offset, setOffset] = useState({
         top: 0,
         left: 0
@@ -136,6 +147,7 @@ function Desktop() {
 
     const WindowManagement = {
         setMovingWin: setMovingWin,
+        SetStyle: SetStyle,
         setOffset: setOffset,
         setFocusedWin: setFocusedWin,
         Navigate: Navigate,
@@ -145,6 +157,7 @@ function Desktop() {
     }
 
 
+    console.log('render')
     return (
         <div
             className="desktop"
