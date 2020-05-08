@@ -3,17 +3,20 @@ import '../scss/desktop.scss'
 import Icon from './Icon'
 import WindowBase from './WindowBase'
 import FileExplorer from './FileExplorer'
-import FileStructure from '../media/fileStructure.json'
 import TaskBarItem from './TaskBarItem'
 
 import Logo from '../media/win_logo.png'
-import { NONAME } from 'dns';
+
+import FileStructure from '../media/fileStructure.json'
+import files from '../media/fileStructure'
 
 
 function Desktop() {
 
+    console.log(files)
+
     const path = "Drive:/desktop/"
-    var DesktopIcons = FileStructure.filter(x => x.path == path)
+    var DesktopIcons = files.filter(x => x.path === path)
 
     const [openFilesCount, setOpenFilesCount] = useState(1);
     const [openFiles, setOpenFiles] = useState<any[]>([])
@@ -26,34 +29,9 @@ function Desktop() {
         }
     }
 
-    function Navigate(fileReference: any) {
-        var extension = fileReference.file.extension
-        if (extension) {
-            if (extension == '.fld') {
-                OpenFolder(fileReference)
-            } else {
-                OpenFile(fileReference)
-            }
-        }
-    }
-
-    function OpenFile(fileReference: any) {
-        var oF = openFile(openFilesCount, fileReference.file, {
-            left: openFilesCount * 10 + 100,
-            top: openFilesCount * 10 + 100,
-            height: 400,
-            width:600,
-            zIndex: 4,
-            position: 'absolute'
-        })
-        console.log(oF)
-        setOpenFiles([...openFiles, oF])
-        setOpenFilesCount(openFilesCount + 1)
-    }
-
-    function OpenFolder(folderToOpen: any) {
-        if (folderToOpen.id == 0) {
-            var oF = openFile(openFilesCount, folderToOpen.file, {
+    function Navigate(id:number, fileToOpen: any) {
+        if (id === 0 || fileToOpen.extension !== '.fld'){
+            var oF = openFile(openFilesCount, fileToOpen, {
                 left: openFilesCount * 10 + 100,
                 top: openFilesCount * 10 + 100,
                 height: 400,
@@ -63,13 +41,19 @@ function Desktop() {
             })
             setOpenFiles([...openFiles, oF])
             setOpenFilesCount(openFilesCount + 1)
-
         } else {
-            // navigate if open
-            var threadedWinIndex = openFiles.findIndex(x => x.id == folderToOpen.id)
+            var oF = openFile(id, fileToOpen, {
+                left: openFilesCount * 10 + 100,
+                top: openFilesCount * 10 + 100,
+                height: 400,
+                width:600,
+                zIndex: 4,
+                position: 'absolute'
+            })
+            var threadedWinIndex = openFiles.findIndex(x => x.id == id)
             var threadedWin = openFiles.splice(threadedWinIndex, 1)
-            threadedWin[0].file = folderToOpen.file
-            var oF = openFile(folderToOpen.id, folderToOpen.file, {
+            threadedWin[0].file = fileToOpen
+            var oF = openFile(id, fileToOpen, {
                 ...threadedWin[0].style,
                 zIndex: 4
             })
@@ -77,16 +61,16 @@ function Desktop() {
         }
     }
 
-    function CloseWindow(openFile: any) {
+    function CloseWindow(id: number) {
         setFocusedWin(0);
-        var newList = openFiles.filter(x => x.id != openFile.id)
+        var newList = openFiles.filter(x => x.id != id)
         console.log(newList)
         setOpenFiles(newList);
     }
 
-    function MinimizeWindow(openFile: any) {
+    function MinimizeWindow(id: number) {
         var files = openFiles.slice();
-        var file = files.find(x => x.id === openFile.id)
+        var file = files.find(x => x.id === id)
         file.style = {
             ...file.style,
             display: 'none'
@@ -94,7 +78,7 @@ function Desktop() {
         setOpenFiles(files);
     }
 
-    function FullScreenMode(openFile: any) {
+    function FullScreenMode(id: number) {
         console.log('fullscreen')
 
     }
@@ -132,7 +116,7 @@ function Desktop() {
         left: 0
     })
     const [movingWin, setMovingWin] = useState(0)
-    function Test(e: any) {
+    function SetMovinWinPosition(e: any) {
         if (movingWin !== 0) {
             var windows = openFiles.slice();
             var file = windows.find(x => x.id === movingWin)
@@ -156,6 +140,13 @@ function Desktop() {
         FullScreenMode: FullScreenMode
     }
 
+    function RenderWindow(obj:any){
+        console.log(obj)
+        return (
+            obj.file.component({...obj, WindowManagement})
+        );
+    }
+
 
     console.log('render')
     return (
@@ -169,24 +160,19 @@ function Desktop() {
                     left: 0
                 })
             }}
-            onMouseMove={(e) => Test(e)}
+            onMouseMove={(e) => SetMovinWinPosition(e)}
         >
             {
                 openFiles.length > 0 &&
                 openFiles.map((obj: any, index: number) => (
-                    <WindowBase
-                        openFile={obj}
-                        position={obj.position}
-                        fnc={WindowManagement}
-
-                    />
+                    RenderWindow(obj)
                 ))
             }
 
             <div className="iconGrid">
                 {
                     DesktopIcons.map((obj: any, index: number) => (
-                        <Icon Navigate={Navigate} fileReference={{ file: obj, id: 0 }} />
+                        <Icon Navigate={Navigate} file={obj} id={0} />
                     ))
                 }
             </div>
