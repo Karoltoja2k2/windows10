@@ -6,41 +6,33 @@ import { Resizable } from "re-resizable";
 
 
 const WindowBase = (props: any) => {
+    console.log(props)
+    const [style, setStyle] = useState(props.style)
 
-    const [style, setStyle] = useState(props.openFile.style)
     useEffect(() => {
-        setStyle(props.openFile.style)
-    }, [props.openFile.style])
-
-    function OpenFile() {
-        if (props.openFile.file.extension == '.fld') {
-            return <FileExplorer openFile={props.openFile} Navigate={props.fnc.Navigate} />
-        } else if (props.openFile.file.extension == '.img') {
-            return <PhotoDisplay openFile={props.openFile} />
-        }
-    }
+        setStyle(props.style)
+    }, [props.style])
 
     return (
+        <Resizable
+            className="resizableWindow"
+            size={{ width: style.width, height: style.height }}
+            style={style}
+            onResizeStop={(e, direction, ref, d) => {
+                props.WindowManagement.SetStyle(props.id, {
+                    ...style,
+                    width: style.width + d.width,
+                    height: style.height + d.height
+                })
+            }}
+        >
 
-                <Resizable
-                className="resizableWindow"
-                    size={{ width: style.width, height: style.height }}
-                    style={style}
-                    onResizeStop={(e, direction, ref, d) => {
-                        props.fnc.SetStyle(props.openFile.id, {
-                            ...style,
-                            width: style.width + d.width,
-                            height: style.height + d.height
-                        })
-                    }}
-                >
-
-                <div
+            <div
                 className="resizableWindowContainer"
                 onMouseDown={(e) => {
                     e.stopPropagation()
                     e.preventDefault()
-                    props.fnc.setFocusedWin(props.openFile.id)
+                    props.WindowManagement.setFocusedWin(props.id)
                 }}
                 onMouseUp={(e) => {
                     console.log('asd')
@@ -52,8 +44,8 @@ const WindowBase = (props: any) => {
                     onMouseDown={(e) => {
                         e.preventDefault();
                         if (e.target === e.currentTarget) {
-                            props.fnc.setMovingWin(props.openFile.id);
-                            props.fnc.setOffset({
+                            props.WindowManagement.setMovingWin(props.id);
+                            props.WindowManagement.setOffset({
                                 top: e.pageY - style.top,
                                 left: e.pageX - style.left
                             })
@@ -62,28 +54,28 @@ const WindowBase = (props: any) => {
                     }}
                     onDoubleClick={(e) => {
                         if (e.target === e.currentTarget) {
-                            props.fnc.FullScreenMode(props.openFile)
+                            props.WindowManagement.FullScreenMode(props.id)
                         }
                     }}
                 >
-                    <label>{props.openFile.file.title}</label>
+                    <label>{props.title}</label>
                     <div className="barButtons">
-                        <button onClick={(e) => { props.fnc.MinimizeWindow(props.openFile) }}>
+                        <button onClick={(e) => { props.WindowManagement.MinimizeWindow(props.id) }}>
                             _
                         </button>
-                        <button onClick={(e) => { props.fnc.FullScreenMode(props.openFile) }}>
+                        <button onClick={(e) => { props.WindowManagement.FullScreenMode(props.id) }}>
                             ||
                         </button>
-                        <button onClick={(e) => { props.fnc.CloseWindow(props.openFile) }}>
+                        <button onClick={(e) => { props.WindowManagement.CloseWindow(props.id) }}>
                             X
                         </button>
                     </div>
                 </div>
 
-                {OpenFile()}
-                </div>
+                {props.children}
+            </div>
 
-                </Resizable>
+        </Resizable>
     );
 }
 
