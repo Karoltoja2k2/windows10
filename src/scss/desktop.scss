@@ -6,16 +6,10 @@
 
 body{
     overflow-x: hidden;
-    overflow-y: overlay;
+    overflow-y: hidden;
     font-family: fantasy;
 }
 
-.idk{
-    width: 100vw;
-    height: 100vh;
-    z-index: 10;
-    background: red;
-}
 
 .desktop{
     z-index: 1;

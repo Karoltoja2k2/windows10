@@ -5,7 +5,6 @@ import PhotoDisplay from './PhotoDisplay'
 import { Resizable } from "re-resizable";
 
 
-
 const WindowBase = (props: any) => {
 
     const [style, setStyle] = useState(props.openFile.style)
@@ -20,23 +19,6 @@ const WindowBase = (props: any) => {
             return <PhotoDisplay openFile={props.openFile} />
         }
     }
-
-    const styleTest = {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        border: "solid 1px #ddd",
-        background: "red"
-    };
-
-    // document.addEventListener('mousemove', (e) => {
-    //     e.stopImmediatePropagation()
-    //     setStyle({
-    //         ...style,
-    //         
-    //     })
-    // })
-
 
     return (
 
