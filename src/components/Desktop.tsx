@@ -41,6 +41,8 @@ function Desktop() {
         var oF = openFile(openFilesCount, fileReference.file, {
             left: openFilesCount * 10 + 100,
             top: openFilesCount * 10 + 100,
+            height: 400,
+            width:600,
             zIndex: 4
         })
         console.log(oF)
@@ -53,6 +55,8 @@ function Desktop() {
             var oF = openFile(openFilesCount, folderToOpen.file, {
                 left: openFilesCount * 10 + 100,
                 top: openFilesCount * 10 + 100,
+                height: 400,
+                width:600,
                 zIndex: 4
             })
             setOpenFiles([...openFiles, oF])

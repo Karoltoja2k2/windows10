@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "prettier": "2.0.5",
+    "re-resizable": "^6.3.2",
     "sass": "^1.26.5"
   }
 }

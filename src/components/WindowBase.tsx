@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import '../scss/windowBase.scss'
 import FileExplorer from './FileExplorer'
 import PhotoDisplay from './PhotoDisplay'
+import { Resizable } from "re-resizable";
+
 
 
 const WindowBase = (props: any) => {
@@ -18,50 +20,69 @@ const WindowBase = (props: any) => {
             return <PhotoDisplay openFile={props.openFile} />
         }
     }
-    return (
-        <div 
-            className="defaultContainer" 
-            style={style} 
-            onMouseDown={ (e) => {
-                e.stopPropagation()
-                props.fnc.setFocusedWin(props.openFile.id)
-            }}
-        >
 
+    const styleTest = {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        border: "solid 1px #ddd",
+        background: "red"
+    };
+    const [width, setWidth] = React.useState(300);
+    const [height, setHeight] = React.useState(200);
+
+    return (
             <div
-                className="bar"
+                className="defaultContainer"
+                style={style}
                 onMouseDown={(e) => {
-                    e.preventDefault();
-                    if (e.target === e.currentTarget){
-                        props.fnc.setMovingWin(props.openFile.id);
-                        props.fnc.setOffset({
-                            top: e.pageY - style.top,
-                            left: e.pageX - style.left
-                        })
-                    }
+                    e.stopPropagation()
+                    e.preventDefault()
+                    console.log(e.target)
+                    props.fnc.setFocusedWin(props.openFile.id)
+                    console.log(e.currentTarget.offsetHeight)
                 }}
-                onDoubleClick={(e) => {
-                    if (e.target === e.currentTarget) {
-                        props.fnc.FullScreenMode(props.openFile) 
-                    }
+                onMouseUp={(e) => {
+                    console.log('asd')
                 }}
             >
-                <label>{props.openFile.file.title}</label>
-                <div className="barButtons">
-                <button onClick={(e) => { props.fnc.MinimizeWindow(props.openFile) }}>
-                        _
-                    </button>
-                    <button onClick={(e) => { props.fnc.FullScreenMode(props.openFile) }}>
-                        ||
-                    </button>
-                    <button onClick={(e) => { props.fnc.CloseWindow(props.openFile) }}>
-                        X
-                    </button>
-                </div>
-            </div>
 
-            {OpenFile()}
-        </div>
+
+                <div
+                    className="bar"
+                    onMouseDown={(e) => {
+                        e.preventDefault();
+                        if (e.target === e.currentTarget) {
+                            props.fnc.setMovingWin(props.openFile.id);
+                            props.fnc.setOffset({
+                                top: e.pageY - style.top,
+                                left: e.pageX - style.left
+                            })
+                        }
+
+                    }}
+                    onDoubleClick={(e) => {
+                        if (e.target === e.currentTarget) {
+                            props.fnc.FullScreenMode(props.openFile)
+                        }
+                    }}
+                >
+                    <label>{props.openFile.file.title}</label>
+                    <div className="barButtons">
+                        <button onClick={(e) => { props.fnc.MinimizeWindow(props.openFile) }}>
+                            _
+                        </button>
+                        <button onClick={(e) => { props.fnc.FullScreenMode(props.openFile) }}>
+                            ||
+                        </button>
+                        <button onClick={(e) => { props.fnc.CloseWindow(props.openFile) }}>
+                            X
+                        </button>
+                    </div>
+                </div>
+
+                {OpenFile()}
+            </div>
     );
 }
 
