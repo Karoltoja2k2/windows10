@@ -15,4 +15,4 @@ const PhotoDisplay = (props: any) => {
     );
 }
 
-export default PhotoDisplay
+export default React.memo(PhotoDisplay)

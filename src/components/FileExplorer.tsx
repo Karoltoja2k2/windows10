@@ -8,8 +8,11 @@ import Icon from './Icon'
 
 
 const FileExplorer = (props: any) => {
-    console.log(props)
+    console.log('render' + props.file.title)
     var iconsInFolder = files.filter(x => x.path == props.file.contentPath)
+
+    const [data, setData] = useState(props.data)
+    const [isRed, setIsRed] = useState(false)
 
     return (
         <WindowBase 
@@ -23,18 +26,25 @@ const FileExplorer = (props: any) => {
                 <div className="toolBar">
 
                 </div>
-                <div className="iconGrid">
+                <div className="iconGrid" style={{background: props.data.isRed ? 'red' : 'blue'}}>
                     {
                         iconsInFolder &&
                         iconsInFolder.map((file: any, index: number) => (
                             <Icon file={file}  id={props.id} Navigate={props.WindowManagement.Navigate} />
                         ))
                     }
-                    <button>TEST</button>
+                    <button onClick={() => {
+                        props.DataManagement.UpdateWindow(props.id, {...props.data, isRed: !props.data.isRed})
+                    }}>TEST</button>
                 </div>
             </div>
         </WindowBase>
     );
 }
 
-export default FileExplorer
+export default React.memo(FileExplorer, (prevProps, nextProps) => {
+    console.log(prevProps)
+    console.log(nextProps)
+    return prevProps.data === nextProps.data &&
+           prevProps.style === nextProps.style;
+})
