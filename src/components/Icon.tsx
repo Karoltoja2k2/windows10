@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import FileExplorer from './FileExplorer';
 import '../scss/icon.scss'
 import test from '../media/logo192.png';
 

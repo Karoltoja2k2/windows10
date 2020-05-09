@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import '../scss/windowBase.scss'
-import FileExplorer from './FileExplorer'
 import PhotoDisplay from './PhotoDisplay'
 import { Resizable } from "re-resizable";
 
 
 const WindowBase = (props: any) => {
-    console.log(props)
     const [style, setStyle] = useState(props.style)
 
     useEffect(() => {
