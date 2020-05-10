@@ -14,64 +14,64 @@ function Desktop() {
     const path = "Drive:/desktop/"
     var DesktopIcons = files.filter(x => x.path === path)
 
-    const [openFilesCount, setOpenFilesCount] = useState(1);
-    const [openFiles, setOpenFiles] = useState<any[]>([])
+    const [openWindowsCount, setOpenWindowsCount] = useState(1);
+    const [openWindows, setOpenWindows] = useState<any[]>([])
 
-    function openFile(id: number, file: any, style: any) {
+    function Window(id: number, file: any, dimensions: any) {
         return {
             id: id,
-            style: style,
+            windowProps: {
+                ...dimensions,
+                isFocused: true,
+                isMinimized:false,
+                isFullScreen:false
+            },
             data: {},
             file: file
         }
     }
 
     function UpdateWindow(id: number, dataUpdate: any) {
-        var windows = openFiles.slice();
-        var file = windows.find(x => x.id === id)
-        file.data = dataUpdate;
-        setOpenFiles(windows);
+        var windows = openWindows.slice();
+        var window = windows.find(x => x.id === id)
+        window.data = dataUpdate;
+        setOpenWindows(windows);
     }
 
     function Navigate(id: number, fileToOpen: any) {
         var oF;
         if (id === 0 || fileToOpen.extension !== '.fld') {
-            console.log('open new file')
-            oF = openFile(openFilesCount, fileToOpen, {
-                left: openFilesCount * 10 + 100,
-                top: openFilesCount * 10 + 100,
+            oF = Window(openWindowsCount, fileToOpen, {
+                left: openWindowsCount * 10 + 100,
+                top: openWindowsCount * 10 + 100,
                 height: 400,
                 width: 600,
-                zIndex: 4,
                 position: 'absolute'
             })
-            setOpenFiles([...openFiles, oF])
-            setFocusedWin(openFilesCount);
-            setOpenFilesCount(openFilesCount + 1)
+            setOpenWindows([...openWindows, oF])
+            setFocusedWin(openWindowsCount);
+            setOpenWindowsCount(openWindowsCount + 1)
         } else {
-            var windows = openFiles.slice();
-            var file = windows.find(x => x.id === id)
-            file.data = {}
-            file.data = fileToOpen
+            var windows = openWindows.slice();
+            var window = windows.find(x => x.id === id)
+            window.data = {}
+            window.file = fileToOpen;
             setFocusedWin(id);
-            setOpenFiles(windows);
+            setOpenWindows(windows);
         }
     }
 
     function CloseWindow(id: number) {
         setFocusedWin(0);
-        var newList = openFiles.filter(x => x.id != id)
-        setOpenFiles(newList);
+        var newList = openWindows.filter(x => x.id != id)
+        setOpenWindows(newList);
     }
 
     function MinimizeWindow(id: number) {
-        var files = openFiles.slice();
-        var file = files.find(x => x.id === id)
-        file.style = {
-            ...file.style,
-            visibility: 'hidden'
-        }
-        setOpenFiles(files);
+        var windows = openWindows.slice();
+        var window = windows.find(x => x.id === id)
+        window.windowProps.isMinimized = true;
+        setOpenWindows(windows);
     }
 
     function UnMinimizeWindow(){
@@ -84,38 +84,28 @@ function Desktop() {
 
     const [focusedWin, setFocusedWin] = useState(0)
     useEffect(() => {
-        console.log(openFiles)
-        var windows = openFiles.slice();
+        console.log(openWindows)
+        var windows = openWindows.slice();
         windows.forEach(function (win) {
             if (win.id === focusedWin) {
-                win.style = {
-                    ...win.style,
-                    zIndex: 4
-                }
+                win.windowProps.isFocused = true;
             } else {
-                win.style = {
-                    ...win.style,
-                    zIndex: 3
-                }
+                win.windowProps.isFocused = false;
             }
         })
     }, [focusedWin])
 
     function SetStyle(id: number, styleToSet: any) {
-        console.log(id)
-        console.log(openFiles)
-        var windows = openFiles.slice();
-        console.log(windows)
-        var file = windows.find(x => x.id === id)
-
+        var windows = openWindows.slice();
+        var window = windows.find(x => x.id === id)
         var array = Object.entries(styleToSet)
         for (const entry of array) {
-            file.style[entry[0]] = entry[1]
+            window.windowProps[entry[0]] = entry[1]
         }
-        file.style = {
-            ...file.style,
+        window.windowProps = {
+            ...window.windowProps,
         };
-        setOpenFiles(windows);
+        setOpenWindows(windows);
     }
 
     const [offset, setOffset] = useState({
@@ -152,7 +142,7 @@ function Desktop() {
             <obj.file.component
                 file={obj.file}
                 id={obj.id}
-                style={obj.style}
+                windowProps={obj.windowProps}
                 data={obj.data}
                 WindowManagement={WindowManagement}
                 DataManagement={DataManagement}
@@ -176,8 +166,8 @@ function Desktop() {
             onMouseMove={(e) => SetMovinWinPosition(e)}
         >
             {
-                openFiles.length > 0 &&
-                openFiles.map((obj: any, index: number) => (
+                openWindows.length > 0 &&
+                openWindows.map((obj: any, index: number) => (
                     RenderWindow(obj)
                 ))
             }
@@ -196,8 +186,8 @@ function Desktop() {
 
                 <div className="taskBarItems">
                     {
-                        openFiles.length > 0 &&
-                        openFiles.map((obj: any, index: number) => (
+                        openWindows.length > 0 &&
+                        openWindows.map((obj: any, index: number) => (
                             <TaskBarItem id={obj.id} title={obj.file.title} iconsrc={obj.file.iconsrc}/>
                         ))
                     }
