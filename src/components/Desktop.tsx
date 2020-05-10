@@ -27,10 +27,16 @@ function Desktop() {
     }
 
     function UpdateWindow(id: number, dataUpdate: any) {
-        var threadedWinIndex = openFiles.findIndex(x => x.id == id)
-        var threadedWin = openFiles.splice(threadedWinIndex, 1)
-        threadedWin[0].data = dataUpdate
-        setOpenFiles([...openFiles, threadedWin[0]])
+        // var threadedWinIndex = openFiles.findIndex(x => x.id == id)
+        // var threadedWin = openFiles.splice(threadedWinIndex, 1)
+        // threadedWin[0].data = dataUpdate
+        // setOpenFiles([...openFiles, threadedWin[0]])
+
+        var windows = openFiles.slice();
+        var file = windows.find(x => x.id === id)
+
+        file.data = dataUpdate;
+        setOpenFiles(windows);
     }
 
     function Navigate(id: number, fileToOpen: any) {
@@ -49,9 +55,19 @@ function Desktop() {
         } else {
             var threadedWinIndex = openFiles.findIndex(x => x.id == id)
             var threadedWin = openFiles.splice(threadedWinIndex, 1)
-            threadedWin[0].file = fileToOpen
+
+            var windows = openFiles.slice();
+            var file = windows.find(x => x.id === id)
+
+            file.data = {}
+            file.data = fileToOpen
             setFocusedWin(id);
-            setOpenFiles([...openFiles, threadedWin[0]])
+
+            setOpenFiles(windows);
+
+            // threadedWin[0].file = fileToOpen
+            // threadedWin[0].data = {}
+            // setOpenFiles([...openFiles, threadedWin[0]])
         }
     }
 
