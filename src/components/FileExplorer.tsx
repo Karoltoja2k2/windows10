@@ -18,7 +18,7 @@ const FileExplorer = (props: any) => {
         <WindowBase 
             id={props.id}
             title={props.file.title}
-            style={props.style}
+            windowProps={props.windowProps}
             WindowManagement={props.WindowManagement}
         >
             <div className="explorerContainer" style={{}}
@@ -44,5 +44,5 @@ const FileExplorer = (props: any) => {
 
 export default React.memo(FileExplorer, (prevProps, nextProps) => {
     return prevProps.data === nextProps.data &&
-           prevProps.style === nextProps.style;
+           prevProps.windowProps === nextProps.windowProps;
 })

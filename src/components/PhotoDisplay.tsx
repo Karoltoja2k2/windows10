@@ -7,7 +7,7 @@ const PhotoDisplay = (props: any) => {
         <WindowBase
             id={props.id}
             title={props.file.title}
-            style={props.style}
+            windowProps={props.windowProps}
             WindowManagement={props.WindowManagement}
         >
             <div></div>

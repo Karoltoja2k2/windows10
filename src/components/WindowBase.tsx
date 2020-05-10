@@ -5,22 +5,30 @@ import { Resizable } from "re-resizable";
 
 
 const WindowBase = (props: any) => {
-    const [style, setStyle] = useState(props.style)
+    // const [dimensions, setDimensions] = useState(props.windowProps)
+    // 
+    // useEffect(() => {
+    //     setDimensions(props.windowProps)
+    // }, [props.windowProps])
 
-    useEffect(() => {
-        setStyle(props.style)
-    }, [props.style])
+    // console.log(dimensions)
+    console.log(props.windowProps.isMinimized)
 
     return (
         <Resizable
             className="resizableWindow"
-            size={{ width: style.width, height: style.height }}
-            style={style}
+            size={{ width: props.windowProps.width, height: props.windowProps.height }}
+            style={{
+                ...props.windowProps,
+                zIndex: props.windowProps.isFocused ? 4 : 3,
+                visibility: props.windowProps.isMinimized ? 'hidden' : 'visible'
+            }
+            }
             onResizeStop={(e, direction, ref, d) => {
                 props.WindowManagement.SetStyle(props.id, {
-                    ...style,
-                    width: style.width + d.width,
-                    height: style.height + d.height
+                    ...props.windowProps,
+                    width: props.windowProps.width + d.width,
+                    height: props.windowProps.height + d.height
                 })
             }}
         >
@@ -44,8 +52,8 @@ const WindowBase = (props: any) => {
                         if (e.target === e.currentTarget) {
                             props.WindowManagement.setMovingWin(props.id);
                             props.WindowManagement.setOffset({
-                                top: e.pageY - style.top,
-                                left: e.pageX - style.left
+                                top: e.pageY - props.windowProps.top,
+                                left: e.pageX - props.windowProps.left
                             })
                         }
 
