@@ -27,14 +27,8 @@ function Desktop() {
     }
 
     function UpdateWindow(id: number, dataUpdate: any) {
-        // var threadedWinIndex = openFiles.findIndex(x => x.id == id)
-        // var threadedWin = openFiles.splice(threadedWinIndex, 1)
-        // threadedWin[0].data = dataUpdate
-        // setOpenFiles([...openFiles, threadedWin[0]])
-
         var windows = openFiles.slice();
         var file = windows.find(x => x.id === id)
-
         file.data = dataUpdate;
         setOpenFiles(windows);
     }
@@ -42,6 +36,7 @@ function Desktop() {
     function Navigate(id: number, fileToOpen: any) {
         var oF;
         if (id === 0 || fileToOpen.extension !== '.fld') {
+            console.log('open new file')
             oF = openFile(openFilesCount, fileToOpen, {
                 left: openFilesCount * 10 + 100,
                 top: openFilesCount * 10 + 100,
@@ -51,23 +46,15 @@ function Desktop() {
                 position: 'absolute'
             })
             setOpenFiles([...openFiles, oF])
+            setFocusedWin(openFilesCount);
             setOpenFilesCount(openFilesCount + 1)
         } else {
-            var threadedWinIndex = openFiles.findIndex(x => x.id == id)
-            var threadedWin = openFiles.splice(threadedWinIndex, 1)
-
             var windows = openFiles.slice();
             var file = windows.find(x => x.id === id)
-
             file.data = {}
             file.data = fileToOpen
             setFocusedWin(id);
-
             setOpenFiles(windows);
-
-            // threadedWin[0].file = fileToOpen
-            // threadedWin[0].data = {}
-            // setOpenFiles([...openFiles, threadedWin[0]])
         }
     }
 
@@ -82,9 +69,13 @@ function Desktop() {
         var file = files.find(x => x.id === id)
         file.style = {
             ...file.style,
-            display: 'none'
+            visibility: 'hidden'
         }
         setOpenFiles(files);
+    }
+
+    function UnMinimizeWindow(){
+
     }
 
     function FullScreenMode(id: number) {
@@ -93,6 +84,7 @@ function Desktop() {
 
     const [focusedWin, setFocusedWin] = useState(0)
     useEffect(() => {
+        console.log(openFiles)
         var windows = openFiles.slice();
         windows.forEach(function (win) {
             if (win.id === focusedWin) {
@@ -111,7 +103,9 @@ function Desktop() {
 
     function SetStyle(id: number, styleToSet: any) {
         console.log(id)
+        console.log(openFiles)
         var windows = openFiles.slice();
+        console.log(windows)
         var file = windows.find(x => x.id === id)
 
         var array = Object.entries(styleToSet)
@@ -201,8 +195,13 @@ function Desktop() {
                 </button>
 
                 <div className="taskBarItems">
-                    <TaskBarItem />
-                    <TaskBarItem />
+                    {
+                        openFiles.length > 0 &&
+                        openFiles.map((obj: any, index: number) => (
+                            <TaskBarItem id={obj.id} title={obj.file.title} iconsrc={obj.file.iconsrc}/>
+                        ))
+                    }
+                    
 
                 </div>
                 <div className="toolBar">
