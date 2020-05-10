@@ -43,8 +43,6 @@ const FileExplorer = (props: any) => {
 }
 
 export default React.memo(FileExplorer, (prevProps, nextProps) => {
-    console.log(prevProps)
-    console.log(nextProps)
     return prevProps.data === nextProps.data &&
            prevProps.style === nextProps.style;
 })
