@@ -34,7 +34,12 @@ const FileExplorer = (props: any) => {
                         ))
                     }
                     <button onClick={() => {
-                        props.DataManagement.UpdateWindow(props.id, {...props.data, isRed: !props.data.isRed})
+                        props.WindowManagement.SetStyle(props.id, {
+                            ...props.windowProps,
+                            width: props.windowProps.width,
+                            height: props.windowProps.height
+                        })
+                        // props.DataManagement.UpdateWindow(props.id, {...props.data, isRed: !props.data.isRed})
                     }}>TEST</button>
                 </div>
             </div>
@@ -42,7 +47,9 @@ const FileExplorer = (props: any) => {
     );
 }
 
-export default React.memo(FileExplorer, (prevProps, nextProps) => {
-    return prevProps.data === nextProps.data &&
-           prevProps.windowProps === nextProps.windowProps;
-})
+// export default React.memo(FileExplorer, (prevProps, nextProps) => {
+//     return prevProps.test === nextProps.test
+// 
+// })
+
+export default FileExplorer

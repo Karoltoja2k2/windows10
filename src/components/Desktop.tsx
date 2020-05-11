@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import '../scss/desktop.scss'
 import Icon from './Icon'
 import WindowBase from './WindowBase'
@@ -48,22 +48,25 @@ function Desktop() {
                 width: 600,
                 position: 'absolute'
             })
+            console.log(oF)
             setOpenWindows([...openWindows, oF])
-            setFocusedWin(openWindowsCount);
             setOpenWindowsCount(openWindowsCount + 1)
         } else {
             var windows = openWindows.slice();
             var window = windows.find(x => x.id === id)
             window.data = {}
             window.file = fileToOpen;
-            setFocusedWin(id);
+            SetFocusedWin(id);
             setOpenWindows(windows);
         }
     }
 
     function CloseWindow(id: number) {
-        setFocusedWin(0);
+        SetFocusedWin(0);
+        console.log("beforeclose ", openWindows)
         var newList = openWindows.filter(x => x.id != id)
+        console.log("afterClose ", newList)
+
         setOpenWindows(newList);
     }
 
@@ -82,20 +85,28 @@ function Desktop() {
         console.log('fullscreen')
     }
 
-    const [focusedWin, setFocusedWin] = useState(0)
-    useEffect(() => {
-        console.log(openWindows)
+    function SetFocusedWin(id:number){
         var windows = openWindows.slice();
         windows.forEach(function (win) {
-            if (win.id === focusedWin) {
+            if (win.id === id) {
                 win.windowProps.isFocused = true;
             } else {
                 win.windowProps.isFocused = false;
             }
         })
-    }, [focusedWin])
+        setOpenWindows(windows)
+    }
 
-    function SetStyle(id: number, styleToSet: any) {
+
+    useEffect(() => {
+        console.log(openWindows)
+    }, [openWindows])
+
+
+
+    const SetStyle = (id: number, styleToSet: any) =>  {
+        console.log(openWindows)
+
         var windows = openWindows.slice();
         var window = windows.find(x => x.id === id)
         var array = Object.entries(styleToSet)
@@ -107,6 +118,9 @@ function Desktop() {
         };
         setOpenWindows(windows);
     }
+
+    const memoizedCallback = useCallback(SetStyle, [openWindows])
+
 
     const [offset, setOffset] = useState({
         top: 0,
@@ -124,9 +138,9 @@ function Desktop() {
 
     const WindowManagement = {
         setMovingWin: setMovingWin,
-        SetStyle: SetStyle,
+        SetStyle: memoizedCallback,
         setOffset: setOffset,
-        setFocusedWin: setFocusedWin,
+        SetFocusedWin: SetFocusedWin,
         Navigate: Navigate,
         CloseWindow: CloseWindow,
         MinimizeWindow: MinimizeWindow,

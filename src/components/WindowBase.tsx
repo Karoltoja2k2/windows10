@@ -5,14 +5,6 @@ import { Resizable } from "re-resizable";
 
 
 const WindowBase = (props: any) => {
-    // const [dimensions, setDimensions] = useState(props.windowProps)
-    // 
-    // useEffect(() => {
-    //     setDimensions(props.windowProps)
-    // }, [props.windowProps])
-
-    // console.log(dimensions)
-    console.log(props.windowProps.isMinimized)
 
     return (
         <Resizable
@@ -20,10 +12,15 @@ const WindowBase = (props: any) => {
             size={{ width: props.windowProps.width, height: props.windowProps.height }}
             style={{
                 ...props.windowProps,
+                width: props.windowProps.width,
+                height: props.windowProps.height,
+                top: props.windowProps.top,
+                left: props.windowProps.left,
                 zIndex: props.windowProps.isFocused ? 4 : 3,
                 visibility: props.windowProps.isMinimized ? 'hidden' : 'visible'
             }
             }
+            onResizeStart={() => props.WindowManagement.SetFocusedWin(props.id)}
             onResizeStop={(e, direction, ref, d) => {
                 props.WindowManagement.SetStyle(props.id, {
                     ...props.windowProps,
@@ -38,7 +35,8 @@ const WindowBase = (props: any) => {
                 onMouseDown={(e) => {
                     e.stopPropagation()
                     e.preventDefault()
-                    props.WindowManagement.setFocusedWin(props.id)
+                    console.log('focus changed')
+                    props.WindowManagement.SetFocusedWin(props.id)
                 }}
                 onMouseUp={(e) => {
                     console.log('asd')
