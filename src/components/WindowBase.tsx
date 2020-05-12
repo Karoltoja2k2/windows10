@@ -5,10 +5,49 @@ import { Resizable } from "re-resizable";
 
 
 const WindowBase = (props: any) => {
+    console.log('render')
+    useEffect(() => {
+        if (drag.dragging && props.WindowManagement.lmbDown){
+            console.log(props.WindowManagement.movingPos.top, drag)
+            setDimensions({
+                ...dimensions,
+                top: props.WindowManagement.movingPos.top - drag.offset.top,
+                left: props.WindowManagement.movingPos.left - drag.offset.left
+            })
+        }
+    }, [props.WindowManagement.movingPos])
 
+    useEffect(() => {
+        if(!props.WindowManagement.lmbDown){
+            setDrag({
+                dragging: false,
+                offset:{
+                    top:0,
+                    left:0
+                }
+            })
+        }
+    }, [props.WindowManagement.lmbDown])
 
-    console.log("render windowbase")
+    useEffect(() => {
+        setWindowProps(props.windowProps)
+    }, props.windowProps)
+
     const [windowProps, setWindowProps] = useState(props.windowProps)
+    const [drag, setDrag] = useState({
+        dragging: false,
+        offset: {
+            top:0,
+            left:0
+        }
+    })
+
+    const [dimensions, setDimensions] = useState({
+        top: 100,
+        left: 100,
+        width: 600,
+        height: 400
+    })
 
     useEffect(() => {
         setWindowProps(props.windowProps)
@@ -16,24 +55,40 @@ const WindowBase = (props: any) => {
 
     return (
         <Resizable
-            className={props.windowProps.isFocused ? "resizableWindow focused" : "resizableWindow"}
-            size={{ width: props.windowProps.width, height: props.windowProps.height }}
-            style={{
-                width: windowProps.width,
-                height: windowProps.height,
-                top: windowProps.top,
-                left: windowProps.left,
-                position: windowProps.position,
-                zIndex: props.windowProps.isFocused ? 4 : 3,
-                visibility: props.windowProps.isMinimized ? 'hidden' : 'visible'
+            className={windowProps.isFocused ? "resizableWindow focused" : "resizableWindow"}
+            size={ !windowProps.isFullScreen ? { 
+                width: dimensions.width,
+                height: dimensions.height 
+            } : {
+                width: '100%',
+                height: '100%'
             }
             }
-            onResizeStart={() => props.WindowManagement.SetFocusedWin(props.id)}
-            onResizeStop={(e, direction, ref, d) => {
-                props.WindowManagement.SetStyle(props.id, {
+            style={ !windowProps.isFullScreen ?{
+                ...dimensions,
+                position: 'absolute',
+                zIndex: windowProps.isFocused ? 4 : 3,
+                visibility: windowProps.isMinimized ? 'hidden' : 'visible'
+            } : {
+                top:0,
+                left:0,
+                position: 'absolute',
+                zIndex: windowProps.isFocused ? 4 : 3,
+                visibility: windowProps.isMinimized ? 'hidden' : 'visible'
+            }
+            }
+            onResizeStart={() => {
+                props.WindowManagement.SetFocusedWin(props.id)
+                setWindowProps({
                     ...windowProps,
-                    width: windowProps.width + d.width,
-                    height: windowProps.height + d.height
+                    isFullScreen:false
+                })
+            }}
+            onResizeStop={(e, direction, ref, d) => {
+                setDimensions({
+                    ...dimensions,
+                    width: dimensions.width + d.width,
+                    height: dimensions.height + d.height
                 })
             }}
         >
@@ -43,11 +98,9 @@ const WindowBase = (props: any) => {
                 onMouseDown={(e) => {
                     e.stopPropagation()
                     e.preventDefault()
-                    console.log('focus changed')
                     props.WindowManagement.SetFocusedWin(props.id)
                 }}
                 onMouseUp={(e) => {
-                    console.log('asd')
                 }}
             >
 
@@ -56,10 +109,17 @@ const WindowBase = (props: any) => {
                     onMouseDown={(e) => {
                         e.preventDefault();
                         if (e.target === e.currentTarget) {
-                            props.WindowManagement.setMovingWin(props.id);
-                            props.WindowManagement.setOffset({
-                                top: e.pageY - windowProps.top,
-                                left: e.pageX - windowProps.left
+                            props.WindowManagement.setLmbDown(true);
+                            setWindowProps({
+                                ...windowProps,
+                                isFullScreen:false
+                            })
+                            setDrag({
+                                dragging: true,
+                                offset:{
+                                    top: e.pageY - dimensions.top,
+                                    left: e.pageX - dimensions.left
+                                }
                             })
                         }
 

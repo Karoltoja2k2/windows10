@@ -48,8 +48,6 @@ const FileExplorer = (props: any) => {
 // })
 
 export default React.memo(FileExplorer, (prevProps, nextProps) => {
-    return prevProps.openWindowsCount === nextProps.openWindowsCount &&
-        prevProps.data === nextProps.data &&
-        prevProps.windowProps === nextProps.windowProps
+    return false;
 
 })
