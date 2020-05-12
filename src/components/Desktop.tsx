@@ -2,9 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import '../scss/desktop.scss'
 import Icon from './Icon'
 import WindowBase from './WindowBase'
-import TaskBarItem from './TaskBarItem'
+import Taskbar from './Taskbar'
 
-import Logo from '../media/win_logo.png'
 
 import FileStructure from '../media/fileStructure.json'
 import files from '../media/fileStructure'
@@ -17,14 +16,25 @@ function Desktop() {
     const [openWindowsCount, setOpenWindowsCount] = useState(1);
     const [openWindows, setOpenWindows] = useState<any[]>([])
 
+    // interface Window {                        
+    //     id: number,
+    //     windowProps: {
+    //         isFocused: true,
+    //         isMinimized: false,
+    //         isFullScreen: false
+    //     },
+    //     data: {},
+    //     file: {}
+    // }
+
     function Window(id: number, file: any, dimensions: any) {
         return {
             id: id,
             windowProps: {
                 ...dimensions,
                 isFocused: true,
-                isMinimized:false,
-                isFullScreen:false
+                isMinimized: false,
+                isFullScreen: false
             },
             data: {},
             file: file
@@ -56,28 +66,39 @@ function Desktop() {
             var window = windows.find(x => x.id === id)
             window.data = {}
             window.file = fileToOpen;
-            SetFocusedWin(id);
+            setFocusedWin(id);
             setOpenWindows(windows);
         }
     }
 
     function CloseWindow(id: number) {
-        SetFocusedWin(0);
-        console.log("beforeclose ", openWindows)
+        setFocusedWin(0);
         var newList = openWindows.filter(x => x.id != id)
-        console.log("afterClose ", newList)
-
         setOpenWindows(newList);
     }
 
     function MinimizeWindow(id: number) {
         var windows = openWindows.slice();
         var window = windows.find(x => x.id === id)
-        window.windowProps.isMinimized = true;
-        setOpenWindows(windows);
+        if (window.windowProps.isFocused && !window.windowProps.isMinimized) {
+            window.windowProps = {
+                ...window.windowProps,
+                isMinimized: true,
+            }
+            setFocusedWin(0)
+        } else if (!window.windowProps.isFocused && !window.windowProps.isMinimized) {
+            setFocusedWin(id);
+        } else if (window.windowProps.isMinimized) {
+            window.windowProps = {
+                ...window.windowProps,
+                isMinimized: false,
+            }
+            setFocusedWin(id);
+        }
+        setOpenWindows(windows)
     }
 
-    function UnMinimizeWindow(){
+    function UnMinimizeWindow(id: number) {
 
     }
 
@@ -85,26 +106,27 @@ function Desktop() {
         console.log('fullscreen')
     }
 
-    function SetFocusedWin(id:number){
+    const [focusedWin, setFocusedWin] = useState(0)
+
+    useEffect(() => {
         var windows = openWindows.slice();
         windows.forEach(function (win) {
-            if (win.id === id) {
-                win.windowProps.isFocused = true;
+            if (win.id === focusedWin) {
+                win.windowProps = {
+                    ...win.windowProps,
+                    isFocused: true
+                }
             } else {
-                win.windowProps.isFocused = false;
+                win.windowProps = {
+                    ...win.windowProps,
+                    isFocused: false
+                }
             }
         })
         setOpenWindows(windows)
-    }
+    }, [focusedWin])
 
-
-    useEffect(() => {
-        console.log(openWindows)
-    }, [openWindows])
-
-
-
-    const SetStyle = (id: number, styleToSet: any) =>  {
+    const SetStyle = (id: number, styleToSet: any) => {
         console.log(openWindows)
 
         var windows = openWindows.slice();
@@ -118,8 +140,6 @@ function Desktop() {
         };
         setOpenWindows(windows);
     }
-
-    const memoizedCallback = useCallback(SetStyle, [openWindows])
 
 
     const [offset, setOffset] = useState({
@@ -138,9 +158,9 @@ function Desktop() {
 
     const WindowManagement = {
         setMovingWin: setMovingWin,
-        SetStyle: memoizedCallback,
+        SetStyle: SetStyle,
         setOffset: setOffset,
-        SetFocusedWin: SetFocusedWin,
+        SetFocusedWin: setFocusedWin,
         Navigate: Navigate,
         CloseWindow: CloseWindow,
         MinimizeWindow: MinimizeWindow,
@@ -154,16 +174,17 @@ function Desktop() {
     function RenderWindow(obj: any) {
         return (
             <obj.file.component
+                key={obj.id}
                 file={obj.file}
                 id={obj.id}
                 windowProps={obj.windowProps}
                 data={obj.data}
                 WindowManagement={WindowManagement}
                 DataManagement={DataManagement}
+                openWindowsCount={openWindowsCount}
             />
         );
     }
-
 
     console.log('render desktop')
     return (
@@ -193,27 +214,18 @@ function Desktop() {
                     ))
                 }
             </div>
-            <div className="taskBar">
-                <button className="startBtn">
-                    <img src={Logo} alt="startBtnLogo" />
-                </button>
 
-                <div className="taskBarItems">
-                    {
-                        openWindows.length > 0 &&
-                        openWindows.map((obj: any, index: number) => (
-                            <TaskBarItem id={obj.id} title={obj.file.title} iconsrc={obj.file.iconsrc}/>
-                        ))
-                    }
-                    
 
-                </div>
-                <div className="toolBar">
-                    <p className="timeContainer">11:45</p>
-                    <button className="minimizeAllBtn"></button>
-
-                </div>
+            <div className="activateWindows">
+                <p className="top">Aktywuj system Windows</p>
+                <p className="down">Przejdź do ustawień, aby aktywować system Windows.</p>
             </div>
+
+            <Taskbar
+                openWindows={openWindows}
+                focusedWin={focusedWin}
+                WindowManagement={WindowManagement}
+            />
         </div>
     );
 }
