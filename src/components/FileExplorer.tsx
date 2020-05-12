@@ -15,31 +15,26 @@ const FileExplorer = (props: any) => {
     const [isRed, setIsRed] = useState(false)
 
     return (
-        <WindowBase 
+        <WindowBase
             id={props.id}
             title={props.file.title}
             windowProps={props.windowProps}
             WindowManagement={props.WindowManagement}
         >
-            <div className="explorerContainer" style={{}}
+            <div className="explorerContainer" style={{ background: isRed ? "red" : "" }}
             >
                 <div className="toolBar">
 
                 </div>
-                <div className="iconGrid" style={{background: props.data.isRed ? 'red' : 'blue'}}>
+                <div className="iconGrid">
                     {
                         iconsInFolder &&
                         iconsInFolder.map((file: any, index: number) => (
-                            <Icon file={file}  id={props.id} Navigate={props.WindowManagement.Navigate} />
+                            <Icon file={file} id={props.id} Navigate={props.WindowManagement.Navigate} />
                         ))
                     }
                     <button onClick={() => {
-                        props.WindowManagement.SetStyle(props.id, {
-                            ...props.windowProps,
-                            width: props.windowProps.width,
-                            height: props.windowProps.height
-                        })
-                        // props.DataManagement.UpdateWindow(props.id, {...props.data, isRed: !props.data.isRed})
+                        setIsRed(!isRed);
                     }}>TEST</button>
                 </div>
             </div>
@@ -52,4 +47,9 @@ const FileExplorer = (props: any) => {
 // 
 // })
 
-export default FileExplorer
+export default React.memo(FileExplorer, (prevProps, nextProps) => {
+    return prevProps.openWindowsCount === nextProps.openWindowsCount &&
+        prevProps.data === nextProps.data &&
+        prevProps.windowProps === nextProps.windowProps
+
+})
