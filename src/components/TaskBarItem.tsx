@@ -5,7 +5,13 @@ import Logo from '../media/logo192.png'
 const TaskBarItem = (props:any) => {
 
     return(
-        <div className="taskBarItem">
+        <div 
+        className={props.focusedWin === props.id ? "taskBarItem selected" : "taskBarItem"}
+        onClick={(e) => {
+            e.stopPropagation();
+            props.WindowManagement.MinimizeWindow(props.id);
+        }}
+        >
             <img src={props.iconsrc} />
             <label>{props.title}</label>
         </div>
