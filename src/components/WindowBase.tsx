@@ -6,16 +6,24 @@ import { Resizable } from "re-resizable";
 
 const WindowBase = (props: any) => {
 
+
+    console.log("render windowbase")
+    const [windowProps, setWindowProps] = useState(props.windowProps)
+
+    useEffect(() => {
+        setWindowProps(props.windowProps)
+    }, [props.windowProps])
+
     return (
         <Resizable
-            className="resizableWindow"
+            className={props.windowProps.isFocused ? "resizableWindow focused" : "resizableWindow"}
             size={{ width: props.windowProps.width, height: props.windowProps.height }}
             style={{
-                ...props.windowProps,
-                width: props.windowProps.width,
-                height: props.windowProps.height,
-                top: props.windowProps.top,
-                left: props.windowProps.left,
+                width: windowProps.width,
+                height: windowProps.height,
+                top: windowProps.top,
+                left: windowProps.left,
+                position: windowProps.position,
                 zIndex: props.windowProps.isFocused ? 4 : 3,
                 visibility: props.windowProps.isMinimized ? 'hidden' : 'visible'
             }
@@ -23,9 +31,9 @@ const WindowBase = (props: any) => {
             onResizeStart={() => props.WindowManagement.SetFocusedWin(props.id)}
             onResizeStop={(e, direction, ref, d) => {
                 props.WindowManagement.SetStyle(props.id, {
-                    ...props.windowProps,
-                    width: props.windowProps.width + d.width,
-                    height: props.windowProps.height + d.height
+                    ...windowProps,
+                    width: windowProps.width + d.width,
+                    height: windowProps.height + d.height
                 })
             }}
         >
@@ -50,8 +58,8 @@ const WindowBase = (props: any) => {
                         if (e.target === e.currentTarget) {
                             props.WindowManagement.setMovingWin(props.id);
                             props.WindowManagement.setOffset({
-                                top: e.pageY - props.windowProps.top,
-                                left: e.pageX - props.windowProps.left
+                                top: e.pageY - windowProps.top,
+                                left: e.pageX - windowProps.left
                             })
                         }
 
