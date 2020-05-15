@@ -24,9 +24,19 @@ const FileExplorer = (props: any) => {
             <div className="explorerContainer" style={{ background: isRed ? "red" : "" }}
             >
                 <div className="toolBar">
+                    <button></button>
+                    <button></button>
 
+                    <textarea></textarea>
+                    <input type="text"></input>
                 </div>
-                <div className="iconGrid">
+                <div
+                    className="iconGrid"
+                    onMouseDown={(e) => {
+                        e.stopPropagation()
+                        props.WindowManagement.SetFocusedWin(props.id)
+                    }}
+                >
                     {
                         iconsInFolder &&
                         iconsInFolder.map((file: any, index: number) => (
@@ -48,6 +58,6 @@ const FileExplorer = (props: any) => {
 // })
 
 export default React.memo(FileExplorer, (prevProps, nextProps) => {
-    return false;
-
+    console.log(nextProps.id, nextProps.WindowManagement.movingPos.id)
+    return nextProps.id === nextProps.WindowManagement.movingPos.id
 })

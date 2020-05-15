@@ -2,19 +2,25 @@
     background: rgb(41, 41, 41);
     position: absolute;
     z-index: inherit;
-    top: 25px;
+    top: 30px;
     left: 1px;
     right: 1px;
     bottom: 1px;
 
     .toolBar{
-        width: 100px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 30px;
+        width: 100%;
+        background-color: black;
     }
 
     .iconGrid{    
         margin: 5px;
         justify-content: start;
-        position: absolute;
+        position: relative;
         display: grid;
         grid-gap: 5px;
         grid-template-columns: repeat(auto-fit, 55px);
@@ -24,7 +30,7 @@
         top: 0px;
         left: 0px;
         right: 0px;
-        bottom: 0px;
+        bottom: 1px;
     
     }
 }
