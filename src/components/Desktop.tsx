@@ -96,16 +96,26 @@ function Desktop() {
     function FullScreenMode(id: number) {
         var windows = openWindows.slice();
         var window = windows.find(x => x.id === id)!
-        window.windowProps = {
-            ...window.windowProps,
-            isFullScreen:true,
-            isFocused:true
-        }
+        windows.forEach(function(win){
+            if (win.id === id){
+                window.windowProps = {
+                    ...window.windowProps,
+                    isFullScreen:!window.windowProps.isFullScreen,
+                    isFocused:true
+                }
+            } else {
+                window.windowProps = {
+                    ...window.windowProps,
+                    isFocused:false
+                }
+            }
+        })
         console.log(window.windowProps)
         setOpenWindows(windows)
     }
 
     function setFocusedWin(id: number) {
+        console.log('asd')
         var windows = openWindows.slice();
         windows.forEach(function (win) {
             if (win.id === id) {
@@ -128,12 +138,17 @@ function Desktop() {
         console.log(lmbDown)
     }, [lmbDown])
 
-    const [movingPos, setMovingPos] = useState({})
+    const [movingWindow, setMovingWindow] = useState({
+        top:0,
+        left:0,
+        id:0
+    })
 
     const WindowManagement = {
         SetFocusedWin: setFocusedWin,
         setLmbDown: setLmbDown,
-        movingPos: movingPos,
+        setMovingWindow:setMovingWindow,
+        movingPos: movingWindow,
         lmbDown: lmbDown,
         Navigate: Navigate,
         CloseWindow: CloseWindow,
@@ -159,27 +174,30 @@ function Desktop() {
         <div
             className="desktop"
             id="desktop"
+            onMouseDown={() => setFocusedWin(0)}
             onMouseUp={() => {
                 setLmbDown(false)
             }}
             onMouseMove={(e) => {
                 if (lmbDown) {
                     console.log('moving')
-                    setMovingPos({
+                    setMovingWindow({
+                        ...movingWindow,
                         top: e.pageY,
                         left: e.pageX
                     })
                 }
             }}
         >
-            {
-                openWindows.length > 0 &&
-                openWindows.map((obj: Window, index: number) => (
-                    RenderWindow(obj)
-                ))
-            }
+            
 
             <div className="iconGrid">
+                {
+                    openWindows.length > 0 &&
+                    openWindows.map((obj: Window, index: number) => (
+                        RenderWindow(obj)
+                    ))
+                }
                 {
                     DesktopIcons.map((obj: any, index: number) => (
                         <Icon Navigate={Navigate} file={obj} id={0} />

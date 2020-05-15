@@ -31,7 +31,7 @@ const WindowBase = (props: any) => {
 
     useEffect(() => {
         setWindowProps(props.windowProps)
-    }, props.windowProps)
+    }, [props.windowProps])
 
     const [windowProps, setWindowProps] = useState(props.windowProps)
     const [drag, setDrag] = useState({
@@ -56,6 +56,16 @@ const WindowBase = (props: any) => {
     return (
         <Resizable
             className={windowProps.isFocused ? "resizableWindow focused" : "resizableWindow"}
+            enable={{ 
+                top:!windowProps.isFullScreen, 
+                right:!windowProps.isFullScreen, 
+                bottom:!windowProps.isFullScreen, 
+                left:!windowProps.isFullScreen, 
+                topRight:!windowProps.isFullScreen, 
+                bottomRight:!windowProps.isFullScreen, 
+                bottomLeft:!windowProps.isFullScreen, 
+                topLeft:!windowProps.isFullScreen 
+            }}
             size={ !windowProps.isFullScreen ? { 
                 width: dimensions.width,
                 height: dimensions.height 
@@ -79,10 +89,6 @@ const WindowBase = (props: any) => {
             }
             onResizeStart={() => {
                 props.WindowManagement.SetFocusedWin(props.id)
-                setWindowProps({
-                    ...windowProps,
-                    isFullScreen:false
-                })
             }}
             onResizeStop={(e, direction, ref, d) => {
                 setDimensions({
@@ -97,7 +103,7 @@ const WindowBase = (props: any) => {
                 className="resizableWindowContainer"
                 onMouseDown={(e) => {
                     e.stopPropagation()
-                    e.preventDefault()
+
                     props.WindowManagement.SetFocusedWin(props.id)
                 }}
                 onMouseUp={(e) => {
@@ -108,18 +114,18 @@ const WindowBase = (props: any) => {
                     className="bar"
                     onMouseDown={(e) => {
                         e.preventDefault();
-                        if (e.target === e.currentTarget) {
+                        if (e.target === e.currentTarget && !windowProps.isFullScreen) {
                             props.WindowManagement.setLmbDown(true);
-                            setWindowProps({
-                                ...windowProps,
-                                isFullScreen:false
-                            })
                             setDrag({
                                 dragging: true,
                                 offset:{
                                     top: e.pageY - dimensions.top,
                                     left: e.pageX - dimensions.left
                                 }
+                            })
+                            props.WindowManagement.setMovingWindow({
+                                ...props.WindowManagement,
+                                id:props.id
                             })
                         }
 
@@ -132,13 +138,13 @@ const WindowBase = (props: any) => {
                 >
                     <label>{props.title}</label>
                     <div className="barButtons">
-                        <button onClick={(e) => { props.WindowManagement.MinimizeWindow(props.id) }}>
+                        <button className="control" onClick={(e) => { props.WindowManagement.MinimizeWindow(props.id) }}>
                             _
                         </button>
-                        <button onClick={(e) => { props.WindowManagement.FullScreenMode(props.id) }}>
+                        <button className="control" onClick={(e) => { props.WindowManagement.FullScreenMode(props.id) }}>
                             ||
                         </button>
-                        <button onClick={(e) => { props.WindowManagement.CloseWindow(props.id) }}>
+                        <button className="exit" onClick={(e) => { props.WindowManagement.CloseWindow(props.id) }}>
                             X
                         </button>
                     </div>
