@@ -18,7 +18,14 @@ const Taskbar = (props:any) => {
                 {
                     props.openWindows.length > 0 &&
                     props.openWindows.map((obj: any, index: number) => (
-                        <TaskBarItem id={obj.id} focusedWin={props.focusedWin} title={obj.file.title} iconsrc={obj.file.iconsrc} WindowManagement={props.WindowManagement} />
+                        <TaskBarItem 
+                            id={obj.id} 
+                            key={obj.id} 
+                            focusedWin={obj.windowProps.isFocused ? true : false} 
+                            title={obj.file.title} 
+                            iconsrc={obj.file.iconsrc} 
+                            WindowManagement={props.WindowManagement} 
+                        />
                     ))
                 }
                 

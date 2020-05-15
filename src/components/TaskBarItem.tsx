@@ -6,7 +6,7 @@ const TaskBarItem = (props:any) => {
 
     return(
         <div 
-        className={props.focusedWin === props.id ? "taskBarItem selected" : "taskBarItem"}
+        className={props.focusedWin ? "taskBarItem selected" : "taskBarItem"}
         onClick={(e) => {
             e.stopPropagation();
             props.WindowManagement.MinimizeWindow(props.id);
