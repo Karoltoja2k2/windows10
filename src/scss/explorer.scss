@@ -1,0 +1,13 @@
+.explorerContainer{
+    background: rgb(41, 41, 41);
+    position: absolute;
+    z-index: inherit;
+    top: 30px;
+    left: 1px;
+    right: 1px;
+    bottom: 1px;
+    iframe{
+        width: 100%;
+        height: 100%;
+    }
+}

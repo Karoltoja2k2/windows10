@@ -58,6 +58,7 @@ const FileExplorer = (props: any) => {
 // })
 
 export default React.memo(FileExplorer, (prevProps, nextProps) => {
-    console.log(nextProps.id, nextProps.WindowManagement.movingPos.id)
-    return nextProps.id === nextProps.WindowManagement.movingPos.id
+    // console.log(nextProps.id, nextProps.WindowManagement.movingPos.id)
+    // return nextProps.id === nextProps.WindowManagement.movingPos.id
+    return false;
 })

@@ -1,9 +1,19 @@
 import FileExplorer from '../components/FileExplorer'
 import PhotoDisplay from '../components/PhotoDisplay'
+import Explorer from '../components/Explorer'
+
 
 import logo192 from './logo192.png'
 
 const files = [
+    {
+        path:"Drive:/desktop/",
+        contentPath:"Drive:/desktop/mozilla",
+        component: Explorer,
+        title:"desktop",
+        iconsrc:logo192,
+        extension:".exe"
+    },
     {
         path:"Drive:/",
         contentPath:"Drive:/desktop/",
