@@ -1,24 +1,28 @@
 {
   "files": {
-    "main.css": "/windows95/static/css/main.04d7e10e.chunk.css",
-    "main.js": "/windows95/static/js/main.d959c665.chunk.js",
-    "main.js.map": "/windows95/static/js/main.d959c665.chunk.js.map",
+    "main.css": "/windows95/static/css/main.3a202e98.chunk.css",
+    "main.js": "/windows95/static/js/main.ab3b3b31.chunk.js",
+    "main.js.map": "/windows95/static/js/main.ab3b3b31.chunk.js.map",
     "runtime-main.js": "/windows95/static/js/runtime-main.2a9bf908.js",
     "runtime-main.js.map": "/windows95/static/js/runtime-main.2a9bf908.js.map",
-    "static/js/2.68a13b8b.chunk.js": "/windows95/static/js/2.68a13b8b.chunk.js",
-    "static/js/2.68a13b8b.chunk.js.map": "/windows95/static/js/2.68a13b8b.chunk.js.map",
+    "static/js/2.a4ca23c1.chunk.js": "/windows95/static/js/2.a4ca23c1.chunk.js",
+    "static/js/2.a4ca23c1.chunk.js.map": "/windows95/static/js/2.a4ca23c1.chunk.js.map",
     "index.html": "/windows95/index.html",
-    "precache-manifest.05abad2bfc69966667f33dad72a66227.js": "/windows95/precache-manifest.05abad2bfc69966667f33dad72a66227.js",
+    "precache-manifest.6e6080116a842178105202369872c3bd.js": "/windows95/precache-manifest.6e6080116a842178105202369872c3bd.js",
     "service-worker.js": "/windows95/service-worker.js",
-    "static/css/main.04d7e10e.chunk.css.map": "/windows95/static/css/main.04d7e10e.chunk.css.map",
-    "static/js/2.68a13b8b.chunk.js.LICENSE.txt": "/windows95/static/js/2.68a13b8b.chunk.js.LICENSE.txt",
+    "static/css/main.3a202e98.chunk.css.map": "/windows95/static/css/main.3a202e98.chunk.css.map",
+    "static/js/2.a4ca23c1.chunk.js.LICENSE.txt": "/windows95/static/js/2.a4ca23c1.chunk.js.LICENSE.txt",
     "static/media/desktop.scss": "/windows95/static/media/calibril.ca17c1d0.ttf",
-    "static/media/win_logo.png": "/windows95/static/media/win_logo.620daf39.png"
+    "static/media/chrome.png": "/windows95/static/media/chrome.e78aa3b0.png",
+    "static/media/lenna.jpg": "/windows95/static/media/lenna.e2dac7d1.jpg",
+    "static/media/win_logo.png": "/windows95/static/media/win_logo.620daf39.png",
+    "static/media/winxpbg.jpg": "/windows95/static/media/winxpbg.ea999396.jpg",
+    "static/media/xd.png": "/windows95/static/media/xd.493584ee.png"
   },
   "entrypoints": [
     "static/js/runtime-main.2a9bf908.js",
-    "static/js/2.68a13b8b.chunk.js",
-    "static/css/main.04d7e10e.chunk.css",
-    "static/js/main.d959c665.chunk.js"
+    "static/js/2.a4ca23c1.chunk.js",
+    "static/css/main.3a202e98.chunk.css",
+    "static/js/main.ab3b3b31.chunk.js"
   ]
 }
