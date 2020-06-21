@@ -1,0 +1,17 @@
+.photoContainer{
+    position: absolute;
+    top: 30px;
+    left: 1px;
+    right: 1px;
+    bottom: 1px;
+    background: rgb(41, 41, 41);
+    z-index: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+        width: 90%;
+        height: 90%;
+        object-fit: scale-down;
+    }
+}

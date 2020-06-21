@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import WindowBase from './WindowBase'
+import Logo from '../media/win_logo.png'
+import '../scss/photoDisplay.scss'
 
 
 const PhotoDisplay = (props: any) => {
@@ -10,7 +12,9 @@ const PhotoDisplay = (props: any) => {
             windowProps={props.windowProps}
             WindowManagement={props.WindowManagement}
         >
-            <div></div>
+            <div className="photoContainer">
+                <img src={props.file.source} />
+            </div>
         </WindowBase>
     );
 }
