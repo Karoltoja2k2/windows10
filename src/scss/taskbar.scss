@@ -36,12 +36,13 @@
             height: 100%;
             margin: 0px 2px;
             border-bottom: 2px solid green;
-            background: transparent;
+            background-color: rgba(0,0,255,0.0);
             transition: background-color 0.2s ease;
             width: 150px;
             display: flex;
             flex-direction: row;
             align-items: center;
+              
             img{
                 height: 80%;
             }
@@ -50,17 +51,14 @@
                 font-size: 12px;
                 font-weight: 100;
             }
-            
-        }        
-        :hover{
-            background: rgba(255, 255, 255, 0.109);
-            opacity: 100%;
+            &:hover{
+                background-color: rgba(255,255,255,0.109);
+            }                 
         }
         .selected{
-            background: rgba(255, 255, 255, 0.198);
-        }
+            background-color: rgba(255, 255, 255, 0.198);
+        }           
         
-
     }
     .toolBar{
         right: 0px;
