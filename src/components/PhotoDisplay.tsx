@@ -5,6 +5,8 @@ import '../scss/photoDisplay.scss'
 
 
 const PhotoDisplay = (props: any) => {
+
+
     return (
         <WindowBase
             id={props.id}

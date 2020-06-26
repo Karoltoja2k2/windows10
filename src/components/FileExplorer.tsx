@@ -24,7 +24,11 @@ const FileExplorer = (props: any) => {
             <div className="explorerContainer" style={{ background: isRed ? "red" : "" }}
             >
                 <div className="toolBar">
-                    <button></button>
+                    <button onClick={() => {
+                        props.WindowManagement.Navigate(props.id, props.file.path)
+                    }}
+                        style={{ width: 20, height: 20 }}
+                    ></button>
                     <button></button>
 
                     <textarea></textarea>
@@ -57,8 +61,9 @@ const FileExplorer = (props: any) => {
 // 
 // })
 
-export default React.memo(FileExplorer, (prevProps, nextProps) => {
-    // console.log(nextProps.id, nextProps.WindowManagement.movingPos.id)
-    // return nextProps.id === nextProps.WindowManagement.movingPos.id
-    return false;
+
+export default React.memo(FileExplorer, () => {
+//     // console.log(nextProps.id, nextProps.WindowManagement.movingPos.id)
+//     // return nextProps.id === nextProps.WindowManagement.movingPos.id
+return false;
 })
