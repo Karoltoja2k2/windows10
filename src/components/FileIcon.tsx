@@ -11,7 +11,6 @@ const FileIcon = (props: any) => {
     }
     return (
         <button className="icon" onDoubleClick={(e) => OpenFileEvent(e)}>
-            <div className="bg"/>
             <img src={props.file.iconsrc} alt="fileIcon" />
             <label>{props.file.title}</label>
         </button>

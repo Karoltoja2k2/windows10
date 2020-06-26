@@ -6,15 +6,8 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background-color: transparent;
-    border: none;
-    .bg{
-        position: absolute;
-        top: 0px;
-        bottom: 0px;  
-        width: 65px; 
-        height: 75px;
-    }    
+    background-color: rgba(0,0,0,0);
+    border: 1px solid transparent;
     img{
         margin-top: 5;
         z-index: 2;
@@ -40,26 +33,21 @@
     }   
 
     &:hover{
-        .bg{
-            background-color: lightblue;
-            border: 1px outset rgb(117, 117, 255);
-            opacity: 0.3;
-        }
+        background-color: rgba(173, 216, 255, 0.3);
+        border: 1px outset rgba(95, 95, 255, 0.192);
     }
 
     &:focus{
         outline: none;
+        background-color: rgba(173, 216, 255, 0.3);
+        border: 1px outset rgba(95, 95, 255, 0.192);
         label{
             overflow-wrap: anywhere;
             white-space: normal;
             text-overflow: unset;
             overflow: visible;            
         }
-        .bg{
-            background-color: lightblue;
-            border: 1px outset rgb(117, 117, 255);
-            opacity: 0.3;
-        }
+        
     }
 }   
 
