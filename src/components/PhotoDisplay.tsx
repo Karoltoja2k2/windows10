@@ -10,7 +10,7 @@ const PhotoDisplay = (props: any) => {
     return (
         <WindowBase
             id={props.id}
-            title={props.file.title}
+            file={props.file}
             windowProps={props.windowProps}
             WindowManagement={props.WindowManagement}
         >

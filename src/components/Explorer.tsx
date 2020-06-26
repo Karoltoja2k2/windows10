@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import '../scss/explorer.scss'
 import WindowBase from './WindowBase'
-import files from '../media/fileStructure'
-
-import Icon from './Icon'
 
 const Explorer = (props: any) => {
 
     return(
         <WindowBase
             id={props.id}
-            title={props.file.title}
+            file={props.file}
             windowProps={props.windowProps}
             WindowManagement={props.WindowManagement}
         >
