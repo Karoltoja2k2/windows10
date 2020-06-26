@@ -71,6 +71,9 @@ const FileExplorer = (props: any) => {
                         }}>TEST</button>
                     </div>
                 </div>
+                <div className="footer">
+                    
+                </div>
             </div>
         </WindowBase>
     );

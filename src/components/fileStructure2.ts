@@ -98,6 +98,51 @@ const testfolder2: File = {
     prevFolder: testfolder
 }
 
+const testfolder3: File = {
+    fileId: id++,
+    path: 'Drive C:/Desktop/',
+    component: FileExplorer,
+    extension: '.fld',
+    title: 'Test folder3',
+    iconsrc: foldericon,
+
+    prevFolder: desktop,
+}
+
+const testfolder4: File = {
+    fileId: id++,
+    path: 'Drive C:/Desktop/',
+    component: FileExplorer,
+    extension: '.fld',
+    title: 'Test folder4',
+    iconsrc: foldericon,
+
+    prevFolder: desktop,
+}
+
+const testfolder5: File = {
+    fileId: id++,
+    path: 'Drive C:/Desktop/',
+    component: FileExplorer,
+    extension: '.fld',
+    title: 'Test folder5',
+    iconsrc: foldericon,
+
+    prevFolder: desktop,
+}
+
+const testfolder6: File = {
+    fileId: id++,
+    path: 'Drive C:/Desktop/',
+    component: FileExplorer,
+    extension: '.fld',
+    title: 'Test folder6',
+    iconsrc: foldericon,
+
+    prevFolder: desktop,
+}
+
+
 const nestedfoldertest: File = {
     fileId: id++,
     path: 'Drive C:/Desktop/Test folder',
@@ -109,6 +154,7 @@ const nestedfoldertest: File = {
     prevFolder: testfolder2
 }
 
-files2.push(driveC, driveD, desktop, lennaimg, winimg, testfolder, testfolder2, nestedfoldertest)
+files2.push(driveC, driveD, desktop, lennaimg, winimg, testfolder, testfolder2, nestedfoldertest, testfolder3,
+    testfolder4, testfolder5, testfolder6)
 
 export default files2

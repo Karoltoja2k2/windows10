@@ -62,7 +62,7 @@ const WindowBase = (props: any) => {
         <Resizable
             className={windowProps.isFocused ? "resizableWindow focused" : "resizableWindow"}
             minHeight={200}
-            minWidth={320}
+            minWidth={300}
             enable={{
                 top: !windowProps.isFullScreen,
                 right: !windowProps.isFullScreen,
