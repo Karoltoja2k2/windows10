@@ -10,11 +10,11 @@ const FileIcon = (props: any) => {
         props.Navigate(props.id, props.file)
     }
     return (
-        <div className="icon" onDoubleClick={(e) => OpenFileEvent(e)}>
-            <div className="bg"></div>
+        <button className="icon" onDoubleClick={(e) => OpenFileEvent(e)}>
+            <div className="bg"/>
             <img src={props.file.iconsrc} alt="fileIcon" />
-            <label>{props.file.title}{props.file.extension}</label>
-        </div>
+            <label>{props.file.title}</label>
+        </button>
     );
 }
 

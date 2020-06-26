@@ -4,10 +4,11 @@
     display: flex;
     flex-direction: column;
     z-index: inherit;
+    max-height: 100%;
     top: 30px;
-    left: 1px;
-    right: 1px;
-    bottom: 1px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
 
     .toolBar{
         display: flex;
@@ -53,35 +54,42 @@
         position: relative;
         display: flex;
         flex-direction: row;
-        justify-content: start;
+        margin-bottom: 15px;
 
         .otherFolders{
-            width: 100px;
+            width: 120px;
             position: relative;
             background: green;
-        }
-    
+            overflow-y: scroll;
+        }    
         .iconGrid{    
-            margin: 5px;
-            position: relative;
+            margin: 0px 2px 2px 5px;
+            left:120px;
+            right: 0px;
+            bottom: 0px;
+            position: absolute;
             display: grid;
             grid-gap: 5px;
-            width: 100%;
-            grid-template-columns: repeat(auto-fit, 55px);
-            grid-template-rows: repeat(auto-fit, 65px);
+            grid-template-columns: repeat(auto-fit, 65px);
+            grid-template-rows: repeat(auto-fit, 75px);
             background: rgb(41, 41, 41);
-    
-            top: 0px;
-            left: 0px;
-            right: 0px;
-            bottom: 10px;
-        
-        }
-        
-    }
-    
 
-    
-    
+            overflow-y: scroll;
+
+            ::-webkit-scrollbar{
+                width: 20px;
+            }
+            ::-webkit-scrollbar-thumb{
+                background: red;
+            }            
+        }        
+    }
+    .footer{
+        position: absolute;
+        bottom: 1px;
+        width: 100%;
+        height: 15px;
+        background-color: black;
+    }
 }
 
