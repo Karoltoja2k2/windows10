@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import '../scss/icon.scss'
 
 
-const Icon = (props: any) => {
+const FileIcon = (props: any) => {
+
+    console.log(props)
+
     function OpenFileEvent(event: any) {
         props.Navigate(props.id, props.file)
     }
@@ -15,4 +18,4 @@ const Icon = (props: any) => {
     );
 }
 
-export default Icon
+export default FileIcon

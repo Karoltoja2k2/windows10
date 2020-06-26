@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import '../scss/desktop.scss'
-import Icon from './Icon'
+import FileIcon from './FileIcon'
 import WindowBase from './WindowBase'
 import Taskbar from './Taskbar'
 
@@ -31,7 +31,9 @@ function Desktop() {
     var DesktopIcons2 = files2.filter(x => x.path === path2)
 
     const [openWindowsCount, setOpenWindowsCount] = useState(1);
-    const [openWindows, setOpenWindows] = useState<Window[]>([])
+    const [openWindows, setOpenWindows] = useState<Window[]>([
+        Win(10, files2[5])
+    ])
 
     function Win(id: number, file: File): Window {
         return {
@@ -91,17 +93,17 @@ function Desktop() {
     function FullScreenMode(id: number) {
         var windows = openWindows.slice();
         var window = windows.find(x => x.id === id)!
-        windows.forEach(function(win){
-            if (win.id === id){
+        windows.forEach(function (win) {
+            if (win.id === id) {
                 window.windowProps = {
                     ...window.windowProps,
-                    isFullScreen:!window.windowProps.isFullScreen,
-                    isFocused:true
+                    isFullScreen: !window.windowProps.isFullScreen,
+                    isFocused: true
                 }
             } else {
                 window.windowProps = {
                     ...window.windowProps,
-                    isFocused:false
+                    isFocused: false
                 }
             }
         })
@@ -134,15 +136,15 @@ function Desktop() {
     }, [lmbDown])
 
     const [movingWindow, setMovingWindow] = useState({
-        top:0,
-        left:0,
-        id:0
+        top: 0,
+        left: 0,
+        id: 0
     })
 
     const WindowManagement = {
         SetFocusedWin: setFocusedWin,
         setLmbDown: setLmbDown,
-        setMovingWindow:setMovingWindow,
+        setMovingWindow: setMovingWindow,
         movingPos: movingWindow,
         lmbDown: lmbDown,
         Navigate: Navigate,
@@ -183,7 +185,7 @@ function Desktop() {
                     })
                 }
             }}
-        >            
+        >
 
             <div className="iconGrid">
                 {
@@ -194,7 +196,7 @@ function Desktop() {
                 }
                 {
                     DesktopIcons2.map((obj: any, index: number) => (
-                        <Icon Navigate={Navigate} file={obj} id={0} />
+                        <FileIcon Navigate={Navigate} file={obj} id={0} />
                     ))
                 }
             </div>
