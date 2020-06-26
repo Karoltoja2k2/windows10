@@ -3,17 +3,15 @@ import '../scss/windowBase.scss'
 import PhotoDisplay from './PhotoDisplay'
 import { Resizable } from "re-resizable";
 
-import {Icon} from '@iconify/react'
+import { Icon } from '@iconify/react'
 import bxX from '@iconify/icons-bx/bx-x'
 import bxExitFullscreen from '@iconify/icons-bx/bx-exit-fullscreen'
 import bxExpand from '@iconify/icons-bx/bx-expand';
 import bxSpaceBar from '@iconify/icons-bx/bx-space-bar';
 
 const WindowBase = (props: any) => {
-    console.log('render')
     useEffect(() => {
         if (drag.dragging && props.WindowManagement.lmbDown) {
-            console.log(props.WindowManagement.movingPos.top, drag)
             setDimensions({
                 ...dimensions,
                 top: props.WindowManagement.movingPos.top - drag.offset.top,
@@ -94,7 +92,8 @@ const WindowBase = (props: any) => {
                     visibility: windowProps.isMinimized ? 'hidden' : 'visible'
                 }
             }
-            onResizeStart={() => {
+            onResizeStart={(e) => {
+                e.stopPropagation()
                 props.WindowManagement.SetFocusedWin(props.id)
             }}
             onResizeStop={(e, direction, ref, d) => {
@@ -121,8 +120,10 @@ const WindowBase = (props: any) => {
                     className="bar"
                     onMouseDown={(e) => {
                         e.preventDefault();
-                        if (e.detail === 2){
+                        if (e.detail === 2) {
+                            return;
                         }
+                        console.log('clicked')
 
                         if (e.target === e.currentTarget && !windowProps.isFullScreen) {
                             props.WindowManagement.setLmbDown(true);
@@ -147,17 +148,17 @@ const WindowBase = (props: any) => {
                     </div>
                     <div className="barButtons">
                         <button className="control" onClick={(e) => { props.WindowManagement.MinimizeWindow(props.id) }}>
-                            <Icon icon={bxSpaceBar} width={24}/>
+                            <Icon icon={bxSpaceBar} width={24} />
                         </button>
                         <button className="control" onClick={(e) => { props.WindowManagement.FullScreenMode(props.id) }}>
                             {
-                                props.windowProps.isFullScreen ? 
-                                    <Icon icon={bxExitFullscreen} width={20} /> : 
-                                    <Icon icon={bxExpand} width={20}/>
+                                props.windowProps.isFullScreen ?
+                                    <Icon icon={bxExitFullscreen} width={20} /> :
+                                    <Icon icon={bxExpand} width={20} />
                             }
                         </button>
                         <button className="exit" onClick={(e) => { props.WindowManagement.CloseWindow(props.id) }}>
-                            <Icon icon={bxX} width={30}/>
+                            <Icon icon={bxX} width={30} />
                         </button>
                     </div>
                 </div>
