@@ -1,13 +1,13 @@
 interface File {
-    fileId: number
-    path: string
-    component: any
-    extension: string
-    title: string
-    iconsrc: string
+	fileId: number;
+	path: string;
+	component: any;
+	extension: string;
+	title: string;
+	iconsrc: string;
 
-    prevFolder?: File
-    content?: {}
+	prevFolder?: File;
+	content?: {};
 }
 
 export default File;
