@@ -1,5 +1,6 @@
 import React from 'react'
 import TaskBarItem from './TaskBarItem'
+import Clock from './Clock'
 
 import '../scss/taskbar.scss'
 import Logo from '../media/win_logo.png'
@@ -32,7 +33,7 @@ const Taskbar = (props:any) => {
 
             </div>
             <div className="toolBar">
-                <p className="timeContainer">11:45</p>
+                <Clock />
                 <button className="minimizeAllBtn"></button>
 
             </div>
