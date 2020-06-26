@@ -22,9 +22,21 @@
             justify-content: space-between;
             align-items: center;
             cursor: move;
-            label{
-                margin-left: 10px;
-                font-size: 16px;
+            .barTitle{
+                display: flex;
+                flex-direction: row;
+                height: 70%;
+                white-space: nowrap;
+                overflow: hidden;
+                img{
+                    margin-left: 5px;
+                    height: 100%;
+                    width: auto;
+                    cursor: help;
+                }
+                label{
+                    font-size: 16px;
+                }
             }
             .barButtons{
                     height: 100%;
