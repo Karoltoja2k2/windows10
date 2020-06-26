@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import React from 'react'
 
 
@@ -19,14 +19,16 @@ const Clock = () => {
 
     const [time, setTime] = useState(calcTime())
 
+    useEffect(() => {
 
-    setInterval(() => {
-        var t = calcTime()
-        console.log(t)
-        if (t !== time){
-            setTime(t);
-        }
-    }, 5000)
+        setInterval(() => {
+            var t = calcTime()
+            console.log(t)
+            if (t !== time){
+                setTime(t);
+            }
+        }, 5000)
+    }, [])
 
     return (
         <p className="timeContainer">{time}</p>
