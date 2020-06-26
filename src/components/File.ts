@@ -1,4 +1,5 @@
 interface File {
+    fileId: number
     path: string
     component: any
     extension: string

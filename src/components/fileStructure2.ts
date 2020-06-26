@@ -18,9 +18,10 @@ import foldericon from '../media/folder.png'
 import File from './File'
 
 const files2: File[] = []
-
+let id: number = -1
 
 const driveC: File = {
+    fileId: id++,
     path: 'Device/',
     component: FileExplorer,
     extension: '.fld',
@@ -29,6 +30,7 @@ const driveC: File = {
 }
 
 const driveD: File = {
+    fileId: id++,
     path: 'Device/',
     component: FileExplorer,
     extension: '.fld',
@@ -38,6 +40,7 @@ const driveD: File = {
 
 
 const desktop: File = {
+    fileId: id++,
     path: 'Drive C:/',
     component: FileExplorer,
     extension: '.fld',
@@ -46,6 +49,7 @@ const desktop: File = {
 }
 
 const lennaimg: File = {
+    fileId: id++,
     path: 'Drive C:/Desktop/',
     component: PhotoDisplay,
     extension: '.img',
@@ -59,6 +63,7 @@ const lennaimg: File = {
 }
 
 const winimg: File = {
+    fileId: id++,
     path: 'Drive C:/Desktop/',
     component: PhotoDisplay,
     extension: '.img',
@@ -72,6 +77,7 @@ const winimg: File = {
 }
 
 const testfolder: File = {
+    fileId: id++,
     path: 'Drive C:/Desktop/',
     component: FileExplorer,
     extension: '.fld',
@@ -82,6 +88,7 @@ const testfolder: File = {
 }
 
 const testfolder2: File = {
+    fileId: id++,
     path: 'Drive C:/Desktop/Test folder',
     component: FileExplorer,
     extension: '.fld',

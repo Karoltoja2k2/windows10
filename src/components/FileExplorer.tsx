@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import '../scss/fileExplorer.scss'
 import FileStructure from '../media/fileStructure.json'
 import WindowBase from './WindowBase'
-import files from '../media/fileStructure'
+import files from './fileStructure2'
 
 import Icon from './Icon'
+import files2 from './fileStructure2';
 
 
 const FileExplorer = (props: any) => {
     console.log('render' + props.file.title)
-    var iconsInFolder = files.filter(x => x.path == props.file.contentPath)
+    var iconsInFolder = files.filter(x => x.prevFolder && x.prevFolder.fileId === props.file.fileId)
+    console.log(files)
+
 
     const [data, setData] = useState(props.data)
     const [isRed, setIsRed] = useState(false)
@@ -25,7 +28,9 @@ const FileExplorer = (props: any) => {
             >
                 <div className="toolBar">
                     <button onClick={() => {
-                        props.WindowManagement.Navigate(props.id, props.file.path)
+                        if (props.file.prevFolder) {
+                            props.WindowManagement.Navigate(props.id, props.file.prevFolder)
+                        }
                     }}
                         style={{ width: 20, height: 20 }}
                     ></button>
@@ -61,9 +66,10 @@ const FileExplorer = (props: any) => {
 // 
 // })
 
+export default FileExplorer
 
-export default React.memo(FileExplorer, () => {
-//     // console.log(nextProps.id, nextProps.WindowManagement.movingPos.id)
-//     // return nextProps.id === nextProps.WindowManagement.movingPos.id
-return false;
-})
+// export default React.memo(FileExplorer, () => {
+// //     // console.log(nextProps.id, nextProps.WindowManagement.movingPos.id)
+// //     // return nextProps.id === nextProps.WindowManagement.movingPos.id
+// return false;
+// })

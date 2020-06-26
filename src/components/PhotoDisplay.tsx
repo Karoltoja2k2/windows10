@@ -15,7 +15,7 @@ const PhotoDisplay = (props: any) => {
             WindowManagement={props.WindowManagement}
         >
             <div className="photoContainer">
-                <img src={props.file.source} />
+                <img src={props.file.content.source} />
             </div>
         </WindowBase>
     );

@@ -5,39 +5,35 @@ import WindowBase from './WindowBase'
 import Taskbar from './Taskbar'
 
 
-import FileStructure from '../media/fileStructure.json'
 import files from '../media/fileStructure'
+
+import File from './File'
+import files2 from './fileStructure2'
+
+
+interface Window {
+    id: number,
+    windowProps: {
+        top?: number,
+        left?: number,
+        width?: number,
+        height?: number,
+        isFocused: boolean,
+        isMinimized: boolean,
+        isFullScreen: boolean,
+    },
+    file: File
+}
 
 
 function Desktop() {
-    const path = "Drive:/desktop/"
-    var DesktopIcons = files.filter(x => x.path === path)
+    const path2 = 'Drive C:/Desktop/'
+    var DesktopIcons2 = files2.filter(x => x.path === path2)
 
     const [openWindowsCount, setOpenWindowsCount] = useState(1);
-    const [openWindows, setOpenWindows] = useState<any[]>([])
+    const [openWindows, setOpenWindows] = useState<Window[]>([])
 
-    interface Window {
-        id: number,
-        windowProps: {
-            top: number,
-            left: number,
-            width: number,
-            height: number,
-            isFocused: boolean,
-            isMinimized: boolean,
-            isFullScreen: boolean,
-        },
-        component: (props: any) => JSX.Element,
-        file: {
-            path: string,
-            contentPath: string,
-            title: string,
-            iconsrc: string,
-            extension: string
-        }
-    }
-
-    function Win(id: number, file: any) {
+    function Win(id: number, file: File): Window {
         return {
             id: id,
             windowProps: {
@@ -45,14 +41,13 @@ function Desktop() {
                 isMinimized: false,
                 isFullScreen: false
             },
-            component: file.component,
             file: {
                 ...file
             }
         }
     }
 
-    function Navigate(id: number, fileToOpen: any) {
+    function Navigate(id: number, fileToOpen: File) {
         var oF;
         if (id === 0 || fileToOpen.extension !== '.fld') {
             oF = Win(openWindowsCount, fileToOpen)
@@ -156,13 +151,13 @@ function Desktop() {
         FullScreenMode: FullScreenMode
     }
 
-    function RenderWindow(obj: Window) {
+    function RenderWindow(window: Window) {
         return (
-            <obj.component
-                key={obj.id}
-                file={obj.file}
-                id={obj.id}
-                windowProps={obj.windowProps}
+            <window.file.component
+                key={window.id}
+                file={window.file}
+                id={window.id}
+                windowProps={window.windowProps}
                 WindowManagement={WindowManagement}
                 openWindowsCount={openWindowsCount}
             />
@@ -188,8 +183,7 @@ function Desktop() {
                     })
                 }
             }}
-        >
-            
+        >            
 
             <div className="iconGrid">
                 {
@@ -199,7 +193,7 @@ function Desktop() {
                     ))
                 }
                 {
-                    DesktopIcons.map((obj: any, index: number) => (
+                    DesktopIcons2.map((obj: any, index: number) => (
                         <Icon Navigate={Navigate} file={obj} id={0} />
                     ))
                 }
