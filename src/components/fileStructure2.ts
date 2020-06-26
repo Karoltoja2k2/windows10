@@ -98,6 +98,17 @@ const testfolder2: File = {
     prevFolder: testfolder
 }
 
-files2.push(driveC, driveD, desktop, lennaimg, winimg, testfolder, testfolder2)
+const nestedfoldertest: File = {
+    fileId: id++,
+    path: 'Drive C:/Desktop/Test folder',
+    component: FileExplorer,
+    extension: '.fld',
+    title: 'NESTED FOLDER NESTED FOLDER NESTED FOLDER NESTED FOLDER NESTED FOLDER',
+    iconsrc: foldericon,
+
+    prevFolder: testfolder2
+}
+
+files2.push(driveC, driveD, desktop, lennaimg, winimg, testfolder, testfolder2, nestedfoldertest)
 
 export default files2
