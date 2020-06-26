@@ -26,8 +26,17 @@ const FileExplorer = (props: any) => {
     }
 
     const searchFile = () => {
+        var file = files.filter(x => x.title.toLowerCase() === path.toLowerCase())
+        if (file[0]) {
+            props.WindowManagement.Navigate(props.id, file[0])
+            setPath(props.file.path + props.file.title)
+        }
     }
 
+    const [path, setPath] = useState(props.file.path + props.file.title)
+    useEffect(() => {
+        setPath(props.file.path + props.file.title)
+    }, [props.file.path, props.file.title])
 
     return (
         <WindowBase
@@ -41,7 +50,25 @@ const FileExplorer = (props: any) => {
                 <div className="toolBar">
                     <button onClick={() => { previousFolder() }}><Icon icon={bxArrowBack} width={22} /></button>
 
-                    <input type="text" defaultValue={props.file.path + props.file.title} />
+                    <input
+                        type="text"
+                        onChange={(e) => {
+                            setPath(e.target.value)
+                        }}
+                        onFocus={() => {
+                            setPath("")
+                        }}
+                        onBlur={() => {
+                            setPath(props.file.path + props.file.title)
+                        }}
+                        onKeyDownCapture={(e) => {
+                            if (e.key === "Enter"){
+                                searchFile()
+                            }
+                        }}
+                        value={path}
+
+                    />
 
                     <button onClick={() => { searchFile() }}><Icon icon={bxSearchAlt} width={22} /></button>
 
