@@ -4,8 +4,6 @@ import '../scss/icon.scss'
 
 const FileIcon = (props: any) => {
 
-    console.log(props)
-
     function OpenFileEvent(event: any) {
         props.Navigate(props.id, props.file)
     }

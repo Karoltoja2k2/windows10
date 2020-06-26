@@ -7,15 +7,13 @@ import files from './fileStructure2'
 import FileIcon from './FileIcon'
 import files2 from './fileStructure2';
 
-import {Icon, InlineIcon} from '@iconify/react'
+import { Icon, InlineIcon } from '@iconify/react'
 import bxArrowBack from '@iconify/icons-bx/bx-arrow-back'
 import bxSearchAlt from '@iconify/icons-bx/bx-search-alt'
 
 
 const FileExplorer = (props: any) => {
-    console.log('render' + props.file.title)
     var iconsInFolder = files.filter(x => x.prevFolder && x.prevFolder.fileId === props.file.fileId)
-    console.log(files)
 
 
     const [data, setData] = useState(props.data)
@@ -28,8 +26,8 @@ const FileExplorer = (props: any) => {
     }
 
     const searchFile = () => {
-
     }
+
 
     return (
         <WindowBase
@@ -41,11 +39,11 @@ const FileExplorer = (props: any) => {
             <div className="explorerContainer" style={{ background: isRed ? "red" : "" }}
             >
                 <div className="toolBar">
-                    <button onClick={() => {previousFolder()}}><Icon icon={bxArrowBack} width={22}/></button>
+                    <button onClick={() => { previousFolder() }}><Icon icon={bxArrowBack} width={22} /></button>
 
-                    <input type="text" value={props.file.path + props.file.title} readOnly={false} />
+                    <input type="text" defaultValue={props.file.path + props.file.title} />
 
-                    <button onClick={() => {searchFile() }}><Icon icon={bxSearchAlt} width={22}/></button>
+                    <button onClick={() => { searchFile() }}><Icon icon={bxSearchAlt} width={22} /></button>
 
                 </div>
                 <div className="content">
@@ -63,7 +61,7 @@ const FileExplorer = (props: any) => {
                         {
                             iconsInFolder &&
                             iconsInFolder.map((file: any, index: number) => (
-                                <FileIcon file={file} id={props.id} Navigate={props.WindowManagement.Navigate} />
+                                <FileIcon file={file} id={props.id} key={index} Navigate={props.WindowManagement.Navigate} />
                             ))
                         }
                         <button onClick={() => {
@@ -72,22 +70,15 @@ const FileExplorer = (props: any) => {
                     </div>
                 </div>
                 <div className="footer">
-                    
+
                 </div>
             </div>
         </WindowBase>
     );
 }
+// export default FileExplorer
 
-// export default React.memo(FileExplorer, (prevProps, nextProps) => {
-//     return prevProps.test === nextProps.test
-// 
-// })
-
-export default FileExplorer
-
-// export default React.memo(FileExplorer, () => {
-// //     // console.log(nextProps.id, nextProps.WindowManagement.movingPos.id)
-// //     // return nextProps.id === nextProps.WindowManagement.movingPos.id
-// return false;
-// })
+export default React.memo(FileExplorer, (prevProps, nextProps) => {
+    return nextProps.id !== nextProps.WindowManagement.movingPos.id &&
+        prevProps.windowProps === nextProps.windowProps
+})

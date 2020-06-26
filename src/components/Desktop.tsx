@@ -112,7 +112,6 @@ function Desktop() {
     }
 
     function setFocusedWin(id: number) {
-        console.log('asd')
         var windows = openWindows.slice();
         windows.forEach(function (win) {
             if (win.id === id) {
@@ -131,10 +130,6 @@ function Desktop() {
     }
 
     const [lmbDown, setLmbDown] = useState(false);
-    useEffect(() => {
-        console.log(lmbDown)
-    }, [lmbDown])
-
     const [movingWindow, setMovingWindow] = useState({
         top: 0,
         left: 0,
@@ -196,7 +191,7 @@ function Desktop() {
                 }
                 {
                     DesktopIcons2.map((obj: any, index: number) => (
-                        <FileIcon Navigate={Navigate} file={obj} id={0} />
+                        <FileIcon Navigate={Navigate} file={obj} id={0} key={index} />
                     ))
                 }
             </div>
