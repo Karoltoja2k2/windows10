@@ -4,8 +4,12 @@ import FileStructure from '../media/fileStructure.json'
 import WindowBase from './WindowBase'
 import files from './fileStructure2'
 
-import Icon from './Icon'
+import FileIcon from './FileIcon'
 import files2 from './fileStructure2';
+
+import {Icon, InlineIcon} from '@iconify/react'
+import bxArrowBack from '@iconify/icons-bx/bx-arrow-back'
+import bxSearchAlt from '@iconify/icons-bx/bx-search-alt'
 
 
 const FileExplorer = (props: any) => {
@@ -17,44 +21,55 @@ const FileExplorer = (props: any) => {
     const [data, setData] = useState(props.data)
     const [isRed, setIsRed] = useState(false)
 
+    const previousFolder = () => {
+        if (props.file.prevFolder) {
+            props.WindowManagement.Navigate(props.id, props.file.prevFolder)
+        }
+    }
+
+    const searchFile = () => {
+
+    }
+
     return (
         <WindowBase
             id={props.id}
-            title={props.file.title}
+            file={props.file}
             windowProps={props.windowProps}
             WindowManagement={props.WindowManagement}
         >
             <div className="explorerContainer" style={{ background: isRed ? "red" : "" }}
             >
                 <div className="toolBar">
-                    <button onClick={() => {
-                        if (props.file.prevFolder) {
-                            props.WindowManagement.Navigate(props.id, props.file.prevFolder)
-                        }
-                    }}
-                        style={{ width: 20, height: 20 }}
-                    ></button>
-                    <button></button>
+                    <button onClick={() => {previousFolder()}}><Icon icon={bxArrowBack} width={22}/></button>
 
-                    <textarea></textarea>
-                    <input type="text"></input>
+                    <input type="text" value={props.file.path + props.file.title} readOnly={false} />
+
+                    <button onClick={() => {searchFile() }}><Icon icon={bxSearchAlt} width={22}/></button>
+
                 </div>
-                <div
-                    className="iconGrid"
-                    onMouseDown={(e) => {
-                        e.stopPropagation()
-                        props.WindowManagement.SetFocusedWin(props.id)
-                    }}
-                >
-                    {
-                        iconsInFolder &&
-                        iconsInFolder.map((file: any, index: number) => (
-                            <Icon file={file} id={props.id} Navigate={props.WindowManagement.Navigate} />
-                        ))
-                    }
-                    <button onClick={() => {
-                        setIsRed(!isRed);
-                    }}>TEST</button>
+                <div className="content">
+                    <div className="otherFolders">
+
+                    </div>
+
+                    <div
+                        className="iconGrid"
+                        onMouseDown={(e) => {
+                            e.stopPropagation()
+                            props.WindowManagement.SetFocusedWin(props.id)
+                        }}
+                    >
+                        {
+                            iconsInFolder &&
+                            iconsInFolder.map((file: any, index: number) => (
+                                <FileIcon file={file} id={props.id} Navigate={props.WindowManagement.Navigate} />
+                            ))
+                        }
+                        <button onClick={() => {
+                            setIsRed(!isRed);
+                        }}>TEST</button>
+                    </div>
                 </div>
             </div>
         </WindowBase>
