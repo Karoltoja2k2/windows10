@@ -31,7 +31,6 @@ const FileExplorer = (props: any) => {
 		);
 		if (file[0]) {
 			props.WindowManagement.Navigate(props.id, file[0]);
-			setPath(props.file.path + props.file.title);
 		}
 	};
 
@@ -76,7 +75,7 @@ const FileExplorer = (props: any) => {
 								searchFile();
 							}
 						}}
-						value={path}
+						placeholder={path}
 					/>
 
 					<button

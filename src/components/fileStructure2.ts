@@ -87,7 +87,7 @@ const testfolder: File = {
 
 const testfolder2: File = {
 	fileId: id++,
-	path: "Drive C:/Desktop/Test folder",
+	path: "Drive C:/Desktop/Test folder/",
 	component: FileExplorer,
 	extension: ".fld",
 	title: "Test folder in folder",
