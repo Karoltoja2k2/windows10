@@ -12,11 +12,23 @@ import bxSpaceBar from "@iconify/icons-bx/bx-space-bar";
 const WindowBase = (props: any) => {
 	useEffect(() => {
 		if (drag.dragging && props.WindowManagement.lmbDown) {
-			setDimensions({
-				...dimensions,
-				top: props.WindowManagement.movingPos.top - drag.offset.top,
-				left: props.WindowManagement.movingPos.left - drag.offset.left,
-			});
+			var obj = {
+				top: props.WindowManagement.movingPos.top
+					? props.WindowManagement.movingPos.top
+					: 0,
+				left: props.WindowManagement.movingPos.left
+					? props.WindowManagement.movingPos.left
+					: 0,
+			};
+			if (obj.top !== 0 || obj.left !== 0) {
+				setDimensions({
+					...dimensions,
+					top: props.WindowManagement.movingPos.top - drag.offset.top,
+					left:
+						props.WindowManagement.movingPos.left -
+						drag.offset.left,
+				});
+			}
 		}
 	}, [props.WindowManagement.movingPos]);
 
@@ -132,6 +144,7 @@ const WindowBase = (props: any) => {
 					onMouseDown={(e) => {
 						e.preventDefault();
 						if (e.detail === 2) {
+							props.WindowManagement.FullScreenMode(props.id);
 							return;
 						}
 						console.log("clicked");
