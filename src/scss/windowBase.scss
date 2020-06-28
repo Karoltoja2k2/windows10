@@ -21,21 +21,27 @@
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
-            cursor: move;
             .barTitle{
                 display: flex;
                 flex-direction: row;
-                height: 70%;
+                align-items: center;
+                height: 100%;
+                width: 100%;
                 white-space: nowrap;
                 overflow: hidden;
+                cursor: move;
                 img{
-                    margin-left: 5px;
-                    height: 100%;
+                    margin: 0px 5px;
+                    height: 22px;
+                    max-width: 22px;
+                    border-radius: 5px;
                     width: auto;
                     cursor: help;
                 }
                 label{
+                    height: auto;
                     font-size: 16px;
+                    cursor: move;
                 }
             }
             .barButtons{
@@ -49,7 +55,8 @@
                     width: 30px;
                     height: 30px;
                     border: 0px;
-                    color: white;                                    
+                    color: white;   
+                    outline: none;                                
                 }
                 .exit{
                     background: transparent;                    

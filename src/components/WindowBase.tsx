@@ -139,40 +139,47 @@ const WindowBase = (props: any) => {
 				}}
 				onMouseUp={(e) => {}}
 			>
-				<div
-					className="bar"
-					onMouseDown={(e) => {
-						e.preventDefault();
-						if (e.detail === 2) {
-							props.WindowManagement.FullScreenMode(props.id);
-							return;
-						}
-						console.log("clicked");
+				<div className="bar">
+					<div
+						className="barTitle"
+						onMouseDown={(e) => {
+							e.preventDefault();
+							if (e.detail === 2) {
+								props.WindowManagement.FullScreenMode(props.id);
+								return;
+							}
+							console.log("clicked");
 
-						if (
-							e.target === e.currentTarget &&
-							!windowProps.isFullScreen
-						) {
-							props.WindowManagement.setLmbDown(true);
-							setDrag({
-								dragging: true,
-								offset: {
-									top: e.pageY - dimensions.top,
-									left: e.pageX - dimensions.left,
-								},
-							});
-							props.WindowManagement.setMovingWindow({
-								...props.WindowManagement,
-								id: props.id,
-							});
-						}
-					}}
-				>
-					<div className="barTitle">
+							if (
+								!windowProps.isFullScreen
+								// if (
+								// e.target === e.currentTarget &&
+								// !windowProps.isFullScreen
+							) {
+								props.WindowManagement.setLmbDown(true);
+								setDrag({
+									dragging: true,
+									offset: {
+										top: e.pageY - dimensions.top,
+										left: e.pageX - dimensions.left,
+									},
+								});
+								props.WindowManagement.setMovingWindow({
+									...props.WindowManagement,
+									id: props.id,
+								});
+							}
+						}}
+					>
 						<img src={props.file.iconsrc} alt="fileIcon" />
 						<label>{props.file.title}</label>
 					</div>
-					<div className="barButtons">
+					<div
+						className="barButtons"
+						onMouseDown={(e) => {
+							return;
+						}}
+					>
 						<button
 							className="control"
 							onClick={(e) => {

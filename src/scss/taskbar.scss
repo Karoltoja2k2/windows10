@@ -44,12 +44,18 @@
             align-items: center;
               
             img{
+                margin: 2px;
                 height: 80%;
+                max-width: 25px;
+                border-radius: 5px;
             }
             label{
                 color: white;
                 font-size: 12px;
                 font-weight: 100;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
             &:hover{
                 background-color: rgba(255,255,255,0.109);
