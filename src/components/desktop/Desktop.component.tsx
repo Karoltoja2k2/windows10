@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useCallback } from "react";
-import "../scss/desktop.scss";
-import FileIcon from "./FileIcon";
-import WindowBase from "./WindowBase";
-import Taskbar from "./Taskbar";
+import "./desktop.scss";
+import FileIcon from "../fileIcon/FileIcon";
+import Taskbar from "./Taskbar.component";
 
-import files from "../media/fileStructure";
+import Background from "../../media/winxpbg.jpg";
 
-import File from "./File";
-import files2 from "./fileStructure2";
+import File from "../../models/File";
+import files2 from "../../models/fileStructure2";
 
 interface Window {
 	id: number;
@@ -183,6 +182,8 @@ function Desktop() {
 				}
 			}}
 		>
+
+			<img src={Background} className="desktopBackground"/>
 			<div className="iconGrid">
 				{openWindows.length > 0 &&
 					openWindows.map((obj: Window, index: number) =>

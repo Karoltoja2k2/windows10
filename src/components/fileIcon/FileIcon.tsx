@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../scss/icon.scss";
+import "./icon.scss";
 
 const FileIcon = (props: any) => {
 	function OpenFileEvent(event: any) {

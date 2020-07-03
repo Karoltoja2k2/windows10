@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "../scss/explorer.scss";
-import WindowBase from "./WindowBase";
+import "./explorer.scss";
+import WindowBase from "../WindowBase";
 
 const Explorer = (props: any) => {
 	return (

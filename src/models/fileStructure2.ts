@@ -1,7 +1,7 @@
 // Components
-import FileExplorer from "./FileExplorer";
-import PhotoDisplay from "./PhotoDisplay";
-import Explorer from "./Explorer";
+import FileExplorer from "../components/files components/FileExplorer/FileExplorer";
+import PhotoDisplay from "../components/files components/PhotoDisplay/PhotoDisplay";
+import Explorer from "../components/files components/Browser/Explorer";
 
 // Images
 import winxpbg from "../media/winxpbg.jpg";

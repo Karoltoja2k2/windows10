@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import "../scss/fileExplorer.scss";
-import FileStructure from "../media/fileStructure.json";
-import WindowBase from "./WindowBase";
-import files from "./fileStructure2";
-
-import FileIcon from "./FileIcon";
-import files2 from "./fileStructure2";
+import "./fileExplorer.scss";
+import WindowBase from "../WindowBase";
+import files from "../../../models/fileStructure2";
+import FileIcon from "../../fileIcon/FileIcon";
 
 import { Icon, InlineIcon } from "@iconify/react";
 import bxArrowBack from "@iconify/icons-bx/bx-arrow-back";
@@ -26,13 +23,23 @@ const FileExplorer = (props: any) => {
 	};
 
 	const searchFile = () => {
+		console.log(search.path);
 		var file = files.filter(
-			(x) => x.title.toLowerCase() === path.toLowerCase()
+			(x) => x.title.toLowerCase() === search.path.toLowerCase()
 		);
 		if (file[0]) {
 			props.WindowManagement.Navigate(props.id, file[0]);
 		}
 	};
+
+	const [search, setSearch] = useState({
+		path: props.file.path + props.file.title,
+		results: [],
+	});
+
+	useEffect(() => {
+		console.log(search);
+	}, [search]);
 
 	const [path, setPath] = useState(props.file.path + props.file.title);
 	useEffect(() => {
@@ -58,33 +65,26 @@ const FileExplorer = (props: any) => {
 					>
 						<Icon icon={bxArrowBack} width={22} />
 					</button>
-
-					<input
-						type="text"
-						onChange={(e) => {
-							setPath(e.target.value);
-						}}
-						onFocus={() => {
-							setPath("");
-						}}
-						onBlur={() => {
-							setPath(props.file.path + props.file.title);
-						}}
-						onKeyDownCapture={(e) => {
-							if (e.key === "Enter") {
-								searchFile();
-							}
-						}}
-						placeholder={path}
-					/>
-
-					<button
-						onClick={() => {
-							searchFile();
-						}}
-					>
-						<Icon icon={bxSearchAlt} width={22} />
-					</button>
+					<div className="searchBar">
+						<input
+							type="text"
+							onChange={(e) => {
+								setSearch({
+									...search,
+									path: e.target.value,
+								});
+							}}
+							onKeyDownCapture={(e) => {
+								if (e.key === "Enter") {
+									searchFile();
+								}
+							}}
+							placeholder={search.path}
+						/>
+						<div className="results">
+							
+						</div>
+					</div>
 				</div>
 				<div className="content">
 					<div className="otherFolders"></div>

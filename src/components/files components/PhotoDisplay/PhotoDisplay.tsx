@@ -1,7 +1,7 @@
 import React, { useState, useEffect, memo } from "react";
-import WindowBase from "./WindowBase";
-import Logo from "../media/win_logo.png";
-import "../scss/photoDisplay.scss";
+import WindowBase from "../WindowBase";
+import Logo from "../../media/win_logo.png";
+import "./photoDisplay.scss";
 
 const PhotoDisplay = (props: any) => {
 	return (

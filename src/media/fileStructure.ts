@@ -1,6 +1,6 @@
-import FileExplorer from '../components/FileExplorer'
-import PhotoDisplay from '../components/PhotoDisplay'
-import Explorer from '../components/Explorer'
+import FileExplorer from '../components/files components/FileExplorer/FileExplorer'
+import PhotoDisplay from '../components/files components/PhotoDisplay/PhotoDisplay'
+import Explorer from '../components/files components/Browser/Explorer'
 
 import winxpbg from './winxpbg.jpg'
 import logo192 from './logo192.png'

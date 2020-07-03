@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "../scss/windowBase.scss";
-import PhotoDisplay from "./PhotoDisplay";
+import "./windowBase.scss";
+import PhotoDisplay from "./PhotoDisplay/PhotoDisplay";
 import { Resizable } from "re-resizable";
 
 import { Icon } from "@iconify/react";

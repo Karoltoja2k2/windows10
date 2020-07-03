@@ -1,9 +1,9 @@
 import React from "react";
-import TaskBarItem from "./TaskBarItem";
-import Clock from "./Clock";
+import TaskBarItem from "./TaskBarItem.component";
+import Clock from "../clock/Clock.component";
 
-import "../scss/taskbar.scss";
-import Logo from "../media/win_logo.png";
+import "./taskbar.scss";
+import Logo from "../../media/win_logo.png";
 
 const Taskbar = (props: any) => {
 	return (

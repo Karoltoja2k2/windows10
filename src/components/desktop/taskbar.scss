@@ -32,39 +32,7 @@
         flex-direction: row;
         justify-content: start;
         overflow: hidden;
-        .taskBarItem{
-            height: 100%;
-            margin: 0px 2px;
-            border-bottom: 2px solid green;
-            background-color: rgba(0,0,255,0.0);
-            transition: background-color 0.2s ease;
-            width: 150px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-              
-            img{
-                margin: 2px;
-                height: 80%;
-                max-width: 25px;
-                border-radius: 5px;
-            }
-            label{
-                color: white;
-                font-size: 12px;
-                font-weight: 100;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-            &:hover{
-                background-color: rgba(255,255,255,0.109);
-            }                 
-        }
-        .selected{
-            background-color: rgba(255, 255, 255, 0.198);
-        }           
-        
+               
     }
     .toolBar{
         right: 0px;
