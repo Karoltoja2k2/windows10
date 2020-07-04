@@ -1,11 +1,21 @@
 import React, { useState, useEffect } from "react";
-import "./fileExplorer.scss";
+import "./fileExplorer2.scss";
 import WindowBase from "../WindowBase";
 import files from "../../../models/fileStructure2";
 import FileIcon from "../../fileIcon/FileIcon";
 
+import {
+	faArrowLeft,
+	faArrowUp,
+	faArrowRight,
+	faAngleDown,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { Icon, InlineIcon } from "@iconify/react";
 import bxArrowBack from "@iconify/icons-bx/bx-arrow-back";
+import bxRightArrowAlt from "@iconify/icons-bx/bx-right-arrow-alt";
+import bxUpArrowAlt from "@iconify/icons-bx/bx-up-arrow-alt";
 import bxSearchAlt from "@iconify/icons-bx/bx-search-alt";
 
 const FileExplorer = (props: any) => {
@@ -54,18 +64,27 @@ const FileExplorer = (props: any) => {
 			WindowManagement={props.WindowManagement}
 		>
 			<div
-				className="explorerContainer"
+				className="container"
 				style={{ background: isRed ? "red" : "" }}
 			>
-				<div className="toolBar">
+				<div className="container__bar">
 					<button
 						onClick={() => {
 							previousFolder();
 						}}
 					>
-						<Icon icon={bxArrowBack} width={22} />
+						<FontAwesomeIcon icon={faArrowLeft} />
 					</button>
-					<div className="searchBar">
+					<button className="button--enabled">
+						<FontAwesomeIcon icon={faArrowRight} />
+					</button>
+					<button className="button--disabled">
+						<FontAwesomeIcon icon={faAngleDown} />
+					</button>
+					<button>
+						<FontAwesomeIcon icon={faArrowUp} />
+					</button>
+					<div className="bar__search--drive">
 						<input
 							type="text"
 							onChange={(e) => {
@@ -81,16 +100,20 @@ const FileExplorer = (props: any) => {
 							}}
 							placeholder={search.path}
 						/>
-						<div className="results">
-							
+						<div className="search__results search__results--actve">
+							<div className="item" />
 						</div>
 					</div>
+
+					<div className="bar__search--local">
+						<input placeholder="Search"></input>
+					</div>
 				</div>
-				<div className="content">
-					<div className="otherFolders"></div>
+				<div className="container__content">
+					<div className="content--left"></div>
 
 					<div
-						className="iconGrid"
+						className="content--right"
 						onMouseDown={(e) => {
 							e.stopPropagation();
 							props.WindowManagement.SetFocusedWin(props.id);
@@ -114,7 +137,9 @@ const FileExplorer = (props: any) => {
 						</button>
 					</div>
 				</div>
-				<div className="footer"></div>
+				<div className="container__footer">
+					<label>Elements: {iconsInFolder.length}</label>
+				</div>
 			</div>
 		</WindowBase>
 	);
