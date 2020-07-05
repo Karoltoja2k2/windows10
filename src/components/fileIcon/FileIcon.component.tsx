@@ -2,28 +2,26 @@ import React, { useState, useEffect } from "react";
 import "./icon.scss";
 
 const FileIcon = (props: any) => {
-	function OpenFileEvent(event: any) {
-		props.Navigate(props.id, props.file);
-	}
+
 	if (props.type === "icon"){
 		return (
-			<button className="icon" onDoubleClick={(e) => OpenFileEvent(e)}>
-				<img src={props.file.iconsrc} alt="fileIcon" />
+			<button className="icon" onDoubleClick={() => props.Navigate(props.id, props.file)}>
+				<img src={props.file.iconsrc} />
 				<label>{props.file.title}</label>
 			</button>
 		);
 	} else if (props.type === "inrow") {
 		return (
-			<button>
-				<img />
-				<label></label>
+			<button className="inrow" onClick={() => props.Navigate(props.id, props.file)}>
+				<img src={props.file.iconsrc}/>
+				<label>{props.file.title}</label>
 			</button>
 		)
 	} else if (props.type === "searchResult") {
 		return (
-			<button>
+			<button className="searchResult" onClick={() => props.Navigate(props.id, props.file)}>
 				<img />
-				<label></label>
+				<label>{props.file.path + props.file.title}</label>
 			</button>
 		)
 	} else {

@@ -51,3 +51,92 @@
     }
 }
 
+.inrow{
+    display: flex;
+    z-index: inherit;
+	margin: 2px 2px;
+    height: 20px;
+    width: 100%;
+	max-height: 20px;
+
+    background-color: rgba(0,0,0,0);
+    color: white;
+    border: 1px solid rgba(0,0,0,0);
+
+    img{
+        margin-top: 5;
+        padding: 2px;
+        z-index: 2;
+        width: 20px;
+        height: 20px;
+        border-radius: 5px;
+    }
+
+    label{
+        text-align: center;
+        line-height: 20px;
+        font-size: 12px;
+        height: 100%;
+
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }   
+
+    &:hover{
+        background-color: rgba(173, 216, 255, 0.3);
+        border: 1px outset rgba(95, 95, 255, 0.192);
+    }
+
+    &:focus{
+        outline: none;
+        background-color: rgba(173, 216, 255, 0.3);
+        border: 1px outset rgba(95, 95, 255, 0.192);  
+    }
+}
+
+
+
+.searchResult{
+    display: flex;
+    z-index: inherit;
+	margin: 2px 2px;
+    height: 20px;
+    width: 100%;
+	max-height: 20px;
+
+    background-color: rgba(0,0,0,0);
+    color: white;
+    border: 1px solid rgba(0,0,0,0);
+
+    label{
+        text-align: center;
+        line-height: 20px;
+        font-size: 12px;
+        height: 100%;
+
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }   
+
+    &:hover{
+        background-color: rgba(0, 132, 255, 0.698);
+        border: 1px outset rgba(95, 95, 255, 0.192);
+    }
+
+    &:focus{
+        outline: none;
+        background-color: rgba(173, 216, 255, 0.3);
+        border: 1px outset rgba(95, 95, 255, 0.192);
+        label{
+            overflow-wrap: anywhere;
+            white-space: normal;
+            text-overflow: unset;
+            overflow: visible;            
+        }
+        
+    }
+}
+
+
