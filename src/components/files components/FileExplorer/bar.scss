@@ -9,7 +9,7 @@
 
 	background-color: #191919;
 
-	button {
+	.bar__button {
 		margin: 0px 2px;
 		padding: 0px 2px;
 		height: 100%;
@@ -21,10 +21,10 @@
 			outline: 0;
 		}
 	}
-	.button--disabled {
+	.bar__button--disabled {
 		color: gray;
 	}
-	.button--enabled {
+	.bar__button--enabled {
 		color: white;
 		&:hover {
 			background-color: rgb(77, 77, 77);
@@ -37,32 +37,42 @@
 		margin-right: 10px;
 		position: relative;
 
-		input {
-			text-indent: 5px;
+		.search__input {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+
 			border: 1px solid #535353;
 			height: 20px;
-			width: 100%;
-			font-size: 12px;
-			font-weight: 100;
-			background-color: rgba(0, 0, 0, 0);
+			input {
+				width: 100%;
+				height: 100%;
 
-			color: white;
-			&:focus {
-				outline: 0;
-			}
-			&::placeholder {
-				transition: color .3s ease;
+				font-size: 12px;
+				font-weight: 100;
+				text-indent: 5px;
+				background-color: rgba(0, 0, 0, 0);
+				border: none;
+				
+				color: white;
+				&:focus {
+					outline: 0;
+				}
+				&::placeholder {
+					transition: color 0.3s ease;
 
-				color: rgba(255, 255, 255, 0.37);
-			}
-			&:focus::placeholder {
-				color: transparent;
+					color: rgba(255, 255, 255, 0.37);
+				}
+				&:focus::placeholder {
+					color: transparent;
+				}
 			}
 		}
 
 		.search__results {
 			position: absolute;
-			height: 100px;
+			min-height: 20px;
+			max-height: 200px;
 			width: 100%;
 			z-index: 3;
 
@@ -71,6 +81,7 @@
 			border-top: none;
 
 			overflow-y: auto;
+			overflow-x: hidden;
 			display: none;
 			.results__item {
 				z-index: 3;
@@ -79,11 +90,11 @@
 				width: 100%;
 				height: 20px;
 				min-height: 20px;
-			}				
+			}
 		}
 		.search__results--active {
 			display: flex;
-			flex-direction: column
+			flex-direction: column;
 		}
 	}
 
