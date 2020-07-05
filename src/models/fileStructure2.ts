@@ -1,5 +1,5 @@
 // Components
-import FileExplorer from "../components/files components/FileExplorer/FileExplorer";
+import FileExplorer from "../components/files components/FileExplorer/FileExplorer.component";
 import PhotoDisplay from "../components/files components/PhotoDisplay/PhotoDisplay";
 import Explorer from "../components/files components/Browser/Explorer";
 
