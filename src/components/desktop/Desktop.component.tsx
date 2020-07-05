@@ -23,6 +23,18 @@ interface Window {
 }
 
 function Desktop() {
+
+	console.log(window.innerWidth)
+
+	const [smallScreen, setSmallScreen] = useState(window.innerWidth < 600 ? true : false)
+	useEffect(() => {
+		if (window.innerWidth < 600 && smallScreen === false ){
+			setSmallScreen(true)
+		} else {
+			setSmallScreen(false)
+		}
+	}, [window.innerWidth])
+
 	const path2 = "Drive C:/Desktop/";
 	var DesktopIcons2 = files2.filter((x) => x.path === path2);
 
@@ -37,7 +49,7 @@ function Desktop() {
 			windowProps: {
 				isFocused: true,
 				isMinimized: false,
-				isFullScreen: false,
+				isFullScreen: smallScreen,
 			},
 			file: {
 				...file,
