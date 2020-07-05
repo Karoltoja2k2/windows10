@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "./desktop.scss";
-import FileIcon from "../fileIcon/FileIcon";
+import FileIcon from "../fileIcon/FileIcon.component";
 import Taskbar from "./Taskbar.component";
 
 import Background from "../../media/winxpbg.jpg";
@@ -191,6 +191,7 @@ function Desktop() {
 					)}
 				{DesktopIcons2.map((obj: any, index: number) => (
 					<FileIcon
+						type="icon"
 						Navigate={Navigate}
 						file={obj}
 						id={0}
