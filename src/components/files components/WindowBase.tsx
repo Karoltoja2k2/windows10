@@ -186,7 +186,7 @@ const WindowBase = (props: any) => {
 								props.WindowManagement.MinimizeWindow(props.id);
 							}}
 						>
-							<Icon icon={bxSpaceBar} width={24} />
+							<i className="far fa-window-minimize"></i>
 						</button>
 						<button
 							className="control"
@@ -195,9 +195,9 @@ const WindowBase = (props: any) => {
 							}}
 						>
 							{props.windowProps.isFullScreen ? (
-								<Icon icon={bxExitFullscreen} width={20} />
+								<i className="far fa-window-restore"></i>
 							) : (
-								<Icon icon={bxExpand} width={20} />
+								<i className="far fa-window-maximize"></i>
 							)}
 						</button>
 						<button
@@ -206,7 +206,7 @@ const WindowBase = (props: any) => {
 								props.WindowManagement.CloseWindow(props.id);
 							}}
 						>
-							<Icon icon={bxX} width={30} />
+							<Icon icon={bxX} height={30} />
 						</button>
 					</div>
 				</div>

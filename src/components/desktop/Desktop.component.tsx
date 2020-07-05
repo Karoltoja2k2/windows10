@@ -6,7 +6,7 @@ import Taskbar from "./Taskbar.component";
 import Background from "../../media/winxpbg.jpg";
 
 import File from "../../models/File";
-import files2 from "../../models/fileStructure2";
+import Files from "../../models/fileStructure2";
 
 interface Window {
 	id: number;
@@ -23,24 +23,27 @@ interface Window {
 }
 
 function Desktop() {
+	function test() {
+		console.log("testing");
+	}
 
-	console.log(window.innerWidth)
-
-	const [smallScreen, setSmallScreen] = useState(window.innerWidth < 600 ? true : false)
+	const [smallScreen, setSmallScreen] = useState(
+		window.innerWidth < 600 ? true : false
+	);
 	useEffect(() => {
-		if (window.innerWidth < 600 && smallScreen === false ){
-			setSmallScreen(true)
+		if (window.innerWidth < 600 && smallScreen === false) {
+			setSmallScreen(true);
 		} else {
-			setSmallScreen(false)
+			setSmallScreen(false);
 		}
-	}, [window.innerWidth])
+	}, [window.innerWidth]);
 
 	const path2 = "Drive C:/Desktop/";
-	var DesktopIcons2 = files2.filter((x) => x.path === path2);
+	var DesktopIcons2 = Files.filter((x) => x.path === path2);
 
 	const [openWindowsCount, setOpenWindowsCount] = useState(1);
 	const [openWindows, setOpenWindows] = useState<Window[]>([
-		Win(10, files2[5]),
+		Win(10, Files[5]),
 	]);
 
 	function Win(id: number, file: File): Window {
@@ -172,13 +175,13 @@ function Desktop() {
 		);
 	}
 
-	console.log("render desktop");
 	return (
 		<div
 			className="desktop"
 			id="desktop"
 			onMouseDown={() => {
 				setFocusedWin(0);
+
 			}}
 			onMouseUp={() => {
 				setLmbDown(false);
@@ -194,8 +197,7 @@ function Desktop() {
 				}
 			}}
 		>
-
-			<img src={Background} className="desktopBackground"/>
+			<img src={Background} className="desktopBackground" />
 			<div className="iconGrid">
 				{openWindows.length > 0 &&
 					openWindows.map((obj: Window, index: number) =>
