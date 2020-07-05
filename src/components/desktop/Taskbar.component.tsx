@@ -3,14 +3,14 @@ import TaskBarItem from "./TaskBarItem.component";
 import Clock from "../clock/Clock.component";
 
 import "./taskbar.scss";
-import Logo from "../../media/win_logo.png";
 
 const Taskbar = (props: any) => {
 	return (
 		<div className="taskBar">
 			<button className="startBtn">
-				<img src={Logo} alt="startBtnLogo" />
+				<i className="fab fa-windows winLogo"></i>
 			</button>
+
 
 			<div className="taskBarItems">
 				{props.openWindows.length > 0 &&

@@ -20,9 +20,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        img{
-            width: 25px;
-            height: 25px;
+        .winLogo{
+            font-size: 18px;
+            color: white;
+
         }
     }
     .taskBarItems{
