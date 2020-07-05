@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d3e011804890fa3861b05a305639f4d8",
+    "revision": "86526999e4aad1c79d5b3fcc626cbcf4",
     "url": "/windows95/index.html"
   },
   {
-    "revision": "0aa94c82e9dea408743f",
-    "url": "/windows95/static/css/main.e497ee33.chunk.css"
+    "revision": "f69a0883e957b7a9e976",
+    "url": "/windows95/static/css/main.ec06520e.chunk.css"
   },
   {
     "revision": "b5612aaee75526781f41",
@@ -16,7 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/windows95/static/js/2.f8415dab.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "0aa94c82e9dea408743f",
+    "revision": "f69a0883e957b7a9e976",
     "url": "/windows95/static/js/main.f2ee7110.chunk.js"
   },
   {
