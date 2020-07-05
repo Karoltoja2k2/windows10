@@ -17,7 +17,7 @@ import foldericon from "../media/folder.png";
 import File from "./File";
 
 const files2: File[] = [];
-let id: number = -1;
+let id: number = 0;
 
 const driveC: File = {
 	fileId: id++,

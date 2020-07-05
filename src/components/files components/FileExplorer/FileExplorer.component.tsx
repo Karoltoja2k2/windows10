@@ -44,6 +44,8 @@ const FileExplorer = (props: any) => {
 			<div className="container">
 				<Bar
 					previousFolder={previousFolder}
+					Navigate={props.WindowManagement.Navigate}
+					id={props.id}
 					file={props.file}
 					setFilter={setFilter}
 				/>
