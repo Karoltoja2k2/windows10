@@ -3,9 +3,11 @@ import FileIcon from "../../fileIcon/FileIcon.component";
 import Files from '../../../models/fileStructure2'
 import "./content.scss";
 
+
 const Content = (props: any) => {
 
 	let files = Files;
+
 
 	return (
 		<div className="container__content">

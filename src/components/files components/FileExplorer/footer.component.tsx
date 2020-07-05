@@ -11,7 +11,7 @@ const Footer = (props: any) => {
 					<i className="fas fa-list"></i>
 				</button>
 				<button>
-					<i className="fas fa-grip-horizontal"></i>
+					<i className="fas fa-th"></i>
 				</button>
 			</div>
 		</div>
