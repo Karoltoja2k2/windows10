@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./windowBase.scss";
 import PhotoDisplay from "./PhotoDisplay/PhotoDisplay";
 import { Resizable } from "re-resizable";
@@ -10,6 +10,8 @@ import bxExpand from "@iconify/icons-bx/bx-expand";
 import bxSpaceBar from "@iconify/icons-bx/bx-space-bar";
 
 const WindowBase = (props: any) => {
+
+
 	useEffect(() => {
 		if (drag.dragging && props.WindowManagement.lmbDown) {
 			var obj = {
