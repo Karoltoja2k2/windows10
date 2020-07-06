@@ -18,11 +18,11 @@ const Snake = (props: any) => {
 			windowProps={props.windowProps}
 			WindowManagement={props.WindowManagement}
 		>
-			<div className="container">
+			<div className="snake__container">
 				{array.map((res) => (
-					<div className="row" style={{height:30}}>
+					<div className="row" style={{ height: 30 }}>
 						{array.map((res) => (
-							<div className="item" style={{width:30}} />
+							<div className="item" style={{ width: 30 }} />
 						))}
 					</div>
 				))}

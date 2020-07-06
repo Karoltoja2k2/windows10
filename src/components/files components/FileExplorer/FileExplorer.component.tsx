@@ -40,7 +40,7 @@ const FileExplorer = (props: any) => {
 			windowProps={props.windowProps}
 			WindowManagement={props.WindowManagement}
 		>
-			<div className="container">
+			<div className="fileExplorer__container">
 				<Bar
 					previousFolder={previousFolder}
 					Navigate={props.WindowManagement.Navigate}
