@@ -78,14 +78,14 @@ const WindowBase = (props: any) => {
 			minHeight={200}
 			minWidth={300}
 			enable={{
-				top: !windowProps.isFullScreen,
+				top: false,
 				right: !windowProps.isFullScreen,
 				bottom: !windowProps.isFullScreen,
-				left: !windowProps.isFullScreen,
-				topRight: !windowProps.isFullScreen,
+				left: false,
+				topRight: false,
 				bottomRight: !windowProps.isFullScreen,
-				bottomLeft: !windowProps.isFullScreen,
-				topLeft: !windowProps.isFullScreen,
+				bottomLeft: false,
+				topLeft: false,
 			}}
 			size={
 				!windowProps.isFullScreen
