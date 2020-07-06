@@ -43,7 +43,7 @@ function Desktop() {
 
 	const [openWindowsCount, setOpenWindowsCount] = useState(1);
 	const [openWindows, setOpenWindows] = useState<Window[]>([
-		Win(10, Files[5]),
+		Win(10, Files[4]),
 	]);
 
 	function Win(id: number, file: File): Window {

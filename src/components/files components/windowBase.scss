@@ -5,16 +5,6 @@
     background: rgb(59, 59, 59);
     transition: background-color 0.2s ease;
 
-    @media (max-width: 730px) {
-        .container {
-          .contentMiddle {
-            width: 90%;
-          }
-        }
-      }
-      
-
-
     .resizableWindowContainer{
         position: absolute;
         width: 100%;

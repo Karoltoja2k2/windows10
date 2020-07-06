@@ -2,6 +2,7 @@
 import FileExplorer from "../components/files components/FileExplorer/FileExplorer.component";
 import PhotoDisplay from "../components/files components/PhotoDisplay/PhotoDisplay";
 import Explorer from "../components/files components/Browser/Explorer";
+import Snake from '../components/files components/snake/snake.component'
 
 // Images
 import winxpbg from "../media/winxpbg.jpg";
@@ -59,6 +60,17 @@ const lennaimg: File = {
 		source: lenna,
 	},
 };
+
+const snake: File = {
+	fileId: id++,
+	path: "Drive C:/Desktop/",
+	component: Snake,
+	extension: ".exe",
+	title: "Snake",
+	iconsrc: logo192,
+
+	prevFolder: desktop,
+}
 
 const winimg: File = {
 	fileId: id++,
@@ -157,6 +169,7 @@ files2.push(
 	driveD,
 	desktop,
 	lennaimg,
+	snake,
 	winimg,
 	testfolder,
 	testfolder2,
