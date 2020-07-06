@@ -23,9 +23,6 @@ interface Window {
 }
 
 function Desktop() {
-	function test() {
-		console.log("testing");
-	}
 
 	const [smallScreen, setSmallScreen] = useState(
 		window.innerWidth < 600 ? true : false
