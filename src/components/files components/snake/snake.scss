@@ -1,28 +1,58 @@
 .snake__container {
 	position: absolute;
-	top: 30px;
+	top:30px;
 	left: 2px;
-	right: 2px;
 	bottom: 2px;
+	right: 2px;
+
+
+	margin-bottom: 2px;
 	background: rgb(41, 41, 41);
-	z-index: 3;
+	overflow: hidden;
 
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	display: grid;
+	grid-template-columns: repeat(25, 20px);
+	grid-template-rows: repeat(25, 20px);
 
-    .row{
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		width: 100%;
+	&:focus{
+		outline: none;
 	}
-	
-	.item{
+
+
+	// display: flex;
+	// flex-direction: column;
+	// justify-content: center;
+	// align-items: center;
+
+
+    // .row{
+	// 	display: flex;
+	// 	flex-direction: row;
+	// 	justify-content: center;
+	// 	width: 100%;
+	// }
+	transition: background-color 1s ease;
+
+	.field{
 		height: 100%;
 		background-color: red;
 		border: green 1px solid;
 
+	}
+
+	.head{
+		background-color: wheat;
+	}
+
+	.body{
+		background-color: rgb(255, 195, 82);
+	}
+
+	.tail{
+		background-color: rgb(255, 102, 82);
+	}
+	
+	.fruit{
+		background-color: rgb(42, 179, 29);
 	}
 }
