@@ -83,6 +83,7 @@ const Bar = (props: any) => {
 				<div className="search__input">
 					<input
 						type="text"
+						id="searchInput"
 						onChange={(e) => {
 							console.log(e.target.value);
 							searchFile(e.target.value);
@@ -109,7 +110,7 @@ const Bar = (props: any) => {
 				<div
 					className={
 						search.showResults
-							? "search__results--active search__results"
+							? "search__results--active search__results scrollbar--dark"
 							: "search__results"
 					}
 				>

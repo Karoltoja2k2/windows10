@@ -12,7 +12,7 @@ const FileIcon = (props: any) => {
 		);
 	} else if (props.type === "inrow") {
 		return (
-			<button className="inrow" onClick={() => props.Navigate(props.id, props.file)}>
+			<button className="inrow" onDoubleClick={() => props.Navigate(props.id, props.file)}>
 				<img src={props.file.iconsrc}/>
 				<label>{props.file.title}</label>
 			</button>
