@@ -11,7 +11,7 @@ const Content = (props: any) => {
 
 	return (
 		<div className="container__content">
-			<div className="content--left scrollbar--dark">
+			<div className="content__left scrollbar--dark">
 				{files.map((file: any, index: number) => (
 						<FileIcon
 							type="inrow"
@@ -24,11 +24,11 @@ const Content = (props: any) => {
 
 			</div>
 
-			<div className="content--right scrollbar--dark">
+			<div className={`content__right--${props.iconDisplay} scrollbar--dark`}>
 				{props.iconsInFolder &&
 					props.iconsInFolder.map((file: any, index: number) => (
 						<FileIcon
-							type="icon"
+							type={props.iconDisplay}
 							file={file}
 							id={props.id}
 							key={index}

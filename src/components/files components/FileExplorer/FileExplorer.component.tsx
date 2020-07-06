@@ -10,7 +10,6 @@ import Content from "./content.component";
 import Footer from "./footer.component";
 
 const FileExplorer = (props: any) => {
-
 	// THIS NEED OPTIMALIZATION !!!!!!
 	const [filter, setFilter] = useState("");
 	const [files, setFiles] = useState(Array<File>());
@@ -25,14 +24,14 @@ const FileExplorer = (props: any) => {
 		);
 	}, [props.file, filter]);
 	// END
-	
+
+	const [iconDisplay, setIconDisplay] = useState("icon");
+
 	const previousFolder = () => {
 		if (props.file.prevFolder) {
 			props.WindowManagement.Navigate(props.id, props.file.prevFolder);
 		}
 	};
-
-
 
 	return (
 		<WindowBase
@@ -51,10 +50,15 @@ const FileExplorer = (props: any) => {
 				/>
 				<Content
 					iconsInFolder={files}
+					iconDisplay={iconDisplay}
 					id={props.id}
 					Navigate={props.WindowManagement.Navigate}
 				/>
-				<Footer iconsCount={files.length} />
+				<Footer
+					iconsCount={files.length}
+					setIconDisplay={setIconDisplay}
+					iconDisplay={iconDisplay}
+				/>
 			</div>
 		</WindowBase>
 	);
