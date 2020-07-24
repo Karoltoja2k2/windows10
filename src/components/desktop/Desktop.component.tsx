@@ -23,147 +23,23 @@ interface Window {
 }
 
 function Desktop(props: any) {
-    const [smallScreen, setSmallScreen] = useState(
-        window.innerWidth < 600 ? true : false
-    );
-    useEffect(() => {
-        if (window.innerWidth < 600 && smallScreen === false) {
-            setSmallScreen(true);
-        } else {
-            setSmallScreen(false);
-        }
-    }, [window.innerWidth]);
-
     const path2 = "Drive C:/Desktop/";
     var DesktopIcons2 = Files.filter((x) => x.path === path2);
 
-    const [openWindowsCount, setOpenWindowsCount] = useState(1);
-    const [openWindows, setOpenWindows] = useState<Window[]>([
-        Win(10, Files[4]),
-    ]);
-
-    function Win(id: number, file: File): Window {
-        return {
-            id: id,
-            windowProps: {
-                isFocused: true,
-                isMinimized: false,
-                isFullScreen: smallScreen,
-            },
-            file: {
-                ...file,
-            },
-        };
-    }
-
-    function Navigate(id: number, fileToOpen: File) {
-        var oF;
-        if (id === 0 || fileToOpen.extension !== ".fld") {
-            oF = Win(openWindowsCount, fileToOpen);
-            setOpenWindows([...openWindows, oF]);
-            setOpenWindowsCount(openWindowsCount + 1);
-        } else {
-            var windows = openWindows.slice();
-            var window = windows.find((x) => x.id === id)!;
-            window.file = { ...fileToOpen };
-            setFocusedWin(id);
-            setOpenWindows(windows);
-        }
-    }
-
-    function CloseWindow(id: number) {
-        setFocusedWin(0);
-        var newList = openWindows.filter((x) => x.id != id);
-        setOpenWindows(newList);
-    }
-
-    function MinimizeWindow(id: number) {
-        var windows = openWindows.slice();
-        var window = windows.find((x) => x.id === id)!;
-        if (window.windowProps.isFocused && !window.windowProps.isMinimized) {
-            window.windowProps = {
-                ...window.windowProps,
-                isMinimized: true,
-            };
-            setFocusedWin(0);
-        } else if (
-            !window.windowProps.isFocused &&
-            !window.windowProps.isMinimized
-        ) {
-            setFocusedWin(id);
-        } else if (window.windowProps.isMinimized) {
-            window.windowProps = {
-                ...window.windowProps,
-                isMinimized: false,
-            };
-            setFocusedWin(id);
-        }
-        setOpenWindows(windows);
-    }
-    function FullScreenMode(id: number) {
-        var windows = openWindows.slice();
-        var window = windows.find((x) => x.id === id)!;
-        windows.forEach(function (win) {
-            if (win.id === id) {
-                window.windowProps = {
-                    ...window.windowProps,
-                    isFullScreen: !window.windowProps.isFullScreen,
-                    isFocused: true,
-                };
-            } else {
-                window.windowProps = {
-                    ...window.windowProps,
-                    isFocused: false,
-                };
-            }
-        });
-        console.log(window.windowProps);
-        setOpenWindows(windows);
-    }
-
-    function setFocusedWin(id: number) {
-        var windows = openWindows.slice();
-        windows.forEach(function (win) {
-            if (win.id === id) {
-                win.windowProps = {
-                    ...win.windowProps,
-                    isFocused: true,
-                };
-            } else {
-                win.windowProps = {
-                    ...win.windowProps,
-                    isFocused: false,
-                };
-            }
-        });
-        setOpenWindows(windows);
-    }
-
-    const [lmbDown, setLmbDown] = useState(false);
-    const [movingWindow, setMovingWindow] = useState({
-        top: 0,
-        left: 0,
-        id: 0,
+    const [mouseState, setMouseState] = useState({
+        lmbDown: false,
+        rmbDown: false,
+        position: {
+            top: 0,
+            left: 0,
+        },
+        movingWinId: 0,
     });
-
-    // const WindowManagement = {
-    //     SetFocusedWin: setFocusedWin,
-    //     setLmbDown: setLmbDown,
-    //     setMovingWindow: setMovingWindow,
-    //     movingPos: movingWindow,
-    //     lmbDown: lmbDown,
-    //     Navigate: Navigate,
-    //     CloseWindow: CloseWindow,
-    //     MinimizeWindow: MinimizeWindow,
-    //     FullScreenMode: FullScreenMode,
-    // };
 
     const WindowManagement = {
         SetFocusedWin: props.WindowManagement.SetFocusedWin,
-        setLmbDown: setLmbDown,
-        setMovingWindow: setMovingWindow,
-        movingPos: movingWindow,
-        lmbDown: lmbDown,
+        mouseState: mouseState,
+        setMouseState: setMouseState,
         Navigate: props.WindowManagement.Navigate,
         CloseWindow: props.WindowManagement.CloseWindow,
         MinimizeWindow: props.WindowManagement.MinimizeWindow,
@@ -178,7 +54,8 @@ function Desktop(props: any) {
                 id={window.id}
                 windowProps={window.windowProps}
                 WindowManagement={WindowManagement}
-                openWindowsCount={openWindowsCount}
+                openWindows={props.openWindows}
+                focusedWinId={props.focusedWinId}
             />
         );
     }
@@ -188,32 +65,36 @@ function Desktop(props: any) {
             className="desktop"
             id="desktop"
             onMouseDown={() => {
-                setFocusedWin(0);
+                console.log("asd");
+                props.WindowManagement.SetFocusedWin(0);
             }}
             onMouseUp={() => {
-                setLmbDown(false);
+                setMouseState({
+                    ...mouseState,
+                    lmbDown: false,
+                    movingWinId: 0,
+                });
             }}
             onMouseMove={(e) => {
-                if (lmbDown) {
-                    console.log("moving");
-                    setMovingWindow({
-                        ...movingWindow,
+                setMouseState({
+                    ...mouseState,
+                    position: {
                         top: e.pageY,
                         left: e.pageX,
-                    });
-                }
+                    },
+                });
             }}
         >
             <img src={Background} className="desktopBackground" />
             <div className="iconGrid">
-                {openWindows.length > 0 &&
-                    openWindows.map((obj: Window, index: number) =>
+                {props.openWindows.length > 0 &&
+                    props.openWindows.map((obj: Window, index: number) =>
                         RenderWindow(obj)
                     )}
                 {DesktopIcons2.map((obj: any, index: number) => (
                     <FileIcon
                         type="icon"
-                        Navigate={Navigate}
+                        Navigate={props.WindowManagement.Navigate}
                         file={obj}
                         id={0}
                         key={index}
@@ -229,7 +110,7 @@ function Desktop(props: any) {
             </div>
 
             <Taskbar
-                openWindows={openWindows}
+                openWindows={props.openWindows}
                 WindowManagement={WindowManagement}
             />
         </div>

@@ -1,14 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.scss';
-import Desktop from './components/desktop/Desktop.component';
-import * as serviceWorker from './serviceWorker';
+import React, { createContext } from "react";
+import ReactDOM from "react-dom";
+import "./index.scss";
+import Desktop from "./components/desktop/Desktop.component";
+import * as serviceWorker from "./serviceWorker";
+import App from "./app";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Desktop />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>,
+    document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
