@@ -25,7 +25,7 @@ const FileExplorer = (props: any) => {
     }, [props.file, filter]);
     // END
 
-    const [iconDisplay, setIconDisplay] = useState("icon");
+    const [iconDisplay, setIconDisplay] = useState("folderIcon");
 
     const previousFolder = () => {
         if (props.file.prevFolder) {
@@ -33,11 +33,13 @@ const FileExplorer = (props: any) => {
         }
     };
 
+    console.log(`rerender fileexplorer ${props.id}`)
+
     return (
         <WindowBase
             id={props.id}
             file={props.file}
-            windowProps={props.windowProps}
+            state={props.state}
             focusedWinId={props.focusedWinId}
             WindowManagement={props.WindowManagement}
         >
@@ -68,9 +70,10 @@ const FileExplorer = (props: any) => {
 
 export default React.memo(FileExplorer, (prevProps, nextProps) => {
     return (
-        nextProps.id !== nextProps.WindowManagement.mouseState.movingWinId &&
-        prevProps.focusedWinId === nextProps.focusedWinId &&
-        prevProps.windowProps === nextProps.windowProps &&
-        prevProps.openWindows === nextProps.openWindows
+        prevProps.file === nextProps.file &&
+        nextProps.id !== nextProps.WindowManagement.mouseState.movingWinId
+        // prevProps.focusedWinId === nextProps.focusedWinId &&
+        // prevProps.windowProps === nextProps.windowProps &&
+        // prevProps.openWindows === nextProps.openWindows
     );
 });

@@ -8,13 +8,29 @@ import bxX from "@iconify/icons-bx/bx-x";
 import bxExitFullscreen from "@iconify/icons-bx/bx-exit-fullscreen";
 import bxExpand from "@iconify/icons-bx/bx-expand";
 import bxSpaceBar from "@iconify/icons-bx/bx-space-bar";
+import { useDispatch } from "react-redux";
+import { FocusWindow, ExitFullscreenWindow, Minimize, CloseWIndow } from "../../actions/windowsActions";
 
 const WindowBase = (props: any) => {
-    console.log(props.focusedWinId, props.id);
+    const disptach = useDispatch();
+    const [state, setState] = useState({
+        props: { ...props.state },
+        drag: {
+            dragging: false,
+            offsetTop: 0,
+            offsetLeft: 0,
+        },
+        dimensions: {
+            top: 100,
+            left: 100,
+            width: 600,
+            height: 400,
+        },
+    });
 
     useEffect(() => {
         if (
-            drag.dragging &&
+            state.drag.dragging &&
             props.WindowManagement.mouseState.lmbDown &&
             props.WindowManagement.mouseState.movingWinId === props.id
         ) {
@@ -27,10 +43,13 @@ const WindowBase = (props: any) => {
                     : 0,
             };
             if (obj.top !== 0 || obj.left !== 0) {
-                setDimensions({
-                    ...dimensions,
-                    top: obj.top - drag.offset.top,
-                    left: obj.left - drag.offset.left,
+                setState({
+                    ...state,
+                    dimensions: {
+                        ...state.dimensions,
+                        top: obj.top - state.drag.offsetTop,
+                        left: obj.left - state.drag.offsetLeft,
+                    },
                 });
             }
         }
@@ -38,59 +57,28 @@ const WindowBase = (props: any) => {
 
     useEffect(() => {
         if (!props.WindowManagement.mouseState.lmbDown) {
-            setDrag({
-                dragging: false,
-                offset: {
-                    top: 0,
-                    left: 0,
+            setState({
+                ...state,
+                drag: {
+                    dragging: false,
+                    offsetTop: 0,
+                    offsetLeft: 0,
                 },
             });
         }
     }, [props.WindowManagement.mouseState.lmbDown]);
 
     useEffect(() => {
-        setWindowProps(props.windowProps);
-    }, [props.windowProps]);
-
-    const [windowState, setWindowState] = useState({
-        properties: {...props.windowProps},
-        drag:{
-            dragging: false,
-            offsetTop: 0,
-            offsetLeft: 0
-        },
-        dimensions:{
-            top: 100,
-            left: 100,
-            width: 600,
-            height: 400
-        }
-    })
-
-    const [windowProps, setWindowProps] = useState(props.windowProps);
-    const [drag, setDrag] = useState({
-        dragging: false,
-        offset: {
-            top: 0,
-            left: 0,
-        },
-    });
-
-    const [dimensions, setDimensions] = useState({
-        top: 100,
-        left: 100,
-        width: 600,
-        height: 400,
-    });
-
-    useEffect(() => {
-        setWindowProps(props.windowProps);
-    }, [props.windowProps]);
+        setState({
+            ...state,
+            props: { ...props.state },
+        });
+    }, [props.state]);
 
     return (
         <Resizable
             className={
-                props.focusedWinId === props.id
+                state.props.isFocused
                     ? "resizableWindow focused"
                     : "resizableWindow"
             }
@@ -98,19 +86,19 @@ const WindowBase = (props: any) => {
             minWidth={300}
             enable={{
                 top: false,
-                right: !windowProps.isFullScreen,
-                bottom: !windowProps.isFullScreen,
+                right: !state.props.isFullScreen,
+                bottom: !state.props.isFullScreen,
                 left: false,
                 topRight: false,
-                bottomRight: !windowProps.isFullScreen,
+                bottomRight: !state.props.isFullScreen,
                 bottomLeft: false,
                 topLeft: false,
             }}
             size={
-                !windowProps.isFullScreen
+                !state.props.isFullScreen
                     ? {
-                          width: dimensions.width,
-                          height: dimensions.height,
+                          width: state.dimensions.width,
+                          height: state.dimensions.height,
                       }
                     : {
                           width: "100%",
@@ -118,12 +106,12 @@ const WindowBase = (props: any) => {
                       }
             }
             style={
-                !windowProps.isFullScreen
+                !state.props.isFullScreen
                     ? {
-                          ...dimensions,
+                          ...state.dimensions,
                           position: "absolute",
-                          zIndex: windowProps.isFocused ? 4 : 3,
-                          visibility: windowProps.isMinimized
+                          zIndex: state.props.isFocused ? 4 : 3,
+                          visibility: state.props.isMinimized
                               ? "hidden"
                               : "visible",
                       }
@@ -131,21 +119,24 @@ const WindowBase = (props: any) => {
                           top: 0,
                           left: 0,
                           position: "absolute",
-                          zIndex: windowProps.isFocused ? 4 : 3,
-                          visibility: windowProps.isMinimized
+                          zIndex: state.props.isFocused ? 4 : 3,
+                          visibility: state.props.isMinimized
                               ? "hidden"
                               : "visible",
                       }
             }
             onResizeStart={(e) => {
                 e.stopPropagation();
-                props.WindowManagement.SetFocusedWin(props.id);
+                disptach(FocusWindow(props.id));
             }}
             onResizeStop={(e, direction, ref, d) => {
-                setDimensions({
-                    ...dimensions,
-                    width: dimensions.width + d.width,
-                    height: dimensions.height + d.height,
+                setState({
+                    ...state,
+                    dimensions: {
+                        ...state.dimensions,
+                        width: state.dimensions.width + d.width,
+                        height: state.dimensions.height + d.height,
+                    },
                 });
             }}
         >
@@ -153,8 +144,7 @@ const WindowBase = (props: any) => {
                 className="resizableWindowContainer"
                 onMouseDown={(e) => {
                     e.stopPropagation();
-
-                    props.WindowManagement.SetFocusedWin(props.id);
+                    disptach(FocusWindow(props.id));
                 }}
                 onMouseUp={(e) => {}}
             >
@@ -164,22 +154,25 @@ const WindowBase = (props: any) => {
                         onMouseDown={(e) => {
                             e.preventDefault();
                             if (e.detail === 2) {
-                                props.WindowManagement.FullScreenMode(props.id);
+                                disptach(ExitFullscreenWindow(props.id));
                                 return;
                             }
                             console.log("clicked");
 
                             if (
-                                !windowProps.isFullScreen
+                                !state.props.isFullScreen
                                 // if (
                                 // e.target === e.currentTarget &&
                                 // !windowProps.isFullScreen
                             ) {
-                                setDrag({
-                                    dragging: true,
-                                    offset: {
-                                        top: e.pageY - dimensions.top,
-                                        left: e.pageX - dimensions.left,
+                                setState({
+                                    ...state,
+                                    drag: {
+                                        dragging: true,
+                                        offsetTop:
+                                            e.pageY - state.dimensions.top,
+                                        offsetLeft:
+                                            e.pageX - state.dimensions.left,
                                     },
                                 });
                                 props.WindowManagement.setMouseState({
@@ -202,7 +195,7 @@ const WindowBase = (props: any) => {
                         <button
                             className="control"
                             onClick={(e) => {
-                                props.WindowManagement.MinimizeWindow(props.id);
+                                disptach(Minimize(props.id));
                             }}
                         >
                             <i className="far fa-window-minimize"></i>
@@ -210,10 +203,10 @@ const WindowBase = (props: any) => {
                         <button
                             className="control"
                             onClick={(e) => {
-                                props.WindowManagement.FullScreenMode(props.id);
+                                disptach(ExitFullscreenWindow(props.id));
                             }}
                         >
-                            {props.windowProps.isFullScreen ? (
+                            {props.state.isFullScreen ? (
                                 <i className="far fa-window-restore"></i>
                             ) : (
                                 <i className="far fa-window-maximize"></i>
@@ -222,7 +215,7 @@ const WindowBase = (props: any) => {
                         <button
                             className="exit"
                             onClick={(e) => {
-                                props.WindowManagement.CloseWindow(props.id);
+                                disptach(CloseWIndow(props.id));
                             }}
                         >
                             <Icon icon={bxX} height={30} />

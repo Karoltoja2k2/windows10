@@ -5,10 +5,7 @@ import "./content.scss";
 
 
 const Content = (props: any) => {
-
 	let files = Files;
-
-
 	return (
 		<div className="container__content">
 			<div className="content__left scrollbar--dark">

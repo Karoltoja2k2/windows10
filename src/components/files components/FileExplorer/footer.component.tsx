@@ -21,9 +21,9 @@ const Footer = (props: any) => {
 					<i className="fas fa-list"></i>
 				</button>
 				<button
-					className={props.iconDisplay === "icon" ? "footer__buttons-selected" : ""}
+					className={props.iconDisplay === "folderIcon" ? "footer__buttons-selected" : ""}
 					onClick={() => {
-						setIconDisplay("icon");
+						setIconDisplay("folderIcon");
 					}}
 				>
 					<i className="fas fa-th"></i>

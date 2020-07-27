@@ -1,23 +1,12 @@
 import React, { useEffect, useState } from "react";
 
 import File from "../models/File";
+import Window from "../models/Window"
+
 import Files from "../models/fileStructure2";
 import Desktop from "./desktop/Desktop.component";
 
-interface Window {
-    id: number;
-    windowProps: {
-        top?: number;
-        left?: number;
-        width?: number;
-        height?: number;
-        isFocused: boolean;
-        isMinimized: boolean;
-        isFullScreen: boolean;
-    };
-    file: File;
-    isClosed: boolean;
-}
+
 
 const TaskManager = (props: any) => {
     useEffect(() => {
@@ -44,7 +33,7 @@ const TaskManager = (props: any) => {
     function NewWindow(id: number, file: File): Window {
         return {
             id: id,
-            windowProps: {
+            state: {
                 isFocused: true,
                 isMinimized: false,
                 isFullScreen: false,
@@ -94,24 +83,24 @@ const TaskManager = (props: any) => {
     function MinimizeWindow(id: number) {
         var openWindows = state.openWindows.slice();
         var threadedWindow = openWindows.find((x) => x.id === id)!;
-        var threadedWindowProps = threadedWindow.windowProps;
+        var threadedWindowProps = threadedWindow.state;
         var focusedWinId = threadedWindow.id;
 
         console.log(state.focusedWinId, focusedWinId);
 
-        if (threadedWindow.windowProps.isMinimized) {
+        if (threadedWindow.state.isMinimized) {
             threadedWindowProps = {
                 ...threadedWindowProps,
                 isMinimized: false,
             };
             focusedWinId = id;
         } else if (
-            !threadedWindow.windowProps.isMinimized &&
+            !threadedWindow.state.isMinimized &&
             threadedWindow.id !== state.focusedWinId
         ) {
             focusedWinId = id;
         } else if (
-            !threadedWindow.windowProps.isMinimized &&
+            !threadedWindow.state.isMinimized &&
             threadedWindow.id === state.focusedWinId
         ) {
             threadedWindowProps = {
@@ -122,7 +111,7 @@ const TaskManager = (props: any) => {
         }
         threadedWindow = {
             ...threadedWindow,
-            windowProps: threadedWindowProps,
+            state: threadedWindowProps,
         };
         setState({
             ...state,
@@ -134,9 +123,9 @@ const TaskManager = (props: any) => {
     function FullScreenMode(id: number) {
         var openWindows = state.openWindows.slice();
         var threadedWindow = openWindows.find((x) => x.id === id)!;
-        threadedWindow.windowProps = {
-            ...threadedWindow.windowProps,
-            isFullScreen: !threadedWindow?.windowProps.isFullScreen,
+        threadedWindow.state = {
+            ...threadedWindow.state,
+            isFullScreen: !threadedWindow?.state.isFullScreen,
         };
     }
 

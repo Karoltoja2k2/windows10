@@ -7,20 +7,11 @@ import Background from "../../media/winxpbg.jpg";
 
 import File from "../../models/File";
 import Files from "../../models/fileStructure2";
-
-interface Window {
-    id: number;
-    windowProps: {
-        top?: number;
-        left?: number;
-        width?: number;
-        height?: number;
-        isFocused: boolean;
-        isMinimized: boolean;
-        isFullScreen: boolean;
-    };
-    file: File;
-}
+import WindowsManager from "../../models/WindowsManager";
+import { RootState } from "../../reducers";
+import { useSelector, useDispatch } from "react-redux";
+import Window from "../../models/Window";
+import { UnFocusWindows } from "../../actions/windowsActions";
 
 function Desktop(props: any) {
     const path2 = "Drive C:/Desktop/";
@@ -52,7 +43,7 @@ function Desktop(props: any) {
                 key={window.id}
                 file={window.file}
                 id={window.id}
-                windowProps={window.windowProps}
+                state={window.state}
                 WindowManagement={WindowManagement}
                 openWindows={props.openWindows}
                 focusedWinId={props.focusedWinId}
@@ -60,13 +51,17 @@ function Desktop(props: any) {
         );
     }
 
+    const windowManager: WindowsManager = useSelector(
+        (state: RootState) => state.windowsReducer
+    );
+    const dispatch = useDispatch();
+
     return (
         <div
             className="desktop"
             id="desktop"
             onMouseDown={() => {
-                console.log("asd");
-                props.WindowManagement.SetFocusedWin(0);
+                dispatch(UnFocusWindows())
             }}
             onMouseUp={() => {
                 setMouseState({
@@ -88,12 +83,15 @@ function Desktop(props: any) {
             <img src={Background} className="desktopBackground" />
             <div className="iconGrid">
                 {props.openWindows.length > 0 &&
-                    props.openWindows.map((obj: Window, index: number) =>
-                        RenderWindow(obj)
+                    // props.openWindows.map((obj: Window, index: number) =>
+                    //     RenderWindow(obj)
+                    // )}
+                    windowManager.openWindows.map(
+                        (obj: Window, index: number) => RenderWindow(obj)
                     )}
                 {DesktopIcons2.map((obj: any, index: number) => (
                     <FileIcon
-                        type="icon"
+                        type="desktopIcon"
                         Navigate={props.WindowManagement.Navigate}
                         file={obj}
                         id={0}

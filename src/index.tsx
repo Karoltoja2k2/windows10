@@ -4,10 +4,17 @@ import "./index.scss";
 import Desktop from "./components/desktop/Desktop.component";
 import * as serviceWorker from "./serviceWorker";
 import App from "./app";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import {rootReducers} from "./reducers/index";
+
+let store = createStore(rootReducers);
 
 ReactDOM.render(
     <React.StrictMode>
-        <App />
+        <Provider store={store}>
+            <App />
+        </Provider>
     </React.StrictMode>,
     document.getElementById("root")
 );
