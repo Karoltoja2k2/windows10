@@ -9,7 +9,7 @@ export default interface Window {
         height?: number;
         isFocused: boolean;
         isMinimized: boolean;
-        isFullScreen: boolean;
+        isFullscreen: boolean;
     };
     file: File;
     isClosed: boolean;

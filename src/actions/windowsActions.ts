@@ -23,7 +23,7 @@ export const Navigate = (windowId: number, fileToOpen: File) => {
     };
 };
 
-export const Minimize = (windowId: number) => {
+export const MinimizeWindow = (windowId: number) => {
     return {
         type: "MINIMIZE",
         payload: { windowId },
@@ -51,6 +51,7 @@ export const FullscreenWindow = (windowId: number) => {
 };
 
 export const ExitFullscreenWindow = (windowId: number) => {
+    console.log('exitfs')
     return {
         type: "EXITFULLSCREEN",
         payload: { windowId },
@@ -76,7 +77,7 @@ function NewWindow(id: number, file: File): Window {
         state: {
             isFocused: true,
             isMinimized: false,
-            isFullScreen: false,
+            isFullscreen: false,
         },
         file: {
             ...file,

@@ -11,8 +11,9 @@ import {
     OpenWindow,
     Navigate,
     MinimizeAllWindows,
-    Minimize,
+    MinimizeWindow,
     FocusWindow,
+    UnMinimizeWindow,
 } from "../../actions/windowsActions";
 
 const TaskBarItem = (props: any) => {
@@ -27,11 +28,15 @@ const TaskBarItem = (props: any) => {
             className={state.isFocused ? "taskBarItem selected" : "taskBarItem"}
             onClick={(e) => {
                 e.stopPropagation();
+                console.log(state);
                 if (state.isMinimized) {
-                    dispatch(Minimize(props.id));
-                } else if (!state.isMinimized && state.isFocues) {
-                    dispatch(Minimize(props.id));
+                    console.log("maximize");
+                    dispatch(UnMinimizeWindow(props.id));
+                } else if (!state.isMinimized && state.isFocused) {
+                    console.log("minimizing");
+                    dispatch(MinimizeWindow(props.id));
                 } else {
+                    console.log("focus");
                     dispatch(FocusWindow(props.id));
                 }
             }}

@@ -8,7 +8,7 @@ const PhotoDisplay = (props: any) => {
 		<WindowBase
 			id={props.id}
 			file={props.file}
-			windowProps={props.windowProps}
+			state={props.state}
 			WindowManagement={props.WindowManagement}
 		>
 			<div className="photoContainer">
@@ -19,8 +19,10 @@ const PhotoDisplay = (props: any) => {
 };
 
 export default React.memo(PhotoDisplay, (prevProps, nextProps) => {
-	return (
-		nextProps.id !== nextProps.WindowManagement.movingPos.id &&
-		prevProps.windowProps === nextProps.windowProps
-	);
+    return (
+        prevProps.file === nextProps.file &&
+        nextProps.id !== nextProps.WindowManagement.mouseState.movingWinId &&
+        prevProps.state === nextProps.state
+    );
 });
+

@@ -10,7 +10,7 @@ const Snake = (props: any) => {
         <WindowBase
             id={props.id}
             file={props.file}
-            windowProps={props.windowProps}
+            state={props.state}
             WindowManagement={props.WindowManagement}
         >
             <Game />
@@ -18,4 +18,10 @@ const Snake = (props: any) => {
     );
 };
 
-export default React.memo(Snake);
+export default React.memo(Snake, (prevProps, nextProps) => {
+    return (
+        prevProps.file === nextProps.file &&
+        nextProps.id !== nextProps.WindowManagement.mouseState.movingWinId &&
+        prevProps.state === nextProps.state
+    );
+});

@@ -8,57 +8,65 @@ import File from "../../../models/File";
 import Bar from "./bar.component";
 import Content from "./content.component";
 import Footer from "./footer.component";
+import { Navigate } from "../../../actions/windowsActions";
+import { useDispatch } from "react-redux";
 
 const FileExplorer = (props: any) => {
     // THIS NEED OPTIMALIZATION !!!!!!
-    const [filter, setFilter] = useState("");
-    const [files, setFiles] = useState(Array<File>());
     useEffect(() => {
-        setFiles(
-            Files.filter(
+        filterFiles(state.filter);
+    }, [props.file]);
+
+    function filterFiles(filter: string) {
+        setState({
+            filter: filter,
+            files: Files.filter(
                 (x) =>
                     x.prevFolder &&
                     x.prevFolder.fileId === props.file.fileId &&
                     x.title.toLowerCase().includes(filter.toLowerCase())
-            )
-        );
-    }, [props.file, filter]);
+            ),
+        });
+    }
     // END
+
+    const [state, setState] = useState({
+        filter: "",
+        files: Array<File>(),
+    });
 
     const [iconDisplay, setIconDisplay] = useState("folderIcon");
 
+    const disptach = useDispatch();
     const previousFolder = () => {
         if (props.file.prevFolder) {
-            props.WindowManagement.Navigate(props.id, props.file.prevFolder);
+            disptach(Navigate(props.id, props.file.prevFolder));
         }
     };
 
-    console.log(`rerender fileexplorer ${props.id}`)
+    console.log(`rerender fileexplorer ${props.id}`);
 
     return (
         <WindowBase
             id={props.id}
             file={props.file}
             state={props.state}
-            focusedWinId={props.focusedWinId}
             WindowManagement={props.WindowManagement}
         >
             <div className="fileExplorer__container">
                 <Bar
                     previousFolder={previousFolder}
-                    Navigate={props.WindowManagement.Navigate}
                     id={props.id}
                     file={props.file}
-                    setFilter={setFilter}
+                    filterFiles={filterFiles}
                 />
                 <Content
-                    iconsInFolder={files}
+                    iconsInFolder={state.files}
                     iconDisplay={iconDisplay}
                     id={props.id}
-                    Navigate={props.WindowManagement.Navigate}
                 />
                 <Footer
-                    iconsCount={files.length}
+                    iconsCount={state.files.length}
                     setIconDisplay={setIconDisplay}
                     iconDisplay={iconDisplay}
                 />
@@ -66,14 +74,11 @@ const FileExplorer = (props: any) => {
         </WindowBase>
     );
 };
-// export default FileExplorer
 
 export default React.memo(FileExplorer, (prevProps, nextProps) => {
     return (
         prevProps.file === nextProps.file &&
-        nextProps.id !== nextProps.WindowManagement.mouseState.movingWinId
-        // prevProps.focusedWinId === nextProps.focusedWinId &&
-        // prevProps.windowProps === nextProps.windowProps &&
-        // prevProps.openWindows === nextProps.openWindows
+        nextProps.id !== nextProps.WindowManagement.mouseState.movingWinId &&
+        prevProps.state === nextProps.state
     );
 });

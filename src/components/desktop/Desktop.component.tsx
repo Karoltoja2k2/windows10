@@ -57,60 +57,59 @@ function Desktop(props: any) {
     const dispatch = useDispatch();
 
     return (
-        <div
-            className="desktop"
-            id="desktop"
-            onMouseDown={() => {
-                dispatch(UnFocusWindows())
-            }}
-            onMouseUp={() => {
-                setMouseState({
-                    ...mouseState,
-                    lmbDown: false,
-                    movingWinId: 0,
-                });
-            }}
-            onMouseMove={(e) => {
-                setMouseState({
-                    ...mouseState,
-                    position: {
-                        top: e.pageY,
-                        left: e.pageX,
-                    },
-                });
-            }}
-        >
-            <img src={Background} className="desktopBackground" />
-            <div className="iconGrid">
-                {props.openWindows.length > 0 &&
-                    // props.openWindows.map((obj: Window, index: number) =>
-                    //     RenderWindow(obj)
-                    // )}
-                    windowManager.openWindows.map(
-                        (obj: Window, index: number) => RenderWindow(obj)
-                    )}
-                {DesktopIcons2.map((obj: any, index: number) => (
-                    <FileIcon
-                        type="desktopIcon"
-                        Navigate={props.WindowManagement.Navigate}
-                        file={obj}
-                        id={0}
-                        key={index}
-                    />
-                ))}
-            </div>
+        <div className="">
+            <div
+                className="desktop"
+                id="desktop"
+                onMouseDown={() => {
+                    console.log("unfocus all");
+                    dispatch(UnFocusWindows());
+                }}
+                onMouseUp={() => {
+                    setMouseState({
+                        ...mouseState,
+                        lmbDown: false,
+                        movingWinId: 0,
+                    });
+                }}
+                onMouseMove={(e) => {
+                    setMouseState({
+                        ...mouseState,
+                        position: {
+                            top: e.pageY,
+                            left: e.pageX,
+                        },
+                    });
+                }}
+            >
+                <img src={Background} className="desktopBackground" />
+                <div className="iconGrid">
+                    {props.openWindows.length > 0 &&
+                        // props.openWindows.map((obj: Window, index: number) =>
+                        //     RenderWindow(obj)
+                        // )}
+                        windowManager.openWindows.map(
+                            (obj: Window, index: number) => RenderWindow(obj)
+                        )}
+                    {DesktopIcons2.map((obj: any, index: number) => (
+                        <FileIcon
+                            type="desktopIcon"
+                            Navigate={props.WindowManagement.Navigate}
+                            file={obj}
+                            id={0}
+                            key={index}
+                        />
+                    ))}
+                </div>
 
-            <div className="activateWindows">
-                <p className="top">Aktywuj system Windows</p>
-                <p className="down">
-                    Przejdź do ustawień, aby aktywować system Windows.
-                </p>
+                <div className="activateWindows">
+                    <p className="top">Aktywuj system Windows</p>
+                    <p className="down">
+                        Przejdź do ustawień, aby aktywować system Windows.
+                    </p>
+                </div>
             </div>
-
-            <Taskbar
-                openWindows={props.openWindows}
-                WindowManagement={WindowManagement}
-            />
+            <Taskbar openWindows={props.openWindows} />
         </div>
     );
 }

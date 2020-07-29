@@ -53,7 +53,7 @@ const windowsReducer = (state: WindowsManager = windowsState, action: any) => {
                         ? {
                               ...window,
                               state: {
-                                  ...state,
+                                  ...window.state,
                                   isMinimized: true,
                               },
                           }
@@ -69,8 +69,17 @@ const windowsReducer = (state: WindowsManager = windowsState, action: any) => {
                         ? {
                               ...window,
                               state: {
-                                  ...state,
+                                  ...window.state,
                                   isMinimized: false,
+                                  isFocused: true,
+                              },
+                          }
+                        : window.state.isFocused
+                        ? {
+                              ...window,
+                              state: {
+                                  ...window.state,
+                                  isFocused: false,
                               },
                           }
                         : window
@@ -95,7 +104,7 @@ const windowsReducer = (state: WindowsManager = windowsState, action: any) => {
                               ...window,
                               state: {
                                   ...window.state,
-                                  isFullScreen: true,
+                                  isFullscreen: true,
                               },
                           }
                         : window
@@ -103,6 +112,7 @@ const windowsReducer = (state: WindowsManager = windowsState, action: any) => {
             };
 
         case "EXITFULLSCREEN":
+            console.log("asd");
             return {
                 ...state,
                 openWindows: state.openWindows.map((window) =>
@@ -111,7 +121,7 @@ const windowsReducer = (state: WindowsManager = windowsState, action: any) => {
                               ...window,
                               state: {
                                   ...window.state,
-                                  isFullScreen: false,
+                                  isFullscreen: false,
                               },
                           }
                         : window

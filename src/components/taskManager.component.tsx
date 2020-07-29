@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 
 import File from "../models/File";
-import Window from "../models/Window"
+import Window from "../models/Window";
 
 import Files from "../models/fileStructure2";
 import Desktop from "./desktop/Desktop.component";
-
-
 
 const TaskManager = (props: any) => {
     useEffect(() => {
@@ -36,7 +34,7 @@ const TaskManager = (props: any) => {
             state: {
                 isFocused: true,
                 isMinimized: false,
-                isFullScreen: false,
+                isFullscreen: false,
             },
             file: {
                 ...file,
@@ -125,7 +123,7 @@ const TaskManager = (props: any) => {
         var threadedWindow = openWindows.find((x) => x.id === id)!;
         threadedWindow.state = {
             ...threadedWindow.state,
-            isFullScreen: !threadedWindow?.state.isFullScreen,
+            isFullscreen: !threadedWindow?.state.isFullscreen,
         };
     }
 

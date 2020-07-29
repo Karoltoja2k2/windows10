@@ -9,7 +9,14 @@ import bxExitFullscreen from "@iconify/icons-bx/bx-exit-fullscreen";
 import bxExpand from "@iconify/icons-bx/bx-expand";
 import bxSpaceBar from "@iconify/icons-bx/bx-space-bar";
 import { useDispatch } from "react-redux";
-import { FocusWindow, ExitFullscreenWindow, Minimize, CloseWIndow } from "../../actions/windowsActions";
+import {
+    FocusWindow,
+    ExitFullscreenWindow,
+    MinimizeWindow,
+    CloseWIndow,
+    UnMinimizeWindow,
+    FullscreenWindow,
+} from "../../actions/windowsActions";
 
 const WindowBase = (props: any) => {
     const disptach = useDispatch();
@@ -75,6 +82,19 @@ const WindowBase = (props: any) => {
         });
     }, [props.state]);
 
+    function TriggerMinimize() {
+        state.props.isMinimized
+            ? disptach(UnMinimizeWindow(props.id))
+            : disptach(MinimizeWindow(props.id));
+    }
+
+    function TriggerFullscreen() {
+        console.log(state);
+        state.props.isFullscreen
+            ? disptach(ExitFullscreenWindow(props.id))
+            : disptach(FullscreenWindow(props.id));
+    }
+
     return (
         <Resizable
             className={
@@ -86,16 +106,16 @@ const WindowBase = (props: any) => {
             minWidth={300}
             enable={{
                 top: false,
-                right: !state.props.isFullScreen,
-                bottom: !state.props.isFullScreen,
+                right: !state.props.isFullscreen,
+                bottom: !state.props.isFullscreen,
                 left: false,
                 topRight: false,
-                bottomRight: !state.props.isFullScreen,
+                bottomRight: !state.props.isFullscreen,
                 bottomLeft: false,
                 topLeft: false,
             }}
             size={
-                !state.props.isFullScreen
+                !state.props.isFullscreen
                     ? {
                           width: state.dimensions.width,
                           height: state.dimensions.height,
@@ -106,7 +126,7 @@ const WindowBase = (props: any) => {
                       }
             }
             style={
-                !state.props.isFullScreen
+                !state.props.isFullscreen
                     ? {
                           ...state.dimensions,
                           position: "absolute",
@@ -127,7 +147,9 @@ const WindowBase = (props: any) => {
             }
             onResizeStart={(e) => {
                 e.stopPropagation();
-                disptach(FocusWindow(props.id));
+                if (!state.props.isFocused) {
+                    disptach(FocusWindow(props.id));
+                }
             }}
             onResizeStop={(e, direction, ref, d) => {
                 setState({
@@ -144,7 +166,9 @@ const WindowBase = (props: any) => {
                 className="resizableWindowContainer"
                 onMouseDown={(e) => {
                     e.stopPropagation();
-                    disptach(FocusWindow(props.id));
+                    if (!state.props.isFocused) {
+                        disptach(FocusWindow(props.id));
+                    }
                 }}
                 onMouseUp={(e) => {}}
             >
@@ -154,13 +178,13 @@ const WindowBase = (props: any) => {
                         onMouseDown={(e) => {
                             e.preventDefault();
                             if (e.detail === 2) {
-                                disptach(ExitFullscreenWindow(props.id));
+                                TriggerFullscreen();
                                 return;
                             }
                             console.log("clicked");
 
                             if (
-                                !state.props.isFullScreen
+                                !state.props.isFullscreen
                                 // if (
                                 // e.target === e.currentTarget &&
                                 // !windowProps.isFullScreen
@@ -195,7 +219,7 @@ const WindowBase = (props: any) => {
                         <button
                             className="control"
                             onClick={(e) => {
-                                disptach(Minimize(props.id));
+                                TriggerMinimize();
                             }}
                         >
                             <i className="far fa-window-minimize"></i>
@@ -203,10 +227,10 @@ const WindowBase = (props: any) => {
                         <button
                             className="control"
                             onClick={(e) => {
-                                disptach(ExitFullscreenWindow(props.id));
+                                TriggerFullscreen();
                             }}
                         >
-                            {props.state.isFullScreen ? (
+                            {props.state.isFullscreen ? (
                                 <i className="far fa-window-restore"></i>
                             ) : (
                                 <i className="far fa-window-maximize"></i>

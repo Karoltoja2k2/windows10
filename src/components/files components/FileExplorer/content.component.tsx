@@ -15,7 +15,6 @@ const Content = (props: any) => {
 							file={file}
 							id={props.id}
 							key={index}
-							Navigate={props.Navigate}
 						/>
 					))}
 
@@ -29,7 +28,6 @@ const Content = (props: any) => {
 							file={file}
 							id={props.id}
 							key={index}
-							Navigate={props.Navigate}
 						/>
 					))}
 			</div>
