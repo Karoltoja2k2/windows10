@@ -16,6 +16,7 @@ import {
     CloseWIndow,
     UnMinimizeWindow,
     FullscreenWindow,
+    DragWindow,
 } from "../../actions/windowsActions";
 
 const WindowBase = (props: any) => {

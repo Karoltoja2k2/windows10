@@ -51,7 +51,7 @@ export const FullscreenWindow = (windowId: number) => {
 };
 
 export const ExitFullscreenWindow = (windowId: number) => {
-    console.log('exitfs')
+    console.log("exitfs");
     return {
         type: "EXITFULLSCREEN",
         payload: { windowId },
@@ -71,10 +71,25 @@ export const UnFocusWindows = () => {
     };
 };
 
+export const DragWindow = (windowId: number) => {
+    return {
+        type: "DRAG",
+        payload: { windowId },
+    };
+};
+
+export const EndDragWindow = (windowId: number) => {
+    return {
+        type: "ENDDRAG",
+        payload: { windowId },
+    };
+};
+
 function NewWindow(id: number, file: File): Window {
     return {
         id: id,
         state: {
+            isDragged: false,
             isFocused: true,
             isMinimized: false,
             isFullscreen: false,

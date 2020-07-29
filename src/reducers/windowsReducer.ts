@@ -166,6 +166,37 @@ const windowsReducer = (state: WindowsManager = windowsState, action: any) => {
                 ),
             };
 
+        case "DRAG":
+            return {
+                ...state,
+                openWindows: state.openWindows.map((window) =>
+                    window.id === action.payload.windowId
+                        ? {
+                              ...window,
+                              state: {
+                                  ...window.state,
+                                  isDragged: true,
+                              },
+                          }
+                        : window
+                ),
+            };
+
+        case "ENDDRAG":
+            return {
+                ...state,
+                openWindows: state.openWindows.map((window) =>
+                    window.state.isDragged
+                        ? {
+                              ...window,
+                              state: {
+                                  ...window.state,
+                                  isDragged: false,
+                              },
+                          }
+                        : window
+                ),
+            };
         default:
             return state;
     }

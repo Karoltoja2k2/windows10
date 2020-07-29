@@ -32,6 +32,7 @@ const TaskManager = (props: any) => {
         return {
             id: id,
             state: {
+                isDragged: false,
                 isFocused: true,
                 isMinimized: false,
                 isFullscreen: false,

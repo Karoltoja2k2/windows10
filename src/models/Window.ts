@@ -7,6 +7,7 @@ export default interface Window {
         left?: number;
         width?: number;
         height?: number;
+        isDragged: boolean;
         isFocused: boolean;
         isMinimized: boolean;
         isFullscreen: boolean;
