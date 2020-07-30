@@ -57,6 +57,7 @@ const windowsReducer = (state: WindowsManager = windowsState, action: any) => {
                               state: {
                                   ...window.state,
                                   isMinimized: true,
+                                  isFocused: false,
                               },
                           }
                         : window
@@ -93,7 +94,11 @@ const windowsReducer = (state: WindowsManager = windowsState, action: any) => {
                 ...state,
                 openWindows: state.openWindows.map((window) => ({
                     ...window,
-                    state: { ...window.state, isMinimized: true },
+                    state: {
+                        ...window.state,
+                        isMinimized: true,
+                        isFocused: false,
+                    },
                 })),
             };
 

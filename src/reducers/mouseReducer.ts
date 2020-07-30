@@ -1,11 +1,4 @@
-interface MouseState {
-    lmbDown: boolean;
-    rmbDown: boolean;
-    position: {
-        top: number;
-        left: number;
-    };
-}
+import MouseState from "../models/MouseState";
 
 let mouseState = {
     lmbDown: false,
@@ -50,6 +43,9 @@ const mouseReducer = (state: MouseState = mouseState, action: any) => {
                     left: action.payload.left,
                 },
             };
+        }
+        default: {
+            return state;
         }
     }
 };

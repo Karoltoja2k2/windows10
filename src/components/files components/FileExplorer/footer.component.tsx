@@ -3,11 +3,6 @@ import React, { useState, useEffect } from "react";
 import "./footer.scss";
 
 const Footer = (props: any) => {
-
-	function setIconDisplay(value: string) {
-		props.setIconDisplay(value);
-	}
-
 	return (
 		<div className="container__footer">
 			<label>Elements: {props.iconsCount}</label>
@@ -15,7 +10,7 @@ const Footer = (props: any) => {
 				<button
 					className={props.iconDisplay === "inrow" ? "footer__buttons-selected" : ""}
 					onClick={() => {
-						setIconDisplay("inrow");
+						props.setIconDisplay("inrow");
 					}}
 				>
 					<i className="fas fa-list"></i>
@@ -23,7 +18,7 @@ const Footer = (props: any) => {
 				<button
 					className={props.iconDisplay === "folderIcon" ? "footer__buttons-selected" : ""}
 					onClick={() => {
-						setIconDisplay("folderIcon");
+						props.setIconDisplay("folderIcon");
 					}}
 				>
 					<i className="fas fa-th"></i>

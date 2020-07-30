@@ -13,9 +13,13 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FileIcon from "../../fileIcon/FileIcon.component";
 import { useDispatch } from "react-redux";
+import { OpenWindow, Navigate } from "../../../actions/windowsActions";
 
 const Bar = (props: any) => {
+    const dispatch = useDispatch();
+
     const [search, setSearch] = useState({
+        filter: "",
         path: props.file.path + props.file.title,
         showResults: false,
         results: Array<File>(),
@@ -29,34 +33,37 @@ const Bar = (props: any) => {
     }, [props.file]);
 
     const searchFile = (path: string) => {
+        // THIS DOESNT SHOW ANY FILE WHEN DELETED ALL CHARS FROM FILTER
         if (!path) {
             setSearch({
                 ...search,
                 showResults: false,
                 results: [],
+                filter: "",
             });
             return;
         }
-        console.log(path);
         let files = Files.filter((x) =>
             x.title.toLowerCase().includes(path.toLowerCase())
         );
         setSearch({
             ...search,
+            filter: path,
             showResults: true,
             results: files,
         });
     };
 
-    function Navigate(id: number, file: File) {
+    function LocalNavigate(id: number, file: File) {
         setSearch({
             ...search,
+            filter: "",
             showResults: false,
         });
-        disptach(Navigate(id, file));
+        file.extension === ".fld"
+            ? dispatch(Navigate(id, file))
+            : dispatch(OpenWindow(file));
     }
-
-    const disptach = useDispatch();
 
     return (
         <div className="container__bar">
@@ -87,6 +94,7 @@ const Bar = (props: any) => {
                     <input
                         type="text"
                         id="searchInput"
+                        value={search.filter}
                         onChange={(e) => {
                             console.log(e.target.value);
                             searchFile(e.target.value);
@@ -123,6 +131,7 @@ const Bar = (props: any) => {
                             file={result}
                             id={props.id}
                             key={index}
+                            Navigate={LocalNavigate}
                         />
                     ))}
                 </div>

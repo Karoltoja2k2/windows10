@@ -16,22 +16,8 @@ import { LmbUp, SetPosition } from "../../actions/mouseActions";
 
 function Desktop(props: any) {
     const path2 = "Drive C:/Desktop/";
-    var DesktopIcons2 = Files.filter((x) => x.path === path2);
 
-    const [mouseState, setMouseState] = useState({
-        lmbDown: false,
-        rmbDown: false,
-        position: {
-            top: 0,
-            left: 0,
-        },
-        movingWinId: 0,
-    });
-
-    const WindowManagement = {
-        mouseState: mouseState,
-        setMouseState: setMouseState,
-    };
+    const [files, setFiles] = useState(Files.filter((x) => x.path === path2));
 
     function RenderWindow(window: Window) {
         return (
@@ -40,7 +26,6 @@ function Desktop(props: any) {
                 file={window.file}
                 id={window.id}
                 state={window.state}
-                WindowManagement={WindowManagement}
             />
         );
     }
@@ -49,8 +34,6 @@ function Desktop(props: any) {
         (state: RootState) => state.windowsReducer
     );
 
-    const mouseState2 = useSelector((state: RootState) => state.mouseReducer)
-
     const dispatch = useDispatch();
     return (
         <div className="">
@@ -58,36 +41,19 @@ function Desktop(props: any) {
                 className="desktop"
                 id="desktop"
                 onMouseDown={() => {
-                    console.log("unfocus all");
                     dispatch(UnFocusWindows());
                 }}
                 onMouseUp={() => {
-                    setMouseState({
-                        ...mouseState,
-                        lmbDown: false,
-                        movingWinId: 0,
-                    });
                     dispatch(LmbUp());
                     dispatch(EndDragWindow());
                 }}
                 onMouseMove={(e) => {
-                    setMouseState({
-                        ...mouseState,
-                        position: {
-                            top: e.pageY,
-                            left: e.pageX,
-                        },
-                    });
-                    dispatch(SetPosition(e.pageY, e.pageX))
+                    dispatch(SetPosition(e.pageY, e.pageX));
                 }}
             >
                 <img src={Background} className="desktopBackground" />
                 <div className="iconGrid">
-                    {windowManager.openWindows.length > 0 &&
-                        windowManager.openWindows.map(
-                            (obj: Window, index: number) => RenderWindow(obj)
-                        )}
-                    {DesktopIcons2.map((obj: any, index: number) => (
+                    {files.map((obj: any, index: number) => (
                         <FileIcon
                             type="desktopIcon"
                             file={obj}
@@ -97,6 +63,11 @@ function Desktop(props: any) {
                     ))}
                 </div>
 
+                {windowManager.openWindows.length > 0 &&
+                    windowManager.openWindows.map(
+                        (obj: Window, index: number) => RenderWindow(obj)
+                    )}
+
                 <div className="activateWindows">
                     <p className="top">Aktywuj system Windows</p>
                     <p className="down">
@@ -104,7 +75,7 @@ function Desktop(props: any) {
                     </p>
                 </div>
             </div>
-            <Taskbar openWindows={props.openWindows} />
+            <Taskbar />
         </div>
     );
 }

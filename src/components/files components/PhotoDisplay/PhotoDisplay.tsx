@@ -9,7 +9,6 @@ const PhotoDisplay = (props: any) => {
 			id={props.id}
 			file={props.file}
 			state={props.state}
-			WindowManagement={props.WindowManagement}
 		>
 			<div className="photoContainer">
 				<img src={props.file.content.source} />
@@ -21,8 +20,8 @@ const PhotoDisplay = (props: any) => {
 export default React.memo(PhotoDisplay, (prevProps, nextProps) => {
     return (
         prevProps.file === nextProps.file &&
-		prevProps.state === nextProps.state &&
-		nextProps.state.isDragged !== true
+        prevProps.state === nextProps.state &&
+        nextProps.state.isDragged !== true
     );
 });
 

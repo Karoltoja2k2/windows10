@@ -10,10 +10,11 @@ import { RootState } from "../../reducers";
 import { MinimizeAllWindows } from "../../actions/windowsActions";
 
 const Taskbar = (props: any) => {
+    const dispatch = useDispatch();
     const windowManager: WindowsManager = useSelector(
         (state: RootState) => state.windowsReducer
     );
-    const dispatch = useDispatch();
+    
     return (
         <div className="taskBar">
             <button className="startBtn">

@@ -12,6 +12,13 @@ import { Navigate } from "../../../actions/windowsActions";
 import { useDispatch } from "react-redux";
 
 const FileExplorer = (props: any) => {
+    const disptach = useDispatch();
+    const [iconDisplay, setIconDisplay] = useState("folderIcon");
+    const [state, setState] = useState({
+        filter: "",
+        files: Array<File>(),
+    });
+
     // THIS NEED OPTIMALIZATION !!!!!!
     useEffect(() => {
         filterFiles(state.filter);
@@ -30,29 +37,14 @@ const FileExplorer = (props: any) => {
     }
     // END
 
-    const [state, setState] = useState({
-        filter: "",
-        files: Array<File>(),
-    });
-
-    const [iconDisplay, setIconDisplay] = useState("folderIcon");
-
-    const disptach = useDispatch();
     const previousFolder = () => {
         if (props.file.prevFolder) {
             disptach(Navigate(props.id, props.file.prevFolder));
         }
     };
 
-    console.log(`rerender fileexplorer ${props.id}`);
-
     return (
-        <WindowBase
-            id={props.id}
-            file={props.file}
-            state={props.state}
-            WindowManagement={props.WindowManagement}
-        >
+        <WindowBase id={props.id} file={props.file} state={props.state}>
             <div className="fileExplorer__container">
                 <Bar
                     previousFolder={previousFolder}

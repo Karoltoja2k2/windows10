@@ -49,10 +49,8 @@ const FileIcon = (props: any) => {
         return (
             <button
                 className="searchResult"
-                onDoubleClick={() => {
-                    props.file.extension === ".fld"
-                        ? dispatch(Navigate(props.id, props.file))
-                        : dispatch(OpenWindow(props.file));
+                onClick={() => {
+                    props.Navigate(props.id, props.file);
                 }}
             >
                 <img />

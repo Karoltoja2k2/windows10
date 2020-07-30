@@ -4,7 +4,7 @@ import mouseReducer from "./mouseReducer";
 
 export const rootReducers = combineReducers({
     windowsReducer: windowsReducer,
-    mouseReducer: mouseReducer,
+    mouseReducer: mouseReducer
 });
 
 export type RootState = ReturnType<typeof rootReducers>;

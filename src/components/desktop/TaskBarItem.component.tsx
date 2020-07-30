@@ -8,9 +8,6 @@ import { rootReducers, RootState } from "../../reducers";
 
 import { useDispatch } from "react-redux";
 import {
-    OpenWindow,
-    Navigate,
-    MinimizeAllWindows,
     MinimizeWindow,
     FocusWindow,
     UnMinimizeWindow,

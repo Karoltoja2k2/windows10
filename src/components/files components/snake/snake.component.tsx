@@ -21,7 +21,7 @@ const Snake = (props: any) => {
 export default React.memo(Snake, (prevProps, nextProps) => {
     return (
         prevProps.file === nextProps.file &&
-        nextProps.id !== nextProps.WindowManagement.mouseState.movingWinId &&
-        prevProps.state === nextProps.state
+        prevProps.state === nextProps.state &&
+        nextProps.state.isDragged !== true
     );
 });
