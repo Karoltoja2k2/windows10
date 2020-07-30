@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { OpenWindow, Navigate } from "../../actions/windowsActions";
 
 const FileIcon = (props: any) => {
-
     const dispatch = useDispatch();
 
     if (props.type === "desktopIcon") {
@@ -22,7 +21,11 @@ const FileIcon = (props: any) => {
         return (
             <button
                 className="desktopIcon"
-                onDoubleClick={() => dispatch(Navigate(props.id, props.file))}
+                onDoubleClick={() => {
+                    props.file.extension === ".fld"
+                        ? dispatch(Navigate(props.id, props.file))
+                        : dispatch(OpenWindow(props.file));
+                }}
             >
                 <img src={props.file.iconsrc} />
                 <label>{props.file.title}</label>
@@ -32,7 +35,11 @@ const FileIcon = (props: any) => {
         return (
             <button
                 className="inrow"
-                onDoubleClick={() => dispatch(Navigate(props.id, props.file))}
+                onDoubleClick={() => {
+                    props.file.extension === ".fld"
+                        ? dispatch(Navigate(props.id, props.file))
+                        : dispatch(OpenWindow(props.file));
+                }}
             >
                 <img src={props.file.iconsrc} />
                 <label>{props.file.title}</label>
@@ -42,7 +49,11 @@ const FileIcon = (props: any) => {
         return (
             <button
                 className="searchResult"
-                onClick={() => dispatch(Navigate(props.id, props.file))}
+                onDoubleClick={() => {
+                    props.file.extension === ".fld"
+                        ? dispatch(Navigate(props.id, props.file))
+                        : dispatch(OpenWindow(props.file));
+                }}
             >
                 <img />
                 <label>{props.file.path + props.file.title}</label>

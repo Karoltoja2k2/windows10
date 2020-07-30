@@ -78,10 +78,9 @@ export const DragWindow = (windowId: number) => {
     };
 };
 
-export const EndDragWindow = (windowId: number) => {
+export const EndDragWindow = () => {
     return {
-        type: "ENDDRAG",
-        payload: { windowId },
+        type: "ENDDRAG"
     };
 };
 

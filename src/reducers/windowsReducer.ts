@@ -6,24 +6,26 @@ import { bindActionCreators } from "redux";
 let windowsState = {
     freeWindowId: 1,
     openWindows: [],
-    focusedWinId: 0,
 };
 
 const windowsReducer = (state: WindowsManager = windowsState, action: any) => {
-    let threadedWindow;
-    let openWindows;
     switch (action.type) {
         case "OPEN":
             return {
                 ...state,
-                openWindows: [
-                    ...state.openWindows,
-                    {
+                openWindows: state.openWindows
+                    .map((window) =>
+                        window.state.isFocused
+                            ? {
+                                  ...window,
+                                  state: { ...window.state, isFocused: false },
+                              }
+                            : window
+                    )
+                    .concat({
                         ...action.payload.window,
                         id: state.freeWindowId,
-                    },
-                ],
-                focusedWinId: state.freeWindowId,
+                    }),
                 freeWindowId: state.freeWindowId + 1,
             };
 

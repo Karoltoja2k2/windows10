@@ -37,11 +37,8 @@ const WindowBase = (props: any) => {
     });
 
     useEffect(() => {
-        if (
-            state.drag.dragging &&
-            props.WindowManagement.mouseState.lmbDown &&
-            props.WindowManagement.mouseState.movingWinId === props.id
-        ) {
+        console.log(props.state)
+        if (props.state.isDragged) {
             var obj = {
                 top: props.WindowManagement.mouseState.position.top
                     ? props.WindowManagement.mouseState.position.top
@@ -205,6 +202,8 @@ const WindowBase = (props: any) => {
                                     lmbDown: true,
                                     movingWinId: props.id,
                                 });
+
+                                disptach(DragWindow(props.id))
                             }
                         }}
                     >

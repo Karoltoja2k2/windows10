@@ -11,7 +11,8 @@ import WindowsManager from "../../models/WindowsManager";
 import { RootState } from "../../reducers";
 import { useSelector, useDispatch } from "react-redux";
 import Window from "../../models/Window";
-import { UnFocusWindows } from "../../actions/windowsActions";
+import { UnFocusWindows, EndDragWindow } from "../../actions/windowsActions";
+import { LmbUp, SetPosition } from "../../actions/mouseActions";
 
 function Desktop(props: any) {
     const path2 = "Drive C:/Desktop/";
@@ -28,13 +29,8 @@ function Desktop(props: any) {
     });
 
     const WindowManagement = {
-        SetFocusedWin: props.WindowManagement.SetFocusedWin,
         mouseState: mouseState,
         setMouseState: setMouseState,
-        Navigate: props.WindowManagement.Navigate,
-        CloseWindow: props.WindowManagement.CloseWindow,
-        MinimizeWindow: props.WindowManagement.MinimizeWindow,
-        FullScreenMode: props.WindowManagement.FullScreenMode,
     };
 
     function RenderWindow(window: Window) {
@@ -45,8 +41,6 @@ function Desktop(props: any) {
                 id={window.id}
                 state={window.state}
                 WindowManagement={WindowManagement}
-                openWindows={props.openWindows}
-                focusedWinId={props.focusedWinId}
             />
         );
     }
@@ -54,8 +48,10 @@ function Desktop(props: any) {
     const windowManager: WindowsManager = useSelector(
         (state: RootState) => state.windowsReducer
     );
-    const dispatch = useDispatch();
 
+    const mouseState2 = useSelector((state: RootState) => state.mouseReducer)
+
+    const dispatch = useDispatch();
     return (
         <div className="">
             <div
@@ -71,6 +67,8 @@ function Desktop(props: any) {
                         lmbDown: false,
                         movingWinId: 0,
                     });
+                    dispatch(LmbUp());
+                    dispatch(EndDragWindow());
                 }}
                 onMouseMove={(e) => {
                     setMouseState({
@@ -80,21 +78,18 @@ function Desktop(props: any) {
                             left: e.pageX,
                         },
                     });
+                    dispatch(SetPosition(e.pageY, e.pageX))
                 }}
             >
                 <img src={Background} className="desktopBackground" />
                 <div className="iconGrid">
-                    {props.openWindows.length > 0 &&
-                        // props.openWindows.map((obj: Window, index: number) =>
-                        //     RenderWindow(obj)
-                        // )}
+                    {windowManager.openWindows.length > 0 &&
                         windowManager.openWindows.map(
                             (obj: Window, index: number) => RenderWindow(obj)
                         )}
                     {DesktopIcons2.map((obj: any, index: number) => (
                         <FileIcon
                             type="desktopIcon"
-                            Navigate={props.WindowManagement.Navigate}
                             file={obj}
                             id={0}
                             key={index}
