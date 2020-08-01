@@ -15,20 +15,10 @@ import { UnFocusWindows, EndDragWindow } from "../../actions/windowsActions";
 import { LmbUp, SetPosition } from "../../actions/mouseActions";
 
 function Desktop(props: any) {
+
     const path2 = "Drive C:/Desktop/";
 
     const [files, setFiles] = useState(Files.filter((x) => x.path === path2));
-
-    function RenderWindow(window: Window) {
-        return (
-            <window.file.component
-                key={window.id}
-                file={window.file}
-                id={window.id}
-                state={window.state}
-            />
-        );
-    }
 
     const windowManager: WindowsManager = useSelector(
         (state: RootState) => state.windowsReducer
@@ -57,7 +47,6 @@ function Desktop(props: any) {
                         <FileIcon
                             type="desktopIcon"
                             file={obj}
-                            id={0}
                             key={index}
                         />
                     ))}
@@ -65,7 +54,14 @@ function Desktop(props: any) {
 
                 {windowManager.openWindows.length > 0 &&
                     windowManager.openWindows.map(
-                        (obj: Window, index: number) => RenderWindow(obj)
+                        (window: Window) => (
+                            <window.file.component
+                                key={window.id}
+                                file={window.file}
+                                id={window.id}
+                                state={window.state}
+                            />
+                        )
                     )}
 
                 <div className="activateWindows">

@@ -11,7 +11,6 @@ const Snake = (props: any) => {
             id={props.id}
             file={props.file}
             state={props.state}
-            WindowManagement={props.WindowManagement}
         >
             <Game />
         </WindowBase>

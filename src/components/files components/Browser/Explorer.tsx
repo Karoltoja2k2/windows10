@@ -3,18 +3,19 @@ import "./explorer.scss";
 import WindowBase from "../WindowBase";
 
 const Explorer = (props: any) => {
-	return (
-		<WindowBase
-			id={props.id}
-			file={props.file}
-			windowProps={props.windowProps}
-			WindowManagement={props.WindowManagement}
-		>
-			<div className="explorerContainer">
-				<iframe src="http://www.youtube.com/embed/W7qWa52k-nE" />
-			</div>
-		</WindowBase>
-	);
+    return (
+        <WindowBase id={props.id} file={props.file} state={props.state}>
+            <div className="explorerContainer">
+                <iframe src="https://karoltoja2k2.github.io/MyResume/" />
+            </div>
+        </WindowBase>
+    );
 };
 
-export default Explorer;
+export default React.memo(Explorer, (prevProps, nextProps) => {
+    return (
+        prevProps.file === nextProps.file &&
+        prevProps.state === nextProps.state &&
+        nextProps.state.isDragged !== true
+    );
+});

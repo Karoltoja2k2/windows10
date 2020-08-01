@@ -1,170 +1,138 @@
 import React, { useState, useEffect } from "react";
 import "./snake.scss";
 
-import Point from "./game objects/Point";
-// import Head from "./game objects/Head";
-// import BodyPart from "./game objects/BodyPart";
-// import Fruit from "./game objects/Fruit";
-// import SnakeObject from "./game objects/SnakeObject";
-
 import Field from "./field.component";
-import { create } from "domain";
-// import Head from "./game objects/Head";
-
-interface FieldBase {
-    cords: Point;
-}
-
-interface Fruit extends FieldBase {}
-
-interface BodyPart extends FieldBase {
-    nextBody?: BodyPart;
-}
-
-interface Head extends BodyPart {
-    direction: Point;
-    angle: number;
-}
-
-interface Snake {
-    head: Head;
-    body: BodyPart[];
-    tail: BodyPart;
-}
+import { useInterval } from "./useInterval";
+import BodyPart from "./models/BodyPart";
+import Fruit from "./models/Fruit";
+import { FRUITS, SNAKE, SIZE } from "./const";
+import Point, { AddPoints, PointsEqual, RandomPoint } from "./models/Point";
+import SnakeGameState from "./models/SnakeGameState";
+import FieldBase from "./models/FieldBase";
 
 const Game = (props: any) => {
-    const [size, setSize] = useState({
-        X: 25,
-        Y: 25,
+    const [size, setSize] = useState(SIZE);
+    const [state, setState] = useState<SnakeGameState>({
+        run: true,
+        fruits: FRUITS(),
+        snake: SNAKE(),
+        direction: {
+            cords: {
+                X: 1,
+                Y: 0,
+            },
+            angle: 0,
+        },
     });
 
-    const [run, setRun] = useState(false);
-    const [fruits, setFruits] = useState<Fruit[]>([]);
-    const [snake, setSnake] = useState<Snake>();
-    const [clock, setClock] = useState(0);
+    useInterval(() => {
+        MoveSnake();
+        console.log("rerender");
+    }, 100);
 
-    useEffect(() => {
-		tick();			
-	}, [run]);
+    function MoveSnake() {
+        let snake: BodyPart[] = state.snake.slice();
+        let fruits: Fruit[] = state.fruits.slice();
+        let head: BodyPart = snake[0];
 
-    useEffect(() => {
-		NewGame()
-	}, []);
-	
-	function NewGame(){
-		spawnFruit();
-        createSnake();
-		setRun(true);
-	}
-
-    function tick() {
-        if (run) {
-            moveSnake();
-            setTimeout(() => {
-                tick();
-            }, 100);
-        }
-    }
-
-    function createSnake() {
-        let head: Head = {
-            cords: new Point(10, 10),
-            direction: new Point(1, 0),
-            angle: 0,
-        };
-        let bodyPart: BodyPart = {
-            cords: new Point(9, 10),
-            nextBody: head,
-        };
-        let tail: BodyPart = {
-            cords: new Point(8, 10),
-            nextBody: bodyPart,
-        };
-
-        setSnake({
-            head: head,
-            body: [bodyPart],
-            tail: tail,
-        });
-    }
-
-    function spawnFruit() {
-        let x = Math.round(Math.random() * size.X);
-        let y = Math.round(Math.random() * size.Y);
-
-        let newArray = fruits.concat({
-            cords: new Point(x, y),
-        });
-
-        setFruits(newArray);
-    }
-
-    function moveSnake() {
-        let snakeCopy: Snake | undefined = snake;
-
-        if (snakeCopy && run) {
-            let nextCord = snakeCopy.head.cords.AddPoint(
-                snakeCopy.head.direction
+        if (snake && state.run) {
+            let nextCords = CheckOutOfBorder(
+                AddPoints(head.cords, state.direction.cords)
             );
-            let eat = false;
-            fruits.forEach((fruit) => {
-                if (fruit.cords.EqualTo(nextCord)) {
-                    setFruits(fruits.filter((x) => x !== fruit));
-                    eat = true;
-                    return;
-                }
-            });
 
-            if (eat) {
-                spawnFruit();
-
-                let oldTailPnt = new Point(
-                    snakeCopy!.tail.cords.X,
-                    snakeCopy!.tail.cords.Y
-                );
-                let oldTailRef = snakeCopy!.tail;
-                moveBody(snakeCopy!.tail);
-
-                snakeCopy!.body.push(snakeCopy!.tail);
-                snakeCopy!.tail = {
-                    cords: oldTailPnt,
-                    nextBody: oldTailRef,
-                };
-                snakeCopy.head = moveHead(snakeCopy!.head);
-            } else {
-                moveBody(snakeCopy!.tail);
-                snakeCopy.head = moveHead(snakeCopy!.head);
+            if (CheckCollisionWithSnake(nextCords)) {
+                setState({ ...state, snake: SNAKE() });
+                return;
             }
 
-            setSnake({
-                head: snakeCopy!.head,
-                body: snakeCopy!.body,
-                tail: snakeCopy!.tail,
+            let tailCords;
+            let eatFruit = fruits.find((x) => PointsEqual(x.cords, nextCords));
+            if (eatFruit) {
+                fruits = fruits.filter((x) => x !== eatFruit);
+                fruits.push(SpawnFruit());
+                tailCords = { ...snake[0].cords };
+            }
+
+            for (let i = snake.length - 1; i >= 0; i--) {
+                let body = snake[i];
+                let newCords;
+                if (body.type === "BODY") {
+                    newCords = snake[i - 1].cords;
+                } else {
+                    newCords = nextCords;
+                }
+                body.cords = newCords;
+            }
+
+            if (tailCords) {
+                snake.push({
+                    type: "BODY",
+                    cords: tailCords,
+                });
+            }
+
+            setState({
+                ...state,
+                snake: [...snake],
+                fruits: [...fruits],
             });
         }
     }
 
-    function moveHead(head: Head) {
-        head.cords = head.cords.AddPoint(head.direction);
-        return head;
-    }
-
-    function moveBody(bodyPart: BodyPart) {
-        if (bodyPart.nextBody) {
-            bodyPart.cords = bodyPart.nextBody.cords;
-
-            moveBody(bodyPart.nextBody);
+    function CheckCollisionWithSnake(cords: Point): boolean {
+        for (let body of state.snake) {
+            if (PointsEqual(body.cords, cords)) {
+                return true;
+            }
         }
+        return false;
     }
 
-    function Turn(head: Head, angle: number) {
-        head.angle += angle;
-        let angleRad = head.angle * (Math.PI / 180);
+    function CheckOutOfBorder(cords: Point): Point {
+        let nextCords = cords;
+        if (cords.X <= 0) {
+            nextCords = { ...cords, X: size.X };
+        } else if (cords.X > size.X) {
+            nextCords = { ...cords, X: 1 };
+        } else if (cords.Y <= 0) {
+            nextCords = { ...cords, Y: size.Y };
+        } else if (cords.Y > size.Y) {
+            nextCords = { ...cords, Y: 1 };
+        }
+        return nextCords;
+    }
 
-        head.direction = new Point(
-            1 * Math.round(Math.cos(angleRad)),
-            -1 * Math.round(Math.sin(angleRad))
-        );
+    function SpawnFruit(): Fruit {
+        let cords = RandomPoint({ X: 1, Y: 1 }, { X: size.X, Y: size.Y });
+        while (CheckCollisionWithSnake(cords)) {
+            cords = RandomPoint({ X: 1, Y: 1 }, { X: size.X, Y: size.Y });
+        }
+        return {
+            cords,
+        };
+    }
+
+    function ChangeDirection(
+        angle: number
+    ): { newDirection: Point; newAngle: number } {
+        let newAngle = state.direction.angle + angle;
+        let angleRad = newAngle * (Math.PI / 180);
+        let newDirection = {
+            X: 1 * Math.round(Math.cos(angleRad)),
+            Y: -1 * Math.round(Math.sin(angleRad)),
+        };
+        return { newDirection: newDirection, newAngle: newAngle };
+    }
+
+    function TurnHead(angle: number) {
+        let { newDirection, newAngle } = ChangeDirection(angle);
+        setState({
+            ...state,
+            direction: {
+                cords: newDirection,
+                angle: newAngle,
+            },
+        });
     }
 
     return (
@@ -174,33 +142,31 @@ const Game = (props: any) => {
             onLoad={(e) => e.currentTarget.focus()}
             onKeyDown={(e) => {
                 if (e.key === "a") {
-                    Turn(snake!.head, 90);
+                    TurnHead(90);
                 } else if (e.key === "d") {
-                    Turn(snake!.head, -90);
+                    TurnHead(-90);
                 }
             }}
         >
-            {snake !== null && run && (
-                <div className="grid">
-                    <Field field={snake!.head} style={"head"} />
-                    {snake!.body.map((body: BodyPart, index: number) => (
-                        <Field field={body} style={"body"} key={index} />
-                    ))}
-                    <Field field={snake!.tail} style={"tail"} />
+            {/* <button
+                className=""
+                onClick={() => {
+                    setState({ ...state, snake: SNAKE() });
+                }}
+            >
+                Restart
+            </button>
+            <label>{state.snake.length}</label> */}
 
-                    {fruits.map((fruit: Fruit, index: number) => (
+            {state.snake && (
+                <div className="grid">
+                    {state.snake.map((body: BodyPart, index: number) => (
+                        <Field field={body} style={body.type} key={index} />
+                    ))}
+
+                    {state.fruits.map((fruit: Fruit, index: number) => (
                         <Field field={fruit} style={"fruit"} key={index} />
                     ))}
-
-                    <button
-                        className=""
-                        onClick={() => {
-                            NewGame()
-                        }}
-                    >
-                        Restart
-                    </button>
-                    <label>{snake!.body.length + 2}</label>
                 </div>
             )}
         </div>
