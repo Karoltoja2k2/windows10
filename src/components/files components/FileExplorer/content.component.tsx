@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import FileIcon from "../../fileIcon/FileIcon.component";
+import FileIcon from "../../common/fileIcon/FileIcon.component";
 import Files from "../../../models/fileStructure2";
 import "./content.scss";
 

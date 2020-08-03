@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "./desktop.scss";
-import FileIcon from "../fileIcon/FileIcon.component";
+import FileIcon from "../common/fileIcon/FileIcon.component";
 import Taskbar from "./Taskbar.component";
 
 import Background from "../../media/winxpbg.jpg";

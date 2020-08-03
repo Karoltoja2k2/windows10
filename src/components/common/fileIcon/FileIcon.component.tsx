@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./icon.scss";
 
 import { useDispatch } from "react-redux";
-import { OpenWindow, Navigate } from "../../actions/windowsActions";
+import { OpenWindow, Navigate } from "../../../actions/windowsActions";
 
 const FileIcon = (props: any) => {
     const dispatch = useDispatch();

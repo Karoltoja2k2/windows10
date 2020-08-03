@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./fileExplorer.scss";
-import WindowBase from "../WindowBase";
+import WindowBase from "../../common/windowBase/WindowBase";
 
 import Files from "../../../models/fileStructure2";
 import File from "../../../models/File";

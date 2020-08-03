@@ -36,9 +36,14 @@ function FRUITS(): Fruit[] {
     ];
 }
 
-const SIZE: Point = {
-    X: 25,
-    Y: 25,
-};
+function SIZE() : {size: Point, speed: number} {
+    return{
+        size: {
+            X: 25,
+            Y: 25
+        },
+        speed: 100
+    }
+}
 
 export { SNAKE, FRUITS, SIZE };

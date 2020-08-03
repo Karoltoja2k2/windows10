@@ -14,10 +14,10 @@ import {
     UnMinimizeWindow,
     FullscreenWindow,
     DragWindow,
-} from "../../actions/windowsActions";
-import { RootState } from "../../reducers";
-import { LmbDown } from "../../actions/mouseActions";
-import MouseState from "../../models/MouseState";
+} from "../../../actions/windowsActions";
+import { RootState } from "../../../reducers";
+import { LmbDown } from "../../../actions/mouseActions";
+import MouseState from "../../../models/MouseState";
 
 const WindowBase = (props: any) => {
     const disptach = useDispatch();

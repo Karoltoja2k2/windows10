@@ -11,7 +11,7 @@ import {
     faAngleDown,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import FileIcon from "../../fileIcon/FileIcon.component";
+import FileIcon from "../../common/fileIcon/FileIcon.component";
 import { useDispatch } from "react-redux";
 import { OpenWindow, Navigate } from "../../../actions/windowsActions";
 

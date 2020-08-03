@@ -1,5 +1,5 @@
 import React, { useState, useEffect, memo } from "react";
-import WindowBase from "../WindowBase";
+import WindowBase from "../../common/windowBase/WindowBase";
 import Logo from "../../media/win_logo.png";
 import "./photoDisplay.scss";
 
