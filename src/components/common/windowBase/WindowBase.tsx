@@ -232,8 +232,7 @@ const WindowBase = (props: any) => {
                         </button>
                     </div>
                 </div>
-
-                {props.children}
+                {React.cloneElement(props.children, {width: state.dimensions.width, height: state.dimensions.height})}
             </div>
         </Resizable>
     );

@@ -9,15 +9,16 @@ const Explorer = (props: any) => {
             {/* <div className="explorerContainer">
                 <iframe src="https://karoltoja2k2.github.io/MyResume/" />
             </div> */}
-            <DynamicGrid />
+            <DynamicGrid columns={15} rows={15} />
         </WindowBase>
     );
 };
 
 export default React.memo(Explorer, (prevProps, nextProps) => {
     return (
-        prevProps.file === nextProps.file &&
-        prevProps.state === nextProps.state &&
-        nextProps.state.isDragged !== true
+        // prevProps.file === nextProps.file &&
+        // prevProps.state === nextProps.state &&
+        // nextProps.state.isDragged !== true
+        false
     );
 });

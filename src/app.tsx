@@ -6,10 +6,8 @@ import files2 from "./models/fileStructure2";
 
 function App() {
     const dispatch = useDispatch();
-    dispatch(OpenWindow(files2.find(x => x.title === "Snake")!))
-    return (
-        <Desktop />
-    );
+    dispatch(OpenWindow(files2.find((x) => x.title === "Portfolio")!));
+    return <Desktop />;
 }
 
 export default App;

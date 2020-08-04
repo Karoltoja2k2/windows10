@@ -11,10 +11,12 @@
     align-items: center;
     .grid {
         position: relative;
-        height: 500;
-        width: 500;
         display: grid;
 
         background-color: blue;
     }
+}
+
+.redSquare {
+    background-color: red;
 }
