@@ -10,6 +10,12 @@ import Point, { AddPoints, PointsEqual, RandomPoint } from "./models/Point";
 import SnakeGameState from "./models/SnakeGameState";
 import FieldBase from "./models/FieldBase";
 import { kMaxLength } from "buffer";
+import DynamicGrid from "../../common/dynamicGrid/dynamicGrid.component";
+import { FRUIT_TYPE } from "./models/FRUIT_TYPE";
+import FruitField from "./fruitField.component";
+import SnakeUi from "./ui.component";
+import CalculateSquareSize from "../../common/calculators/squareSize.calculator";
+import { settings } from "cluster";
 
 const Game = (props: any) => {
     const [state, setState] = useState<SnakeGameState>({
@@ -38,33 +44,23 @@ const Game = (props: any) => {
             state.snake.length > state.maxLength
                 ? state.snake.length
                 : state.maxLength;
-        let len = state.snake.length;
         let newSpeed = state.settings.speed;
-        switch (len) {
-            case 10: {
-                newSpeed = 95;
-                break;
-            }
-            case 20: {
-                newSpeed = 90;
-                break;
-            }
-            case 30: {
-                newSpeed = 85;
-                break;
-            }
-            case 40: {
-                newSpeed = 80;
-                break;
-            }
-            case 50: {
-                newSpeed = 75;
-                break;
-            }
-            case 60: {
-                newSpeed = 70;
-                break;
-            }
+
+        let snakeLen = state.snake.length;
+        if (snakeLen < 10) {
+            newSpeed = 100;
+        } else if (snakeLen >= 10 && snakeLen < 20) {
+            newSpeed = 95;
+        } else if (snakeLen >= 20 && snakeLen < 30) {
+            newSpeed = 90;
+        } else if (snakeLen >= 30 && snakeLen < 40) {
+            newSpeed = 85;
+        } else if (snakeLen >= 40 && snakeLen < 50) {
+            newSpeed = 80;
+        } else if (snakeLen >= 50 && snakeLen < 60) {
+            newSpeed = 75;
+        } else {
+            newSpeed = 70;
         }
         if (
             newSpeed !== state.settings.speed ||
@@ -104,7 +100,13 @@ const Game = (props: any) => {
             if (eatFruit) {
                 isEating = true;
                 fruits = fruits.filter((x) => x !== eatFruit);
-                fruits.push(SpawnFruit());
+                if (eatFruit.type === "GOLDEN") {
+                    fruits.push(SpawnFruit("BONUS"));
+                }
+                if (eatFruit.type !== "BONUS") {
+                    fruits.push(SpawnFruit("GREEN"));
+                }
+
                 tailCords = { ...snake[0].cords };
             } else {
                 isEating = false;
@@ -162,7 +164,7 @@ const Game = (props: any) => {
         return nextCords;
     }
 
-    function SpawnFruit(): Fruit {
+    function SpawnFruit(type: FRUIT_TYPE): Fruit {
         let cords = RandomPoint(
             { X: 1, Y: 1 },
             { X: state.settings.size.X, Y: state.settings.size.Y }
@@ -174,8 +176,12 @@ const Game = (props: any) => {
                 { X: state.settings.size.X, Y: state.settings.size.Y }
             );
         }
+        if (Math.random() > 0.9) {
+            type = "GOLDEN";
+        }
         return {
             cords,
+            type: type,
         };
     }
 
@@ -202,6 +208,32 @@ const Game = (props: any) => {
             },
         });
     }
+
+    const [squareSize, setSquareSize] = useState(
+        CalculateSquareSize(
+            props.width,
+            props.height,
+            state.settings.size.X,
+            state.settings.size.Y,
+            1000,
+            1000
+        ),
+    );
+
+    useEffect(() => {
+        setSquareSize(
+            CalculateSquareSize(
+                props.width,
+                props.height,
+                state.settings.size.X,
+                state.settings.size.Y,
+                1000,
+                1000
+            ),
+        );
+    }, [props.width, props.height]);
+
+    console.log(squareSize)
 
     return (
         <div
@@ -231,7 +263,7 @@ const Game = (props: any) => {
                 }
             }}
         >
-            <button
+            {/* <button
                 className=""
                 onClick={() => {
                     MoveSnake();
@@ -239,29 +271,36 @@ const Game = (props: any) => {
             >
                 Restart
             </button>
-            <label>{state.maxLength}</label>
+            <label>{state.maxLength}</label> */}
 
-            {state.snake && (
-                <div className="grid">
-                    {state.snake.map((body: BodyPart, index: number) => (
-                        <Field
-                            field={body}
-                            dynamicColor={`${body.type}_speed_${state.settings.speed}`}
-                            dynamicRadius={`radius_x${state.direction.cords.X}_y${state.direction.cords.Y}`}
-                            isEating={state.isEating}
-                            key={index}
-                        />
-                    ))}
+            <div className="snake__container--middle">
+                <SnakeUi
+                    squareSize={squareSize}
+                    highScore={state.maxLength}
+                    actualScore={state.snake.length}
+                />
+                <div className="container__grid">
+                    <DynamicGrid
+                        columns={state.settings.size.X}
+                        rows={state.settings.size.Y}
+                        squareSize={0.85 * squareSize}
+                    >
+                        {state.snake.map((body: BodyPart, index: number) => (
+                            <Field
+                                field={body}
+                                dynamicColor={`${body.type}_speed_${state.settings.speed}`}
+                                dynamicRadius={`radius_x${state.direction.cords.X}_y${state.direction.cords.Y}`}
+                                isEating={state.isEating}
+                                key={index}
+                            />
+                        ))}
 
-                    {state.fruits.map((fruit: Fruit, index: number) => (
-                        <Field
-                            field={fruit}
-                            dynamicColor={"fruit"}
-                            key={index}
-                        />
-                    ))}
+                        {state.fruits.map((fruit: Fruit, index: number) => (
+                            <FruitField fruit={fruit} key={index} />
+                        ))}
+                    </DynamicGrid>
                 </div>
-            )}
+            </div>
         </div>
     );
 };

@@ -1,22 +1,4 @@
-.container {
-    position: absolute;
-    top: 30px;
-    left: 2px;
-    bottom: 2px;
-    right: 2px;
-    overflow: hidden;
-    background-color: rgb(165, 165, 165);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .grid {
-        position: relative;
-        display: grid;
-
-        background-color: blue;
-    }
-}
-
-.redSquare {
-    background-color: red;
+.grid {
+    position: relative;
+    display: grid;
 }

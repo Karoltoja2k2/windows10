@@ -5,26 +5,33 @@
     bottom: 2px;
     right: 2px;
     overflow: hidden;
-    background-color: rgb(165, 165, 165);
+    background-color: #c4c4c4;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    .grid {
-        position: relative;
-        margin-bottom: 2px;
-        background-color: rgb(0, 0, 0);
-        overflow: hidden;
-        box-shadow: 0px 0px 35px 4px rgba(0, 0, 0, 0.91);
-        display: grid;
-        grid-template-columns: repeat(25, 20px);
-        grid-template-rows: repeat(25, 20px);
-        transition: background-color 0.2s ease;
-        justify-content: center;
-        border-radius: 10px;
-        &:focus {
-            outline: none;
+
+    .snake__container--middle {
+        .container__ui {
+            height: 50px;
+            color: white;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .container__grid {
+            background-color: black;
+            box-shadow: 0px 0px 35px 4px rgba(0, 0, 0, 0.91);
+            border-radius: 10px;
         }
     }
+    // .container__grid {
+    //     background-color: black;
+    //     box-shadow: 0px 0px 35px 4px rgba(0, 0, 0, 0.91);
+    //     border-radius: 10px;
+    // }
 
     transition: background-color 1s ease;
 }
@@ -51,37 +58,43 @@
 }
 
 .HEAD_speed_100 {
-    background-color: wheat;
+    background-color: #f5deb3;
+    box-shadow: 0px 0px 4px 1px #f5deb3;
 }
 
 .HEAD_speed_95 {
-    background-color: wheat;
+    background-color: #f1f5b3;
+    box-shadow: 0px 0px 4px 1px #f1f5b3;
 }
 
 .HEAD_speed_90 {
-    background-color: wheat;
+    background-color: #e1f5b3;
+    box-shadow: 0px 0px 4px 1px #e1f5b3;
 }
 
 .HEAD_speed_85 {
-    background-color: wheat;
+    background-color: #cbf5b3;
+    box-shadow: 0px 0px 4px 1px #cbf5b3;
 }
 
 .HEAD_speed_80 {
-    background-color: wheat;
+    background-color: #9bff61;
+    box-shadow: 0px 0px 4px 1px #9bff61;
 }
 
 .HEAD_speed_75 {
-    background-color: wheat;
+    background-color: #6fff1c;
+    box-shadow: 0px 0px 4px 1px #6fff1c;
 }
 
 .HEAD_speed_70 {
-    background-color: wheat;
+    background-color: #00ff15;
+    box-shadow: 0px 0px 4px 1px #00ff15;
 }
 
 .BODY {
     transition: background-color 1s ease;
     transition: box-shadow 1s ease;
-
 }
 
 .BODY_speed_100 {
@@ -119,8 +132,21 @@
     box-shadow: 0px 0px 4px 1px #ff2b2b;
 }
 
-.fruit {
+.FRUIT {
     border-radius: 10px;
+}
+
+.GREEN {
     background-color: #28cf75;
     box-shadow: 0px 0px 13px 1px #28cf75;
+}
+
+.GOLDEN {
+    background-color: #cdda5b;
+    box-shadow: 0px 0px 13px 1px #cdda5b;
+}
+
+.BONUS {
+    background-color: #5bd6da;
+    box-shadow: 0px 0px 13px 1px #5bd6da;
 }

@@ -30,20 +30,20 @@ function SNAKE(): BodyPart[] {
 
 function FRUITS(): Fruit[] {
     return [
-        { cords: { X: 1, Y: 1 } },
-        { cords: { X: 10, Y: 1 } },
-        { cords: { X: 5, Y: 5 } },
+        { cords: { X: 1, Y: 1 }, type: "GREEN" },
+        { cords: { X: 10, Y: 1 }, type: "GREEN" },
+        { cords: { X: 5, Y: 5 }, type: "GREEN" },
     ];
 }
 
-function SIZE() : {size: Point, speed: number} {
-    return{
+function SIZE(): { size: Point; speed: number } {
+    return {
         size: {
             X: 25,
-            Y: 25
+            Y: 25,
         },
-        speed: 100
-    }
+        speed: 100,
+    };
 }
 
 export { SNAKE, FRUITS, SIZE };
