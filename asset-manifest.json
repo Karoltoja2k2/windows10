@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/windows95/static/css/main.48ea2d6b.chunk.css",
-    "main.js": "/windows95/static/js/main.d1ea7dd8.chunk.js",
-    "main.js.map": "/windows95/static/js/main.d1ea7dd8.chunk.js.map",
+    "main.css": "/windows95/static/css/main.27126150.chunk.css",
+    "main.js": "/windows95/static/js/main.d8bf5cf4.chunk.js",
+    "main.js.map": "/windows95/static/js/main.d8bf5cf4.chunk.js.map",
     "runtime-main.js": "/windows95/static/js/runtime-main.2a9bf908.js",
     "runtime-main.js.map": "/windows95/static/js/runtime-main.2a9bf908.js.map",
     "static/js/2.95aa0f17.chunk.js": "/windows95/static/js/2.95aa0f17.chunk.js",
     "static/js/2.95aa0f17.chunk.js.map": "/windows95/static/js/2.95aa0f17.chunk.js.map",
     "index.html": "/windows95/index.html",
-    "precache-manifest.c8004c8ce49a59e9ab233b56696a4607.js": "/windows95/precache-manifest.c8004c8ce49a59e9ab233b56696a4607.js",
+    "precache-manifest.930b5be484b730f866ad0887cf61823f.js": "/windows95/precache-manifest.930b5be484b730f866ad0887cf61823f.js",
     "service-worker.js": "/windows95/service-worker.js",
-    "static/css/main.48ea2d6b.chunk.css.map": "/windows95/static/css/main.48ea2d6b.chunk.css.map",
+    "static/css/main.27126150.chunk.css.map": "/windows95/static/css/main.27126150.chunk.css.map",
     "static/js/2.95aa0f17.chunk.js.LICENSE.txt": "/windows95/static/js/2.95aa0f17.chunk.js.LICENSE.txt",
     "static/media/desktop.scss": "/windows95/static/media/calibril.ca17c1d0.ttf",
     "static/media/lenna.jpg": "/windows95/static/media/lenna.e2dac7d1.jpg",
@@ -19,7 +19,7 @@
   "entrypoints": [
     "static/js/runtime-main.2a9bf908.js",
     "static/js/2.95aa0f17.chunk.js",
-    "static/css/main.48ea2d6b.chunk.css",
-    "static/js/main.d1ea7dd8.chunk.js"
+    "static/css/main.27126150.chunk.css",
+    "static/js/main.d8bf5cf4.chunk.js"
   ]
 }
