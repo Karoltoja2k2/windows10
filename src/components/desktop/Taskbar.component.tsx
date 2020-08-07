@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import TaskBarItem from "./TaskBarItem.component";
 import Clock from "../common/clock/Clock.component";
 
@@ -8,18 +8,33 @@ import { useSelector, useDispatch } from "react-redux";
 import WindowsManager from "../../models/WindowsManager";
 import { RootState } from "../../reducers";
 import { MinimizeAllWindows } from "../../actions/windowsActions";
+import StartMenu from "./startMenu.component";
+import MouseState from "../../models/MouseState";
 
 const Taskbar = (props: any) => {
+    const [state, setState] = useState(true);
+
     const dispatch = useDispatch();
     const windowManager: WindowsManager = useSelector(
         (state: RootState) => state.windowsReducer
     );
-    
+    const mouseState: MouseState = useSelector(
+        (state: RootState) => state.mouseReducer
+    );
+
+    useEffect(() => {
+        if (state === true && mouseState.lmbDown === true) {
+            setState(false);
+        }
+    }, [mouseState.lmbDown]);
+
     return (
         <div className="taskBar">
-            <button className="startBtn">
+            <button className="startBtn" onClick={() => setState(!state)}>
                 <i className="fab fa-windows winLogo"></i>
             </button>
+            {state && <StartMenu />}
+
             <div className="taskBarItems">
                 {windowManager.openWindows.length > 0 &&
                     windowManager.openWindows.map((obj: any, index: number) => (

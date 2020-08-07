@@ -46,4 +46,24 @@ function SIZE(): { size: Point; speed: number } {
     };
 }
 
-export { SNAKE, FRUITS, SIZE };
+function SPEED_CALC(snakeLen: number) : number{
+    let newSpeed;
+    if (snakeLen < 10) {
+        newSpeed = 100;
+    } else if (snakeLen >= 10 && snakeLen < 20) {
+        newSpeed = 95;
+    } else if (snakeLen >= 20 && snakeLen < 30) {
+        newSpeed = 90;
+    } else if (snakeLen >= 30 && snakeLen < 40) {
+        newSpeed = 85;
+    } else if (snakeLen >= 40 && snakeLen < 50) {
+        newSpeed = 80;
+    } else if (snakeLen >= 50 && snakeLen < 60) {
+        newSpeed = 75;
+    } else {
+        newSpeed = 70;
+    }
+    return newSpeed;
+}
+
+export { SNAKE, FRUITS, SIZE, SPEED_CALC };

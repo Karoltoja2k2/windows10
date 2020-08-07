@@ -1,0 +1,23 @@
+.snake__container {
+    position: absolute;
+    top: 30px;
+    left: 2px;
+    bottom: 2px;
+    right: 2px;
+    overflow: hidden;
+    background-color: #c4c4c4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .snake__container--middle {
+        .container__grid {
+            background-color: black;
+            box-shadow: 0px 0px 35px 4px rgba(0, 0, 0, 0.91);
+            border-radius: 10px;
+        }
+    }
+}
+
+

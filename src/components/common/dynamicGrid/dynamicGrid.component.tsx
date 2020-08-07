@@ -3,33 +3,6 @@ import "./dynamicGrid.scss";
 import CalculateSquareSize from "../calculators/squareSize.calculator";
 
 const DynamicGrid = (props: any) => {
-    // const [state, setState] = useState({
-    //     columns: props.columns,
-    //     rows: props.rows,
-    //     squareSize: CalculateSquareSize(
-    //         props.width,
-    //         props.height,
-    //         props.columns,
-    //         props.rows,
-    //         props.maxWidth,
-    //         props.maxHeight
-    //     ),
-    // });
-
-    // useEffect(() => {
-    //     setState({
-    //         ...state,
-    //         squareSize: CalculateSquareSize(
-    //             props.width,
-    //             props.height,
-    //             props.columns,
-    //             props.rows,
-    //             props.maxWidth,
-    //             props.maxHeight
-    //         ),
-    //     });
-    // }, [props.width, props.height]);
-
     return (
         <div
             className="grid"

@@ -6,10 +6,10 @@ import DynamicGrid from "../../common/dynamicGrid/dynamicGrid.component";
 const Explorer = (props: any) => {
     return (
         <WindowBase id={props.id} file={props.file} state={props.state}>
-            {/* <div className="explorerContainer">
+            <div className="explorerContainer">
                 <iframe src="https://karoltoja2k2.github.io/MyResume/" />
-            </div> */}
-            <DynamicGrid columns={15} rows={15} />
+            </div>
+            {/* <DynamicGrid columns={15} rows={15} /> */}
         </WindowBase>
     );
 };

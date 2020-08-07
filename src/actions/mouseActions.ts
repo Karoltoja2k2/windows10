@@ -1,4 +1,5 @@
 export const LmbDown = () => {
+    console.log('lmb down')
     return {
         type: "LMB_DOWN",
     };

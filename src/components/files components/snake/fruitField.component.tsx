@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./snake.scss";
+import "./fruitField.scss";
 
 const FruitField = (props: any) => {
     return (

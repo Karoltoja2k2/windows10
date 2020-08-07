@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import CalculateSquareSize from "../../common/calculators/squareSize.calculator";
+import "./ui.scss";
 
 const SnakeUi = (props: any) => {
     return (

@@ -12,7 +12,7 @@ import { RootState } from "../../reducers";
 import { useSelector, useDispatch } from "react-redux";
 import Window from "../../models/Window";
 import { UnFocusWindows, EndDragWindow } from "../../actions/windowsActions";
-import { LmbUp, SetPosition } from "../../actions/mouseActions";
+import { LmbUp, SetPosition, LmbDown } from "../../actions/mouseActions";
 
 function Desktop(props: any) {
 
@@ -31,6 +31,7 @@ function Desktop(props: any) {
                 className="desktop"
                 id="desktop"
                 onMouseDown={() => {
+                    dispatch(LmbDown())
                     dispatch(UnFocusWindows());
                 }}
                 onMouseUp={() => {

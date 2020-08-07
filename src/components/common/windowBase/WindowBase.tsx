@@ -90,7 +90,6 @@ const WindowBase = (props: any) => {
             TriggerFullscreen();
             return;
         }
-        console.log("clicked");
 
         if (!state.props.isFullscreen) {
             setState({
@@ -179,6 +178,7 @@ const WindowBase = (props: any) => {
                 className="resizableWindowContainer"
                 onMouseDown={(e) => {
                     e.stopPropagation();
+                    disptach(LmbDown())
                     if (!state.props.isFocused) {
                         disptach(FocusWindow(props.id));
                     }

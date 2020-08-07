@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import "./snake.scss";
+import React from "react";
+import "./snakeField.scss";
 
 const Field = (props: any) => {
     let classes = `${props.dynamicColor} BODY `;

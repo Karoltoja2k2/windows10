@@ -1,41 +1,3 @@
-.snake__container {
-    position: absolute;
-    top: 30px;
-    left: 2px;
-    bottom: 2px;
-    right: 2px;
-    overflow: hidden;
-    background-color: #c4c4c4;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    .snake__container--middle {
-        .container__ui {
-            height: 50px;
-            color: white;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: flex-end;
-        }
-
-        .container__grid {
-            background-color: black;
-            box-shadow: 0px 0px 35px 4px rgba(0, 0, 0, 0.91);
-            border-radius: 10px;
-        }
-    }
-    // .container__grid {
-    //     background-color: black;
-    //     box-shadow: 0px 0px 35px 4px rgba(0, 0, 0, 0.91);
-    //     border-radius: 10px;
-    // }
-
-    transition: background-color 1s ease;
-}
-
 .radius_x0_y1 {
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
@@ -51,10 +13,6 @@
 .radius_x-1_y0 {
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
-}
-
-.eating {
-    transform: scale(1.1);
 }
 
 .HEAD_speed_100 {
@@ -130,23 +88,4 @@
 .BODY_speed_70 {
     background-color: #ff2b2b;
     box-shadow: 0px 0px 4px 1px #ff2b2b;
-}
-
-.FRUIT {
-    border-radius: 10px;
-}
-
-.GREEN {
-    background-color: #28cf75;
-    box-shadow: 0px 0px 13px 1px #28cf75;
-}
-
-.GOLDEN {
-    background-color: #cdda5b;
-    box-shadow: 0px 0px 13px 1px #cdda5b;
-}
-
-.BONUS {
-    background-color: #5bd6da;
-    box-shadow: 0px 0px 13px 1px #5bd6da;
 }

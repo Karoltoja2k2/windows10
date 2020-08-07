@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./fileExplorer.scss";
+import "../../common/scrollbar--dark.scss"
 import WindowBase from "../../common/windowBase/WindowBase";
 
 import Files from "../../../models/fileStructure2";

@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from "react";
-import "./snake.scss";
+import "./game.scss";
 
-import Field from "./field.component";
-import { useInterval } from "./useInterval";
+import Field from "./snakeField.component";
+import { useInterval } from "../../common/useInterval";
 import BodyPart from "./models/BodyPart";
 import Fruit from "./models/Fruit";
-import { FRUITS, SNAKE, SIZE as SETTINGS } from "./const";
+import { FRUITS, SNAKE, SIZE as SETTINGS, SPEED_CALC } from "./const";
 import Point, { AddPoints, PointsEqual, RandomPoint } from "./models/Point";
 import SnakeGameState from "./models/SnakeGameState";
-import FieldBase from "./models/FieldBase";
-import { kMaxLength } from "buffer";
 import DynamicGrid from "../../common/dynamicGrid/dynamicGrid.component";
 import { FRUIT_TYPE } from "./models/FRUIT_TYPE";
 import FruitField from "./fruitField.component";
 import SnakeUi from "./ui.component";
 import CalculateSquareSize from "../../common/calculators/squareSize.calculator";
-import { settings } from "cluster";
+
 
 const Game = (props: any) => {
     const [state, setState] = useState<SnakeGameState>({
@@ -40,28 +38,12 @@ const Game = (props: any) => {
     }, state.settings.speed);
 
     useEffect(() => {
-        let newHighscore =
-            state.snake.length > state.maxLength
-                ? state.snake.length
-                : state.maxLength;
-        let newSpeed = state.settings.speed;
-
         let snakeLen = state.snake.length;
-        if (snakeLen < 10) {
-            newSpeed = 100;
-        } else if (snakeLen >= 10 && snakeLen < 20) {
-            newSpeed = 95;
-        } else if (snakeLen >= 20 && snakeLen < 30) {
-            newSpeed = 90;
-        } else if (snakeLen >= 30 && snakeLen < 40) {
-            newSpeed = 85;
-        } else if (snakeLen >= 40 && snakeLen < 50) {
-            newSpeed = 80;
-        } else if (snakeLen >= 50 && snakeLen < 60) {
-            newSpeed = 75;
-        } else {
-            newSpeed = 70;
-        }
+        let newHighscore =
+            snakeLen > state.maxLength
+                ? snakeLen
+                : state.maxLength;
+        let newSpeed = SPEED_CALC(snakeLen);
         if (
             newSpeed !== state.settings.speed ||
             newHighscore !== state.maxLength
@@ -233,7 +215,6 @@ const Game = (props: any) => {
         );
     }, [props.width, props.height]);
 
-    console.log(squareSize)
 
     return (
         <div
@@ -263,16 +244,6 @@ const Game = (props: any) => {
                 }
             }}
         >
-            {/* <button
-                className=""
-                onClick={() => {
-                    MoveSnake();
-                }}
-            >
-                Restart
-            </button>
-            <label>{state.maxLength}</label> */}
-
             <div className="snake__container--middle">
                 <SnakeUi
                     squareSize={squareSize}
