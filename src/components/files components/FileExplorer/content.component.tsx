@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import FileIcon from "../../common/fileIcon/FileIcon.component";
+import FileIcon from "../../common/icons/FileIcon.component";
 import Files from "../../../models/fileStructure2";
 import "./content.scss";
+import FolderIcon from "../../common/icons/folderIcon.component";
 
 const Content = (props: any) => {
     let files = Files;
@@ -9,8 +10,14 @@ const Content = (props: any) => {
         <div className="container__content">
             <div className="content__left scrollbar--dark">
                 {files.map((file: any, index: number) => (
-                    <FileIcon
-                        type="inrow"
+                    // <FileIcon
+                    //     type="inrow"
+                    //     file={file}
+                    //     id={props.id}
+                    //     key={index}
+                    // />
+                    <FolderIcon
+                        iconDisplay="inrow"
                         file={file}
                         id={props.id}
                         key={index}
@@ -23,8 +30,8 @@ const Content = (props: any) => {
             >
                 {props.iconsInFolder &&
                     props.iconsInFolder.map((file: any, index: number) => (
-                        <FileIcon
-                            type={props.iconDisplay}
+                        <FolderIcon
+                            iconDisplay={props.iconDisplay}
                             file={file}
                             id={props.id}
                             key={index}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "./desktop.scss";
-import FileIcon from "../common/fileIcon/FileIcon.component";
+import FileIcon from "../common/icons/FileIcon.component";
 import Taskbar from "./Taskbar.component";
 
 import Background from "../../media/winxpbg.jpg";
@@ -13,12 +13,13 @@ import { useSelector, useDispatch } from "react-redux";
 import Window from "../../models/Window";
 import { UnFocusWindows, EndDragWindow } from "../../actions/windowsActions";
 import { LmbUp, SetPosition, LmbDown } from "../../actions/mouseActions";
+import DesktopIcon from "../common/icons/desktopIcon.component";
 
 function Desktop(props: any) {
 
-    const path2 = "Drive C:/Desktop/";
+    const path = "Drive C:/Desktop/";
 
-    const [files, setFiles] = useState(Files.filter((x) => x.path === path2));
+    const [files, setFiles] = useState(Files.filter((x) => x.path === path));
 
     const windowManager: WindowsManager = useSelector(
         (state: RootState) => state.windowsReducer
@@ -45,8 +46,7 @@ function Desktop(props: any) {
                 <img src={Background} className="desktopBackground" />
                 <div className="iconGrid">
                     {files.map((obj: any, index: number) => (
-                        <FileIcon
-                            type="desktopIcon"
+                        <DesktopIcon
                             file={obj}
                             key={index}
                         />

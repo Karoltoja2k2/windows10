@@ -11,9 +11,10 @@ import {
     faAngleDown,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import FileIcon from "../../common/fileIcon/FileIcon.component";
+import FileIcon from "../../common/icons/FileIcon.component";
 import { useDispatch } from "react-redux";
 import { OpenWindow, Navigate } from "../../../actions/windowsActions";
+import SearchResultIcon from "../../common/icons/searchResultIcon.component";
 
 const Bar = (props: any) => {
     const dispatch = useDispatch();
@@ -126,12 +127,10 @@ const Bar = (props: any) => {
                     }
                 >
                     {search.results.map((result: File, index: number) => (
-                        <FileIcon
-                            type="searchResult"
+                        <SearchResultIcon
                             file={result}
                             id={props.id}
                             key={index}
-                            Navigate={LocalNavigate}
                         />
                     ))}
                 </div>

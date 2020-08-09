@@ -1,0 +1,85 @@
+.squareIcon {
+    width: 85px;
+    height: 85px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255,255,255,0.109);
+    border: 2px;
+    img {
+        margin-top: 5;
+        z-index: 2;
+        width: 50%;
+        height: 50%;
+        border-radius: 5px;
+    }
+    label {
+        z-index: 2;
+        color: white;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+            1px 1px 0 #000;
+
+        font-weight: 200;
+        text-align: center;
+
+        font-size: 0.8em;
+
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 65px;
+    }
+
+    &:hover {
+        border: 1px outset white;
+    }
+
+    &:focus {
+        outline: none;
+        background-color: rgba(173, 216, 255, 0.3);
+        border: 1px outset rgba(95, 95, 255, 0.192);
+    }
+}
+
+.horizontalIcon {
+    display: flex;
+    z-index: inherit;
+    margin: 2px 2px;
+    height: 25px;
+    max-height: 25px;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    border: 1px solid rgba(0, 0, 0, 0);
+
+    img {
+        margin-top: 5;
+        padding: 2px;
+        z-index: 2;
+        width: 20px;
+        height: 20px;
+        border-radius: 5px;
+    }
+
+    label {
+        text-align: center;
+        line-height: 20px;
+        font-size: 12px;
+        height: 100%;
+
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    &:hover {
+        background-color: rgba(255,255,255,0.109);
+    }
+
+    &:focus {
+        outline: none;
+        background-color: rgba(255,255,255,0.109);
+        border: 1px outset rgba(95, 95, 255, 0.192);
+    }
+}

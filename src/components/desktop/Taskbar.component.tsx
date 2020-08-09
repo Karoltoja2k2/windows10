@@ -7,9 +7,10 @@ import "./taskbar.scss";
 import { useSelector, useDispatch } from "react-redux";
 import WindowsManager from "../../models/WindowsManager";
 import { RootState } from "../../reducers";
-import { MinimizeAllWindows } from "../../actions/windowsActions";
+import { MinimizeAllWindows, OpenWindow } from "../../actions/windowsActions";
 import StartMenu from "./startMenu.component";
 import MouseState from "../../models/MouseState";
+import File from "../../models/File";
 
 const Taskbar = (props: any) => {
     const [state, setState] = useState(true);
@@ -28,12 +29,20 @@ const Taskbar = (props: any) => {
         }
     }, [mouseState.lmbDown]);
 
+    function NavigateStartMenu(file: File) {
+        if (state === true) {
+            setState(false);
+        }
+        dispatch(OpenWindow(file));
+    }
+
+    console.log('rerender taskbar')
     return (
         <div className="taskBar">
             <button className="startBtn" onClick={() => setState(!state)}>
                 <i className="fab fa-windows winLogo"></i>
             </button>
-            {state && <StartMenu />}
+            {state && <StartMenu Navigate={NavigateStartMenu} />}
 
             <div className="taskBarItems">
                 {windowManager.openWindows.length > 0 &&

@@ -88,7 +88,7 @@ const winimg: File = {
     path: "Drive C:/Desktop/",
     component: PhotoDisplay,
     extension: ".img",
-    title: "Windows bg",
+    title: "Windows bggggggggggggggggggggggggggggggggggggggg",
     iconsrc: winxpbg,
 
     prevFolder: desktop,
