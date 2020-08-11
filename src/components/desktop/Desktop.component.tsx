@@ -14,12 +14,17 @@ import Window from "../../models/Window";
 import { UnFocusWindows, EndDragWindow } from "../../actions/windowsActions";
 import { LmbUp, SetPosition, LmbDown } from "../../actions/mouseActions";
 import DesktopIcon from "../common/icons/desktopIcon.component";
+import ContextMenu from "../common/contextMenu/contextMenu__desktop.component";
+import DesktopIconContextMenu from "../common/contextMenu/contextMenu__desktopIcon.component";
 
 function Desktop(props: any) {
-
     const path = "Drive C:/Desktop/";
 
-    const [files, setFiles] = useState(Files.filter((x) => x.path === path));
+    const files2: File[] = useSelector(
+        (state: RootState) => state.driveReducer
+    );
+
+    const [files, setFiles] = useState(files2.filter((x) => x.path === path));
 
     const windowManager: WindowsManager = useSelector(
         (state: RootState) => state.windowsReducer
@@ -32,7 +37,7 @@ function Desktop(props: any) {
                 className="desktop"
                 id="desktop"
                 onMouseDown={() => {
-                    dispatch(LmbDown())
+                    dispatch(LmbDown());
                     dispatch(UnFocusWindows());
                 }}
                 onMouseUp={() => {
@@ -46,24 +51,19 @@ function Desktop(props: any) {
                 <img src={Background} className="desktopBackground" />
                 <div className="iconGrid">
                     {files.map((obj: any, index: number) => (
-                        <DesktopIcon
-                            file={obj}
-                            key={index}
-                        />
+                        <DesktopIcon file={obj} key={index} />
                     ))}
                 </div>
 
                 {windowManager.openWindows.length > 0 &&
-                    windowManager.openWindows.map(
-                        (window: Window) => (
-                            <window.file.component
-                                key={window.id}
-                                file={window.file}
-                                id={window.id}
-                                state={window.state}
-                            />
-                        )
-                    )}
+                    windowManager.openWindows.map((window: Window) => (
+                        <window.file.component
+                            key={window.id}
+                            file={window.file}
+                            id={window.id}
+                            state={window.state}
+                        />
+                    ))}
 
                 <div className="activateWindows">
                     <p className="top">Aktywuj system Windows</p>
@@ -73,6 +73,7 @@ function Desktop(props: any) {
                 </div>
             </div>
             <Taskbar />
+            <DesktopIconContextMenu file={files[0]} top={100} left={600}/>
         </div>
     );
 }
