@@ -13,7 +13,7 @@ import MouseState from "../../models/MouseState";
 import File from "../../models/File";
 
 const Taskbar = (props: any) => {
-    const [state, setState] = useState(true);
+    const [state, setState] = useState(false);
 
     const dispatch = useDispatch();
     const windowManager: WindowsManager = useSelector(
@@ -36,10 +36,10 @@ const Taskbar = (props: any) => {
         dispatch(OpenWindow(file));
     }
 
-    console.log('rerender taskbar')
+    console.log("rerender taskbar");
     return (
         <div className="taskBar">
-            <button className="startBtn" onClick={() => setState(!state)}>
+            <button className={`startBtn open--${state}`} onClick={() => setState(!state)}>
                 <i className="fab fa-windows winLogo"></i>
             </button>
             {state && <StartMenu Navigate={NavigateStartMenu} />}

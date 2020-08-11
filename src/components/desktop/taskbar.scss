@@ -1,4 +1,4 @@
-.taskBar{
+.taskBar {
     z-index: 5;
 
     position: fixed;
@@ -10,32 +10,40 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .startBtn{
+
+    .startBtn {
         left: 0px;
         width: 46px;
         height: 100%;
         border: 0px;
         background: rgb(41, 41, 41);
-
+        outline: none;
         display: flex;
         justify-content: center;
         align-items: center;
-        .winLogo{
+        .winLogo {
             font-size: 18px;
             color: white;
-
+        }
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.109);
         }
     }
-    .taskBarItems{
+
+    .open--true {
+        .winLogo {
+            color: green;
+        }
+    }
+    .taskBarItems {
         height: 90%;
         width: 100%;
         display: flex;
         flex-direction: row;
         justify-content: start;
         overflow: hidden;
-               
     }
-    .toolBar{
+    .toolBar {
         right: 0px;
         height: 100%;
 
@@ -43,8 +51,8 @@
         flex-direction: row;
         justify-content: flex-end;
         align-items: center;
-        
-        .minimizeAllBtn{
+
+        .minimizeAllBtn {
             height: 100%;
             width: 5px;
             background: rgb(41, 41, 41);
@@ -52,7 +60,7 @@
             border-left: gray 1px solid;
         }
 
-        .timeContainer{
+        .timeContainer {
             margin: 0px 15px 0px 15px;
         }
     }

@@ -22,10 +22,20 @@
     width: 50px;
     align-items: center;
     justify-content: flex-end;
-    .column__item--left {
+    button {
         width: 50px;
         height: 50px;
-        background-color: black;
+        background-color: #191919;
+        color: white;
+        border: 0px;
+        outline: none;
+        // &:focus {
+        //     background-color: red;
+        //     outline: none;
+        // }
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.109);
+        }
     }
 }
 .menu__column--middle {
@@ -35,7 +45,7 @@
     .column__section {
         display: flex;
         flex-direction: column;
-        margin-left: 5px;
+        margin: 15px 0px 0px 5px;
 
         .section__title {
             color: white;
@@ -43,11 +53,6 @@
         .section__container {
             display: flex;
             flex-direction: column;
-            .container__item {
-                height: 25px;
-                margin-bottom: 5px;
-                background-color: green;
-            }
         }
     }
 }
@@ -56,22 +61,17 @@
     flex-direction: column;
     width: 280px;
     overflow-y: scroll;
+    margin-right: 5px;
     .column__section {
-        margin-left: 5px;
-
+        margin: 15px 0px 0px 5px;
         .section__title {
             color: white;
         }
         .section__grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, 85px);
-            grid-template-rows: repeat(auto-fit, 85px);
+            grid-template-columns: repeat(auto-fit, 83px);
+            grid-template-rows: repeat(auto-fit, 83px);
             grid-gap: 5px;
-            .grid__item {
-                width: 85px;
-                height: 85px;
-                background-color: green;
-            }
         }
     }
 }

@@ -14,7 +14,9 @@ const StartMenuIcon = (props: any) => {
                 props.Navigate(props.file);
             }}
         >
-            <img src={props.file.iconsrc} />
+            <div className="img__background">
+                <img src={props.file.iconsrc} />
+            </div>
             <label>{props.file.title}</label>
         </button>
     );

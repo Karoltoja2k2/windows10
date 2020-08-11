@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./startMenu.scss";
 import "../common/scrollbar--dark.scss";
 
-import MouseState from "../../models/MouseState";
-import { RootState } from "../../reducers";
-import { useSelector } from "react-redux";
 import StartMenuIcon from "../common/icons/startMenuIcon.component";
 import Files from "../../models/fileStructure2";
 import File from "../../models/File";
@@ -20,6 +17,7 @@ interface State {
 }
 
 const StartMenu = (props: any) => {
+    // THIS COMPONENT LOGIC HAS TO BE CHANGED AS SOON AS THE API WILL BE DONE
     function GroupFilesByLetter(files: File[]) {
         var groupedCollection: Dictionary<File[]> = {};
         for (let i = 0; i < files.length; i++) {
@@ -45,7 +43,7 @@ const StartMenu = (props: any) => {
         };
     }
 
-    console.log('rerender start menu')
+    console.log("rerender start menu");
     return (
         <div
             className="menu"
@@ -54,8 +52,16 @@ const StartMenu = (props: any) => {
             }}
         >
             <div className="menu__column menu__column--left">
-                <div className="column__item--left"></div>
-                <div className="column__item--left"></div>
+                <button className="">
+                    <i className="fas fa-user-cog"></i>
+                </button>
+                <button className="">
+                    <i className="fas fa-cog"></i>
+                </button>
+
+                <button className="">
+                    <i className="fas fa-power-off"></i>
+                </button>
             </div>
             <div className="menu__column menu__column--middle scrollbar--dark">
                 {Object.keys(state.groupedFiles).map((key, index) => (
@@ -76,7 +82,21 @@ const StartMenu = (props: any) => {
             </div>
             <div className="menu__column menu__column--right scrollbar--dark">
                 <div className="column__section">
-                    <div className="section__title">SECTION 1</div>
+                    <div className="section__title">Section 1</div>
+                    <div className="section__grid">
+                        {state.files &&
+                            state.files.map((file, index) => (
+                                <StartMenuIcon
+                                    file={file}
+                                    key={index}
+                                    type={"squareIcon"}
+                                    Navigate={props.Navigate}
+                                />
+                            ))}
+                    </div>
+                </div>
+                <div className="column__section">
+                    <div className="section__title">Section 2</div>
                     <div className="section__grid">
                         {state.files &&
                             state.files.map((file, index) => (
