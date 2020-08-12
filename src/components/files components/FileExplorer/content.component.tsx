@@ -6,16 +6,19 @@ import FolderIcon from "../../common/icons/folderIcon.component";
 
 const Content = (props: any) => {
     let files = Files;
+
+    function HandleClick(e: React.MouseEvent){
+        console.log(e.button)
+        if (e.button !== 2){
+            return;
+        }
+        e.preventDefault()
+
+    }
     return (
         <div className="container__content">
             <div className="content__left scrollbar--dark">
                 {files.map((file: any, index: number) => (
-                    // <FileIcon
-                    //     type="inrow"
-                    //     file={file}
-                    //     id={props.id}
-                    //     key={index}
-                    // />
                     <FolderIcon
                         iconDisplay="inrow"
                         file={file}
@@ -26,7 +29,7 @@ const Content = (props: any) => {
             </div>
 
             <div
-                className={`content__right--${props.iconDisplay} scrollbar--dark`}
+                className={`content__right--${props.iconDisplay} scrollbar--dark`} onContextMenu={(e) => HandleClick(e)}
             >
                 {props.iconsInFolder &&
                     props.iconsInFolder.map((file: any, index: number) => (

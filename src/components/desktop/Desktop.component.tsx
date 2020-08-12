@@ -18,19 +18,17 @@ import ContextMenu from "../common/contextMenu/contextMenu__desktop.component";
 import DesktopIconContextMenu from "../common/contextMenu/contextMenu__desktopIcon.component";
 
 function Desktop(props: any) {
+    const dispatch = useDispatch();
     const path = "Drive C:/Desktop/";
 
-    const files2: File[] = useSelector(
-        (state: RootState) => state.driveReducer
-    );
-
-    const [files, setFiles] = useState(files2.filter((x) => x.path === path));
-
+    const drive: File[] = useSelector((state: RootState) => state.driveReducer);
     const windowManager: WindowsManager = useSelector(
         (state: RootState) => state.windowsReducer
     );
 
-    const dispatch = useDispatch();
+    const [files, setFiles] = useState(drive.filter((x) => x.path === path));
+
+    console.log("rerender desktop");
     return (
         <div className="">
             <div
@@ -73,7 +71,11 @@ function Desktop(props: any) {
                 </div>
             </div>
             <Taskbar />
-            <DesktopIconContextMenu file={files[0]} top={100} left={600}/>
+            <DesktopIconContextMenu
+                file={files.find((x) => x.title === "Test folder")}
+                top={100}
+                left={600}
+            />
         </div>
     );
 }

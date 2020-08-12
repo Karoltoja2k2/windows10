@@ -10,7 +10,8 @@ import Bar from "./bar.component";
 import Content from "./content.component";
 import Footer from "./footer.component";
 import { Navigate } from "../../../actions/windowsActions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../reducers";
 
 const FileExplorer = (props: any) => {
     const disptach = useDispatch();
@@ -20,15 +21,19 @@ const FileExplorer = (props: any) => {
         files: Array<File>(),
     });
 
-    // THIS NEED OPTIMALIZATION !!!!!!
+    const drive: File[] = useSelector((state: RootState) => state.driveReducer);
+
+    console.log("rerender fileexploer");
+
+    // THIS NEED CHANGES
     useEffect(() => {
         filterFiles(state.filter);
-    }, [props.file]);
+    }, [props.file, drive]);
 
     function filterFiles(filter: string) {
         setState({
             filter: filter,
-            files: Files.filter(
+            files: drive.filter(
                 (x) =>
                     x.prevFolder &&
                     x.prevFolder.fileId === props.file.fileId &&

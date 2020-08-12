@@ -1,12 +1,11 @@
 import React, { createContext } from "react";
 import ReactDOM from "react-dom";
 import "./index.scss";
-import Desktop from "./components/desktop/Desktop.component";
 import * as serviceWorker from "./serviceWorker";
 import App from "./app";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-import {rootReducers} from "./reducers/index";
+import { rootReducers } from "./reducers/index";
 
 let store = createStore(rootReducers);
 

@@ -5,6 +5,8 @@ import "../common/scrollbar--dark.scss";
 import StartMenuIcon from "../common/icons/startMenuIcon.component";
 import Files from "../../models/fileStructure2";
 import File from "../../models/File";
+import { useSelector } from "react-redux";
+import { RootState } from "../../reducers";
 
 interface Dictionary<T> {
     [Key: string]: T;
@@ -17,6 +19,8 @@ interface State {
 }
 
 const StartMenu = (props: any) => {
+    const drive: File[] = useSelector((state: RootState) => state.driveReducer);
+
     // THIS COMPONENT LOGIC HAS TO BE CHANGED AS SOON AS THE API WILL BE DONE
     function GroupFilesByLetter(files: File[]) {
         var groupedCollection: Dictionary<File[]> = {};
@@ -34,7 +38,7 @@ const StartMenu = (props: any) => {
 
     function InitState(): State {
         let path = "";
-        let files = Files;
+        let files = drive;
         let groupedFiles = GroupFilesByLetter(files);
         return {
             path: path,

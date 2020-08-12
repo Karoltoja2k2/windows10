@@ -36,7 +36,6 @@ const Taskbar = (props: any) => {
         dispatch(OpenWindow(file));
     }
 
-    console.log("rerender taskbar");
     return (
         <div className="taskBar">
             <button className={`startBtn open--${state}`} onClick={() => setState(!state)}>

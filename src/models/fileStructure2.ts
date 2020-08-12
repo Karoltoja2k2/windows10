@@ -16,6 +16,7 @@ import windrive from "../media/windrive.png";
 import foldericon from "../media/folder.png";
 
 import File from "./File";
+import GetFileComponentById from "../components/files components/FilesRegistry";
 
 const files2: File[] = [];
 let id: number = 0;
