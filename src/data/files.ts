@@ -26,7 +26,6 @@ const driveC: FileDto = {
     fileId: id++,
     path: "Device/",
     title: "Drive C",
-    extension: ".fld",
     componentId: 1,
 };
 
@@ -34,7 +33,6 @@ const desktop: FileDto = {
     fileId: id++,
     path: "Drive C:/",
     title: "Desktop",
-    extension: ".fld",
     componentId: 1,
     prevFolderId: driveC.fileId,
 };
@@ -43,7 +41,6 @@ const lennaimg: FileDto = {
     fileId: id++,
     path: "Drive C:/Desktop/",
     title: "Lenna",
-    extension: ".img",
     componentId: 3,
     prevFolderId: desktop.fileId,
     content: {
@@ -51,11 +48,18 @@ const lennaimg: FileDto = {
     },
 };
 
+const paint: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/",
+    title: "Paint",
+    componentId: 5,
+    prevFolderId: desktop.fileId,
+};
+
 const snake: FileDto = {
     fileId: id++,
     path: "Drive C:/Desktop/",
     title: "Snake",
-    extension: ".exe",
     componentId: 2,
     prevFolderId: desktop.fileId,
 };
@@ -64,7 +68,6 @@ const browser: FileDto = {
     fileId: id++,
     path: "Drive C:/Desktop/",
     title: "Resume",
-    extension: ".exe",
     componentId: 4,
     prevFolderId: desktop.fileId,
 };
@@ -73,7 +76,6 @@ const winimg: FileDto = {
     fileId: id++,
     path: "Drive C:/Desktop/",
     title: "Windows bggggggggggggggggggggggggggggggggggggggg",
-    extension: ".img",
     componentId: 3,
     prevFolderId: desktop.fileId,
     content: {
@@ -85,7 +87,6 @@ const testfolder: FileDto = {
     fileId: id++,
     path: "Drive C:/Desktop/",
     title: "Test folder",
-    extension: ".fld",
     componentId: 1,
     prevFolderId: desktop.fileId,
 };
@@ -94,7 +95,6 @@ const testfolder2: FileDto = {
     fileId: id++,
     path: "Drive C:/Desktop/Test folder/",
     title: "Test folder in folder",
-    extension: ".fld",
     componentId: 1,
     prevFolderId: testfolder.fileId,
 };
@@ -104,6 +104,7 @@ FilesDto.push(
     desktop,
     browser,
     lennaimg,
+    paint,
     snake,
     winimg,
     testfolder,

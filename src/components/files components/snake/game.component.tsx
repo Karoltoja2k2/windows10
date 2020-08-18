@@ -6,7 +6,7 @@ import { useInterval } from "../../common/useInterval";
 import BodyPart from "./models/BodyPart";
 import Fruit from "./models/Fruit";
 import { FRUITS, SNAKE, SIZE as SETTINGS, SPEED_CALC } from "./const";
-import Point, { AddPoints, PointsEqual, RandomPoint } from "./models/Point";
+import Point, { AddPoints, PointsEqual, RandomPoint } from "../../common/Point";
 import SnakeGameState from "./models/SnakeGameState";
 import DynamicGrid from "../../common/dynamicGrid/dynamicGrid.component";
 import { FRUIT_TYPE } from "./models/FRUIT_TYPE";

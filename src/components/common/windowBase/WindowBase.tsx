@@ -178,7 +178,7 @@ const WindowBase = (props: any) => {
                 className="resizableWindowContainer"
                 onMouseDown={(e) => {
                     e.stopPropagation();
-                    disptach(LmbDown())
+                    disptach(LmbDown());
                     if (!state.props.isFocused) {
                         disptach(FocusWindow(props.id));
                     }
@@ -232,7 +232,12 @@ const WindowBase = (props: any) => {
                         </button>
                     </div>
                 </div>
-                {React.cloneElement(props.children, {width: state.dimensions.width, height: state.dimensions.height})}
+                {React.cloneElement(props.children, {
+                    width: state.dimensions.width,
+                    height: state.dimensions.height,
+                    left: state.dimensions.left,
+                    top: state.dimensions.top,
+                })}
             </div>
         </Resizable>
     );

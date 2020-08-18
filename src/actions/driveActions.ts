@@ -1,7 +1,6 @@
 import CreateFileDto from "../models/CreateFileDto";
 import File from "../models/File";
 import GetFileComponentById from "../components/files components/FilesRegistry";
-import NewFile from "../models/NewFile";
 
 export const DeleteFile = (fileToDelete: File) => {
     return {
@@ -24,7 +23,7 @@ export const CreateFile = (fileDto: CreateFileDto) => {
     };
     return {
         type: "CREATE",
-        payload: newFile ,
+        payload: newFile,
     };
 };
 

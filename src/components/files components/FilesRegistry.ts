@@ -3,6 +3,7 @@ import Snake from "./snake/snake.component";
 import FileExplorer from "./FileExplorer/FileExplorer.component";
 import PhotoDisplay from "./PhotoDisplay/PhotoDisplay";
 import Explorer from "./Browser/Explorer";
+import Paint from "./paint/paint.component";
 
 import logo192 from "../../media/logo192.png";
 import chrome from "../../media/chrome.png";
@@ -27,6 +28,8 @@ const GetFileComponentById = (id: number): any => {
             };
         case 4:
             return { component: Explorer, iconsrc: logo192, extension: ".exe" };
+        case 5:
+            return { component: Paint, iconsrc: logo192, extension: ".exe" };
     }
 };
 

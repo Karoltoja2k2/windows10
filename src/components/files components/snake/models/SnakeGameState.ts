@@ -1,6 +1,6 @@
 import Fruit from "./Fruit";
 import BodyPart from "./BodyPart";
-import Point from "./Point";
+import Point from "../../../common/Point";
 
 export default interface SnakeGameState {
     run: boolean;

@@ -1,6 +1,6 @@
 import BodyPart from "./models/BodyPart";
 import Fruit from "./models/Fruit";
-import Point from "./models/Point";
+import Point from "../../common/Point";
 
 function SNAKE(): BodyPart[] {
     return [

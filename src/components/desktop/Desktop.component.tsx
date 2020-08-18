@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "./desktop.scss";
+import "../common/noselect.scss";
 import FileIcon from "../common/icons/FileIcon.component";
 import Taskbar from "./Taskbar.component";
 
@@ -11,7 +12,11 @@ import WindowsManager from "../../models/WindowsManager";
 import { RootState } from "../../reducers";
 import { useSelector, useDispatch } from "react-redux";
 import Window from "../../models/Window";
-import { UnFocusWindows, EndDragWindow } from "../../actions/windowsActions";
+import {
+    UnFocusWindows,
+    EndDragWindow,
+    OpenWindow,
+} from "../../actions/windowsActions";
 import { LmbUp, SetPosition, LmbDown } from "../../actions/mouseActions";
 import DesktopIcon from "../common/icons/desktopIcon.component";
 import ContextMenu from "../common/contextMenu/contextMenu__desktop.component";
@@ -28,9 +33,13 @@ function Desktop(props: any) {
 
     const [files, setFiles] = useState(drive.filter((x) => x.path === path));
 
+    useEffect(() => {
+        dispatch(OpenWindow(drive.find((x) => x.title === "Paint")!));
+    }, []);
+
     console.log("rerender desktop");
     return (
-        <div className="">
+        <div className="noselect">
             <div
                 className="desktop"
                 id="desktop"
@@ -71,11 +80,11 @@ function Desktop(props: any) {
                 </div>
             </div>
             <Taskbar />
-            <DesktopIconContextMenu
+            {/* <DesktopIconContextMenu
                 file={files.find((x) => x.title === "Test folder")}
                 top={100}
                 left={600}
-            />
+            /> */}
         </div>
     );
 }

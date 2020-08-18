@@ -3,9 +3,8 @@ import File from "../models/File";
 import FilesDto from "../data/files";
 import FileDto from "../data/FileDto";
 import GetFileComponentById from "../components/files components/FilesRegistry";
-import NewFile from "../models/NewFile";
 
-const driveReducer = (state: NewFile[] = [], action: any) => {
+const driveReducer = (state: File[] = [], action: any) => {
     switch (action.type) {
         case "LOAD": {
             return FilesDto.map((file: FileDto) => {
