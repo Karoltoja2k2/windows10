@@ -1,51 +1,48 @@
-import React, {
-    useRef,
-    useEffect,
-    useState,
-    CanvasHTMLAttributes,
-} from "react";
-import Point from "../../common/Point";
-import "./canvas.scss";
-import "./application.scss";
-import HistoryElem from "./models/HistoryElem";
+import React, { useRef, useEffect, useState } from "react";
+import Point from "./Point";
+import HistoryElem from "../files components/paint/models/HistoryElem";
+import History from "../files components/paint/models/History";
+import Tool from "../files components/paint/models/Tool";
 
-interface state {
+interface CanvasState {
     properties: {
         height: number;
         width: number;
         top: number;
         left: number;
     };
-    source: string;
+    img: HTMLImageElement | null;
 }
 
-const Canvas = (props: any) => {
-    const drawLayer = useRef(null);
-    const imgRef = useRef<HTMLImageElement>(null);
+interface CanvasProps {
+    properties: {
+        width: number;
+        height: number;
+        top: number;
+        left: number;
+    };
+    backgroundColor: string;
+    tool: Tool;
+    img: HTMLImageElement | null;
+    history: History;
+    setHistory: React.Dispatch<React.SetStateAction<History>>;
+}
 
-    const [state, setState] = useState<state>({
+const Canvas = (props: CanvasProps) => {
+    const drawLayer = useRef(null);
+    const [state, setState] = useState<CanvasState>({
         properties: {
-            height: props.height,
-            width: props.width,
-            top: props.top,
-            left: props.left,
+            ...props.properties,
         },
-        source: props.source,
+        img: props.img,
     });
     const [drawing, setDrawing] = useState(false);
 
     useEffect(() => {
         const canvas: HTMLCanvasElement = drawLayer.current!;
         const context: CanvasRenderingContext2D = canvas.getContext("2d")!;
-        if (props.source !== undefined) {
-            setState({
-                ...state,
-                properties: {
-                    ...state.properties,
-                    height: imgRef.current!.naturalHeight,
-                    width: imgRef.current!.naturalWidth,
-                },
-            });
+        if (state.img !== null) {
+            RenderImage();
         } else {
             context.fillStyle = props.backgroundColor;
             context.fillRect(0, 0, context.canvas.width, context.canvas.height);
@@ -54,49 +51,45 @@ const Canvas = (props: any) => {
     }, []);
 
     useEffect(() => {
-        console.log(state.source);
-        if (state.source !== undefined) {
-            RenderImage();
-        }
-    }, [state.source, state.properties]);
-
-    useEffect(() => {
-        console.log(state.properties);
-    }, [state.properties]);
+        console.log(props.tool);
+    }, [props.tool]);
 
     useEffect(() => {
         setState({
             ...state,
             properties: {
-                ...state.properties,
-                width: props.width,
-                height: props.height,
+                ...props.properties,
             },
+            img: props.img,
         });
-    }, [props.width, props.height]);
+    }, [props.properties, props.img]);
 
     function RenderImage() {
-        const canvas: HTMLCanvasElement = drawLayer.current!;
-        const context: CanvasRenderingContext2D = canvas.getContext("2d")!;
-        let img = new Image();
-        img.src = state.source;
-        img.onload = () => {
-            context.drawImage(img, 0, 0);
-            context.fill();
-        };
+        console.log(state.img);
+        if (state.img !== null) {
+            const canvas: HTMLCanvasElement = drawLayer.current!;
+            const context: CanvasRenderingContext2D = canvas.getContext("2d")!;
+            context.drawImage(state.img, 0, 0);
+        }
     }
 
     function CalculateOffset(e: React.MouseEvent): Point {
         return {
-            X: e.pageX - props.left + e.currentTarget.parentElement!.scrollLeft,
-            Y: e.pageY - props.top + e.currentTarget.parentElement!.scrollTop,
+            X:
+                e.pageX -
+                props.properties.left +
+                e.currentTarget.parentElement!.scrollLeft,
+            Y:
+                e.pageY -
+                props.properties.top +
+                e.currentTarget.parentElement!.scrollTop,
         };
     }
 
     function Draw(context: CanvasRenderingContext2D, point: Point) {
-        context.strokeStyle = props.color;
-        context.lineWidth = props.thickness;
-        context.lineJoin = context.lineCap = "round";
+        context.strokeStyle = props.tool.strokeStyle;
+        context.lineWidth = props.tool.lineWidth;
+        context.lineJoin = context.lineCap = props.tool.lineStyle;
 
         context.lineTo(point.X, point.Y);
         context.stroke();
@@ -104,8 +97,8 @@ const Canvas = (props: any) => {
         props.setHistory({
             ...props.history,
             current: {
-                ...props.history.current,
-                points: [...props.history.current.points, point],
+                ...props.history.current!,
+                points: [...props.history.current!.points, point],
             },
         });
     }
@@ -114,18 +107,17 @@ const Canvas = (props: any) => {
         const canvas: HTMLCanvasElement = drawLayer.current!;
         const context: CanvasRenderingContext2D = canvas.getContext("2d")!;
         context.clearRect(0, 0, canvas.width, canvas.height);
-        if (state.source !== undefined) {
-            context.drawImage(imgRef.current!, 0, 0);
+        if (state.img !== null) {
+            context.drawImage(state.img, 0, 0);
         }
         var lines: HistoryElem[] = props.history.latest;
-        console.log(lines);
 
         lines.pop();
-        console.log(lines);
 
         for (let line of lines) {
-            context.strokeStyle = line.color!;
-            context.lineWidth = line.thickness!;
+            context.strokeStyle = line.tool.strokeStyle;
+            context.lineWidth = line.tool.lineWidth;
+            context.lineJoin = context.lineCap = line.tool.lineStyle;
             context.beginPath();
             context.moveTo(line.points[0].X, line.points[0].Y);
             line.points.map((point) => {
@@ -133,7 +125,6 @@ const Canvas = (props: any) => {
             });
             context.stroke();
         }
-        console.log(lines);
 
         props.setHistory({ ...props.history, latest: [...lines] });
     }
@@ -148,14 +139,15 @@ const Canvas = (props: any) => {
         let point = CalculateOffset(e);
         context.moveTo(point.X, point.Y);
         context.beginPath();
-        context.strokeStyle = props.color;
-        context.lineWidth = props.thickness;
+        context.strokeStyle = props.tool.strokeStyle;
+        context.lineWidth = props.tool.lineWidth;
+        context.lineJoin = context.lineCap = props.tool.lineStyle;
+
         context.lineTo(point.X, point.Y);
         context.stroke();
         let newElem: HistoryElem = {
             points: [point],
-            thickness: props.thickness,
-            color: props.color,
+            tool: { ...props.tool },
         };
         props.setHistory({
             ...props.history,
@@ -169,7 +161,7 @@ const Canvas = (props: any) => {
             props.setHistory({
                 ...props.history,
                 current: null,
-                latest: [...props.history.latest, props.history.current],
+                latest: [...props.history.latest, props.history.current!],
             });
             setDrawing(false);
         }
@@ -184,12 +176,8 @@ const Canvas = (props: any) => {
         }
     }
 
-    console.log(state.properties);
     return (
-        <div className="container__canvas">
-            <div style={{ display: "none", position: "absolute" }}>
-                {state.source && <img src={state.source} ref={imgRef} />}
-            </div>
+        <div style={{ overflow: "auto" }}>
             <div
                 style={{
                     width: state.properties.width,
@@ -201,7 +189,10 @@ const Canvas = (props: any) => {
                 onMouseLeave={(e) => StopDrawing(e)}
             >
                 <canvas
-                    style={{ backgroundColor: props.backgroundColor }}
+                    style={{
+                        backgroundColor: props.backgroundColor,
+                        cursor: "crosshair",
+                    }}
                     ref={drawLayer}
                     {...state.properties}
                 />

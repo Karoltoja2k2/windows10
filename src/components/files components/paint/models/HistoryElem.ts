@@ -1,7 +1,7 @@
 import Point from "../../../common/Point";
+import Tool from "./Tool";
 
 export default interface HistoryElem {
     points: Point[];
-    thickness: number | null;
-    color: string | null;
+    tool: Tool;
 }

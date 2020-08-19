@@ -1,3 +1,5 @@
+import Tool from "./models/Tool";
+
 function COLORS(): string[] {
     return [
         "#000000",
@@ -33,4 +35,21 @@ function COLORS(): string[] {
     ];
 }
 
-export default COLORS;
+function TOOLS(): Tool[] {
+    return [
+        {
+            name: "Rubber",
+            strokeStyle: "#ffffff",
+            lineWidth: 2,
+            lineStyle: "round",
+        },
+        {
+            name: "Pencil",
+            strokeStyle: "#000000",
+            lineWidth: 2,
+            lineStyle: "round",
+        },
+    ];
+}
+
+export { COLORS, TOOLS };
