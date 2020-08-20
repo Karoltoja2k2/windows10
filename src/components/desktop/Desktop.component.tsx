@@ -7,7 +7,7 @@ import Taskbar from "./Taskbar.component";
 import Background from "../../media/winxpbg.jpg";
 
 import File from "../../models/File";
-import Files from "../../models/fileStructure2";
+// import Files from "../../models/fileStructure2";
 import WindowsManager from "../../models/WindowsManager";
 import { RootState } from "../../reducers";
 import { useSelector, useDispatch } from "react-redux";
@@ -27,11 +27,15 @@ function Desktop(props: any) {
     const path = "Drive C:/Desktop/";
 
     const drive: File[] = useSelector((state: RootState) => state.driveReducer);
+
     const windowManager: WindowsManager = useSelector(
         (state: RootState) => state.windowsReducer
     );
 
     const [files, setFiles] = useState(drive.filter((x) => x.path === path));
+    useEffect(() => {
+        setFiles(drive.filter((x) => x.path === path))
+    }, [drive])
 
     useEffect(() => {
         dispatch(OpenWindow(drive.find((x) => x.title === "Paint")!));

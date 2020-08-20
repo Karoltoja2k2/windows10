@@ -18,8 +18,10 @@ export const CreateFile = (fileDto: CreateFileDto) => {
         extension: data.extension,
         title: fileDto.title,
         iconsrc: data.iconsrc,
-        prevFolder: fileDto.prevFolder,
-        content: data.content,
+        prevFolderId: fileDto.prevFolderId,
+        // If new file is .img then this is base64 string
+        // in future this should be only url to resource
+        content: fileDto.content,
     };
     return {
         type: "CREATE",

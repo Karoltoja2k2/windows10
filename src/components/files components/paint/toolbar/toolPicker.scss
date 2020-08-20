@@ -1,0 +1,13 @@
+.toolbar__tools {
+    height: 90px;
+    width: 100px;
+    .tools__tool {
+        width: 50px;
+        height: 50px;
+        background-color: red;
+        transition-duration: 0.2s;
+        &:hover {
+            transform: scale(1.15);
+        }
+    }
+}

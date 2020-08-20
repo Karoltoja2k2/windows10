@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import FileIcon from "../../common/icons/FileIcon.component";
-import Files from "../../../models/fileStructure2";
 import "./content.scss";
 import FolderIcon from "../../common/icons/folderIcon.component";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../reducers";
 
 const Content = (props: any) => {
-    let files = Files;
+    const drive: File[] = useSelector((state: RootState) => state.driveReducer);
 
     function HandleClick(e: React.MouseEvent){
         console.log(e.button)
@@ -18,7 +19,7 @@ const Content = (props: any) => {
     return (
         <div className="container__content">
             <div className="content__left scrollbar--dark">
-                {files.map((file: any, index: number) => (
+                {drive.map((file: any, index: number) => (
                     <FolderIcon
                         iconDisplay="inrow"
                         file={file}

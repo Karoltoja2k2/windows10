@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 import "./bar.scss";
-import Files from "../../../models/fileStructure2";
 import File from "../../../models/File";
 
 import {
@@ -12,12 +11,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FileIcon from "../../common/icons/FileIcon.component";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { OpenWindow, Navigate } from "../../../actions/windowsActions";
 import SearchResultIcon from "../../common/icons/searchResultIcon.component";
+import { RootState } from "../../../reducers";
 
 const Bar = (props: any) => {
     const dispatch = useDispatch();
+    const drive: File[] = useSelector((state: RootState) => state.driveReducer);
 
     const [search, setSearch] = useState({
         filter: "",
@@ -44,7 +45,7 @@ const Bar = (props: any) => {
             });
             return;
         }
-        let files = Files.filter((x) =>
+        let files = drive.filter((x) =>
             x.title.toLowerCase().includes(path.toLowerCase())
         );
         setSearch({
@@ -70,7 +71,7 @@ const Bar = (props: any) => {
         <div className="container__bar">
             <button
                 className={
-                    props.file.prevFolder != null
+                    props.file.prevFolderId != null
                         ? "bar__button bar__button--enabled"
                         : "bar__button bar__button--disabled"
                 }

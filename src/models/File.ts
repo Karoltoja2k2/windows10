@@ -5,7 +5,7 @@ interface File {
 	extension: string;
 	component: any;
 	iconsrc: string;
-	prevFolder?: File;
+	prevFolderId?: number;
 	content?: {};
 }
 

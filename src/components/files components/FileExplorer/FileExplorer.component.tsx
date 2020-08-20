@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./fileExplorer.scss";
-import "../../common/scrollbar--dark.scss"
+import "../../common/scrollbar--dark.scss";
 import WindowBase from "../../common/windowBase/WindowBase";
 
-import Files from "../../../models/fileStructure2";
 import File from "../../../models/File";
 
 import Bar from "./bar.component";
@@ -35,8 +34,8 @@ const FileExplorer = (props: any) => {
             filter: filter,
             files: drive.filter(
                 (x) =>
-                    x.prevFolder &&
-                    x.prevFolder.fileId === props.file.fileId &&
+                    x.prevFolderId &&
+                    x.prevFolderId === props.file.fileId &&
                     x.title.toLowerCase().includes(filter.toLowerCase())
             ),
         });
@@ -44,8 +43,8 @@ const FileExplorer = (props: any) => {
     // END
 
     const previousFolder = () => {
-        if (props.file.prevFolder) {
-            disptach(Navigate(props.id, props.file.prevFolder));
+        if (props.file.prevFolderId) {
+            disptach(Navigate(props.id, drive.find(x => x.fileId === props.file.prevFolderId)!));
         }
     };
 

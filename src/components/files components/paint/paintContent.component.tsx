@@ -1,27 +1,46 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./paintContent.scss";
 import Canvas from "../../common/canvas.component";
-import ColorPalletItem from "./colorPalletItem.component";
+import ColorPalletItem from "./toolbar/colorPalletItem.component";
 import History from "./models/History";
 import { COLORS, TOOLS } from "./const";
 import Tool from "./models/Tool";
+import { useDispatch, useSelector } from "react-redux";
+import CreateFileDto from "../../../models/CreateFileDto";
+import { CreateFile } from "../../../actions/driveActions";
+import { RootState } from "../../../reducers";
+import File from "../../../models/File";
+import ColorPallet from "./toolbar/colorPallet.component";
+import ToolPicker from "./toolbar/toolPicker.component";
+import { ToolType } from "./models/ToolType";
+import { stat } from "fs";
+import { SketchPicker } from "react-color";
 
-interface State {
+interface PaintContentState {
     properties: {
         width: number;
         height: number;
         top: number;
         left: number;
     };
-    backgroundColor: "#ffffff";
+    backgroundColor: string;
     img: HTMLImageElement | null;
     colors: string[];
     tools: Tool[];
     activeTool: Tool;
 }
 
-const Application = (props: any) => {
+interface PaintContentProps {
+    canvasWidth: number;
+    canvasHeight: number;
+    imgSource: string;
+    top: number;
+    left: number;
+}
+
+const PaintContent = (props: PaintContentProps) => {
     const imgRef = useRef<HTMLImageElement>(null);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
     const canvasOffset = {
         top: 130,
         left: 1,
@@ -32,7 +51,7 @@ const Application = (props: any) => {
         latest: [],
     });
 
-    const [state, setState] = useState<State>({
+    const [state, setState] = useState<PaintContentState>({
         properties: {
             width: props.canvasWidth,
             height: props.canvasHeight,
@@ -43,7 +62,7 @@ const Application = (props: any) => {
         img: null,
         colors: COLORS(),
         tools: TOOLS(),
-        activeTool: TOOLS().find((x) => x.name === "Pencil")!,
+        activeTool: TOOLS().find((x) => x.name === "PENCIL")!,
     });
 
     useEffect(() => {
@@ -57,26 +76,23 @@ const Application = (props: any) => {
         });
     }, [props.left, props.top]);
 
-    function HandleImageOnLoad() {
-        let img = imgRef.current!;
-        setState({
-            ...state,
-            properties: {
-                ...state.properties,
-                width: img.width,
-                height: img.height,
-            },
-            img: img,
-        });
-    }
-
     function SetColor(strokeStyle: string) {
         if (
             strokeStyle !== state.activeTool.strokeStyle &&
-            state.activeTool.name !== "Rubber"
+            state.activeTool.name !== "RUBBER"
         ) {
             UpdateTool(strokeStyle, state.activeTool.lineWidth);
         }
+    }
+
+    function SetTool(tool: ToolType) {
+        if (state.activeTool.name === tool) {
+            return;
+        }
+        setState({
+            ...state,
+            activeTool: state.tools.find((x) => x.name == tool)!,
+        });
     }
 
     function UpdateTool(strokeStyle: string, lineWidth: number) {
@@ -107,24 +123,59 @@ const Application = (props: any) => {
         }
     }
 
+    function HandleImageOnLoad() {
+        let img = imgRef.current!;
+        setState({
+            ...state,
+            properties: {
+                ...state.properties,
+                width: img.width,
+                height: img.height,
+            },
+            img: img,
+        });
+    }
+
+    const drive: File[] = useSelector((state: RootState) => state.driveReducer);
+    const dispatch = useDispatch();
+    function SaveImg() {
+        var canvas = canvasRef.current!;
+        var img = canvas.toDataURL("image/png");
+        let createFileDto: CreateFileDto = {
+            path: `Drive C:/Desktop/`,
+            componentId: 3,
+            title: "Nowe zdjęcie",
+            prevFolderId: drive.find((x) => x.fileId === 1)!.fileId,
+            content: {
+                source: img,
+            },
+        };
+        dispatch(CreateFile(createFileDto));
+    }
+
+    function Test(color: any) {
+        console.log(color);
+    }
+
     return (
         <div className="paint__container">
             <div className="container__toolbar">
                 <div
-                    className="toolbar__colors--chosen"
-                    style={{ backgroundColor: state.activeTool.strokeStyle }}
-                >
-                    {" "}
-                </div>
-                <div className="toolbar__colors">
-                    {state.colors.map((color: string, index: number) => (
-                        <ColorPalletItem
-                            color={color}
-                            setColor={SetColor}
-                            key={index}
-                        />
-                    ))}
-                </div>
+                    className=""
+                    style={{ width: 50, height: 50 }}
+                    onClick={() => {
+                        SaveImg();
+                    }}
+                ></div>
+
+                <ColorPallet
+                    colors={state.colors}
+                    chosenColor={
+                        state.tools.find((x) => x.name === "PENCIL")!
+                            .strokeStyle
+                    }
+                    SetColor={SetColor}
+                />
                 <div className="toolbar__thickness">
                     <input
                         type="range"
@@ -134,34 +185,14 @@ const Application = (props: any) => {
                         onChange={(e) => HandleSlider(e)}
                     />
                 </div>
-                <div className="toolbar__tools">
-                    <div
-                        className="tools_tool"
-                        onClick={() => {
-                            setState({
-                                ...state,
-                                activeTool: state.tools.find(
-                                    (x) => x.name === "Pencil"
-                                )!,
-                            });
-                        }}
-                    >
-                        <i className="fas fa-pencil-alt"></i>
-                    </div>
-                    <div
-                        className="tools_tool"
-                        onClick={() => {
-                            setState({
-                                ...state,
-                                activeTool: state.tools.find(
-                                    (x) => x.name === "Rubber"
-                                )!,
-                            });
-                        }}
-                    >
-                        <i className="fas fa-eraser"></i>
-                    </div>
-                </div>
+                <ToolPicker
+                    SetTool={SetTool}
+                    activeTool={state.activeTool}
+                    pencilColor={
+                        state.tools.find((x) => x.name === "PENCIL")!
+                            .strokeStyle
+                    }
+                />
             </div>
             <div
                 style={{
@@ -171,9 +202,9 @@ const Application = (props: any) => {
                     height: "100%",
                 }}
             >
-                {props.content?.source && (
+                {props.imgSource && (
                     <img
-                        src={props.content.source}
+                        src={props.imgSource}
                         ref={imgRef}
                         onLoad={() => {
                             HandleImageOnLoad();
@@ -181,12 +212,14 @@ const Application = (props: any) => {
                     />
                 )}
             </div>
+
             {state.img && (
                 <Canvas
                     properties={state.properties}
                     backgroundColor={state.backgroundColor}
                     tool={state.activeTool}
                     img={state.img}
+                    canvasRef={canvasRef}
                     history={history}
                     setHistory={setHistory}
                 />
@@ -197,6 +230,7 @@ const Application = (props: any) => {
                     backgroundColor={state.backgroundColor}
                     tool={state.activeTool}
                     img={null}
+                    canvasRef={canvasRef}
                     history={history}
                     setHistory={setHistory}
                 />
@@ -205,4 +239,4 @@ const Application = (props: any) => {
     );
 };
 
-export default Application;
+export default PaintContent;

@@ -1,4 +1,3 @@
-import Files from "../models/fileStructure2";
 import File from "../models/File";
 import FilesDto from "../data/files";
 import FileDto from "../data/FileDto";

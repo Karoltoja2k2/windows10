@@ -11,7 +11,7 @@ const PhotoDisplay = (props: any) => {
 			state={props.state}
 		>
 			<div className="photoContainer">
-				<img src={props.file.content.source} />
+				<img src={`${props.file.content.source}`} />
 			</div>
 		</WindowBase>
 	);

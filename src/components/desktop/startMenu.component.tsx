@@ -3,7 +3,6 @@ import "./startMenu.scss";
 import "../common/scrollbar--dark.scss";
 
 import StartMenuIcon from "../common/icons/startMenuIcon.component";
-import Files from "../../models/fileStructure2";
 import File from "../../models/File";
 import { useSelector } from "react-redux";
 import { RootState } from "../../reducers";

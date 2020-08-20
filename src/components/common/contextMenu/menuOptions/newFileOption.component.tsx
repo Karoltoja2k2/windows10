@@ -12,7 +12,7 @@ const NewFileOption = (props: any) => {
             path: `${props.file.path}${props.file.title}/`,
             componentId: 1,
             title: "GÓWNO",
-            prevFolder: props.file,
+            prevFolderId: props.file.fileId,
         };
         dispatch(CreateFile(createFileDto));
     }

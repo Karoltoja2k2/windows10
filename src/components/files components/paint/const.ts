@@ -38,13 +38,13 @@ function COLORS(): string[] {
 function TOOLS(): Tool[] {
     return [
         {
-            name: "Rubber",
+            name: "RUBBER",
             strokeStyle: "#ffffff",
             lineWidth: 2,
             lineStyle: "round",
         },
         {
-            name: "Pencil",
+            name: "PENCIL",
             strokeStyle: "#000000",
             lineWidth: 2,
             lineStyle: "round",
