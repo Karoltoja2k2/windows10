@@ -25,8 +25,10 @@ const WindowBase = (props: any) => {
         (state: RootState) => state.mouseReducer
     );
 
+    console.log("rerender windowbase");
+
     const [state, setState] = useState({
-        props: { ...props.state },
+        properties: { ...props.properties },
         drag: {
             dragging: false,
             offsetTop: 0,
@@ -41,7 +43,22 @@ const WindowBase = (props: any) => {
     });
 
     useEffect(() => {
-        if (props.state.isDragged) {
+        let fullscreen = props.properties.isFullscreen;
+        if (props.mobileMode) {
+            fullscreen = true;
+        }
+
+        setState({
+            ...state,
+            properties: {
+                ...state.properties,
+                isFullscreen: fullscreen,
+            },
+        });
+    }, [props.mobileMode]);
+
+    useEffect(() => {
+        if (props.properties.isDragged) {
             setState({
                 ...state,
                 dimensions: {
@@ -54,7 +71,7 @@ const WindowBase = (props: any) => {
     }, [mouseState.position]);
 
     useEffect(() => {
-        if (!props.state.isDragged) {
+        if (!props.properties.isDragged) {
             setState({
                 ...state,
                 drag: {
@@ -64,23 +81,23 @@ const WindowBase = (props: any) => {
                 },
             });
         }
-    }, [props.state.isDragged]);
+    }, [props.properties.isDragged]);
 
     useEffect(() => {
         setState({
             ...state,
-            props: { ...props.state },
+            properties: { ...props.properties },
         });
-    }, [props.state]);
+    }, [props.properties]);
 
     function TriggerMinimize() {
-        state.props.isMinimized
+        state.properties.isMinimized
             ? disptach(UnMinimizeWindow(props.id))
             : disptach(MinimizeWindow(props.id));
     }
 
     function TriggerFullscreen() {
-        state.props.isFullscreen
+        state.properties.isFullscreen
             ? disptach(ExitFullscreenWindow(props.id))
             : disptach(FullscreenWindow(props.id));
     }
@@ -91,7 +108,7 @@ const WindowBase = (props: any) => {
             return;
         }
 
-        if (!state.props.isFullscreen) {
+        if (!state.properties.isFullscreen) {
             setState({
                 ...state,
                 drag: {
@@ -106,27 +123,27 @@ const WindowBase = (props: any) => {
     }
 
     const resizableProps = {
-        className: state.props.isFocused
+        className: state.properties.isFocused
             ? "resizableWindow focused"
             : "resizableWindow",
         enable: {
             top: false,
-            right: !state.props.isFullscreen,
-            bottom: !state.props.isFullscreen,
+            right: !state.properties.isFullscreen,
+            bottom: !state.properties.isFullscreen,
             left: false,
             topRight: false,
-            bottomRight: !state.props.isFullscreen,
+            bottomRight: !state.properties.isFullscreen,
             bottomLeft: false,
             topLeft: false,
         },
-        size: !state.props.isFullscreen
+        size: !state.properties.isFullscreen
             ? {
                   width: state.dimensions.width,
                   height: state.dimensions.height,
               }
             : {
-                  width: "100%",
-                  height: "100%",
+                  width: window.innerWidth,
+                  height: window.innerHeight,
               },
     };
 
@@ -138,12 +155,12 @@ const WindowBase = (props: any) => {
             enable={resizableProps.enable}
             size={resizableProps.size}
             style={
-                !state.props.isFullscreen
+                !state.properties.isFullscreen
                     ? {
                           ...state.dimensions,
                           position: "absolute",
-                          zIndex: state.props.isFocused ? 4 : 3,
-                          visibility: state.props.isMinimized
+                          zIndex: state.properties.isFocused ? 4 : 3,
+                          visibility: state.properties.isMinimized
                               ? "hidden"
                               : "visible",
                       }
@@ -151,15 +168,15 @@ const WindowBase = (props: any) => {
                           top: 0,
                           left: 0,
                           position: "absolute",
-                          zIndex: state.props.isFocused ? 4 : 3,
-                          visibility: state.props.isMinimized
+                          zIndex: state.properties.isFocused ? 4 : 3,
+                          visibility: state.properties.isMinimized
                               ? "hidden"
                               : "visible",
                       }
             }
             onResizeStart={(e) => {
                 e.stopPropagation();
-                if (!state.props.isFocused) {
+                if (!state.properties.isFocused) {
                     disptach(FocusWindow(props.id));
                 }
             }}
@@ -179,7 +196,7 @@ const WindowBase = (props: any) => {
                 onMouseDown={(e) => {
                     e.stopPropagation();
                     disptach(LmbDown());
-                    if (!state.props.isFocused) {
+                    if (!state.properties.isFocused) {
                         disptach(FocusWindow(props.id));
                     }
                 }}
@@ -216,7 +233,7 @@ const WindowBase = (props: any) => {
                                 TriggerFullscreen();
                             }}
                         >
-                            {props.state.isFullscreen ? (
+                            {props.properties.isFullscreen ? (
                                 <i className="far fa-window-restore"></i>
                             ) : (
                                 <i className="far fa-window-maximize"></i>
@@ -233,10 +250,18 @@ const WindowBase = (props: any) => {
                     </div>
                 </div>
                 {React.cloneElement(props.children, {
-                    width: state.dimensions.width,
-                    height: state.dimensions.height,
-                    left: state.dimensions.left,
-                    top: state.dimensions.top,
+                    width: state.properties.isFullscreen
+                        ? window.innerWidth
+                        : state.dimensions.width,
+                    height: state.properties.isFullscreen
+                        ? window.innerHeight
+                        : state.dimensions.height,
+                    left: state.properties.isFullscreen
+                        ? 0
+                        : state.dimensions.left,
+                    top: state.properties.isFullscreen
+                        ? 0
+                        : state.dimensions.top,
                 })}
             </div>
         </Resizable>

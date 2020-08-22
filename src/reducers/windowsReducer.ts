@@ -6,6 +6,7 @@ import { bindActionCreators } from "redux";
 let windowsState = {
     freeWindowId: 1,
     openWindows: [],
+    mobileMode: false,
 };
 
 const windowsReducer = (state: WindowsManager = windowsState, action: any) => {
@@ -15,10 +16,13 @@ const windowsReducer = (state: WindowsManager = windowsState, action: any) => {
                 ...state,
                 openWindows: state.openWindows
                     .map((window) =>
-                        window.state.isFocused
+                        window.properties.isFocused
                             ? {
                                   ...window,
-                                  state: { ...window.state, isFocused: false },
+                                  state: {
+                                      ...window.properties,
+                                      isFocused: false,
+                                  },
                               }
                             : window
                     )
@@ -54,8 +58,8 @@ const windowsReducer = (state: WindowsManager = windowsState, action: any) => {
                     window.id === action.payload.windowId
                         ? {
                               ...window,
-                              state: {
-                                  ...window.state,
+                              properties: {
+                                  ...window.properties,
                                   isMinimized: true,
                                   isFocused: false,
                               },
@@ -71,17 +75,17 @@ const windowsReducer = (state: WindowsManager = windowsState, action: any) => {
                     window.id === action.payload.windowId
                         ? {
                               ...window,
-                              state: {
-                                  ...window.state,
+                              properties: {
+                                  ...window.properties,
                                   isMinimized: false,
                                   isFocused: true,
                               },
                           }
-                        : window.state.isFocused
+                        : window.properties.isFocused
                         ? {
                               ...window,
-                              state: {
-                                  ...window.state,
+                              properties: {
+                                  ...window.properties,
                                   isFocused: false,
                               },
                           }
@@ -94,8 +98,8 @@ const windowsReducer = (state: WindowsManager = windowsState, action: any) => {
                 ...state,
                 openWindows: state.openWindows.map((window) => ({
                     ...window,
-                    state: {
-                        ...window.state,
+                    properties: {
+                        ...window.properties,
                         isMinimized: true,
                         isFocused: false,
                     },
@@ -109,8 +113,8 @@ const windowsReducer = (state: WindowsManager = windowsState, action: any) => {
                     window.id === action.payload.windowId
                         ? {
                               ...window,
-                              state: {
-                                  ...window.state,
+                              properties: {
+                                  ...window.properties,
                                   isFullscreen: true,
                               },
                           }
@@ -126,8 +130,8 @@ const windowsReducer = (state: WindowsManager = windowsState, action: any) => {
                     window.id === action.payload.windowId
                         ? {
                               ...window,
-                              state: {
-                                  ...window.state,
+                              properties: {
+                                  ...window.properties,
                                   isFullscreen: false,
                               },
                           }
@@ -142,15 +146,15 @@ const windowsReducer = (state: WindowsManager = windowsState, action: any) => {
                     window.id === action.payload.windowId
                         ? {
                               ...window,
-                              state: {
-                                  ...window.state,
+                              properties: {
+                                  ...window.properties,
                                   isFocused: true,
                               },
                           }
                         : {
                               ...window,
-                              state: {
-                                  ...window.state,
+                              properties: {
+                                  ...window.properties,
                                   isFocused: false,
                               },
                           }
@@ -161,11 +165,11 @@ const windowsReducer = (state: WindowsManager = windowsState, action: any) => {
             return {
                 ...state,
                 openWindows: state.openWindows.map((window) =>
-                    window.state.isFocused
+                    window.properties.isFocused
                         ? {
                               ...window,
-                              state: {
-                                  ...window.state,
+                              properties: {
+                                  ...window.properties,
                                   isFocused: false,
                               },
                           }
@@ -180,8 +184,8 @@ const windowsReducer = (state: WindowsManager = windowsState, action: any) => {
                     window.id === action.payload.windowId
                         ? {
                               ...window,
-                              state: {
-                                  ...window.state,
+                              properties: {
+                                  ...window.properties,
                                   isDragged: true,
                               },
                           }
@@ -193,16 +197,23 @@ const windowsReducer = (state: WindowsManager = windowsState, action: any) => {
             return {
                 ...state,
                 openWindows: state.openWindows.map((window) =>
-                    window.state.isDragged
+                    window.properties.isDragged
                         ? {
                               ...window,
-                              state: {
-                                  ...window.state,
+                              properties: {
+                                  ...window.properties,
                                   isDragged: false,
                               },
                           }
                         : window
                 ),
+            };
+
+        case "MOBILE_MODE":
+            console.log(action.payload.stateToSet)
+            return {
+                ...state,
+                mobileMode: action.payload.stateToSet,
             };
         default:
             return state;

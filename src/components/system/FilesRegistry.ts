@@ -1,36 +1,44 @@
 import File from "../../models/File";
-import Snake from "./snake/snake.component";
-import FileExplorer from "./FileExplorer/FileExplorer.component";
-import PhotoDisplay from "./PhotoDisplay/PhotoDisplay";
-import Explorer from "./Browser/Explorer";
-import Paint from "./paint/paint.component";
+import Snake from "../files components/snake/snake.component";
+import FileExplorer from "../files components/FileExplorer/FileExplorer.component";
+import PhotoDisplay from "../files components/PhotoDisplay/PhotoDisplay";
+import Explorer from "../files components/Browser/Explorer";
+import Paint from "../files components/paint/paint.component";
 
 import logo192 from "../../media/logo192.png";
 import chrome from "../../media/chrome.png";
 import windrive from "../../media/windrive.png";
 import foldericon from "../../media/folder.png";
 
-const GetFileComponentById = (id: number): any => {
+export enum FileRegistry {
+    FileExlorer = 1,
+    Snake,
+    PhotoDisplay,
+    Browser,
+    Paint,
+}
+
+export default FileRegistry;
+
+export const GetFileComponentById = (id: number): any => {
     switch (id) {
-        case 1:
+        case FileRegistry.FileExlorer:
             return {
                 component: FileExplorer,
                 iconsrc: foldericon,
                 extension: ".fld",
             };
-        case 2:
+        case FileRegistry.Snake:
             return { component: Snake, iconsrc: logo192, extension: ".exe" };
-        case 3:
+        case FileRegistry.PhotoDisplay:
             return {
                 component: PhotoDisplay,
                 iconsrc: logo192,
                 extension: ".img",
             };
-        case 4:
+        case FileRegistry.Browser:
             return { component: Explorer, iconsrc: logo192, extension: ".exe" };
-        case 5:
+        case FileRegistry.Paint:
             return { component: Paint, iconsrc: logo192, extension: ".exe" };
     }
 };
-
-export default GetFileComponentById;

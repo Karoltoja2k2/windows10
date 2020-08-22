@@ -80,14 +80,21 @@ export const DragWindow = (windowId: number) => {
 
 export const EndDragWindow = () => {
     return {
-        type: "ENDDRAG"
+        type: "ENDDRAG",
+    };
+};
+
+export const MobileMode = (stateToSet: boolean) => {
+    return {
+        type: "MOBILE_MODE",
+        payload: {stateToSet},
     };
 };
 
 function NewWindow(id: number, file: File): Window {
     return {
         id: id,
-        state: {
+        properties: {
             isDragged: false,
             isFocused: true,
             isMinimized: false,

@@ -44,12 +44,22 @@ const FileExplorer = (props: any) => {
 
     const previousFolder = () => {
         if (props.file.prevFolderId) {
-            disptach(Navigate(props.id, drive.find(x => x.fileId === props.file.prevFolderId)!));
+            disptach(
+                Navigate(
+                    props.id,
+                    drive.find((x) => x.fileId === props.file.prevFolderId)!
+                )
+            );
         }
     };
 
     return (
-        <WindowBase id={props.id} file={props.file} state={props.state}>
+        <WindowBase
+            id={props.id}
+            file={props.file}
+            properties={props.properties}
+            mobileMode={props.mobileMode}
+        >
             <div className="fileExplorer__container">
                 <Bar
                     previousFolder={previousFolder}
@@ -75,7 +85,8 @@ const FileExplorer = (props: any) => {
 export default React.memo(FileExplorer, (prevProps, nextProps) => {
     return (
         prevProps.file === nextProps.file &&
-        prevProps.state === nextProps.state &&
-        nextProps.state.isDragged !== true
+        prevProps.properties === nextProps.properties &&
+        nextProps.properties.isDragged !== true &&
+        prevProps.mobileMode === nextProps.mobileMode
     );
 });

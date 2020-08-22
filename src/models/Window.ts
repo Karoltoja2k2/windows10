@@ -2,7 +2,7 @@ import File from "./File";
 
 export default interface Window {
     id: number;
-    state: {
+    properties: {
         top?: number;
         left?: number;
         width?: number;

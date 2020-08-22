@@ -16,6 +16,7 @@ import {
     UnFocusWindows,
     EndDragWindow,
     OpenWindow,
+    MobileMode,
 } from "../../actions/windowsActions";
 import { LmbUp, SetPosition, LmbDown } from "../../actions/mouseActions";
 import DesktopIcon from "../common/icons/desktopIcon.component";
@@ -32,12 +33,23 @@ function Desktop(props: any) {
         (state: RootState) => state.windowsReducer
     );
 
+    function HandleResize(e: UIEvent) {
+        if (window.innerWidth < 700) {
+            dispatch(MobileMode(true));
+        }
+        if (window.innerWidth >= 700) {
+            dispatch(MobileMode(false));
+        }
+    }
+
     const [files, setFiles] = useState(drive.filter((x) => x.path === path));
     useEffect(() => {
-        setFiles(drive.filter((x) => x.path === path))
-    }, [drive])
+        setFiles(drive.filter((x) => x.path === path));
+    }, [drive]);
 
     useEffect(() => {
+        window.addEventListener("resize", (e) => HandleResize(e));
+
         dispatch(OpenWindow(drive.find((x) => x.title === "Paint")!));
     }, []);
 
@@ -72,7 +84,8 @@ function Desktop(props: any) {
                             key={window.id}
                             file={window.file}
                             id={window.id}
-                            state={window.state}
+                            properties={window.properties}
+                            mobileMode={windowManager.mobileMode}
                         />
                     ))}
 

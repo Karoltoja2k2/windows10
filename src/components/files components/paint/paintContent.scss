@@ -23,7 +23,24 @@
         overflow-x: auto;
         overflow-y: hidden;
 
-        
+        .toolbar__colors{
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+
+            .colors__button{
+                background-color: red;
+            }
+
+            .colors__dropdown{
+                position: absolute;
+                width: 100px;
+                height: 200px;
+                min-height: 200px;
+                z-index: 100;
+                background-color: blueviolet;
+            }
+        }
     }
 
     .container__canvas {

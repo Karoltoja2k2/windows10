@@ -14,7 +14,7 @@ import ColorPallet from "./toolbar/colorPallet.component";
 import ToolPicker from "./toolbar/toolPicker.component";
 import { ToolType } from "./models/ToolType";
 import { stat } from "fs";
-import { SketchPicker } from "react-color";
+import { SketchPicker, CompactPicker } from "react-color";
 
 interface PaintContentState {
     properties: {
@@ -162,20 +162,27 @@ const PaintContent = (props: PaintContentProps) => {
             <div className="container__toolbar">
                 <div
                     className=""
-                    style={{ width: 50, height: 50 }}
+                    style={{
+                        width: 50,
+                        height: 50,
+                        color: "red",
+                        fontSize: 30,
+                    }}
                     onClick={() => {
                         SaveImg();
                     }}
-                ></div>
+                >
+                    <i className="fas fa-caret-square-down"></i>
+                </div>
 
-                <ColorPallet
-                    colors={state.colors}
-                    chosenColor={
+                <CompactPicker
+                    color={
                         state.tools.find((x) => x.name === "PENCIL")!
                             .strokeStyle
                     }
-                    SetColor={SetColor}
+                    onChange={(color) => SetColor(color.hex)}
                 />
+
                 <div className="toolbar__thickness">
                     <input
                         type="range"

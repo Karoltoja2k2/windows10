@@ -4,24 +4,25 @@ import Logo from "../../media/win_logo.png";
 import "./photoDisplay.scss";
 
 const PhotoDisplay = (props: any) => {
-	return (
-		<WindowBase
-			id={props.id}
-			file={props.file}
-			state={props.state}
-		>
-			<div className="photoContainer">
-				<img src={`${props.file.content.source}`} />
-			</div>
-		</WindowBase>
-	);
+    return (
+        <WindowBase
+            id={props.id}
+            file={props.file}
+            properties={props.properties}
+            mobileMode={props.mobileMode}
+        >
+            <div className="photoContainer">
+                <img src={`${props.file.content.source}`} />
+            </div>
+        </WindowBase>
+    );
 };
 
 export default React.memo(PhotoDisplay, (prevProps, nextProps) => {
     return (
         prevProps.file === nextProps.file &&
-        prevProps.state === nextProps.state &&
-        nextProps.state.isDragged !== true
+        prevProps.properties === nextProps.properties &&
+        nextProps.properties.isDragged !== true &&
+        prevProps.mobileMode === nextProps.mobileMode
     );
 });
-

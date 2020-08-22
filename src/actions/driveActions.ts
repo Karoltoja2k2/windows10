@@ -1,6 +1,6 @@
 import CreateFileDto from "../models/CreateFileDto";
 import File from "../models/File";
-import GetFileComponentById from "../components/files components/FilesRegistry";
+import {GetFileComponentById} from "../components/system/FilesRegistry";
 
 export const DeleteFile = (fileToDelete: File) => {
     return {

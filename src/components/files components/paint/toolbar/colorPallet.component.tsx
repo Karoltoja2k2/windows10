@@ -9,10 +9,7 @@ const ColorPallet = (props: any) => {
         <div className="toolbar__colorPallet">
             <div
                 className="colorPallet__sketchPicker"            >
-                <CompactPicker
-                    color={props.chosenColor}
-                    onChange={(color) => props.SetColor(color.hex)}
-                />
+                
             </div>
         </div>
     );

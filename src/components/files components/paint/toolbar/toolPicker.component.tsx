@@ -7,7 +7,6 @@ const ToolPicker = (props: any) => {
         <div className="toolbar__tools">
             <div
                 className="tools__tool"
-                style={{ color: props.pencilColor }}
                 onClick={() => {
                     props.SetTool("PENCIL");
                 }}

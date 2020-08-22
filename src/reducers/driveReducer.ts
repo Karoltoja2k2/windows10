@@ -1,7 +1,7 @@
 import File from "../models/File";
 import FilesDto from "../data/files";
 import FileDto from "../data/FileDto";
-import GetFileComponentById from "../components/files components/FilesRegistry";
+import {GetFileComponentById} from "../components/system/FilesRegistry";
 
 const driveReducer = (state: File[] = [], action: any) => {
     switch (action.type) {

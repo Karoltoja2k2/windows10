@@ -18,7 +18,7 @@ const TaskBarItem = (props: any) => {
         (state: RootState) => state.windowsReducer
     );
     const dispatch = useDispatch();
-    const state = props.window.state;
+    const state = props.window.properties;
 
     return (
         <div
