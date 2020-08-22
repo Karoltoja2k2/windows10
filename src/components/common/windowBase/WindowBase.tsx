@@ -97,9 +97,11 @@ const WindowBase = (props: any) => {
     }
 
     function TriggerFullscreen() {
-        state.properties.isFullscreen
-            ? disptach(ExitFullscreenWindow(props.id))
-            : disptach(FullscreenWindow(props.id));
+        if (!props.mobileMode) {
+            state.properties.isFullscreen
+                ? disptach(ExitFullscreenWindow(props.id))
+                : disptach(FullscreenWindow(props.id));
+        }
     }
 
     function StartDrag(e: React.MouseEvent) {

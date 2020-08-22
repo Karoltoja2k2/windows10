@@ -1,20 +1,39 @@
 .toolbar__colorPallet {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    // padding: 2px;
+    // border: 1px solid gray;
     .colorPallet__chosenColor {
-        height: 90px;
-        width: 80px;
+        display: flex;
+        justify-content: space-between;
+
+        .colorPallet__chosenColor--rgb {
+            text-align: center;
+            height: 30px;
+            width: 25px;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            outline: none;
+        }
+
+        .colorPallet__chosenColor--hex {
+            text-align: center;
+
+            height: 30px;
+            width: 55px;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            outline: none;
+        }
     }
 
     .colorPallet__colors {
         width: auto;
         display: grid;
-        grid-template-rows: repeat(3, 30px);
-        grid-template-columns: repeat(10, 30px);
-    }
-
-    .colorPallet__sketchPicker {
-        height: 80px;
-        width: 300px;
+        grid-gap: 1px;
+        grid-template-rows: repeat(2, 22px);
+        grid-template-columns: repeat(10, 22px);
     }
 }

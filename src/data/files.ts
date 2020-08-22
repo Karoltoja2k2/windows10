@@ -64,7 +64,15 @@ const snake: FileDto = {
     prevFolderId: desktop.fileId,
 };
 
-const browser: FileDto = {
+const mineswepper: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/",
+    title: "Mineswepper",
+    componentId: FileRegistry.Mineswepper,
+    prevFolderId: desktop.fileId,
+};
+
+const resume: FileDto = {
     fileId: id++,
     path: "Drive C:/Desktop/",
     title: "Resume",
@@ -102,7 +110,8 @@ const testfolder2: FileDto = {
 FilesDto.push(
     driveC,
     desktop,
-    browser,
+    mineswepper,
+    resume,
     lennaimg,
     paint,
     snake,

@@ -15,6 +15,7 @@ import ToolPicker from "./toolbar/toolPicker.component";
 import { ToolType } from "./models/ToolType";
 import { stat } from "fs";
 import { SketchPicker, CompactPicker } from "react-color";
+import PaintToolbar from "./toolbar/paintToolbar.component";
 
 interface PaintContentState {
     properties: {
@@ -116,7 +117,7 @@ const PaintContent = (props: PaintContentProps) => {
         });
     }
 
-    function HandleSlider(e: React.ChangeEvent<HTMLInputElement>) {
+    function SetThickness(e: React.ChangeEvent<HTMLInputElement>) {
         let newValue = parseInt(e.target.value);
         if (newValue !== state.activeTool.lineWidth) {
             UpdateTool(state.activeTool.strokeStyle, newValue);
@@ -153,72 +154,30 @@ const PaintContent = (props: PaintContentProps) => {
         dispatch(CreateFile(createFileDto));
     }
 
-    function Test(color: any) {
-        console.log(color);
-    }
-
     return (
         <div className="paint__container">
-            <div className="container__toolbar">
-                <div
-                    className=""
+            <PaintToolbar
+                SaveImg={SaveImg}
+                tools={state.tools}
+                activeTool={state.activeTool}
+                SetTool={SetTool}
+                SetColor={SetColor}
+                SetThickness={SetThickness}
+            />
+
+            {props.imgSource && (
+                <img
                     style={{
-                        width: 50,
-                        height: 50,
-                        color: "red",
-                        fontSize: 30,
+                        display: "none",
+                        position: "absolute",
                     }}
-                    onClick={() => {
-                        SaveImg();
+                    src={props.imgSource}
+                    ref={imgRef}
+                    onLoad={() => {
+                        HandleImageOnLoad();
                     }}
-                >
-                    <i className="fas fa-caret-square-down"></i>
-                </div>
-
-                <CompactPicker
-                    color={
-                        state.tools.find((x) => x.name === "PENCIL")!
-                            .strokeStyle
-                    }
-                    onChange={(color) => SetColor(color.hex)}
                 />
-
-                <div className="toolbar__thickness">
-                    <input
-                        type="range"
-                        min="1"
-                        max="10"
-                        value={state.activeTool.lineWidth}
-                        onChange={(e) => HandleSlider(e)}
-                    />
-                </div>
-                <ToolPicker
-                    SetTool={SetTool}
-                    activeTool={state.activeTool}
-                    pencilColor={
-                        state.tools.find((x) => x.name === "PENCIL")!
-                            .strokeStyle
-                    }
-                />
-            </div>
-            <div
-                style={{
-                    display: "none",
-                    position: "absolute",
-                    width: "100%",
-                    height: "100%",
-                }}
-            >
-                {props.imgSource && (
-                    <img
-                        src={props.imgSource}
-                        ref={imgRef}
-                        onLoad={() => {
-                            HandleImageOnLoad();
-                        }}
-                    />
-                )}
-            </div>
+            )}
 
             {state.img && (
                 <Canvas

@@ -4,17 +4,17 @@ import "./colorPalletItem.scss";
 const ColorPalletItem = (props: any) => {
     return (
         <button
-            className="item"
+            className="colors__item"
             style={{
                 backgroundColor: props.color !== "" ? props.color : "#ffffff",
             }}
             onClick={() => {
                 if (props.color !== "") {
-                    props.setColor(props.color);
+                    props.SetColor(props.color);
                 }
             }}
         ></button>
     );
 };
 
-export default ColorPalletItem;
+export default React.memo(ColorPalletItem);

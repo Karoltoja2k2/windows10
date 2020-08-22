@@ -3,7 +3,7 @@ import Tool from "./models/Tool";
 function COLORS(): string[] {
     return [
         "#000000",
-        "#7f7f7f",
+        "#ffffff",
         "#880015",
         "#ed1c24",
         "#ff7f27",
@@ -12,7 +12,7 @@ function COLORS(): string[] {
         "#00a2e8",
         "#3f48cc",
         "#a349a4",
-        "#ffffff",
+        "#7f7f7f",
         "#c3c3c3",
         "#b97a57",
         "#ffaec9",
