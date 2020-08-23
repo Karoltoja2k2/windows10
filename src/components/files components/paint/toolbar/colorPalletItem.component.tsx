@@ -6,12 +6,10 @@ const ColorPalletItem = (props: any) => {
         <button
             className="colors__item"
             style={{
-                backgroundColor: props.color !== "" ? props.color : "#ffffff",
+                backgroundColor: props.color,
             }}
             onClick={() => {
-                if (props.color !== "") {
                     props.SetColor(props.color);
-                }
             }}
         ></button>
     );

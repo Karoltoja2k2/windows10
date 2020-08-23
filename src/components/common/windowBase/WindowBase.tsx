@@ -25,8 +25,6 @@ const WindowBase = (props: any) => {
         (state: RootState) => state.mouseReducer
     );
 
-    console.log("rerender windowbase");
-
     const [state, setState] = useState({
         properties: { ...props.properties },
         drag: {

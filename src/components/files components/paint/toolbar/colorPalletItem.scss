@@ -3,7 +3,7 @@
     height: 100%;
     outline: none;
     border: none;
-    transition-duration: 0.2s;
+    transition: scale 0.2s;
     &:hover{
         transform: scale(1.15);
         z-index: 5;

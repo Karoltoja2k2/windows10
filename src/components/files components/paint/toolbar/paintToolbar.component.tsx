@@ -31,7 +31,7 @@ const PaintToolbar = (props: any) => {
                     onChange={(color) => props.SetColor(color.hex)}
                 /> */}
 
-                <ColorPallet chosenColor={props.activeTool.strokeStyle} SetColor={props.SetColor}/>
+                <ColorPallet SetColor={props.SetColor} chosenColor={props.tools.find((x: any) => x.name === "PENCIL").strokeStyle}/>
 
                 <div className="toolbar__thickness">
                     <input
