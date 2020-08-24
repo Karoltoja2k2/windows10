@@ -1,5 +1,5 @@
 import React from "react";
-import "./colorPalletItem.scss";
+import "./toolbarTools.scss"
 
 const ColorPalletItem = (props: any) => {
     return (

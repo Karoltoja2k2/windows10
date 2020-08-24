@@ -1,55 +1,71 @@
-import React from "react";
+import React, { useState } from "react";
 import "./paintToolbar.scss";
-import ToolPicker from "./toolPicker.component";
-import { CompactPicker } from "react-color";
-import Tool from '../models/Tool'
-import ColorPallet from "./colorPallet.component";
+import ToolbarTools from "./tools/toolbarTools.component";
+import ToolbarFile from "./file/toolbarFile.component";
+
+enum Tab {
+    File = 1,
+    Tools,
+    ViewSettings,
+}
 
 const PaintToolbar = (props: any) => {
-    return (
-        <div className="container__toolbar">
-            <div
-                    className=""
-                    style={{
-                        width: 50,
-                        height: 50,
-                        color: "red",
-                        fontSize: 30,
-                    }}
-                    onClick={() => {
-                        props.SaveImg();
-                    }}
-                >
-                    <i className="fas fa-caret-square-down"></i>
-                </div>
+    const [openTab, setOpenTab] = useState(
+        Tab.Tools
+);
 
-                {/* <CompactPicker
-                    color={
-                        props.tools.find((x: Tool) => x.name === "PENCIL")!
-                            .strokeStyle
-                    }
-                    onChange={(color) => props.SetColor(color.hex)}
-                /> */}
-
-                <ColorPallet SetColor={props.SetColor} chosenColor={props.tools.find((x: any) => x.name === "PENCIL").strokeStyle}/>
-
-                <div className="toolbar__thickness">
-                    <input
-                        type="range"
-                        min="1"
-                        max="10"
-                        value={props.activeTool.lineWidth}
-                        onChange={(e) => props.SetThickness(e)}
+    function RenderOpenTab() {
+        switch (openTab) {
+            case Tab.File:
+                return <ToolbarFile />;
+            case Tab.Tools:
+                return (
+                    <ToolbarTools
+                        SaveImg={props.SaveImg}
+                        tools={props.tools}
+                        activeTool={props.activeTool}
+                        SetTool={props.SetTool}
+                        SetColor={props.SetColor}
+                        SetThickness={props.SetThickness}
+                        UndoAction={props.UndoAction}
                     />
+                );
+            case Tab.ViewSettings:
+                return <div className=""></div>;
+        }
+    }
+
+    return (
+        <div className="">
+            <div className="container__toolbar">
+                <div className="toolbar__bookmarks">
+                    <div
+                        className={openTab === Tab.File ? "bookmark--blue" : "bookmark--classic"}
+                        onClick={() => {
+                            setOpenTab(Tab.File)}}
+                    >
+                        File
+                    </div>
+                    <div
+                        className={openTab === Tab.Tools ? "bookmark--blue" : "bookmark--classic"}
+                        onClick={() => {
+                            setOpenTab(Tab.Tools)
+                        }}
+                    >
+                        Tools
+                    </div>
+                    <div
+                        className={openTab === Tab.ViewSettings ? "bookmark--blue" : "bookmark--classic"}
+                        onClick={() => {
+                            setOpenTab(Tab.ViewSettings );
+                        }}
+                    >
+                        View settings
+                    </div>
                 </div>
-                <ToolPicker
-                    SetTool={props.SetTool}
-                    activeTool={props.activeTool}
-                    pencilColor={
-                        props.tools.find((x: Tool) => x.name === "PENCIL")!
-                            .strokeStyle
-                    }
-                />
+
+                {RenderOpenTab()}
+            </div>
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./paintContent.scss";
 import Canvas from "../../common/canvas.component";
-import ColorPalletItem from "./toolbar/colorPalletItem.component";
+import ColorPalletItem from "./toolbar/tools/colorPalletItem.component";
 import History from "./models/History";
 import { COLORS, TOOLS } from "./const";
 import Tool from "./models/Tool";
@@ -10,12 +10,13 @@ import CreateFileDto from "../../../models/CreateFileDto";
 import { CreateFile } from "../../../actions/driveActions";
 import { RootState } from "../../../reducers";
 import File from "../../../models/File";
-import ColorPallet from "./toolbar/colorPallet.component";
-import ToolPicker from "./toolbar/toolPicker.component";
+import ColorPallet from "./toolbar/tools/colorPallet.component";
+import ToolPicker from "./toolbar/tools/toolPicker.component";
 import { ToolType } from "./models/ToolType";
 import { stat } from "fs";
 import { SketchPicker, CompactPicker } from "react-color";
 import PaintToolbar from "./toolbar/paintToolbar.component";
+import HistoryElem from "./models/HistoryElem";
 
 interface PaintContentState {
     properties: {
@@ -34,7 +35,7 @@ interface PaintContentState {
 interface PaintContentProps {
     canvasWidth: number;
     canvasHeight: number;
-    imgSource: string;
+    imgSource: string | null;
     top: number;
     left: number;
 }
@@ -43,8 +44,8 @@ const PaintContent = (props: PaintContentProps) => {
     const imgRef = useRef<HTMLImageElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const canvasOffset = {
-        top: 130,
-        left: 1,
+        top: 155,
+        left: 6,
     };
 
     const [history, setHistory] = useState<History>({
@@ -154,6 +155,31 @@ const PaintContent = (props: PaintContentProps) => {
         dispatch(CreateFile(createFileDto));
     }
 
+    function RedrawAll() {
+        const canvas: HTMLCanvasElement = canvasRef.current!;
+        const context: CanvasRenderingContext2D = canvas.getContext("2d")!;
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        if (state.img !== null) {
+            context.drawImage(state.img, 0, 0);
+        }
+
+        var lines: HistoryElem[] = history.latest;
+        lines.pop();
+        for (let line of lines) {
+            context.strokeStyle = line.tool.strokeStyle;
+            context.lineWidth = line.tool.lineWidth;
+            context.lineJoin = context.lineCap = line.tool.lineStyle;
+            context.beginPath();
+            context.moveTo(line.points[0].X, line.points[0].Y);
+            line.points.map((point) => {
+                context.lineTo(point.X, point.Y);
+                context.stroke();
+            });
+        }
+
+        setHistory({ ...history, latest: [...lines] });
+    }
+
     return (
         <div className="paint__container">
             <PaintToolbar
@@ -163,7 +189,10 @@ const PaintContent = (props: PaintContentProps) => {
                 SetTool={SetTool}
                 SetColor={SetColor}
                 SetThickness={SetThickness}
+                UndoAction={RedrawAll}
             />
+
+            {/* <div className="container__menu"></div> */}
 
             {props.imgSource && (
                 <img

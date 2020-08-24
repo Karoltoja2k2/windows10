@@ -8,6 +8,7 @@ import Snake from "../components/files components/snake/snake.component";
 import winxpbg from "../media/winxpbg.jpg";
 import lenna from "../media/lenna.jpg";
 import xd from "../media/xd.png";
+import papa from "../media/yellowman.jpg"
 
 // Icons
 import logo192 from "../media/logo192.png";
@@ -47,6 +48,18 @@ const lennaimg: FileDto = {
         source: lenna,
     },
 };
+
+const papaimg: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/",
+    title: "Test",
+    componentId: FileRegistry.PhotoDisplay,
+    prevFolderId: desktop.fileId,
+    content: {
+        source: papa,
+    },
+};
+
 
 const paint: FileDto = {
     fileId: id++,
@@ -113,6 +126,7 @@ FilesDto.push(
     mineswepper,
     resume,
     lennaimg,
+    papaimg,
     paint,
     snake,
     winimg,

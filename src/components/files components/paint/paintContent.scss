@@ -8,6 +8,13 @@
     z-index: inherit;
 
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;
 
+    .container__menu {
+        position: absolute;
+        height: 300px;
+        width: 100px;
+        background-color: green;
+        z-index: 10;
+    }
 }

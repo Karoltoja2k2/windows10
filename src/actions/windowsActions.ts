@@ -9,6 +9,15 @@ export const OpenWindow = (fileToOpen: File) => {
     };
 };
 
+export const OpenAs = (fileToOpen: File, openAsFile: File) => {
+    let window = NewWindow(0, openAsFile);
+    window.file.content = fileToOpen.content;
+    return {
+        type: "OPEN",
+        payload: { window },
+    };
+};
+
 export const CloseWIndow = (windowId: number) => {
     return {
         type: "CLOSE",

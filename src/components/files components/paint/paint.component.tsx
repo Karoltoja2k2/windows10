@@ -5,6 +5,7 @@ import PaintContent from "./paintContent.component";
 import IMAGE from "../../../media/bg.jpg";
 
 const Paint = (props: any) => {
+    console.log(props.file)
     return (
         <WindowBase
             id={props.id}
@@ -12,14 +13,20 @@ const Paint = (props: any) => {
             properties={props.properties}
             mobileMode={props.mobileMode}
         >
-            {/* <Application canvasWidth={600} canvasHeight={400} left={0} top={0}/> */}
             <PaintContent
+                canvasWidth={600}
+                canvasHeight={400}
+                imgSource={props.file.content?.source}
+                left={0}
+                top={0}
+            />
+            {/* <PaintContent
                 canvasWidth={600}
                 canvasHeight={400}
                 imgSource={IMAGE}
                 left={0}
                 top={0}
-            />
+            /> */}
         </WindowBase>
     );
 };

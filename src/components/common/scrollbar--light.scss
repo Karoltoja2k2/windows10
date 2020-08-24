@@ -1,4 +1,4 @@
-.scrollbar--dark {
+.scrollbar--light {
     &::-webkit-scrollbar {
         width: 10px;
         margin: 0px;
@@ -7,15 +7,15 @@
 
     /* Track */
     &::-webkit-scrollbar-track {
-        background-color: #171717;
+        background-color: #f1f1f1;
     }
 
     /* Handle */
     &::-webkit-scrollbar-thumb {
         border-radius: 3px;
-        background-color: #4d4d4d;
+        background-color: #c1c1c1;
         &:hover {
-            background-color: #7a7a7a;
+            background-color: #a8a8a8;
         }
     }
 }

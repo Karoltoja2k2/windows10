@@ -1,1 +1,1 @@
-export type ToolType = "PENCIL" | "RUBBER";
+export type ToolType = "PENCIL" | "RUBBER" | "SELECTOR";

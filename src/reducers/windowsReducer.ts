@@ -33,6 +33,28 @@ const windowsReducer = (state: WindowsManager = windowsState, action: any) => {
                 freeWindowId: state.freeWindowId + 1,
             };
 
+        case "OPEN_AS":
+            return {
+                ...state,
+                openWindows: state.openWindows
+                    .map((window) =>
+                        window.properties.isFocused
+                            ? {
+                                  ...window,
+                                  state: {
+                                      ...window.properties,
+                                      isFocused: false,
+                                  },
+                              }
+                            : window
+                    )
+                    .concat({
+                        ...action.payload.window,
+                        id: state.freeWindowId,
+                    }),
+                freeWindowId: state.freeWindowId + 1,
+            };
+
         case "CLOSE":
             return {
                 ...state,
@@ -210,7 +232,7 @@ const windowsReducer = (state: WindowsManager = windowsState, action: any) => {
             };
 
         case "MOBILE_MODE":
-            console.log(action.payload.stateToSet)
+            console.log(action.payload.stateToSet);
             return {
                 ...state,
                 mobileMode: action.payload.stateToSet,
