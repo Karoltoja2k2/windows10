@@ -3,9 +3,12 @@ import WindowBase from "../../common/windowBase/WindowBase";
 import Logo from "../../media/win_logo.png";
 import PaintContent from "./paintContent.component";
 import IMAGE from "../../../media/bg.jpg";
+import { Provider } from "react-redux";
+import PaintSettings from "./paintSettings.component";
+import PaintApp from "./paintApp.component";
 
 const Paint = (props: any) => {
-    console.log(props.file)
+    // console.log(props.file)
     return (
         <WindowBase
             id={props.id}
@@ -13,20 +16,7 @@ const Paint = (props: any) => {
             properties={props.properties}
             mobileMode={props.mobileMode}
         >
-            <PaintContent
-                canvasWidth={600}
-                canvasHeight={400}
-                imgSource={props.file.content?.source}
-                left={0}
-                top={0}
-            />
-            {/* <PaintContent
-                canvasWidth={600}
-                canvasHeight={400}
-                imgSource={IMAGE}
-                left={0}
-                top={0}
-            /> */}
+            <PaintApp file={props.file} />
         </WindowBase>
     );
 };

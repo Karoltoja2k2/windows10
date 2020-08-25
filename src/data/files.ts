@@ -8,7 +8,7 @@ import Snake from "../components/files components/snake/snake.component";
 import winxpbg from "../media/winxpbg.jpg";
 import lenna from "../media/lenna.jpg";
 import xd from "../media/xd.png";
-import papa from "../media/yellowman.jpg"
+import papa from "../media/yellowman.jpg";
 
 // Icons
 import logo192 from "../media/logo192.png";
@@ -18,7 +18,7 @@ import foldericon from "../media/folder.png";
 
 import File from "../models/File";
 import FileDto from "./FileDto";
-import { FileRegistry } from "../components/system/FilesRegistry";
+import FileRegistry from "../components/system/FileRegistry";
 
 const FilesDto: FileDto[] = [];
 let id: number = 0;
@@ -59,7 +59,6 @@ const papaimg: FileDto = {
         source: papa,
     },
 };
-
 
 const paint: FileDto = {
     fileId: id++,

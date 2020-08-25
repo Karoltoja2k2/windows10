@@ -24,7 +24,7 @@ const ToolbarTools = (props: any) => {
                     <input
                         type="range"
                         min="1"
-                        max="10"
+                        max="100"
                         value={props.activeTool.lineWidth}
                         onChange={(e) => props.SetThickness(e)}
                     />

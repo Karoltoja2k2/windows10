@@ -1,0 +1,53 @@
+.paint__settings {
+    position: absolute;
+    top: 30px;
+    left: 1px;
+    right: 1px;
+    bottom: 1px;
+    background: rgba(41, 41, 41, 0.699);
+
+    z-index: inherit;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.settings_segments{
+    position: relative;
+    background: rgba(41, 41, 41, 0.699);
+    margin: 80px 0;
+    width: 250px;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    -webkit-box-shadow: 0px 0px 15px 5px #000000;
+    box-shadow: 0px 0px 15px 5px #000000;
+}
+
+.settings__segment {
+    width: 200px;
+    height: 50px;
+    margin: 15px 0px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.settings__label {
+    width: 100%;
+    height: 20px;
+}
+
+.settings__input {
+    width: 100%;
+    height: 30px;
+}
+
+.settings__button {
+    width: 100%;
+    height: 30px;
+}

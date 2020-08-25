@@ -145,6 +145,20 @@ const WindowBase = (props: any) => {
                   width: window.innerWidth,
                   height: window.innerHeight,
               },
+              contentDimensions: {
+                width: state.properties.isFullscreen
+                    ? window.innerWidth
+                    : state.dimensions.width,
+                height: state.properties.isFullscreen
+                    ? window.innerHeight
+                    : state.dimensions.height,
+                left: state.properties.isFullscreen
+                    ? 0
+                    : state.dimensions.left,
+                top: state.properties.isFullscreen
+                    ? 0
+                    : state.dimensions.top,
+            }
     };
 
     return (
@@ -249,20 +263,7 @@ const WindowBase = (props: any) => {
                         </button>
                     </div>
                 </div>
-                {React.cloneElement(props.children, {
-                    width: state.properties.isFullscreen
-                        ? window.innerWidth
-                        : state.dimensions.width,
-                    height: state.properties.isFullscreen
-                        ? window.innerHeight
-                        : state.dimensions.height,
-                    left: state.properties.isFullscreen
-                        ? 0
-                        : state.dimensions.left,
-                    top: state.properties.isFullscreen
-                        ? 0
-                        : state.dimensions.top,
-                })}
+                {React.Children.map(props.children, (child => React.cloneElement(child, { ...resizableProps.contentDimensions })))}
             </div>
         </Resizable>
     );

@@ -12,17 +12,9 @@ import chrome from "../../media/chrome.png";
 import windrive from "../../media/windrive.png";
 import foldericon from "../../media/folder.png";
 import mineswepperIcon from "../../media/mineswepper-icon.jpg"
+import FileRegistry from "./FileRegistry";
 
-export enum FileRegistry {
-    FileExlorer = 1,
-    Snake,
-    PhotoDisplay,
-    Browser,
-    Paint,
-    Mineswepper,
-}
 
-export default FileRegistry;
 
 export const GetFileComponentById = (id: number): any => {
     switch (id) {

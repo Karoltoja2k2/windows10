@@ -35,13 +35,13 @@ interface PaintContentState {
 interface PaintContentProps {
     canvasWidth: number;
     canvasHeight: number;
-    imgSource: string | null;
+    img: HTMLImageElement | null;
     top: number;
     left: number;
 }
 
 const PaintContent = (props: PaintContentProps) => {
-    const imgRef = useRef<HTMLImageElement>(null);
+    // const imgRef = useRef<HTMLImageElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const canvasOffset = {
         top: 155,
@@ -61,7 +61,7 @@ const PaintContent = (props: PaintContentProps) => {
             left: props.left + canvasOffset.left,
         },
         backgroundColor: "#ffffff",
-        img: null,
+        img: props.img,
         colors: COLORS(),
         tools: TOOLS(),
         activeTool: TOOLS().find((x) => x.name === "PENCIL")!,
@@ -71,12 +71,13 @@ const PaintContent = (props: PaintContentProps) => {
         setState({
             ...state,
             properties: {
-                ...state.properties,
+                width: props.canvasWidth,
+                height: props.canvasHeight,
                 top: props.top + canvasOffset.top,
                 left: props.left + canvasOffset.left,
             },
         });
-    }, [props.left, props.top]);
+    }, [props.left, props.top, props.canvasHeight, props.canvasWidth]);
 
     function SetColor(strokeStyle: string) {
         if (
@@ -125,19 +126,6 @@ const PaintContent = (props: PaintContentProps) => {
         }
     }
 
-    function HandleImageOnLoad() {
-        let img = imgRef.current!;
-        setState({
-            ...state,
-            properties: {
-                ...state.properties,
-                width: img.width,
-                height: img.height,
-            },
-            img: img,
-        });
-    }
-
     const drive: File[] = useSelector((state: RootState) => state.driveReducer);
     const dispatch = useDispatch();
     function SaveImg() {
@@ -159,8 +147,8 @@ const PaintContent = (props: PaintContentProps) => {
         const canvas: HTMLCanvasElement = canvasRef.current!;
         const context: CanvasRenderingContext2D = canvas.getContext("2d")!;
         context.clearRect(0, 0, canvas.width, canvas.height);
-        if (state.img !== null) {
-            context.drawImage(state.img, 0, 0);
+        if (props.img) {
+            context.drawImage(props.img, 0, 0);
         }
 
         var lines: HistoryElem[] = history.latest;
@@ -191,35 +179,18 @@ const PaintContent = (props: PaintContentProps) => {
                 SetThickness={SetThickness}
                 UndoAction={RedrawAll}
             />
-
-            {/* <div className="container__menu"></div> */}
-
-            {props.imgSource && (
-                <img
-                    style={{
-                        display: "none",
-                        position: "absolute",
-                    }}
-                    src={props.imgSource}
-                    ref={imgRef}
-                    onLoad={() => {
-                        HandleImageOnLoad();
-                    }}
-                />
-            )}
-
-            {state.img && (
+            {props.img && (
                 <Canvas
                     properties={state.properties}
                     backgroundColor={state.backgroundColor}
                     tool={state.activeTool}
-                    img={state.img}
+                    img={props.img}
                     canvasRef={canvasRef}
                     history={history}
                     setHistory={setHistory}
                 />
             )}
-            {!state.img && (
+            {!props.img && (
                 <Canvas
                     properties={state.properties}
                     backgroundColor={state.backgroundColor}

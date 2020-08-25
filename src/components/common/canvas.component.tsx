@@ -3,16 +3,6 @@ import Point from "./Point";
 import History from "../files components/paint/models/History";
 import Tool from "../files components/paint/models/Tool";
 
-interface CanvasState {
-    properties: {
-        height: number;
-        width: number;
-        top: number;
-        left: number;
-    };
-    img: HTMLImageElement | null;
-}
-
 interface CanvasProps {
     properties: {
         width: number;
@@ -29,18 +19,13 @@ interface CanvasProps {
 }
 
 const Canvas = (props: CanvasProps) => {
-    const [state, setState] = useState<CanvasState>({
-        properties: {
-            ...props.properties,
-        },
-        img: props.img,
-    });
     const [drawing, setDrawing] = useState(false);
 
     useEffect(() => {
         const canvas: HTMLCanvasElement = props.canvasRef.current!;
         const context: CanvasRenderingContext2D = canvas.getContext("2d")!;
-        if (state.img !== null) {
+        if (props.img !== null) {
+            console.log(props.img)
             RenderImage();
         } else {
             context.fillStyle = props.backgroundColor;
@@ -49,24 +34,18 @@ const Canvas = (props: CanvasProps) => {
         }
     }, []);
 
-    useEffect(() => {
-        setState({
-            ...state,
-            properties: {
-                ...props.properties,
-            },
-            img: props.img,
-        });
-    }, [props.properties, props.img]);
-
     function RenderImage() {
-        console.log(state.img);
-        if (state.img !== null) {
+        if (props.img != null) {
             const canvas: HTMLCanvasElement = props.canvasRef.current!;
             const context: CanvasRenderingContext2D = canvas.getContext("2d")!;
-            context.drawImage(state.img, 0, 0);
+            console.log(props.img)
+            context.drawImage(props.img, 0, 0);
         }
     }
+
+    useEffect(() => {
+        RenderImage();
+    }, [props.img, props.properties.width, props.properties.height])
 
     function CalculateOffset(e: React.MouseEvent): Point {
         return {
@@ -154,8 +133,8 @@ const Canvas = (props: CanvasProps) => {
         >
             <div
                 style={{
-                    width: state.properties.width,
-                    height: state.properties.height,
+                    width: props.properties.width,
+                    height: props.properties.height,
                 }}
                 onMouseDown={(e) => HandleMouseDown(e)}
                 onMouseUp={(e) => StopDrawing(e)}
@@ -170,7 +149,7 @@ const Canvas = (props: CanvasProps) => {
                         boxShadow: "7px 7px 7px -5px #000000"
                     }}
                     ref={props.canvasRef}
-                    {...state.properties}
+                    {...props.properties}
                 />
             </div>
         </div>
