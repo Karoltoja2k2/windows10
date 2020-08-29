@@ -14,7 +14,6 @@ import FruitField from "./fruitField.component";
 import SnakeUi from "./ui.component";
 import CalculateSquareSize from "../../common/calculators/squareSize.calculator";
 
-
 const Game = (props: any) => {
     const [state, setState] = useState<SnakeGameState>({
         run: true,
@@ -40,9 +39,7 @@ const Game = (props: any) => {
     useEffect(() => {
         let snakeLen = state.snake.length;
         let newHighscore =
-            snakeLen > state.maxLength
-                ? snakeLen
-                : state.maxLength;
+            snakeLen > state.maxLength ? snakeLen : state.maxLength;
         let newSpeed = SPEED_CALC(snakeLen);
         if (
             newSpeed !== state.settings.speed ||
@@ -199,7 +196,7 @@ const Game = (props: any) => {
             state.settings.size.Y,
             1000,
             1000
-        ),
+        )
     );
 
     useEffect(() => {
@@ -211,10 +208,9 @@ const Game = (props: any) => {
                 state.settings.size.Y,
                 1000,
                 1000
-            ),
+            )
         );
     }, [props.width, props.height]);
-
 
     return (
         <div
@@ -261,13 +257,18 @@ const Game = (props: any) => {
                                 field={body}
                                 dynamicColor={`${body.type}_speed_${state.settings.speed}`}
                                 dynamicRadius={`radius_x${state.direction.cords.X}_y${state.direction.cords.Y}`}
+                                squareSize={0.85 * squareSize}
                                 isEating={state.isEating}
                                 key={index}
                             />
                         ))}
 
                         {state.fruits.map((fruit: Fruit, index: number) => (
-                            <FruitField fruit={fruit} key={index} />
+                            <FruitField
+                                fruit={fruit}
+                                key={index}
+                                squareSize={0.85 * squareSize}
+                            />
                         ))}
                     </DynamicGrid>
                 </div>

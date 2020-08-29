@@ -28,8 +28,12 @@ const ColorPallet = (props: any) => {
     return (
         <div className="toolbar__colorPallet">
             <div className="colorPallet__colors">
-                {colors.map((color: string) => (
-                    <ColorPalletItem color={color} SetColor={props.SetColor} />
+                {colors.map((color: string, index: number) => (
+                    <ColorPalletItem
+                        key={index}
+                        color={color}
+                        SetColor={props.SetColor}
+                    />
                 ))}
             </div>
             <div className="colorPallet__chosenColor">

@@ -1,7 +1,7 @@
 import File from "../models/File";
 import FilesDto from "../data/files";
 import FileDto from "../data/FileDto";
-import {GetFileComponentById} from "../components/system/FilesRegistry";
+import { GetFileComponentById } from "../components/system/FilesRegistry";
 
 const driveReducer = (state: File[] = [], action: any) => {
     switch (action.type) {
@@ -25,9 +25,22 @@ const driveReducer = (state: File[] = [], action: any) => {
                 ...state,
                 {
                     ...action.payload,
-                    fileId: Math.max(...state.map((x) => x.fileId)),
+                    fileId: Math.max(...state.map((x) => x.fileId)) + 1,
                 },
             ];
+        }
+        case "OVERWRITECONTENT": {
+            return state.map((file: File) =>
+                file.fileId === action.payload.fileToChangeId
+                    ? {
+                          ...file,
+                          content: {
+                              ...file.content,
+                              source: action.payload.content.source,
+                          },
+                      }
+                    : file
+            );
         }
         default: {
             return state;

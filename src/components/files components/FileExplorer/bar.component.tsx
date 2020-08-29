@@ -71,7 +71,7 @@ const Bar = (props: any) => {
         <div className="container__bar">
             <button
                 className={
-                    props.file.prevFolderId != null
+                    props.file.prevFolderId != 0
                         ? "bar__button bar__button--enabled"
                         : "bar__button bar__button--disabled"
                 }

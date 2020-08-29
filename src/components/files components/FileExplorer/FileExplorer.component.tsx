@@ -43,7 +43,7 @@ const FileExplorer = (props: any) => {
     // END
 
     const previousFolder = () => {
-        if (props.file.prevFolderId) {
+        if (props.file.prevFolderId !== 0) {
             disptach(
                 Navigate(
                     props.id,

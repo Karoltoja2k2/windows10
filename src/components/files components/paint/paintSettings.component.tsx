@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./paintSettings.scss";
 import "../../common/scrollbar--light.scss";
 import { IsNatural } from "../../common/calculators/numberValidator";
+import { HexToRGB } from "../../common/calculators/colors.calculator";
 
 const PaintSettings = (props: any) => {
     const [state, setState] = useState({
@@ -10,13 +11,29 @@ const PaintSettings = (props: any) => {
         threadedFile: props.state.threadedFile,
     });
 
-    function asd(e: React.ChangeEvent<HTMLInputElement>) {
+    function WidthValidator(e: React.ChangeEvent<HTMLInputElement>) {
         let val = e.target.value;
         if (val === "") {
             return "";
         }
         if (IsNatural(val)) {
-            return val;
+            if (parseInt(val) <= 1920) {
+                return val;
+            }
+            return state.width;
+        }
+    }
+
+    function HeightValidator(e: React.ChangeEvent<HTMLInputElement>) {
+        let val = e.target.value;
+        if (val === "") {
+            return "";
+        }
+        if (IsNatural(val)) {
+            if (parseInt(val) <= 1080) {
+                return val;
+            }
+            return state.height;
         }
     }
 
@@ -24,36 +41,27 @@ const PaintSettings = (props: any) => {
         <div className="paint__settings scrollbar--light">
             <div className="settings_segments">
                 <div className="settings__segment">
-                    <label className="settings__label">Canvas width</label>
+                    <label className="settings__label">Canvas width (max 1920)</label>
                     <input
                         type="text"
                         className="settings__input"
                         value={state.width}
                         onChange={(e) => {
-                            setState({ ...state, width: asd(e) });
+                            setState({ ...state, width: WidthValidator(e) });
                         }}
                     />
                 </div>
                 <div className="settings__segment">
-                    <label className="settings__label">Canvas height</label>
+                    <label className="settings__label">Canvas height (max 1080)</label>
                     <input
                         type="text"
                         className="settings__input"
                         value={state.height}
                         onChange={(e) => {
-                            setState({ ...state, height: asd(e) });
+                            setState({ ...state, height: HeightValidator(e) });
                         }}
                     />
                 </div>
-                <div className="settings__segment">
-                    <label className="settings__label">Open file</label>
-                    <input
-                        type="text"
-                        className="settings__input"
-                        value={state.threadedFile?.content?.file.title}
-                    />
-                </div>
-
                 <div className="settings__segment">
                     <button
                         className="settings__button"

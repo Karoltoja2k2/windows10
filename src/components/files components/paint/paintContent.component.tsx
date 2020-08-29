@@ -36,13 +36,15 @@ interface PaintContentProps {
     canvasWidth: number;
     canvasHeight: number;
     img: HTMLImageElement | null;
+    canvasRef: React.RefObject<HTMLCanvasElement>;
     top: number;
     left: number;
+    FileManagement: any;
 }
 
 const PaintContent = (props: PaintContentProps) => {
     // const imgRef = useRef<HTMLImageElement>(null);
-    const canvasRef = useRef<HTMLCanvasElement>(null);
+    // const canvasRef = useRef<HTMLCanvasElement>(null);
     const canvasOffset = {
         top: 155,
         left: 6,
@@ -126,25 +128,8 @@ const PaintContent = (props: PaintContentProps) => {
         }
     }
 
-    const drive: File[] = useSelector((state: RootState) => state.driveReducer);
-    const dispatch = useDispatch();
-    function SaveImg() {
-        var canvas = canvasRef.current!;
-        var img = canvas.toDataURL("image/png");
-        let createFileDto: CreateFileDto = {
-            path: `Drive C:/Desktop/`,
-            componentId: 3,
-            title: "Nowe zdjęcie",
-            prevFolderId: drive.find((x) => x.fileId === 1)!.fileId,
-            content: {
-                source: img,
-            },
-        };
-        dispatch(CreateFile(createFileDto));
-    }
-
-    function RedrawAll() {
-        const canvas: HTMLCanvasElement = canvasRef.current!;
+    function UndoAction() {
+        const canvas: HTMLCanvasElement = props.canvasRef.current!;
         const context: CanvasRenderingContext2D = canvas.getContext("2d")!;
         context.clearRect(0, 0, canvas.width, canvas.height);
         if (props.img) {
@@ -171,13 +156,13 @@ const PaintContent = (props: PaintContentProps) => {
     return (
         <div className="paint__container">
             <PaintToolbar
-                SaveImg={SaveImg}
+                FileManagement={props.FileManagement}
                 tools={state.tools}
                 activeTool={state.activeTool}
                 SetTool={SetTool}
                 SetColor={SetColor}
                 SetThickness={SetThickness}
-                UndoAction={RedrawAll}
+                UndoAction={UndoAction}
             />
             {props.img && (
                 <Canvas
@@ -185,7 +170,7 @@ const PaintContent = (props: PaintContentProps) => {
                     backgroundColor={state.backgroundColor}
                     tool={state.activeTool}
                     img={props.img}
-                    canvasRef={canvasRef}
+                    canvasRef={props.canvasRef}
                     history={history}
                     setHistory={setHistory}
                 />
@@ -196,7 +181,7 @@ const PaintContent = (props: PaintContentProps) => {
                     backgroundColor={state.backgroundColor}
                     tool={state.activeTool}
                     img={null}
-                    canvasRef={canvasRef}
+                    canvasRef={props.canvasRef}
                     history={history}
                     setHistory={setHistory}
                 />

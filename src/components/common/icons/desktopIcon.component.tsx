@@ -13,7 +13,9 @@ const DesktopIcon = (props: any) => {
     return (
         <button
             className="desktopIcon"
-            onDoubleClick={() => dispatch(OpenAs(props.file, drive.find(x => x.title === "Paint")!))}
+            // onDoubleClick={() => dispatch(OpenAs(props.file, drive.find(x => x.title === "Paint")!))}
+            onDoubleClick={() => dispatch(OpenWindow(props.file))}
+
         >
             <img src={props.file.iconsrc} />
             <label>{props.file.title}</label>

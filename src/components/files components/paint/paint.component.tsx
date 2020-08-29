@@ -8,15 +8,20 @@ import PaintSettings from "./paintSettings.component";
 import PaintApp from "./paintApp.component";
 
 const Paint = (props: any) => {
-    // console.log(props.file)
+    const [file, setFile] = useState(props.file);
+    useEffect(() => {
+        setFile(props.file)
+        console.log(props.file)
+    }, [props.file])
+
     return (
         <WindowBase
             id={props.id}
-            file={props.file}
+            file={file}
             properties={props.properties}
             mobileMode={props.mobileMode}
         >
-            <PaintApp file={props.file} />
+            <PaintApp id={props.id} file={file} setFile={setFile} />
         </WindowBase>
     );
 };

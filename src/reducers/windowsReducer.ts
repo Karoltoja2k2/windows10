@@ -19,7 +19,7 @@ const windowsReducer = (state: WindowsManager = windowsState, action: any) => {
                         window.properties.isFocused
                             ? {
                                   ...window,
-                                  state: {
+                                  properties: {
                                       ...window.properties,
                                       isFocused: false,
                                   },
@@ -41,7 +41,7 @@ const windowsReducer = (state: WindowsManager = windowsState, action: any) => {
                         window.properties.isFocused
                             ? {
                                   ...window,
-                                  state: {
+                                  properties: {
                                       ...window.properties,
                                       isFocused: false,
                                   },

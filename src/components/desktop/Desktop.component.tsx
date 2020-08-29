@@ -20,8 +20,6 @@ import {
 } from "../../actions/windowsActions";
 import { LmbUp, SetPosition, LmbDown } from "../../actions/mouseActions";
 import DesktopIcon from "../common/icons/desktopIcon.component";
-import ContextMenu from "../common/contextMenu/contextMenu__desktop.component";
-import DesktopIconContextMenu from "../common/contextMenu/contextMenu__desktopIcon.component";
 
 function Desktop(props: any) {
     const dispatch = useDispatch();
@@ -45,6 +43,7 @@ function Desktop(props: any) {
     const [files, setFiles] = useState(drive.filter((x) => x.path === path));
     useEffect(() => {
         setFiles(drive.filter((x) => x.path === path));
+        console.log(drive);
     }, [drive]);
 
     useEffect(() => {

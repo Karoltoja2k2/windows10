@@ -12,9 +12,9 @@ export const OpenWindow = (fileToOpen: File) => {
 export const OpenAs = (fileToOpen: File, openAsFile: File) => {
     let window = NewWindow(0, openAsFile);
     window.file.content = {
-        file:{
-            ...fileToOpen
-        }
+        file: {
+            ...fileToOpen,
+        },
     };
     return {
         type: "OPEN",
@@ -22,7 +22,7 @@ export const OpenAs = (fileToOpen: File, openAsFile: File) => {
     };
 };
 
-export const CloseWIndow = (windowId: number) => {
+export const CloseWindow = (windowId: number) => {
     return {
         type: "CLOSE",
         payload: { windowId },
@@ -100,7 +100,7 @@ export const EndDragWindow = () => {
 export const MobileMode = (stateToSet: boolean) => {
     return {
         type: "MOBILE_MODE",
-        payload: {stateToSet},
+        payload: { stateToSet },
     };
 };
 
@@ -112,6 +112,10 @@ function NewWindow(id: number, file: File): Window {
             isFocused: true,
             isMinimized: false,
             isFullscreen: false,
+            width: 720,
+            height: 480,
+            top: 100,
+            left: 100
         },
         file: {
             ...file,

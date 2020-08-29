@@ -4,6 +4,7 @@ import "./content.scss";
 import FolderIcon from "../../common/icons/folderIcon.component";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../reducers";
+import File from "../../../models/File";
 
 const Content = (props: any) => {
     const drive: File[] = useSelector((state: RootState) => state.driveReducer);
@@ -14,12 +15,11 @@ const Content = (props: any) => {
             return;
         }
         e.preventDefault()
-
     }
     return (
         <div className="container__content">
             <div className="content__left scrollbar--dark">
-                {drive.map((file: any, index: number) => (
+                {drive.filter(x => x.prevFolderId === 1).map((file: any, index: number) => (
                     <FolderIcon
                         iconDisplay="inrow"
                         file={file}

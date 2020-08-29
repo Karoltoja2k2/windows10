@@ -10,7 +10,7 @@ import {
     FocusWindow,
     ExitFullscreenWindow,
     MinimizeWindow,
-    CloseWIndow,
+    CloseWindow,
     UnMinimizeWindow,
     FullscreenWindow,
     DragWindow,
@@ -33,10 +33,10 @@ const WindowBase = (props: any) => {
             offsetLeft: 0,
         },
         dimensions: {
-            top: 100,
-            left: 100,
-            width: 600,
-            height: 400,
+            top: props.properties.top,
+            left: props.properties.left,
+            width: props.properties.width,
+            height: props.properties.height,
         },
     });
 
@@ -143,22 +143,18 @@ const WindowBase = (props: any) => {
               }
             : {
                   width: window.innerWidth,
-                  height: window.innerHeight,
+                  height: window.innerHeight - 35,
               },
-              contentDimensions: {
-                width: state.properties.isFullscreen
-                    ? window.innerWidth
-                    : state.dimensions.width,
-                height: state.properties.isFullscreen
-                    ? window.innerHeight
-                    : state.dimensions.height,
-                left: state.properties.isFullscreen
-                    ? 0
-                    : state.dimensions.left,
-                top: state.properties.isFullscreen
-                    ? 0
-                    : state.dimensions.top,
-            }
+        contentDimensions: {
+            width: state.properties.isFullscreen
+                ? window.innerWidth
+                : state.dimensions.width,
+            height: state.properties.isFullscreen
+                ? window.innerHeight - 35
+                : state.dimensions.height,
+            left: state.properties.isFullscreen ? 0 : state.dimensions.left,
+            top: state.properties.isFullscreen ? 0 : state.dimensions.top,
+        },
     };
 
     return (
@@ -225,7 +221,11 @@ const WindowBase = (props: any) => {
                         }}
                     >
                         <img src={props.file.iconsrc} alt="fileIcon" />
-                        <label>{props.file.title}</label>
+                        <label>{`${props.file.title}${
+                            props.file.content?.file?.title
+                                ? ` (${props.file.content?.file?.title})`
+                                : ""
+                        }`}</label>
                     </div>
                     <div
                         className="barButtons"
@@ -256,14 +256,18 @@ const WindowBase = (props: any) => {
                         <button
                             className="exit"
                             onClick={(e) => {
-                                disptach(CloseWIndow(props.id));
+                                disptach(CloseWindow(props.id));
                             }}
                         >
                             <Icon icon={bxX} height={30} />
                         </button>
                     </div>
                 </div>
-                {React.Children.map(props.children, (child => React.cloneElement(child, { ...resizableProps.contentDimensions })))}
+                {React.Children.map(props.children, (child) =>
+                    React.cloneElement(child, {
+                        ...resizableProps.contentDimensions,
+                    })
+                )}
             </div>
         </Resizable>
     );

@@ -3,20 +3,79 @@ import WindowBase from "../../common/windowBase/WindowBase";
 import Logo from "../../media/win_logo.png";
 import PaintContent from "./paintContent.component";
 import IMAGE from "../../../media/bg.jpg";
-import { Provider } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import PaintSettings from "./paintSettings.component";
+import { OverwriteContent, CreateFile } from "../../../actions/driveActions";
+import CreateFileDto from "../../../models/CreateFileDto";
+import { RootState } from "../../../reducers";
+import File from "../../../models/File";
+import Content from "../FileExplorer/content.component";
 
 const PaintApp = (props: any) => {
     const imgRef = useRef<HTMLImageElement>(null);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+    const drive: File[] = useSelector((state: RootState) => state.driveReducer);
+    const dispatch = useDispatch();
+
     function HandleImageOnLoad() {
         let img = imgRef.current!;
         setState({
             ...state,
-            img:img,
+            img: img,
             width: img.width,
             height: img.height,
         });
     }
+
+    function OverwriteFile() {
+        if (props.file.content?.file) {
+            var canvas = canvasRef.current!;
+            var img = canvas.toDataURL("image/jpg");
+            dispatch(
+                OverwriteContent(
+                    { source: img },
+                    props.file.content.file.fileId
+                )
+            );
+        }
+    }
+
+    function SaveFile() {
+        let title = props.file.content?.file.title
+            ? `${props.file.content.file.title} edit`
+            : "New drawing";
+        let fileId = Math.max(...drive.map((x) => x.fileId)) + 1;
+        var canvas = canvasRef.current!;
+        var img = canvas.toDataURL("image/jpg");
+        let createFileDto: CreateFileDto = {
+            fileId: fileId,
+            path: "Drive C:/Desktop/",
+            componentId: 3,
+            title: title,
+            prevFolderId: 1,
+            content: {
+                source: img,
+            },
+        };
+        dispatch(CreateFile(createFileDto));
+        props.setFile({
+            ...props.file,
+            content: {
+                file: {
+                    fileId: fileId,
+                    path: createFileDto.path,
+                    title: createFileDto.title,
+                    content: createFileDto.content,
+                },
+            },
+        });
+    }
+    
+    const FileManagement = {
+        OverwriteFile,
+        SaveFile,
+        id: props.id,
+    };
 
     const [state, setState] = useState({
         file: props.file,
@@ -30,7 +89,6 @@ const PaintApp = (props: any) => {
         width: 600,
         height: 400,
     });
-    console.log(state.img)
     return (
         <div className="">
             <PaintContent
@@ -39,6 +97,8 @@ const PaintApp = (props: any) => {
                 img={state.img}
                 left={props.left}
                 top={props.top}
+                canvasRef={canvasRef}
+                FileManagement={FileManagement}
             />
 
             {state.setup && <PaintSettings setState={setState} state={state} />}

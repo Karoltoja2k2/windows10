@@ -9,6 +9,13 @@ import winxpbg from "../media/winxpbg.jpg";
 import lenna from "../media/lenna.jpg";
 import xd from "../media/xd.png";
 import papa from "../media/yellowman.jpg";
+import colorfullPixelsimg from "../media/random-pixels-wallpaper-big.jpg";
+import lensimg from "../media/lens.jpg";
+import treeimg from "../media/tree.jpg";
+import eyeimg from "../media/eye.png";
+import asiaimg from "../media/asia.jpg";
+import earthimg from "../media/earth.jpg";
+import whyuopenimg from "../media/whyuopen.png";
 
 // Icons
 import logo192 from "../media/logo192.png";
@@ -21,21 +28,21 @@ import FileDto from "./FileDto";
 import FileRegistry from "../components/system/FileRegistry";
 
 const FilesDto: FileDto[] = [];
-let id: number = 0;
+let id: number = 1;
 
-const driveC: FileDto = {
-    fileId: id++,
-    path: "Device/",
-    title: "Drive C",
-    componentId: FileRegistry.FileExlorer,
-};
+// const driveC: FileDto = {
+//     fileId: id++,
+//     path: "Device/",
+//     title: "Drive C",
+//     componentId: FileRegistry.FileExlorer,
+// };
 
 const desktop: FileDto = {
-    fileId: id++,
+    fileId: 1,
     path: "Drive C:/",
     title: "Desktop",
     componentId: FileRegistry.FileExlorer,
-    prevFolderId: driveC.fileId,
+    prevFolderId: 0,
 };
 
 const lennaimg: FileDto = {
@@ -46,17 +53,6 @@ const lennaimg: FileDto = {
     prevFolderId: desktop.fileId,
     content: {
         source: lenna,
-    },
-};
-
-const papaimg: FileDto = {
-    fileId: id++,
-    path: "Drive C:/Desktop/",
-    title: "Test",
-    componentId: FileRegistry.PhotoDisplay,
-    prevFolderId: desktop.fileId,
-    content: {
-        source: papa,
     },
 };
 
@@ -92,10 +88,10 @@ const resume: FileDto = {
     prevFolderId: desktop.fileId,
 };
 
-const winimg: FileDto = {
+const Wallpaper: FileDto = {
     fileId: id++,
     path: "Drive C:/Desktop/",
-    title: "Windows bggggggggggggggggggggggggggggggggggggggg",
+    title: "Wallpaper",
     componentId: FileRegistry.PhotoDisplay,
     prevFolderId: desktop.fileId,
     content: {
@@ -103,34 +99,117 @@ const winimg: FileDto = {
     },
 };
 
-const testfolder: FileDto = {
+const imagesFolder: FileDto = {
     fileId: id++,
     path: "Drive C:/Desktop/",
-    title: "Test folder",
+    title: "More images",
     componentId: FileRegistry.FileExlorer,
     prevFolderId: desktop.fileId,
 };
 
-const testfolder2: FileDto = {
+const colorfullPixels: FileDto = {
     fileId: id++,
-    path: "Drive C:/Desktop/Test folder/",
-    title: "Test folder in folder",
+    path: "Drive C:/Desktop/More images/",
+    title: "Colorfull squares",
+    componentId: FileRegistry.PhotoDisplay,
+    prevFolderId: imagesFolder.fileId,
+    content: {
+        source: colorfullPixelsimg,
+    },
+};
+
+const lens: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/More images/",
+    title: "Lens",
+    componentId: FileRegistry.PhotoDisplay,
+    prevFolderId: imagesFolder.fileId,
+    content: {
+        source: lensimg,
+    },
+};
+
+const tree: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/More images/",
+    title: "Tree",
+    componentId: FileRegistry.PhotoDisplay,
+    prevFolderId: imagesFolder.fileId,
+    content: {
+        source: treeimg,
+    },
+};
+
+const eye: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/More images/",
+    title: "AI eye",
+    componentId: FileRegistry.PhotoDisplay,
+    prevFolderId: imagesFolder.fileId,
+    content: {
+        source: eyeimg,
+    },
+};
+
+const asia: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/More images/",
+    title: "Rocks",
+    componentId: FileRegistry.PhotoDisplay,
+    prevFolderId: imagesFolder.fileId,
+    content: {
+        source: asiaimg,
+    },
+};
+
+const earth: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/More images/",
+    title: "Handful earth",
+    componentId: FileRegistry.PhotoDisplay,
+    prevFolderId: imagesFolder.fileId,
+    content: {
+        source: earthimg,
+    },
+};
+
+const idontthinkso: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/More images/",
+    title: "+18",
     componentId: FileRegistry.FileExlorer,
-    prevFolderId: testfolder.fileId,
+    prevFolderId: imagesFolder.fileId,
+};
+
+const whyuopenthis: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/More images/+18",
+    title: "hot dog style",
+    componentId: FileRegistry.PhotoDisplay,
+    prevFolderId: idontthinkso.fileId,
+    content: {
+        source: whyuopenimg,
+    },
 };
 
 FilesDto.push(
-    driveC,
+    // driveC,
     desktop,
     mineswepper,
     resume,
     lennaimg,
-    papaimg,
     paint,
     snake,
-    winimg,
-    testfolder,
-    testfolder2
+    Wallpaper,
+    imagesFolder,
+    colorfullPixels,
+    lens,
+    tree,
+    eye,
+    asia,
+    earth,
+    idontthinkso,
+    whyuopenthis
 );
 
 export default FilesDto;

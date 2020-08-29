@@ -9,6 +9,7 @@ const NewFileOption = (props: any) => {
 
     function CreateNewFile() {
         let createFileDto: CreateFileDto = {
+            fileId: null,
             path: `${props.file.path}${props.file.title}/`,
             componentId: 1,
             title: "GÓWNO",

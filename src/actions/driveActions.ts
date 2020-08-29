@@ -1,6 +1,6 @@
 import CreateFileDto from "../models/CreateFileDto";
 import File from "../models/File";
-import {GetFileComponentById} from "../components/system/FilesRegistry";
+import { GetFileComponentById } from "../components/system/FilesRegistry";
 
 export const DeleteFile = (fileToDelete: File) => {
     return {
@@ -12,7 +12,7 @@ export const DeleteFile = (fileToDelete: File) => {
 export const CreateFile = (fileDto: CreateFileDto) => {
     let data = GetFileComponentById(fileDto.componentId);
     var newFile: File = {
-        fileId: 0,
+        fileId: fileDto.fileId !== null ? fileDto.fileId : 0,
         path: fileDto.path,
         component: data.component,
         extension: data.extension,
@@ -26,6 +26,16 @@ export const CreateFile = (fileDto: CreateFileDto) => {
     return {
         type: "CREATE",
         payload: newFile,
+    };
+};
+
+export const OverwriteContent = (content: any, fileToChangeId: number) => {
+    return {
+        type: "OVERWRITECONTENT",
+        payload: {
+            content,
+            fileToChangeId,
+        },
     };
 };
 

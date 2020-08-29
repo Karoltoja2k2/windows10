@@ -10,18 +10,15 @@ enum Tab {
 }
 
 const PaintToolbar = (props: any) => {
-    const [openTab, setOpenTab] = useState(
-        Tab.Tools
-);
+    const [openTab, setOpenTab] = useState(Tab.Tools);
 
     function RenderOpenTab() {
         switch (openTab) {
             case Tab.File:
-                return <ToolbarFile />;
+                return <ToolbarFile FileManagement={props.FileManagement} />;
             case Tab.Tools:
                 return (
                     <ToolbarTools
-                        SaveImg={props.SaveImg}
                         tools={props.tools}
                         activeTool={props.activeTool}
                         SetTool={props.SetTool}
@@ -40,24 +37,37 @@ const PaintToolbar = (props: any) => {
             <div className="container__toolbar">
                 <div className="toolbar__bookmarks">
                     <div
-                        className={openTab === Tab.File ? "bookmark--blue" : "bookmark--classic"}
+                        className={
+                            openTab === Tab.File
+                                ? "bookmark--blue"
+                                : "bookmark--classic"
+                        }
                         onClick={() => {
-                            setOpenTab(Tab.File)}}
+                            setOpenTab(Tab.File);
+                        }}
                     >
                         File
                     </div>
                     <div
-                        className={openTab === Tab.Tools ? "bookmark--blue" : "bookmark--classic"}
+                        className={
+                            openTab === Tab.Tools
+                                ? "bookmark--blue"
+                                : "bookmark--classic"
+                        }
                         onClick={() => {
-                            setOpenTab(Tab.Tools)
+                            setOpenTab(Tab.Tools);
                         }}
                     >
                         Tools
                     </div>
                     <div
-                        className={openTab === Tab.ViewSettings ? "bookmark--blue" : "bookmark--classic"}
+                        className={
+                            openTab === Tab.ViewSettings
+                                ? "bookmark--blue"
+                                : "bookmark--classic"
+                        }
                         onClick={() => {
-                            setOpenTab(Tab.ViewSettings );
+                            setOpenTab(Tab.ViewSettings);
                         }}
                     >
                         View settings
