@@ -40,10 +40,7 @@ const PaintApp = (props: any) => {
         }
     }
 
-    function SaveFile() {
-        let title = props.file.content?.file.title
-            ? `${props.file.content.file.title} edit`
-            : "New drawing";
+    function SaveFile(title: string) {
         let fileId = Math.max(...drive.map((x) => x.fileId)) + 1;
         var canvas = canvasRef.current!;
         var img = canvas.toDataURL("image/jpg");
@@ -70,11 +67,12 @@ const PaintApp = (props: any) => {
             },
         });
     }
-    
+
     const FileManagement = {
         OverwriteFile,
         SaveFile,
         id: props.id,
+        file: props.file,
     };
 
     const [state, setState] = useState({

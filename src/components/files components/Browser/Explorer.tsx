@@ -18,7 +18,7 @@ const Explorer = (props: any) => {
             <div className="explorerContainer">
                 <iframe
                     style={{ border: "0px" }}
-                    src="https://karoltoja2k2.github.io/MyResume/"
+                    src="https://karoltoja2k2.github.io/windows95/"
                 />
             </div>
             {/* <DynamicGrid columns={15} rows={15} /> */}

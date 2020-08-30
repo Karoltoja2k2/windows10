@@ -15,13 +15,15 @@ import treeimg from "../media/tree.jpg";
 import eyeimg from "../media/eye.png";
 import asiaimg from "../media/asia.jpg";
 import earthimg from "../media/earth.jpg";
-import whyuopenimg from "../media/whyuopen.png";
+import img19 from "../media/19icon.png";
 
 // Icons
 import logo192 from "../media/logo192.png";
 import chrome from "../media/chrome.png";
 import windrive from "../media/windrive.png";
 import foldericon from "../media/folder.png";
+import winicon from "../media/win_logo.png";
+
 
 import File from "../models/File";
 import FileDto from "./FileDto";
@@ -80,10 +82,10 @@ const mineswepper: FileDto = {
     prevFolderId: desktop.fileId,
 };
 
-const resume: FileDto = {
+const inception: FileDto = {
     fileId: id++,
     path: "Drive C:/Desktop/",
-    title: "Resume",
+    title: "Inception",
     componentId: FileRegistry.Browser,
     prevFolderId: desktop.fileId,
 };
@@ -184,11 +186,11 @@ const idontthinkso: FileDto = {
 const whyuopenthis: FileDto = {
     fileId: id++,
     path: "Drive C:/Desktop/More images/+18",
-    title: "hot dog style",
+    title: "115648113331654",
     componentId: FileRegistry.PhotoDisplay,
     prevFolderId: idontthinkso.fileId,
     content: {
-        source: whyuopenimg,
+        source: img19,
     },
 };
 
@@ -196,7 +198,7 @@ FilesDto.push(
     // driveC,
     desktop,
     mineswepper,
-    resume,
+    inception,
     lennaimg,
     paint,
     snake,

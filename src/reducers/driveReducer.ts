@@ -21,10 +21,29 @@ const driveReducer = (state: File[] = [], action: any) => {
             });
         }
         case "CREATE": {
+            let file = action.payload;
+            let files = state.filter((x) => x.path === file.path);
+            let title = file.title;
+            let counter = 0;
+            while (true) {
+                let repetition = files.find((x) => x.title === title);
+                if (repetition) {
+                    counter++;
+                    title = `${file.title} (${counter})`;
+                    continue;
+                }
+                file = {
+                    ...file,
+                    title: title,
+                };
+                break;
+            }
+
+            
             return [
                 ...state,
                 {
-                    ...action.payload,
+                    ...file,
                     fileId: Math.max(...state.map((x) => x.fileId)) + 1,
                 },
             ];
