@@ -15,7 +15,7 @@ const Wolfenstein = (props: any) => {
             mobileMode={props.mobileMode}
         >
             <div className="container">
-                <iframe src="http://loadx.github.io/html5-wolfenstein3D/" />
+                <iframe src="https://loadx.github.com/html5-wolfenstein3D" />
             </div>
         </WindowBase>
     );
