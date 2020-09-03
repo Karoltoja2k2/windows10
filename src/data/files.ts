@@ -1,9 +1,3 @@
-// Components
-import FileExplorer from "../components/files components/FileExplorer/FileExplorer.component";
-import PhotoDisplay from "../components/files components/PhotoDisplay/PhotoDisplay";
-import Explorer from "../components/files components/Browser/Explorer";
-import Snake from "../components/files components/snake/snake.component";
-
 // Images
 import winxpbg from "../media/winxpbg.jpg";
 import lenna from "../media/lenna.jpg";
@@ -17,14 +11,6 @@ import asiaimg from "../media/asia.jpg";
 import earthimg from "../media/earth.jpg";
 import img19 from "../media/19icon.png";
 
-// Icons
-import logo192 from "../media/logo192.png";
-import chrome from "../media/chrome.png";
-import windrive from "../media/windrive.png";
-import foldericon from "../media/folder.png";
-import winicon from "../media/win_logo.png";
-
-import File from "../models/File";
 import FileDto from "./FileDto";
 import FileRegistry from "../components/system/FileRegistry";
 
@@ -39,11 +25,27 @@ let id: number = 1;
 // };
 
 const desktop: FileDto = {
-    fileId: 1,
+    fileId: id++,
     path: "Drive C:/",
     title: "Desktop",
-    componentId: FileRegistry.FileExlorer,
-    prevFolderId: 0,
+    componentId: FileRegistry.Desktop,
+    prevFolderId: 2,
+};
+
+const thiscomp: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/",
+    title: "This computer",
+    componentId: FileRegistry.ThisComputer,
+    prevFolderId: desktop.fileId,
+};
+
+const driveC: FileDto = {
+    fileId: id++,
+    path: "This computer/",
+    title: "Drive C",
+    componentId: FileRegistry.Drive,
+    prevFolderId: thiscomp.fileId,
 };
 
 const lennaimg: FileDto = {
@@ -97,11 +99,19 @@ const mineswepper: FileDto = {
     prevFolderId: desktop.fileId,
 };
 
-const inception: FileDto = {
+const resume: FileDto = {
     fileId: id++,
     path: "Drive C:/Desktop/",
-    title: "Inception",
-    componentId: FileRegistry.Browser,
+    title: "Resume",
+    componentId: FileRegistry.Resume,
+    prevFolderId: desktop.fileId,
+};
+
+const wolfenstein: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/",
+    title: "Wolfenstein 3D",
+    componentId: FileRegistry.Wolfenstein,
     prevFolderId: desktop.fileId,
 };
 
@@ -120,7 +130,7 @@ const imagesFolder: FileDto = {
     fileId: id++,
     path: "Drive C:/Desktop/",
     title: "More images",
-    componentId: FileRegistry.FileExlorer,
+    componentId: FileRegistry.FileExplorer,
     prevFolderId: desktop.fileId,
 };
 
@@ -194,7 +204,7 @@ const idontthinkso: FileDto = {
     fileId: id++,
     path: "Drive C:/Desktop/More images/",
     title: "+18",
-    componentId: FileRegistry.FileExlorer,
+    componentId: FileRegistry.FileExplorer,
     prevFolderId: imagesFolder.fileId,
 };
 
@@ -210,16 +220,18 @@ const whyuopenthis: FileDto = {
 };
 
 FilesDto.push(
-    // driveC,
+    driveC,
+    thiscomp,
     desktop,
     mineswepper,
-    inception,
+    resume,
     lennaimg,
     paint,
     hydra,
     herakles,
     snake,
     Wallpaper,
+    wolfenstein,
     imagesFolder,
     colorfullPixels,
     lens,

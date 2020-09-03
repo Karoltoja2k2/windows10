@@ -1,12 +1,17 @@
 enum FileRegistry {
-    FileExlorer = 1,
+    FileExplorer = 1,
     Snake,
     PhotoDisplay,
     Browser,
     Paint,
     Mineswepper,
     Hydra,
-    Herakles
+    Herakles,
+    Wolfenstein,
+    Resume,
+    ThisComputer,
+    Desktop,
+    Drive,
 }
 
 export default FileRegistry;

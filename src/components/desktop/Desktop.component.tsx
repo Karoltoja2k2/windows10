@@ -20,6 +20,7 @@ import {
 } from "../../actions/windowsActions";
 import { LmbUp, SetPosition, LmbDown } from "../../actions/mouseActions";
 import DesktopIcon from "../common/icons/desktopIcon.component";
+import FileRegistry from "../system/FileRegistry";
 
 function Desktop(props: any) {
     const dispatch = useDispatch();
@@ -49,7 +50,8 @@ function Desktop(props: any) {
     useEffect(() => {
         window.addEventListener("resize", (e) => HandleResize(e));
 
-        dispatch(OpenWindow(drive.find((x) => x.title === "Hydra")!));
+        // dispatch(OpenWindow(drive.find((x) => x.title === "Hydra")!));
+        dispatch(OpenWindow(drive.find((x) => x.componentId === FileRegistry.Resume)!, {width: 1024, height: 640}));
     }, []);
 
     console.log("rerender desktop");

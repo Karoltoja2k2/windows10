@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "./mineswepper.scss";
+import "./iframeBase.scss";
 import WindowBase from "../../common/windowBase/WindowBase";
 
-const Mineswepper = (props: any) => {
+const Resume = (props: any) => {
     return (
         <WindowBase
             id={props.id}
@@ -10,14 +10,17 @@ const Mineswepper = (props: any) => {
             properties={props.properties}
             mobileMode={props.mobileMode}
         >
-            <div className="explorerContainer">
-                <iframe src="https://karoltoja2k2.github.io/MineswepperTs/" onClick={() => console.log('clik iframe')} />
+            <div className="container">
+                <iframe
+                    src="https://karoltoja2k2.github.io/MyResume/"
+                    onClick={() => console.log("clik iframe")}
+                />
             </div>
         </WindowBase>
     );
 };
 
-export default React.memo(Mineswepper, (prevProps, nextProps) => {
+export default React.memo(Resume, (prevProps, nextProps) => {
     return (
         prevProps.file === nextProps.file &&
         prevProps.properties === nextProps.properties &&
