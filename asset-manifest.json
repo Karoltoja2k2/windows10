@@ -1,22 +1,24 @@
 {
   "files": {
-    "main.css": "/windows95/static/css/main.36c5b6eb.chunk.css",
-    "main.js": "/windows95/static/js/main.d48e85e6.chunk.js",
-    "main.js.map": "/windows95/static/js/main.d48e85e6.chunk.js.map",
+    "main.css": "/windows95/static/css/main.ed6ca41e.chunk.css",
+    "main.js": "/windows95/static/js/main.4e24961b.chunk.js",
+    "main.js.map": "/windows95/static/js/main.4e24961b.chunk.js.map",
     "runtime-main.js": "/windows95/static/js/runtime-main.2a9bf908.js",
     "runtime-main.js.map": "/windows95/static/js/runtime-main.2a9bf908.js.map",
-    "static/js/2.622f662a.chunk.js": "/windows95/static/js/2.622f662a.chunk.js",
-    "static/js/2.622f662a.chunk.js.map": "/windows95/static/js/2.622f662a.chunk.js.map",
+    "static/js/2.3cf4cfa5.chunk.js": "/windows95/static/js/2.3cf4cfa5.chunk.js",
+    "static/js/2.3cf4cfa5.chunk.js.map": "/windows95/static/js/2.3cf4cfa5.chunk.js.map",
     "index.html": "/windows95/index.html",
-    "precache-manifest.a0dea8ee22b3ab49bfd1e02deab03221.js": "/windows95/precache-manifest.a0dea8ee22b3ab49bfd1e02deab03221.js",
+    "precache-manifest.6257367894e7c067753ee984f7a5a07c.js": "/windows95/precache-manifest.6257367894e7c067753ee984f7a5a07c.js",
     "service-worker.js": "/windows95/service-worker.js",
-    "static/css/main.36c5b6eb.chunk.css.map": "/windows95/static/css/main.36c5b6eb.chunk.css.map",
-    "static/js/2.622f662a.chunk.js.LICENSE.txt": "/windows95/static/js/2.622f662a.chunk.js.LICENSE.txt",
+    "static/css/main.ed6ca41e.chunk.css.map": "/windows95/static/css/main.ed6ca41e.chunk.css.map",
+    "static/js/2.3cf4cfa5.chunk.js.LICENSE.txt": "/windows95/static/js/2.3cf4cfa5.chunk.js.LICENSE.txt",
     "static/media/19icon.png": "/windows95/static/media/19icon.5afcf90b.png",
     "static/media/asia.jpg": "/windows95/static/media/asia.50cea27f.jpg",
     "static/media/desktop.scss": "/windows95/static/media/calibril.ca17c1d0.ttf",
     "static/media/earth.jpg": "/windows95/static/media/earth.38cb4efe.jpg",
     "static/media/eye.png": "/windows95/static/media/eye.cb7ac37b.png",
+    "static/media/heraklesicon.png": "/windows95/static/media/heraklesicon.d390580d.png",
+    "static/media/hydraicon.png": "/windows95/static/media/hydraicon.b9d92ba0.png",
     "static/media/imgicon2.png": "/windows95/static/media/imgicon2.1e3a0c86.png",
     "static/media/lenna.jpg": "/windows95/static/media/lenna.e2dac7d1.jpg",
     "static/media/lens.jpg": "/windows95/static/media/lens.e82b5228.jpg",
@@ -24,13 +26,15 @@
     "static/media/painticon.png": "/windows95/static/media/painticon.d3c77420.png",
     "static/media/random-pixels-wallpaper-big.jpg": "/windows95/static/media/random-pixels-wallpaper-big.8fffecf1.jpg",
     "static/media/snakeicon.png": "/windows95/static/media/snakeicon.a7cda320.png",
+    "static/media/thiscomputericon.png": "/windows95/static/media/thiscomputericon.f42269c3.png",
     "static/media/tree.jpg": "/windows95/static/media/tree.52261d36.jpg",
-    "static/media/winxpbg.jpg": "/windows95/static/media/winxpbg.ea999396.jpg"
+    "static/media/winxpbg.jpg": "/windows95/static/media/winxpbg.ea999396.jpg",
+    "static/media/wolfensteinicon.png": "/windows95/static/media/wolfensteinicon.c1bb4359.png"
   },
   "entrypoints": [
     "static/js/runtime-main.2a9bf908.js",
-    "static/js/2.622f662a.chunk.js",
-    "static/css/main.36c5b6eb.chunk.css",
-    "static/js/main.d48e85e6.chunk.js"
+    "static/js/2.3cf4cfa5.chunk.js",
+    "static/css/main.ed6ca41e.chunk.css",
+    "static/js/main.4e24961b.chunk.js"
   ]
 }

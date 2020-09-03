@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0c10359572c031dbdce90076ce101729",
+    "revision": "64aab930fdf94d7e2ab66738a89244bd",
     "url": "/windows95/index.html"
   },
   {
-    "revision": "9269104037eb6f2de5a4",
-    "url": "/windows95/static/css/main.36c5b6eb.chunk.css"
+    "revision": "dac38c3914a53d780cd5",
+    "url": "/windows95/static/css/main.ed6ca41e.chunk.css"
   },
   {
-    "revision": "8be2eadfb54916b9c94c",
-    "url": "/windows95/static/js/2.622f662a.chunk.js"
+    "revision": "e56fa548d298238a9e15",
+    "url": "/windows95/static/js/2.3cf4cfa5.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/windows95/static/js/2.622f662a.chunk.js.LICENSE.txt"
+    "url": "/windows95/static/js/2.3cf4cfa5.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "9269104037eb6f2de5a4",
-    "url": "/windows95/static/js/main.d48e85e6.chunk.js"
+    "revision": "dac38c3914a53d780cd5",
+    "url": "/windows95/static/js/main.4e24961b.chunk.js"
   },
   {
     "revision": "9ba2c22b2460af08afd9",
@@ -42,6 +42,14 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "cb7ac37b46dd97bce34f7b90bc5c8d30",
     "url": "/windows95/static/media/eye.cb7ac37b.png"
+  },
+  {
+    "revision": "d390580d5e683caf47cc861e3414b97a",
+    "url": "/windows95/static/media/heraklesicon.d390580d.png"
+  },
+  {
+    "revision": "b9d92ba01ca9c57b093044527dab7a23",
+    "url": "/windows95/static/media/hydraicon.b9d92ba0.png"
   },
   {
     "revision": "1e3a0c86ff5a21b5c880ea590c3228e8",
@@ -72,11 +80,19 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/windows95/static/media/snakeicon.a7cda320.png"
   },
   {
+    "revision": "f42269c33c87e5563cc58ee124bb1be1",
+    "url": "/windows95/static/media/thiscomputericon.f42269c3.png"
+  },
+  {
     "revision": "52261d36ba26c7d060b2f02bbe7e8fc6",
     "url": "/windows95/static/media/tree.52261d36.jpg"
   },
   {
     "revision": "ea9993967fcd7f275b8b8a589ec9c187",
     "url": "/windows95/static/media/winxpbg.ea999396.jpg"
+  },
+  {
+    "revision": "c1bb435935aa8d64ca132db4e6af382b",
+    "url": "/windows95/static/media/wolfensteinicon.c1bb4359.png"
   }
 ]);
