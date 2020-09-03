@@ -1,8 +1,17 @@
 import File from "../models/File";
-import Window from "../models/Window";
+import Window, { WindowProperties } from "../models/Window";
 
-export const OpenWindow = (fileToOpen: File) => {
+export const OpenWindow = (fileToOpen: File, properties?: WindowProperties) => {
     let window = NewWindow(0, fileToOpen);
+    if (properties){
+        window = {
+            ...window,
+            properties: {
+                ...window.properties,
+                ...properties
+            }
+        }
+    }
     return {
         type: "OPEN",
         payload: { window },
@@ -112,6 +121,10 @@ function NewWindow(id: number, file: File): Window {
             isFocused: true,
             isMinimized: false,
             isFullscreen: false,
+            isFixedSize: false,
+            canMinimize: true,
+            canFullscreen: true,
+            canClose: true,
             width: 720,
             height: 480,
             top: 100,

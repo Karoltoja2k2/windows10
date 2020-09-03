@@ -69,6 +69,13 @@
                 .control:hover{
                     background: rgba(255, 255, 255, 0.116);
                 }
+
+                .disabled{
+
+                    &:hover{
+                        background: transparent;
+                    }
+                }
             }
         }
     }

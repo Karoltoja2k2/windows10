@@ -24,7 +24,6 @@ import windrive from "../media/windrive.png";
 import foldericon from "../media/folder.png";
 import winicon from "../media/win_logo.png";
 
-
 import File from "../models/File";
 import FileDto from "./FileDto";
 import FileRegistry from "../components/system/FileRegistry";
@@ -71,6 +70,22 @@ const snake: FileDto = {
     path: "Drive C:/Desktop/",
     title: "Snake",
     componentId: FileRegistry.Snake,
+    prevFolderId: desktop.fileId,
+};
+
+const hydra: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/",
+    title: "Hydra",
+    componentId: FileRegistry.Hydra,
+    prevFolderId: desktop.fileId,
+};
+
+const herakles: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/",
+    title: "Herakles",
+    componentId: FileRegistry.Herakles,
     prevFolderId: desktop.fileId,
 };
 
@@ -201,6 +216,8 @@ FilesDto.push(
     inception,
     lennaimg,
     paint,
+    hydra,
+    herakles,
     snake,
     Wallpaper,
     imagesFolder,

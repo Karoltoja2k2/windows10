@@ -9,6 +9,8 @@ let windowsState = {
     mobileMode: false,
 };
 
+function CalculatePosition(windowId: number) {}
+
 const windowsReducer = (state: WindowsManager = windowsState, action: any) => {
     switch (action.type) {
         case "OPEN":

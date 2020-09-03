@@ -14,6 +14,7 @@ export const CreateFile = (fileDto: CreateFileDto) => {
     var newFile: File = {
         fileId: fileDto.fileId !== null ? fileDto.fileId : 0,
         path: fileDto.path,
+        componentId: fileDto.componentId,
         component: data.component,
         extension: data.extension,
         title: fileDto.title,

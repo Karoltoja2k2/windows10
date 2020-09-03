@@ -1,0 +1,63 @@
+.container{
+    background: rgb(41, 41, 41);
+    position: absolute;
+    z-index: inherit;
+    top: 30px;
+    left: 1px;
+    right: 1px;
+    bottom: 1px;
+
+    .container__error{
+        width: 100%;
+        height: 100%;
+        background-color: red;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.error__text{
+    padding-top: 20px;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    color: black;
+    background-color: white;
+    border-bottom: 1px solid rgb(65, 65, 216);
+}
+
+.error__options{
+    padding: 10px 0px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    background-color: gainsboro;
+
+    .options__item{
+        width: 70px;
+        height: 30px;
+        background-color: rgb(184, 184, 184);
+        border: none;
+        border-radius: 4px;
+        color: black;
+        font-size: 16px;
+        font-weight: 600;
+        margin-right: 5px;
+
+        display: flex;
+        align-items: center;
+
+        label{
+            text-align: center;
+            width: 100%;
+        }
+
+        &:hover{
+            border: 1px solid rgb(65, 65, 216);
+        }
+    }
+}

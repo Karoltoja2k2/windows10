@@ -49,7 +49,7 @@ function Desktop(props: any) {
     useEffect(() => {
         window.addEventListener("resize", (e) => HandleResize(e));
 
-        dispatch(OpenWindow(drive.find((x) => x.title === "Paint")!));
+        dispatch(OpenWindow(drive.find((x) => x.title === "Hydra")!));
     }, []);
 
     console.log("rerender desktop");

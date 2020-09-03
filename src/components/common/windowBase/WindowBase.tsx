@@ -89,13 +89,15 @@ const WindowBase = (props: any) => {
     }, [props.properties]);
 
     function TriggerMinimize() {
-        state.properties.isMinimized
-            ? disptach(UnMinimizeWindow(props.id))
-            : disptach(MinimizeWindow(props.id));
+        if (state.properties.canMinimize) {
+            state.properties.isMinimized
+                ? disptach(UnMinimizeWindow(props.id))
+                : disptach(MinimizeWindow(props.id));
+        }
     }
 
     function TriggerFullscreen() {
-        if (!props.mobileMode) {
+        if (!props.mobileMode && state.properties.canFullscreen) {
             state.properties.isFullscreen
                 ? disptach(ExitFullscreenWindow(props.id))
                 : disptach(FullscreenWindow(props.id));
@@ -128,11 +130,14 @@ const WindowBase = (props: any) => {
             : "resizableWindow",
         enable: {
             top: false,
-            right: !state.properties.isFullscreen,
-            bottom: !state.properties.isFullscreen,
+            right:
+                !state.properties.isFullscreen && !state.properties.isFixedSize,
+            bottom:
+                !state.properties.isFullscreen && !state.properties.isFixedSize,
             left: false,
             topRight: false,
-            bottomRight: !state.properties.isFullscreen,
+            bottomRight:
+                !state.properties.isFullscreen && !state.properties.isFixedSize,
             bottomLeft: false,
             topLeft: false,
         },
@@ -160,7 +165,7 @@ const WindowBase = (props: any) => {
     return (
         <Resizable
             className={resizableProps.className}
-            minHeight={200}
+            minHeight={150}
             minWidth={300}
             enable={resizableProps.enable}
             size={resizableProps.size}
@@ -234,7 +239,11 @@ const WindowBase = (props: any) => {
                         }}
                     >
                         <button
-                            className="control"
+                            className={
+                                state.properties.canClose
+                                    ? "control"
+                                    : "control disabled"
+                            }
                             onClick={(e) => {
                                 TriggerMinimize();
                             }}
@@ -242,7 +251,11 @@ const WindowBase = (props: any) => {
                             <i className="far fa-window-minimize"></i>
                         </button>
                         <button
-                            className="control"
+                            className={
+                                state.properties.canClose
+                                    ? "control"
+                                    : "control disabled"
+                            }
                             onClick={(e) => {
                                 TriggerFullscreen();
                             }}
@@ -254,9 +267,15 @@ const WindowBase = (props: any) => {
                             )}
                         </button>
                         <button
-                            className="exit"
+                            className={
+                                state.properties.canClose
+                                    ? "exit"
+                                    : "exit disabled"
+                            }
                             onClick={(e) => {
-                                disptach(CloseWindow(props.id));
+                                if (state.properties.canClose) {
+                                    disptach(CloseWindow(props.id));
+                                }
                             }}
                         >
                             <Icon icon={bxX} height={30} />

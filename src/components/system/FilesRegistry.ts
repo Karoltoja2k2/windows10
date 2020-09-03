@@ -6,6 +6,8 @@ import PhotoDisplay from "../files components/PhotoDisplay/PhotoDisplay";
 import Explorer from "../files components/Browser/Explorer";
 import Paint from "../files components/paint/paint.component";
 import Mineswepper from "../files components/mineswepper/mineswepper.component";
+import Hydra from "../files components/hydra/hydra.component";
+import Herakles from "../files components/hydra/herakles.component";
 
 import logo192 from "../../media/logo192.png";
 import imgicon from "../../media/imgicon2.png";
@@ -42,6 +44,18 @@ export const GetFileComponentById = (id: number): any => {
         case FileRegistry.Mineswepper:
             return {
                 component: Mineswepper,
+                iconsrc: mineswepperIcon,
+                extension: ".exe",
+            };
+        case FileRegistry.Hydra:
+            return {
+                component: Hydra,
+                iconsrc: mineswepperIcon,
+                extension: ".exe",
+            };
+            case FileRegistry.Herakles:
+            return {
+                component: Herakles,
                 iconsrc: mineswepperIcon,
                 extension: ".exe",
             };

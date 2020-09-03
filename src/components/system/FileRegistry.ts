@@ -5,6 +5,8 @@ enum FileRegistry {
     Browser,
     Paint,
     Mineswepper,
+    Hydra,
+    Herakles
 }
 
 export default FileRegistry;

@@ -13,6 +13,7 @@ const driveReducer = (state: File[] = [], action: any) => {
                     path: file.path,
                     title: file.title,
                     extension: data.extension,
+                    componentId: file.componentId,
                     component: data.component,
                     iconsrc: data.iconsrc,
                     prevFolderId: file.prevFolderId,
@@ -39,7 +40,6 @@ const driveReducer = (state: File[] = [], action: any) => {
                 break;
             }
 
-            
             return [
                 ...state,
                 {
