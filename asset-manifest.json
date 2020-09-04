@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/windows95/static/css/main.ed6ca41e.chunk.css",
-    "main.js": "/windows95/static/js/main.8745e392.chunk.js",
-    "main.js.map": "/windows95/static/js/main.8745e392.chunk.js.map",
+    "main.js": "/windows95/static/js/main.0862b0e4.chunk.js",
+    "main.js.map": "/windows95/static/js/main.0862b0e4.chunk.js.map",
     "runtime-main.js": "/windows95/static/js/runtime-main.2a9bf908.js",
     "runtime-main.js.map": "/windows95/static/js/runtime-main.2a9bf908.js.map",
-    "static/js/2.3cf4cfa5.chunk.js": "/windows95/static/js/2.3cf4cfa5.chunk.js",
-    "static/js/2.3cf4cfa5.chunk.js.map": "/windows95/static/js/2.3cf4cfa5.chunk.js.map",
+    "static/js/2.5e80bf5c.chunk.js": "/windows95/static/js/2.5e80bf5c.chunk.js",
+    "static/js/2.5e80bf5c.chunk.js.map": "/windows95/static/js/2.5e80bf5c.chunk.js.map",
     "index.html": "/windows95/index.html",
-    "precache-manifest.5f8abfb8b87325c57424209e8e6016f6.js": "/windows95/precache-manifest.5f8abfb8b87325c57424209e8e6016f6.js",
+    "precache-manifest.58480137c564e6c3004bac1a6c29946f.js": "/windows95/precache-manifest.58480137c564e6c3004bac1a6c29946f.js",
     "service-worker.js": "/windows95/service-worker.js",
     "static/css/main.ed6ca41e.chunk.css.map": "/windows95/static/css/main.ed6ca41e.chunk.css.map",
-    "static/js/2.3cf4cfa5.chunk.js.LICENSE.txt": "/windows95/static/js/2.3cf4cfa5.chunk.js.LICENSE.txt",
+    "static/js/2.5e80bf5c.chunk.js.LICENSE.txt": "/windows95/static/js/2.5e80bf5c.chunk.js.LICENSE.txt",
     "static/media/19icon.png": "/windows95/static/media/19icon.5afcf90b.png",
     "static/media/asia.jpg": "/windows95/static/media/asia.50cea27f.jpg",
     "static/media/desktop.scss": "/windows95/static/media/calibril.ca17c1d0.ttf",
@@ -26,15 +26,17 @@
     "static/media/painticon.png": "/windows95/static/media/painticon.d3c77420.png",
     "static/media/random-pixels-wallpaper-big.jpg": "/windows95/static/media/random-pixels-wallpaper-big.8fffecf1.jpg",
     "static/media/snakeicon.png": "/windows95/static/media/snakeicon.a7cda320.png",
+    "static/media/testsong.mp3": "/windows95/static/media/testsong.8ca4c56c.mp3",
     "static/media/thiscomputericon.png": "/windows95/static/media/thiscomputericon.f42269c3.png",
     "static/media/tree.jpg": "/windows95/static/media/tree.52261d36.jpg",
+    "static/media/winstartupsound.mp3": "/windows95/static/media/winstartupsound.6c8fd8fc.mp3",
     "static/media/winxpbg.jpg": "/windows95/static/media/winxpbg.ea999396.jpg",
     "static/media/wolfensteinicon.png": "/windows95/static/media/wolfensteinicon.c1bb4359.png"
   },
   "entrypoints": [
     "static/js/runtime-main.2a9bf908.js",
-    "static/js/2.3cf4cfa5.chunk.js",
+    "static/js/2.5e80bf5c.chunk.js",
     "static/css/main.ed6ca41e.chunk.css",
-    "static/js/main.8745e392.chunk.js"
+    "static/js/main.0862b0e4.chunk.js"
   ]
 }
