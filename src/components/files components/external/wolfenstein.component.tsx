@@ -2,10 +2,16 @@ import React, { useState, useEffect } from "react";
 import "./iframeBase.scss";
 import WindowBase from "../../common/windowBase/WindowBase";
 
+const sound = require("../../../media/testsong.mp3")
+
 const Wolfenstein = (props: any) => {
     const [state, setState] = useState({
         openTabs: [],
     });
+    useEffect(() => {
+        var audio = new Audio(sound);
+        audio.play();
+    }, []);
 
     return (
         <WindowBase

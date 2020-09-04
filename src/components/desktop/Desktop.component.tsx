@@ -22,6 +22,9 @@ import { LmbUp, SetPosition, LmbDown } from "../../actions/mouseActions";
 import DesktopIcon from "../common/icons/desktopIcon.component";
 import FileRegistry from "../system/FileRegistry";
 
+const startupsound = require('../../media/winstartupsound.mp3')
+const sound = require("../../media/testsong.mp3")
+
 function Desktop(props: any) {
     const dispatch = useDispatch();
     const path = "Drive C:/Desktop/";
@@ -49,9 +52,11 @@ function Desktop(props: any) {
 
     useEffect(() => {
         window.addEventListener("resize", (e) => HandleResize(e));
-
-        // dispatch(OpenWindow(drive.find((x) => x.title === "Hydra")!));
         dispatch(OpenWindow(drive.find((x) => x.componentId === FileRegistry.Resume)!, {width: 1024, height: 640}));
+
+        let audio = new Audio(startupsound);
+        audio.play();
+    
     }, []);
 
     console.log("rerender desktop");
