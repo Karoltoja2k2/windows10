@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ea7cde4fc420a38a092bfdc868ffe374",
+    "revision": "fd1156799765172117d7953d3324b9cc",
     "url": "/windows95/index.html"
   },
   {
-    "revision": "2a9d12b95db4bb00c157",
+    "revision": "624ca645cbc500468778",
     "url": "/windows95/static/css/main.ed6ca41e.chunk.css"
   },
   {
-    "revision": "abf2e1d3812d77afddc2",
-    "url": "/windows95/static/js/2.5e80bf5c.chunk.js"
+    "revision": "f87e86acc1440a3e2f54",
+    "url": "/windows95/static/js/2.f1a1bc5c.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/windows95/static/js/2.5e80bf5c.chunk.js.LICENSE.txt"
+    "url": "/windows95/static/js/2.f1a1bc5c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "2a9d12b95db4bb00c157",
-    "url": "/windows95/static/js/main.0862b0e4.chunk.js"
+    "revision": "624ca645cbc500468778",
+    "url": "/windows95/static/js/main.51f24eb3.chunk.js"
   },
   {
     "revision": "9ba2c22b2460af08afd9",
@@ -38,6 +38,14 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "38cb4efe49f4ef25ea09a7f98c1f2748",
     "url": "/windows95/static/media/earth.38cb4efe.jpg"
+  },
+  {
+    "revision": "987bbbd2fc93ca7ec41888cb7c427b96",
+    "url": "/windows95/static/media/eatbodysound.987bbbd2.wav"
+  },
+  {
+    "revision": "8f7d67f7993ecf2a905920b6402ba1de",
+    "url": "/windows95/static/media/eatfoodsound.8f7d67f7.wav"
   },
   {
     "revision": "cb7ac37b46dd97bce34f7b90bc5c8d30",
@@ -62,6 +70,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "e82b5228e8de3c21fb701cdbb26e1430",
     "url": "/windows95/static/media/lens.e82b5228.jpg"
+  },
+  {
+    "revision": "d1d60a4bfc522a779d9968491845a439",
+    "url": "/windows95/static/media/levelupsound.d1d60a4b.wav"
   },
   {
     "revision": "3d57e02a0334649cc4bb9e618a9e1f9d",
@@ -92,12 +104,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/windows95/static/media/tree.52261d36.jpg"
   },
   {
-    "revision": "6c8fd8fc14e228f96debfb9a8a5a2b0e",
-    "url": "/windows95/static/media/winstartupsound.6c8fd8fc.mp3"
-  },
-  {
     "revision": "ea9993967fcd7f275b8b8a589ec9c187",
     "url": "/windows95/static/media/winxpbg.ea999396.jpg"
+  },
+  {
+    "revision": "61fcd4d54c6e685b3bd714c256678e3b",
+    "url": "/windows95/static/media/winxpstartupsound.61fcd4d5.mp3"
   },
   {
     "revision": "c1bb435935aa8d64ca132db4e6af382b",
