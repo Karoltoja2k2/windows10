@@ -5,6 +5,7 @@ import { RootState } from "../../reducers";
 import { LoadFiles } from "../../actions/driveActions";
 import File from "../../models/File";
 import Desktop from "../desktop/Desktop.component";
+import WelcomeScreen from "./welcomeScreen.component";
 
 const SystemInitializer = (props: any) => {
     const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const SystemInitializer = (props: any) => {
             </div>
         );
     } else {
-        return <Desktop />;
+        return <WelcomeScreen />;
     }
 };
 

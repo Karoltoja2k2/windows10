@@ -14,6 +14,16 @@ import FruitField from "./fruitField.component";
 import SnakeUi from "./ui.component";
 import CalculateSquareSize from "../../common/calculators/squareSize.calculator";
 
+const eatbodysound = require("../../../media/audio/eatbodysound.wav");
+const eatfoodsound = require("../../../media/audio/eatfoodsound.wav");
+const levelupsound = require("../../../media/audio/levelupsound.wav");
+
+const audio = {
+    eatBody: new Audio(eatbodysound),
+    eatFood: new Audio(eatfoodsound),
+    levelUp: new Audio(levelupsound),
+};
+
 const Game = (props: any) => {
     const [state, setState] = useState<SnakeGameState>({
         run: true,
@@ -40,7 +50,12 @@ const Game = (props: any) => {
         let snakeLen = state.snake.length;
         let newHighscore =
             snakeLen > state.maxLength ? snakeLen : state.maxLength;
+
         let newSpeed = SPEED_CALC(snakeLen);
+        if (newSpeed < state.settings.speed) {
+            audio.levelUp.play();
+        }
+
         if (
             newSpeed !== state.settings.speed ||
             newHighscore !== state.maxLength
@@ -72,6 +87,7 @@ const Game = (props: any) => {
                     PointsEqual(x.cords, nextCords)
                 );
                 snake.splice(index);
+                audio.eatBody.play();
             }
 
             let tailCords;
@@ -87,6 +103,8 @@ const Game = (props: any) => {
                 }
 
                 tailCords = { ...snake[0].cords };
+                console.log("should play");
+                audio.eatFood.play();
             } else {
                 isEating = false;
             }
