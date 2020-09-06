@@ -5,7 +5,7 @@ import "./photoDisplay.scss";
 import File from "../../../models/File";
 import { RootState } from "../../../reducers";
 import { useSelector, useDispatch } from "react-redux";
-import { OpenAs, CloseWindow } from "../../../actions/windowsActions";
+import { OpenAs, FinishCloseWindow } from "../../../actions/windowsActions";
 
 const PhotoDisplay = (props: any) => {
     const dispatch = useDispatch();
@@ -14,6 +14,12 @@ const PhotoDisplay = (props: any) => {
     )!;
 
     const [scale, setScale] = useState(1);
+
+    useEffect(() => {
+        if (props.isClosed) {
+            dispatch(FinishCloseWindow(props.id));
+        }
+    }, [props.isClosed]);
 
     return (
         <WindowBase
@@ -40,7 +46,7 @@ const PhotoDisplay = (props: any) => {
                                         drive.find((x) => x.title === "Paint")!
                                     )
                                 );
-                                dispatch(CloseWindow(props.id));
+                                dispatch(FinishCloseWindow(props.id));
                             }}
                         >
                             <i className="far fa-edit"></i>
@@ -68,6 +74,7 @@ const PhotoDisplay = (props: any) => {
 export default React.memo(PhotoDisplay, (prevProps, nextProps) => {
     return (
         prevProps.file === nextProps.file &&
+        prevProps.isClosed === nextProps.isClosed &&
         prevProps.file.content.source === nextProps.file.content.source &&
         prevProps.properties === nextProps.properties &&
         nextProps.properties.isDragged !== true &&

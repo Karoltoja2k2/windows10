@@ -8,12 +8,12 @@ import File from "../../../models/File";
 import Bar from "./bar.component";
 import Content from "./content.component";
 import Footer from "./footer.component";
-import { Navigate } from "../../../actions/windowsActions";
+import { Navigate, FinishCloseWindow } from "../../../actions/windowsActions";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../reducers";
 
 const FileExplorer = (props: any) => {
-    const disptach = useDispatch();
+    const dispatch = useDispatch();
     const [iconDisplay, setIconDisplay] = useState("folderIcon");
     const [state, setState] = useState({
         filter: "",
@@ -42,9 +42,15 @@ const FileExplorer = (props: any) => {
     }
     // END
 
+    useEffect(() => {
+        if (props.isClosed) {
+            dispatch(FinishCloseWindow(props.id));
+        }
+    }, [props.isClosed]);
+
     const previousFolder = () => {
         if (props.file.prevFolderId !== 0) {
-            disptach(
+            dispatch(
                 Navigate(
                     props.id,
                     drive.find((x) => x.fileId === props.file.prevFolderId)!
@@ -85,6 +91,7 @@ const FileExplorer = (props: any) => {
 export default React.memo(FileExplorer, (prevProps, nextProps) => {
     return (
         prevProps.file === nextProps.file &&
+        prevProps.isClosed === nextProps.isClosed &&
         prevProps.properties === nextProps.properties &&
         nextProps.properties.isDragged !== true &&
         prevProps.mobileMode === nextProps.mobileMode

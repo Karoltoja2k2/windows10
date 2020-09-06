@@ -31,9 +31,16 @@ export const OpenAs = (fileToOpen: File, openAsFile: File) => {
     };
 };
 
-export const CloseWindow = (windowId: number) => {
+export const StartCloseWindow = (windowId: number) => {
     return {
-        type: "CLOSE",
+        type: "STARTCLOSE",
+        payload: { windowId },
+    };
+};
+
+export const FinishCloseWindow = (windowId: number) => {
+    return {
+        type: "FINISHCLOSE",
         payload: { windowId },
     };
 };

@@ -10,10 +10,10 @@ import {
     FocusWindow,
     ExitFullscreenWindow,
     MinimizeWindow,
-    CloseWindow,
     UnMinimizeWindow,
     FullscreenWindow,
     DragWindow,
+    StartCloseWindow,
 } from "../../../actions/windowsActions";
 import { RootState } from "../../../reducers";
 import { LmbDown } from "../../../actions/mouseActions";
@@ -274,7 +274,7 @@ const WindowBase = (props: any) => {
                             }
                             onClick={(e) => {
                                 if (state.properties.canClose) {
-                                    disptach(CloseWindow(props.id));
+                                    disptach(StartCloseWindow(props.id));
                                 }
                             }}
                         >

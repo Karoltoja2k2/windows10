@@ -3,7 +3,7 @@ import WindowBase from "../../common/windowBase/WindowBase";
 import ErrorContent from "../../common/error/error.component";
 import NewErrorOption from "../../common/error/errorOption";
 import { useDispatch, useSelector } from "react-redux";
-import { CloseWindow } from "../../../actions/windowsActions";
+import { FinishCloseWindow } from "../../../actions/windowsActions";
 import WindowsManager from "../../../models/WindowsManager";
 import { RootState } from "../../../reducers";
 import FileRegistry from "../../system/FileRegistry";
@@ -25,7 +25,7 @@ const Herakles = (props: any) => {
             });
         } else {
             hydras.forEach((hydra) => {
-                dispatch(CloseWindow(hydra.id));
+                dispatch(FinishCloseWindow(hydra.id));
             });
             setState({
                 options: [NewErrorOption(Close, "Thanks")],
@@ -35,7 +35,7 @@ const Herakles = (props: any) => {
     }
 
     function Close() {
-        dispatch(CloseWindow(props.id));
+        dispatch(FinishCloseWindow(props.id));
     }
     const [state, setState] = useState({
         options: [

@@ -1,17 +1,27 @@
 import React, { useState, useEffect } from "react";
 import "./iframeBase.scss";
 import WindowBase from "../../common/windowBase/WindowBase";
+import { useDispatch } from "react-redux";
+import { FinishCloseWindow } from "../../../actions/windowsActions";
 
-const sound = require("../../../media/testsong.mp3")
+const sound = require("../../../media/testsong.mp3");
+var audio = new Audio(sound);
 
 const Wolfenstein = (props: any) => {
     const [state, setState] = useState({
         openTabs: [],
     });
     useEffect(() => {
-        var audio = new Audio(sound);
         audio.play();
     }, []);
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+        if (props.isClosed) {
+            audio.pause();
+            dispatch(FinishCloseWindow(props.id));
+        }
+    }, [props.isClosed]);
 
     return (
         <WindowBase
@@ -30,6 +40,8 @@ const Wolfenstein = (props: any) => {
 export default React.memo(Wolfenstein, (prevProps, nextProps) => {
     return (
         prevProps.file === nextProps.file &&
+        prevProps.isClosed === nextProps.isClosed &&
+        prevProps.isClosed === nextProps.isClosed &&
         prevProps.properties === nextProps.properties &&
         nextProps.properties.isDragged !== true &&
         prevProps.mobileMode === nextProps.mobileMode

@@ -57,7 +57,17 @@ const windowsReducer = (state: WindowsManager = windowsState, action: any) => {
                 freeWindowId: state.freeWindowId + 1,
             };
 
-        case "CLOSE":
+        case "STARTCLOSE":
+            return {
+                ...state,
+                openWindows: state.openWindows.map((window) =>
+                    window.id === action.payload.windowId
+                        ? { ...window, isClosed: true }
+                        : window
+                ),
+            };
+
+        case "FINISHCLOSE":
             return {
                 ...state,
                 openWindows: state.openWindows.filter(

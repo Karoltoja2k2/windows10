@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import WindowsManager from "../../../models/WindowsManager";
 import { RootState } from "../../../reducers";
 import NewErrorOption, { ErrorOption } from "../../common/error/errorOption";
-import { OpenWindow, CloseWindow } from "../../../actions/windowsActions";
+import { OpenWindow, FinishCloseWindow } from "../../../actions/windowsActions";
 import ErrorContent from "../../common/error/error.component";
 import File from "../../../models/File";
 import FileRegistry from "../../system/FileRegistry";
@@ -16,7 +16,7 @@ const Hydra = (props: any) => {
     const drive: File[] = useSelector((state: RootState) => state.driveReducer);
 
     function CutHead() {
-        dispatch(CloseWindow(props.id));
+        dispatch(FinishCloseWindow(props.id));
         let boundriesFrom: Point = { X: 0, Y: 0 };
         let boundriesTo: Point = {
             X: window.innerWidth - 300,

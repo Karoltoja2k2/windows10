@@ -22,8 +22,8 @@ import { LmbUp, SetPosition, LmbDown } from "../../actions/mouseActions";
 import DesktopIcon from "../common/icons/desktopIcon.component";
 import FileRegistry from "../system/FileRegistry";
 
-const startupsound = require('../../media/win10startupsound.mp3')
-const sound = require("../../media/testsong.mp3")
+const startupsound = require("../../media/win10startupsound.mp3");
+const sound = require("../../media/testsong.mp3");
 
 function Desktop(props: any) {
     const dispatch = useDispatch();
@@ -52,11 +52,15 @@ function Desktop(props: any) {
 
     useEffect(() => {
         window.addEventListener("resize", (e) => HandleResize(e));
-        dispatch(OpenWindow(drive.find((x) => x.componentId === FileRegistry.Resume)!, {width: 1024, height: 640}));
+        dispatch(
+            OpenWindow(
+                drive.find((x) => x.componentId === FileRegistry.Resume)!,
+                { width: 1024, height: 640 }
+            )
+        );
 
         let audio = new Audio(startupsound);
         audio.play();
-    
     }, []);
 
     console.log("rerender desktop");
@@ -90,6 +94,7 @@ function Desktop(props: any) {
                             key={window.id}
                             file={window.file}
                             id={window.id}
+                            isClosed={window.isClosed}
                             properties={window.properties}
                             mobileMode={windowManager.mobileMode}
                         />
