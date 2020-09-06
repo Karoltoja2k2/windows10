@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "4219e7b4796ff7e4f461f8fa751a072d",
+    "revision": "c4f0bbc5363cd44b90475042eb18f37c",
     "url": "/windows95/index.html"
   },
   {
-    "revision": "26a38eab644f10c854e4",
-    "url": "/windows95/static/css/main.019e2aff.chunk.css"
+    "revision": "76b04047186d7b63a63f",
+    "url": "/windows95/static/css/main.56027152.chunk.css"
   },
   {
-    "revision": "3c0b9ad5411ceedac8e8",
-    "url": "/windows95/static/js/2.8da857b3.chunk.js"
+    "revision": "1f3f56b9b6633bb767b6",
+    "url": "/windows95/static/js/2.8b65b7d8.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/windows95/static/js/2.8da857b3.chunk.js.LICENSE.txt"
+    "url": "/windows95/static/js/2.8b65b7d8.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "26a38eab644f10c854e4",
-    "url": "/windows95/static/js/main.9c76c9e2.chunk.js"
+    "revision": "76b04047186d7b63a63f",
+    "url": "/windows95/static/js/main.b5eff387.chunk.js"
   },
   {
     "revision": "9ba2c22b2460af08afd9",
@@ -108,12 +108,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/windows95/static/media/win10bg.5a74eb7d.jpg"
   },
   {
-    "revision": "ea9993967fcd7f275b8b8a589ec9c187",
-    "url": "/windows95/static/media/winxpbg.ea999396.jpg"
+    "revision": "6c8fd8fc14e228f96debfb9a8a5a2b0e",
+    "url": "/windows95/static/media/win10startupsound.6c8fd8fc.mp3"
   },
   {
-    "revision": "61fcd4d54c6e685b3bd714c256678e3b",
-    "url": "/windows95/static/media/winxpstartupsound.61fcd4d5.mp3"
+    "revision": "ea9993967fcd7f275b8b8a589ec9c187",
+    "url": "/windows95/static/media/winxpbg.ea999396.jpg"
   },
   {
     "revision": "c1bb435935aa8d64ca132db4e6af382b",
