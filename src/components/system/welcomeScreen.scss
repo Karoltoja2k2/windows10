@@ -1,7 +1,6 @@
 .background {
     width: 100vw;
     height: 100vh;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,7 +8,7 @@
         width: 100vw;
         height: 100vh;
         object-fit: cover;
-        filter: blur(2px);
+        filter: blur(8px);
     }
 }
 
@@ -42,7 +41,7 @@
         justify-content: center;
         align-items: center;
         &:hover {
-            color: rgb(239, 160, 255);
+            color: #00bbff;
         }
         cursor: pointer;
     }
@@ -79,14 +78,14 @@
 
     transition-duration: 0.3s;
     &:hover {
-        color: rgb(239, 160, 255);
+        color: #00bbff;
     }
 }
 
 .accounts__item--chosen {
     transform: scale(1.1);
-    color: rgb(239, 160, 255);
+    color: #00bbff;
     &:hover {
-        color: rgb(239, 160, 255);
+        color: #00bbff;
     }
 }
