@@ -1,17 +1,20 @@
 {
   "files": {
-    "main.css": "/windows95/static/css/main.56027152.chunk.css",
-    "main.js": "/windows95/static/js/main.b5eff387.chunk.js",
-    "main.js.map": "/windows95/static/js/main.b5eff387.chunk.js.map",
+    "main.css": "/windows95/static/css/main.b81a5941.chunk.css",
+    "main.js": "/windows95/static/js/main.f76848d5.chunk.js",
+    "main.js.map": "/windows95/static/js/main.f76848d5.chunk.js.map",
     "runtime-main.js": "/windows95/static/js/runtime-main.2a9bf908.js",
     "runtime-main.js.map": "/windows95/static/js/runtime-main.2a9bf908.js.map",
-    "static/js/2.8b65b7d8.chunk.js": "/windows95/static/js/2.8b65b7d8.chunk.js",
-    "static/js/2.8b65b7d8.chunk.js.map": "/windows95/static/js/2.8b65b7d8.chunk.js.map",
+    "static/js/2.e0dc9a28.chunk.js": "/windows95/static/js/2.e0dc9a28.chunk.js",
+    "static/js/2.e0dc9a28.chunk.js.map": "/windows95/static/js/2.e0dc9a28.chunk.js.map",
     "index.html": "/windows95/index.html",
-    "precache-manifest.2eb98bf8d0fd64bfb613e23ada9a6552.js": "/windows95/precache-manifest.2eb98bf8d0fd64bfb613e23ada9a6552.js",
+    "precache-manifest.9e1f923d5834980b82776f7a9d94f649.js": "/windows95/precache-manifest.9e1f923d5834980b82776f7a9d94f649.js",
     "service-worker.js": "/windows95/service-worker.js",
-    "static/css/main.56027152.chunk.css.map": "/windows95/static/css/main.56027152.chunk.css.map",
-    "static/js/2.8b65b7d8.chunk.js.LICENSE.txt": "/windows95/static/js/2.8b65b7d8.chunk.js.LICENSE.txt",
+    "static/css/main.b81a5941.chunk.css.map": "/windows95/static/css/main.b81a5941.chunk.css.map",
+    "static/js/2.e0dc9a28.chunk.js.LICENSE.txt": "/windows95/static/js/2.e0dc9a28.chunk.js.LICENSE.txt",
+    "static/media/01 - Taco Hemingway - Lancuch I Kiosk.mp3": "/windows95/static/media/01 - Taco Hemingway - Lancuch I Kiosk.16f751c9.mp3",
+    "static/media/03 - Taco Hemingway - Polskie Tango.mp3": "/windows95/static/media/03 - Taco Hemingway - Polskie Tango.8ca4c56c.mp3",
+    "static/media/11 - Taco Hemingway - Szczekoscisk.mp3": "/windows95/static/media/11 - Taco Hemingway - Szczekoscisk.220ec50a.mp3",
     "static/media/19icon.png": "/windows95/static/media/19icon.5afcf90b.png",
     "static/media/asia.jpg": "/windows95/static/media/asia.50cea27f.jpg",
     "static/media/desktop.scss": "/windows95/static/media/calibril.ca17c1d0.ttf",
@@ -32,15 +35,15 @@
     "static/media/testsong.mp3": "/windows95/static/media/testsong.8ca4c56c.mp3",
     "static/media/thiscomputericon.png": "/windows95/static/media/thiscomputericon.f42269c3.png",
     "static/media/tree.jpg": "/windows95/static/media/tree.52261d36.jpg",
-    "static/media/win10bg.jpg": "/windows95/static/media/win10bg.5a74eb7d.jpg",
     "static/media/win10startupsound.mp3": "/windows95/static/media/win10startupsound.6c8fd8fc.mp3",
+    "static/media/windowserrorsound.wav": "/windows95/static/media/windowserrorsound.022ebfe0.wav",
     "static/media/winxpbg.jpg": "/windows95/static/media/winxpbg.ea999396.jpg",
     "static/media/wolfensteinicon.png": "/windows95/static/media/wolfensteinicon.c1bb4359.png"
   },
   "entrypoints": [
     "static/js/runtime-main.2a9bf908.js",
-    "static/js/2.8b65b7d8.chunk.js",
-    "static/css/main.56027152.chunk.css",
-    "static/js/main.b5eff387.chunk.js"
+    "static/js/2.e0dc9a28.chunk.js",
+    "static/css/main.b81a5941.chunk.css",
+    "static/js/main.f76848d5.chunk.js"
   ]
 }
