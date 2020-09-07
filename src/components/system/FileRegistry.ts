@@ -12,6 +12,7 @@ enum FileRegistry {
     ThisComputer,
     Desktop,
     Drive,
+    Winamp,
 }
 
 export default FileRegistry;

@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ErrorOption } from "./errorOption";
-import File from "../../../models/File";
-
 import "./error.scss";
 
+const windowserrorsound = require("../../../media/audio/windowserrorsound.wav");
+
 const ErrorContent = (props: any) => {
+    useEffect(() => {
+        let audio = new Audio(windowserrorsound)
+        audio.play();
+    }, []);
     return (
         <div className="container">
             <div className="container__error">

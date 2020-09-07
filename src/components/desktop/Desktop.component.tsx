@@ -54,7 +54,7 @@ function Desktop(props: any) {
         window.addEventListener("resize", (e) => HandleResize(e));
         dispatch(
             OpenWindow(
-                drive.find((x) => x.componentId === FileRegistry.Resume)!,
+                drive.find((x) => x.componentId === FileRegistry.Winamp)!,
                 { width: 1024, height: 640 }
             )
         );

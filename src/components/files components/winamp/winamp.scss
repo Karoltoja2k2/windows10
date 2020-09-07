@@ -1,0 +1,20 @@
+.winamp {
+    position: absolute;
+    top: 30px;
+    right: 1px;
+    bottom: 1px;
+    left: 1px;
+
+    background-color: red;
+
+    .winamp__controls{
+        display: flex;
+        flex-direction: row;
+
+        .controls__item{
+            height: 30px;
+            background-color: blue;
+            margin: 5px;
+        }
+    }
+}

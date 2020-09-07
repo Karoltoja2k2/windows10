@@ -7,7 +7,6 @@ import File from "../../models/File";
 import Desktop from "../desktop/Desktop.component";
 import WelcomeScreen from "./welcomeScreen.component";
 import { MoonLoader } from "react-spinners";
-import { wait } from "@testing-library/react";
 
 const SystemInitializer = (props: any) => {
     const dispatch = useDispatch();
@@ -37,7 +36,8 @@ const SystemInitializer = (props: any) => {
             </div>
         );
     } else {
-        return <WelcomeScreen />;
+        // return <WelcomeScreen />;
+        return <Desktop></Desktop>
     }
 };
 

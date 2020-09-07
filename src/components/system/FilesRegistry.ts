@@ -10,6 +10,7 @@ import Hydra from "../files components/hydra/hydra.component";
 import Herakles from "../files components/hydra/herakles.component";
 import Wolfenstein from "../files components/external/wolfenstein.component";
 import Resume from "../files components/external/resume.component";
+import Winamp from "../files components/winamp/winamp.component";
 
 import logo192 from "../../media/logo192.png";
 import imgicon from "../../media/imgicon2.png";
@@ -96,6 +97,12 @@ export const GetFileComponentById = (id: number): any => {
                 component: FileExplorer,
                 iconsrc: driveicon,
                 extension: ".fld",
+            };
+        case FileRegistry.Winamp:
+            return {
+                component: Winamp,
+                iconsrc: logo192,
+                extension: ".exe",
             };
     }
 };

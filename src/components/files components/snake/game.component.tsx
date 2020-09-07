@@ -104,7 +104,8 @@ const Game = (props: any) => {
 
                 tailCords = { ...snake[0].cords };
                 console.log("should play");
-                audio.eatFood.play();
+                let eatFood = new Audio(eatfoodsound);
+                eatFood.play();
             } else {
                 isEating = false;
             }

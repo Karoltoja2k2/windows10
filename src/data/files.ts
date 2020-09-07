@@ -83,6 +83,14 @@ const hydra: FileDto = {
     prevFolderId: desktop.fileId,
 };
 
+const winamp: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/",
+    title: "Winamp",
+    componentId: FileRegistry.Winamp,
+    prevFolderId: desktop.fileId,
+};
+
 const herakles: FileDto = {
     fileId: id++,
     path: "Drive C:/Desktop/",
@@ -228,6 +236,7 @@ FilesDto.push(
     lennaimg,
     paint,
     hydra,
+    winamp,
     herakles,
     snake,
     Wallpaper,
