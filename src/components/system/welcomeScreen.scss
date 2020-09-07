@@ -1,54 +1,19 @@
-.background {
+.welcomeScreen {
     width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    img {
+    background-color: transparent;
+    .welcomeScreen__background {
         width: 100vw;
         height: 100vh;
         object-fit: cover;
-        filter: blur(8px);
     }
 }
 
-.background__content {
+.welcomeScreen__form {
     position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    height: 300px;
-    width: 100%;
-
-    .content__accounts {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        height: 80%;
-    }
-
-    .content__button {
-        width: 100px;
-        margin: 10px;
-        height: 10%;
-        background-color: rgba(255, 255, 255, 0.35);
-        color: white;
-        font-size: 22px;
-        border-radius: 5px;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        &:hover {
-            color: #00bbff;
-        }
-        cursor: pointer;
-    }
-}
-
-.accounts__item {
-    height: 100%;
     padding: 0px 10px;
     margin: 0 10px 5px 10px;
     display: flex;
@@ -56,9 +21,8 @@
     justify-content: space-around;
     align-items: center;
     color: white;
-    cursor: pointer;
 
-    .item__photo {
+    .form__photo {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -66,26 +30,106 @@
         height: 150px;
         background-color: rgba(255, 255, 255, 0.35);
         border-radius: 150px;
+        overflow: hidden;
         i {
             font-size: 81px;
         }
+        img {
+            margin-top: 25px;
+            width: 150px;
+            height: 150px;
+        }
     }
 
-    .item__label {
+    .form__name {
         height: 50px;
         font-size: 32px;
+        cursor: default;
     }
 
-    transition-duration: 0.3s;
-    &:hover {
-        color: #00bbff;
+    .form__submit {
+        width: 150px;
+        height: 30px;
+        background-color: rgba(255, 255, 255, 0.35);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        cursor: pointer;
+
+        &:hover {
+            color: #00bbff;
+        }
     }
 }
 
-.accounts__item--chosen {
-    transform: scale(1.1);
-    color: #00bbff;
-    &:hover {
-        color: #00bbff;
+.welcomeScreen__accounts {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+
+    .accounts__item {
+        width: 100%;
+        height: 50px;
+        margin-bottom: 5px;
+        padding: 0 0 0 10px;
+        border-radius: 2px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        cursor: pointer;
+
+        color: white;
+        .item__photo {
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
+            border-radius: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: gray;
+        }
+
+        .item__name {
+            margin: 0 0 0 5px;
+            height: 30px;
+            font-size: 14px;
+            font-weight: 100;
+        }
+
+        &:hover {
+            color: #00bbff;
+        }
+    }
+
+    .accounts__item--chosen {
+        background-color: rgba(255, 255, 255, 0.267);
+    }
+}
+
+.welcomeScreen__controls {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-end;
+    bottom: 20px;
+    right: 20px;
+
+    i {
+        margin-left: 10px;
+        color: white;
+        font-size: 20px;
+
+        &:hover {
+            color: #00bbff;
+        }
     }
 }

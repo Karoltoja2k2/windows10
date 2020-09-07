@@ -7,7 +7,18 @@ import File from "../../models/File";
 import Desktop from "../desktop/Desktop.component";
 
 import win10bg from "../../media/win10bg.jpg";
-import guestphoto from "../../media/guestphoto.png";
+import personiconwhite from "../../media/personiconwhite.png";
+
+const profiles = [
+    {
+        Id: 1,
+        Name: "Guest",
+    },
+    {
+        Id: 2,
+        Name: "Cowboy",
+    },
+];
 
 const WelcomeScreen = (props: any) => {
     const dispatch = useDispatch();
@@ -15,22 +26,11 @@ const WelcomeScreen = (props: any) => {
 
     const [state, setState] = useState({
         isLogged: false,
-        chosenProfile: 1,
+        chosenProfile: profiles[0],
     });
 
-    const profiles = [
-        {
-            Id: 1,
-            Name: "Guest",
-        },
-        {
-            Id: 2,
-            Name: "Cowboy",
-        },
-    ];
-
     function Login() {
-        if (state.chosenProfile !== 0) {
+        if (state.chosenProfile !== null) {
             setState({ ...state, isLogged: true });
         }
     }
@@ -40,26 +40,31 @@ const WelcomeScreen = (props: any) => {
     }
 
     return (
-        <div className="background">
-            <img src={win10bg} alt="" className="" />
-            <div className="background__content">
-                <div className="content__accounts">
-                    {profiles.map((profile: any) => (
-                        <AccountIem
-                            profile={profile}
-                            setState={setState}
-                            state={state}
-                        />
-                    ))}
+        <div className="welcomeScreen">
+            <img className="welcomeScreen__background" src={win10bg} />
+            <div className="welcomeScreen__form">
+                <div className="form__photo">
+                    <img src={personiconwhite} alt="" className="" />
                 </div>
-                <div
-                    className="content__button"
-                    onClick={() => {
-                        Login();
-                    }}
-                >
-                    Login
+                <div className="form__name">{state.chosenProfile.Name}</div>
+                <div className="form__submit" onClick={() => Login()}>
+                    Sign in
                 </div>
+            </div>
+            <div className="welcomeScreen__accounts">
+                {profiles.map((profile: any) => (
+                    <AccountIem
+                        profile={profile}
+                        setState={setState}
+                        state={state}
+                    />
+                ))}
+            </div>
+            <div className="welcomeScreen__controls">
+                <i className="fas fa-wifi"></i>
+                <i className="fas fa-cog"></i>
+                <i className="fas fa-power-off"></i>
+
             </div>
         </div>
     );
@@ -67,16 +72,14 @@ const WelcomeScreen = (props: any) => {
 
 const AccountIem = (props: any) => {
     function FocusProfile() {
-        let newValue =
-            props.state.chosenProfile === props.profile.Id
-                ? 0
-                : props.profile.Id;
-        props.setState({ chosenProfile: newValue });
+        if (props.state.chosenProfile.Id !== props.profile.Id) {
+            props.setState({ chosenProfile: props.profile });
+        }
     }
     return (
         <div
             className={
-                props.state.chosenProfile === props.profile.Id
+                props.state.chosenProfile.Id === props.profile.Id
                     ? "accounts__item accounts__item--chosen"
                     : "accounts__item"
             }
@@ -87,7 +90,7 @@ const AccountIem = (props: any) => {
             <div className="item__photo">
                 <i className="far fa-user"></i>
             </div>
-            <div className="item__label">{props.profile.Name}</div>
+            <div className="item__name">{props.profile.Name}</div>
         </div>
     );
 };
