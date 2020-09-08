@@ -373,7 +373,7 @@ const motorolaaudio: FileDto = {
     componentId: FileRegistry.Audio,
     prevFolderId: audioFolder.fileId,
     content: {
-        cover: pocztowkawwa,
+        cover: cafebelgacover,
         source: motorola,
     },
 };
