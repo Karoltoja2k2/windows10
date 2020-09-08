@@ -12,6 +12,9 @@ enum FileRegistry {
     ThisComputer,
     Desktop,
     Drive,
+    Robby,
+    Impersonator,
+    Audio,
     Winamp,
 }
 

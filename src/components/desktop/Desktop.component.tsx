@@ -23,7 +23,6 @@ import DesktopIcon from "../common/icons/desktopIcon.component";
 import FileRegistry from "../system/FileRegistry";
 
 const startupsound = require("../../media/win10startupsound.mp3");
-const sound = require("../../media/testsong.mp3");
 
 function Desktop(props: any) {
     const dispatch = useDispatch();

@@ -1,3 +1,6 @@
+import FileDto from "./FileDto";
+import FileRegistry from "../components/system/FileRegistry";
+
 // Images
 import winxpbg from "../media/winxpbg.jpg";
 import lenna from "../media/lenna.jpg";
@@ -11,11 +14,31 @@ import asiaimg from "../media/asia.jpg";
 import earthimg from "../media/earth.jpg";
 import img19 from "../media/19icon.png";
 
-import FileDto from "./FileDto";
-import FileRegistry from "../components/system/FileRegistry";
+// Covers
+import cafebelgacover from "../media/images/covers/cafe.jpg";
+import europa from "../media/images/covers/europa.jpg";
+import jarmark from "../media/images/covers/jarmark.jpg";
+import pocztowkawwa from "../media/images/covers/pocztowkawwa.jpg";
+import szprycer from "../media/images/covers/szprycer.jpg";
+
+// Audio
+const lancuch1 = require("../media/audio/songs/Taco Hemingway - Lancuch I Kiosk.mp3");
+const lancuch2 = require("../media/audio/songs/Taco Hemingway - Lancuch II Korek.mp3");
+const lancuch3 = require("../media/audio/songs/Taco Hemingway - Lancuch III Korpo.mp3");
+const luxembourg = require("../media/audio/songs/Taco Hemingway - Luxembourg.mp3");
+const mebp = require("../media/audio/songs/Taco Hemingway - Michael Essien Birthday Party.mp3");
+const czlowiekz = require("../media/audio/songs/Taco Hemingway - Czlowiek z dziura zamiast krtani.mp3");
+const alertrcb = require("../media/audio/songs/Taco Hemingway - Alert RCB feat. schafter.mp3");
+const motorola = require("../media/audio/songs/Taco Hemingway - Motorola.mp3");
+const cafebelga2031 = require("../media/audio/songs/Taco Hemingway - 2031.mp3");
+const wszystkonaniby = require("../media/audio/songs/Taco Hemingway - Wszystko na niby.mp3");
+const ztm = require("../media/audio/songs/Taco Hemingway - ZTM.mp3");
+const nostalgia = require("../media/audio/songs/Taco Hemingway - Nostalgia.mp3");
 
 const FilesDto: FileDto[] = [];
 let id: number = 1;
+
+//#region FOLDERS
 
 // const driveC: FileDto = {
 //     fileId: id++,
@@ -48,16 +71,33 @@ const driveC: FileDto = {
     prevFolderId: thiscomp.fileId,
 };
 
-const lennaimg: FileDto = {
+const imagesFolder: FileDto = {
     fileId: id++,
     path: "Drive C:/Desktop/",
-    title: "Lenna",
-    componentId: FileRegistry.PhotoDisplay,
+    title: "More images",
+    componentId: FileRegistry.FileExplorer,
     prevFolderId: desktop.fileId,
-    content: {
-        source: lenna,
-    },
 };
+
+const idontthinkso: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/More images/",
+    title: "+18",
+    componentId: FileRegistry.FileExplorer,
+    prevFolderId: imagesFolder.fileId,
+};
+
+const audioFolder: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/",
+    title: "More sounds",
+    componentId: FileRegistry.FileExplorer,
+    prevFolderId: desktop.fileId,
+};
+
+//#endregion
+
+//#region FILES
 
 const paint: FileDto = {
     fileId: id++,
@@ -88,6 +128,22 @@ const winamp: FileDto = {
     path: "Drive C:/Desktop/",
     title: "Winamp",
     componentId: FileRegistry.Winamp,
+    prevFolderId: desktop.fileId,
+};
+
+const robby: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/",
+    title: "Robby",
+    componentId: FileRegistry.Robby,
+    prevFolderId: desktop.fileId,
+};
+
+const impersonator: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/",
+    title: "Impersonator",
+    componentId: FileRegistry.Impersonator,
     prevFolderId: desktop.fileId,
 };
 
@@ -123,6 +179,21 @@ const wolfenstein: FileDto = {
     prevFolderId: desktop.fileId,
 };
 
+//#endregion
+
+//#region IMAGES
+
+const lennaimg: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/",
+    title: "Lenna",
+    componentId: FileRegistry.PhotoDisplay,
+    prevFolderId: desktop.fileId,
+    content: {
+        source: lenna,
+    },
+};
+
 const Wallpaper: FileDto = {
     fileId: id++,
     path: "Drive C:/Desktop/",
@@ -132,14 +203,6 @@ const Wallpaper: FileDto = {
     content: {
         source: winxpbg,
     },
-};
-
-const imagesFolder: FileDto = {
-    fileId: id++,
-    path: "Drive C:/Desktop/",
-    title: "More images",
-    componentId: FileRegistry.FileExplorer,
-    prevFolderId: desktop.fileId,
 };
 
 const colorfullPixels: FileDto = {
@@ -208,14 +271,6 @@ const earth: FileDto = {
     },
 };
 
-const idontthinkso: FileDto = {
-    fileId: id++,
-    path: "Drive C:/Desktop/More images/",
-    title: "+18",
-    componentId: FileRegistry.FileExplorer,
-    prevFolderId: imagesFolder.fileId,
-};
-
 const whyuopenthis: FileDto = {
     fileId: id++,
     path: "Drive C:/Desktop/More images/+18",
@@ -227,6 +282,152 @@ const whyuopenthis: FileDto = {
     },
 };
 
+//#endregion
+
+//#region AUDIO
+
+const lancuch1audio: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/More sounds/",
+    title: "Taco Hemingway - Lancuch I Kiosk",
+    componentId: FileRegistry.Audio,
+    prevFolderId: audioFolder.fileId,
+    content: {
+        cover: jarmark,
+        source: lancuch1,
+    },
+};
+
+const lancuch2audio: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/More sounds/",
+    title: "Taco Hemingway - Lancuch 2 Korek",
+    componentId: FileRegistry.Audio,
+    prevFolderId: audioFolder.fileId,
+    content: {
+        cover: jarmark,
+        source: lancuch2,
+    },
+};
+
+const lancuch3audio: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/More sounds/",
+    title: "Taco Hemingway - Lancuch III Korpo",
+    componentId: FileRegistry.Audio,
+    prevFolderId: audioFolder.fileId,
+    content: {
+        cover: jarmark,
+        source: lancuch3,
+    },
+};
+const luxembourgaudio: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/More sounds/",
+    title: "Taco Hemingway - Luxembourg",
+    componentId: FileRegistry.Audio,
+    prevFolderId: audioFolder.fileId,
+    content: {
+        cover: europa,
+        source: luxembourg,
+    },
+};
+const mebpaudio: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/More sounds/",
+    title: "Taco Hemingway - Michael Essien Birthday Party",
+    componentId: FileRegistry.Audio,
+    prevFolderId: audioFolder.fileId,
+    content: {
+        cover: europa,
+        source: mebp,
+    },
+};
+const czlowiekzaudio: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/More sounds/",
+    title: "Taco Hemingway - Czlowiek z dziura zamiast krtani",
+    componentId: FileRegistry.Audio,
+    prevFolderId: audioFolder.fileId,
+    content: {
+        cover: pocztowkawwa,
+        source: czlowiekz,
+    },
+};
+const alertrcbaudio: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/More sounds/",
+    title: "Taco Hemingway - Alert RCB feat. schafter",
+    componentId: FileRegistry.Audio,
+    prevFolderId: audioFolder.fileId,
+    content: {
+        cover: pocztowkawwa,
+        source: alertrcb,
+    },
+};
+
+const motorolaaudio: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/More sounds/",
+    title: "Taco Hemingway - Motorola",
+    componentId: FileRegistry.Audio,
+    prevFolderId: audioFolder.fileId,
+    content: {
+        cover: pocztowkawwa,
+        source: motorola,
+    },
+};
+
+const cafebelga2031audio: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/More sounds/",
+    title: "Taco Hemingway - 2031",
+    componentId: FileRegistry.Audio,
+    prevFolderId: audioFolder.fileId,
+    content: {
+        cover: cafebelgacover,
+        source: cafebelga2031,
+    },
+};
+
+const wszystkonanibyaudio: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/More sounds/",
+    title: "Taco Hemingway - Wszystko na niby",
+    componentId: FileRegistry.Audio,
+    prevFolderId: audioFolder.fileId,
+    content: {
+        cover: cafebelgacover,
+        source: wszystkonaniby,
+    },
+};
+
+const ztmaudio: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/More sounds/",
+    title: "Taco Hemingway - ZTM",
+    componentId: FileRegistry.Audio,
+    prevFolderId: audioFolder.fileId,
+    content: {
+        cover: cafebelgacover,
+        source: ztm,
+    },
+};
+
+const nostalgiaaudio: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/More sounds/",
+    title: "Taco Hemingway - Nostalgia",
+    componentId: FileRegistry.Audio,
+    prevFolderId: audioFolder.fileId,
+    content: {
+        cover: szprycer,
+        source: nostalgia,
+    },
+};
+
+//#endregion
+
 FilesDto.push(
     driveC,
     thiscomp,
@@ -237,11 +438,14 @@ FilesDto.push(
     paint,
     hydra,
     winamp,
+    robby,
+    impersonator,
     herakles,
     snake,
     Wallpaper,
     wolfenstein,
     imagesFolder,
+    audioFolder,
     colorfullPixels,
     lens,
     tree,
@@ -249,7 +453,20 @@ FilesDto.push(
     asia,
     earth,
     idontthinkso,
-    whyuopenthis
+    whyuopenthis,
+
+    lancuch1audio,
+    lancuch2audio,
+    lancuch3audio,
+    luxembourgaudio,
+    mebpaudio,
+    czlowiekzaudio,
+    alertrcbaudio,
+    motorolaaudio,
+    cafebelga2031audio,
+    wszystkonanibyaudio,
+    ztmaudio,
+    nostalgiaaudio,
 );
 
 export default FilesDto;

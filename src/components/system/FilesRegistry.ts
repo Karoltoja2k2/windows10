@@ -11,6 +11,8 @@ import Herakles from "../files components/hydra/herakles.component";
 import Wolfenstein from "../files components/external/wolfenstein.component";
 import Resume from "../files components/external/resume.component";
 import Winamp from "../files components/winamp/winamp.component";
+import Robby from "../files components/external/robby.component";
+import Impersonator from "../files components/external/impersonator.component";
 
 import logo192 from "../../media/logo192.png";
 import imgicon from "../../media/imgicon2.png";
@@ -26,6 +28,7 @@ import wolfensteinicon from "../../media/wolfensteinicon.png";
 import thiscomputericon from "../../media/thiscomputericon.png";
 import desktopicon from "../../media/desktopicon.png";
 import driveicon from "../../media/windrive.png";
+import robbyicon from "../../media/robbyicon.png";
 
 import FileRegistry from "./FileRegistry";
 import DesktopIcon from "../common/icons/desktopIcon.component";
@@ -103,6 +106,24 @@ export const GetFileComponentById = (id: number): any => {
                 component: Winamp,
                 iconsrc: logo192,
                 extension: ".exe",
+            };
+        case FileRegistry.Robby:
+            return {
+                component: Robby,
+                iconsrc: robbyicon,
+                extension: ".exe",
+            };
+        case FileRegistry.Impersonator:
+            return {
+                component: Impersonator,
+                iconsrc: logo192,
+                extension: ".exe",
+            };
+        case FileRegistry.Audio:
+            return {
+                component: Winamp,
+                iconsrc: logo192,
+                extension: ".mp3",
             };
     }
 };

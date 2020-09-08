@@ -4,21 +4,10 @@ import WindowBase from "../../common/windowBase/WindowBase";
 import { useDispatch } from "react-redux";
 import { FinishCloseWindow } from "../../../actions/windowsActions";
 
-const sound = require("../../../media/testsong.mp3");
-var audio = new Audio(sound);
-
 const Wolfenstein = (props: any) => {
-    const [state, setState] = useState({
-        openTabs: [],
-    });
-    useEffect(() => {
-        audio.play();
-    }, []);
-
     const dispatch = useDispatch();
     useEffect(() => {
         if (props.isClosed) {
-            audio.pause();
             dispatch(FinishCloseWindow(props.id));
         }
     }, [props.isClosed]);

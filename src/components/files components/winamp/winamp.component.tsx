@@ -1,33 +1,86 @@
 import React, { useEffect, useState } from "react";
 import WindowBase from "../../common/windowBase/WindowBase";
 import "./winamp.scss";
-
-const lancuch1 = require("../../../media/audio/songs/01 - Taco Hemingway - Lancuch I Kiosk.mp3");
-const tango = require("../../../media/audio/songs/03 - Taco Hemingway - Polskie Tango.mp3");
-const szczekoscisk = require("../../../media/audio/songs/11 - Taco Hemingway - Szczekoscisk.mp3");
-
-const songurls = [lancuch1, tango, szczekoscisk];
-
-let counter = 0;
-let songs = songurls.map((url) => {
-    counter++;
-    return {
-        id: counter,
-        audio: new Audio(url),
-    };
-});
+import { useDispatch, useSelector } from "react-redux";
+import { FinishCloseWindow } from "../../../actions/windowsActions";
+import { RootState } from "../../../reducers";
+import File from "../../../models/File";
+import FileRegistry from "../../system/FileRegistry";
 
 enum Action {
     Backward = -1,
     Forward = 1,
 }
 
+interface Song {
+    id: number;
+    cover: string;
+    audio: HTMLAudioElement;
+}
+
+interface WinampState {
+    isPlaying: Boolean;
+    songs: Song[];
+    chosenSong: Song;
+}
+
 // const lancuch1 = require("../../../media/audio/songs/")
 
 function Winamp(props: any) {
-    const [state, setState] = useState({
+    const dispatch = useDispatch();
+    const drive: File[] = useSelector((state: RootState) => state.driveReducer);
+
+    useEffect(() => {
+        const songurls = drive.filter(
+            (x) => x.componentId === FileRegistry.Audio
+        );
+
+        let counter = 0;
+
+        let songs = songurls.map((song: File) => {
+            counter++;
+            return {
+                id: counter,
+                cover: song.content.cover,
+                audio: new Audio(song.content.source),
+            };
+        });
+        setState({
+            ...state,
+            songs: [...songs],
+            chosenSong: songs[0],
+        });
+    }, []);
+
+    function GetSongs(): Song[] {
+        const songurls = drive.filter(
+            (x) => x.componentId === FileRegistry.Audio
+        );
+
+        let counter = 0;
+
+        let songs = songurls.map((song: File) => {
+            counter++;
+            return {
+                id: counter,
+                cover: song.content.cover,
+                audio: new Audio(song.content.source),
+            };
+        });
+
+        return songs;
+    }
+
+    useEffect(() => {
+        if (props.isClosed) {
+            state.chosenSong.audio.pause();
+            dispatch(FinishCloseWindow(props.id));
+        }
+    }, [props.isClosed]);
+
+    const [state, setState] = useState<WinampState>({
         isPlaying: false,
-        chosenSong: songs[0],
+        songs: GetSongs(),
     });
 
     useEffect(() => {
@@ -46,7 +99,7 @@ function Winamp(props: any) {
     }, [state.chosenSong]);
 
     function ChangeSong(action: Action) {
-        let newSong = songs.find((x) => x.id === state.chosenSong.id + action);
+        let newSong = songs.find((x) => x!.id === state.chosenSong.id + action);
         if (!newSong) {
             return;
         }

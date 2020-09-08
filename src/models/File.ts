@@ -7,7 +7,7 @@ interface File {
     component: any;
     iconsrc: string;
     prevFolderId?: number;
-    content?: {};
+    content?: any;
 }
 
 export default File;
