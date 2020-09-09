@@ -2,22 +2,12 @@ import React, { useState, useEffect, useContext } from "react";
 import "./windowBase.scss";
 import { Resizable } from "re-resizable";
 
-import { Icon } from "@iconify/react";
-import bxX from "@iconify/icons-bx/bx-x";
-
 import { useDispatch, useSelector } from "react-redux";
-import {
-    FocusWindow,
-    ExitFullscreenWindow,
-    MinimizeWindow,
-    UnMinimizeWindow,
-    FullscreenWindow,
-    DragWindow,
-    StartCloseWindow,
-} from "../../../actions/windowsActions";
+import { FocusWindow } from "../../../actions/windowsActions";
 import { RootState } from "../../../reducers";
 import { LmbDown } from "../../../actions/mouseActions";
 import MouseState from "../../../models/MouseState";
+import WindowBaseBar from "./windowBaseBar";
 
 const WindowBase = (props: any) => {
     const disptach = useDispatch();
@@ -87,42 +77,6 @@ const WindowBase = (props: any) => {
             properties: { ...props.properties },
         });
     }, [props.properties]);
-
-    function TriggerMinimize() {
-        if (state.properties.canMinimize) {
-            state.properties.isMinimized
-                ? disptach(UnMinimizeWindow(props.id))
-                : disptach(MinimizeWindow(props.id));
-        }
-    }
-
-    function TriggerFullscreen() {
-        if (!props.mobileMode && state.properties.canFullscreen) {
-            state.properties.isFullscreen
-                ? disptach(ExitFullscreenWindow(props.id))
-                : disptach(FullscreenWindow(props.id));
-        }
-    }
-
-    function StartDrag(e: React.MouseEvent) {
-        if (e.detail === 2) {
-            TriggerFullscreen();
-            return;
-        }
-
-        if (!state.properties.isFullscreen) {
-            setState({
-                ...state,
-                drag: {
-                    dragging: true,
-                    offsetTop: e.pageY - state.dimensions.top,
-                    offsetLeft: e.pageX - state.dimensions.left,
-                },
-            });
-            disptach(LmbDown());
-            disptach(DragWindow(props.id));
-        }
-    }
 
     const resizableProps = {
         className: state.properties.isFocused
@@ -217,71 +171,13 @@ const WindowBase = (props: any) => {
                 }}
                 onMouseUp={(e) => {}}
             >
-                <div className="bar">
-                    <div
-                        className="barTitle"
-                        onMouseDown={(e: React.MouseEvent) => {
-                            e.preventDefault();
-                            StartDrag(e);
-                        }}
-                    >
-                        <img src={props.file.iconsrc} alt="fileIcon" />
-                        <label>{`${props.file.title}${
-                            props.file.content?.file?.title
-                                ? ` (${props.file.content?.file?.title})`
-                                : ""
-                        }`}</label>
-                    </div>
-                    <div
-                        className="barButtons"
-                        onMouseDown={(e) => {
-                            return;
-                        }}
-                    >
-                        <button
-                            className={
-                                state.properties.canClose
-                                    ? "control"
-                                    : "control disabled"
-                            }
-                            onClick={(e) => {
-                                TriggerMinimize();
-                            }}
-                        >
-                            <i className="far fa-window-minimize"></i>
-                        </button>
-                        <button
-                            className={
-                                state.properties.canClose
-                                    ? "control"
-                                    : "control disabled"
-                            }
-                            onClick={(e) => {
-                                TriggerFullscreen();
-                            }}
-                        >
-                            {props.properties.isFullscreen ? (
-                                <i className="far fa-window-restore"></i>
-                            ) : (
-                                <i className="far fa-window-maximize"></i>
-                            )}
-                        </button>
-                        <button
-                            className={
-                                state.properties.canClose
-                                    ? "exit"
-                                    : "exit disabled"
-                            }
-                            onClick={(e) => {
-                                if (state.properties.canClose) {
-                                    disptach(StartCloseWindow(props.id));
-                                }
-                            }}
-                        >
-                            <Icon icon={bxX} height={30} />
-                        </button>
-                    </div>
-                </div>
+                <WindowBaseBar
+                    id={props.id}
+                    file={props.file}
+                    state={state}
+                    setState={setState}
+                    mobileMode={props.mobileMode}
+                />
                 {React.Children.map(props.children, (child) =>
                     React.cloneElement(child, {
                         ...resizableProps.contentDimensions,
