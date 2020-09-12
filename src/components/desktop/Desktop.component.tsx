@@ -54,7 +54,7 @@ function Desktop(props: any) {
         dispatch(
             OpenWindow(
                 drive.find((x) => x.componentId === FileRegistry.Winamp)!,
-                { width: 1024, height: 640 }
+                { width: 600, height: 400 }
             )
         );
 

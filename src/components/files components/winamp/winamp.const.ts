@@ -1,17 +1,20 @@
 import File from "../../../models/File";
 
-export default function InitialState(audioFiles: File[], file:File): WinampState {
-
-
+export default function InitialState(
+    audioFiles: File[],
+    file: File
+): WinampState {
     let counter = 0;
     let songs = audioFiles.map((song: File) => {
         counter++;
         return {
             id: counter,
             fileId: song.fileId,
-            title: song.title,
             cover: song.content.cover,
             source: song.content.source,
+            title: song.content.title,
+            artist: song.content.artist,
+            album: song.content.album,
         };
     });
 
@@ -24,7 +27,7 @@ export default function InitialState(audioFiles: File[], file:File): WinampState
         isPlaying: false,
         songs: songs,
         chosenSong: song,
-        audio: new Audio(song.source),
+        currentTime: 0,
     };
 }
 
@@ -39,11 +42,13 @@ export interface Song {
     cover: string;
     source: string;
     title: string;
+    album: string;
+    artist: string;
 }
 
 export interface WinampState {
     isPlaying: Boolean;
     songs: Song[];
     chosenSong: Song;
-    audio: HTMLAudioElement;
+    currentTime: number;
 }

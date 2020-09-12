@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../reducers";
 import FileRegistry from "../../system/FileRegistry";
@@ -6,8 +6,15 @@ import { FinishCloseWindow } from "../../../actions/windowsActions";
 import File from "../../../models/File";
 import InitialState, { WinampState, Action, Song } from "./winamp.const";
 
+import winampflowersbg from "../../../media/images/winampflowersbgedited.jpg";
+import bgedited from "../../../media/images/bgedited.jpg";
+import winampicon from "../../../media/images/winampicon.png";
+import ControlBar from "./controlBar.component";
+import Menu from "./menu.component";
+
 function WinampApp(props: any) {
     const dispatch = useDispatch();
+    const audioRef = useRef<HTMLAudioElement>(null);
     const drive: File[] = useSelector((state: RootState) => state.driveReducer);
     const [state, setState] = useState<WinampState>(
         InitialState(
@@ -16,10 +23,25 @@ function WinampApp(props: any) {
         )
     );
 
+    const [style, setStyle] = useState({
+        dynamicMenu: props.width > 700,
+        isShown: false
+    });
+
+    useEffect(() => {
+        console.log('asd')
+        if (props.width > 700) {
+            setStyle({ ...style, dynamicMenu: false });
+        } else {
+            setStyle({ ...style, dynamicMenu: true });
+        }
+    }, [props.width]);
+
     useEffect(() => {
         if (props.isClosed) {
-            if (!state.audio.paused) {
-                state.audio.pause();
+            let audio = audioRef.current!;
+            if (!audio.paused) {
+                audio.pause();
             }
             console.log("closing");
             dispatch(FinishCloseWindow(props.id));
@@ -31,78 +53,54 @@ function WinampApp(props: any) {
             (x) => x.id === state.chosenSong.id + action
         );
         if (newSong) {
-            ChangeSong(newSong)
+            ChangeSong(newSong);
         }
     }
 
-    function ChangeSong(newSong: Song){
-        let audio = state.audio;
-        audio.src = newSong.source;
-        audio.play();
-        setState({ ...state, chosenSong: newSong, audio: audio });
+    function ChangeSong(newSong: Song) {
+        setState({ ...state, chosenSong: newSong });
     }
 
-    function SetSongTime(e: React.ChangeEvent<HTMLInputElement>) {
-        let audio = state.audio;
-        audio.currentTime = parseInt(e.target.value);
-        setState({
-            ...state,
-            audio: audio,
-        });
+    function UpdateTime(e: React.SyntheticEvent<HTMLAudioElement, Event>) {
+        setState({ ...state, currentTime: e.currentTarget.currentTime });
     }
 
-    function TogglePlay() {
-        let audio = state.audio;
-        if (audio.paused) {
-            audio.play();
-        } else {
-            audio.pause();
-        }
-    }
+    const controlBarProps = {
+        chosenSong: state.chosenSong,
+        currentTime: state.currentTime,
+        audioRef: audioRef,
+        SkipSong: SkipSong,
+        ChangeSong: ChangeSong,
+    };
+
     return (
         <div className="winamp">
-            <div className="winamp__controls">
-                <div
-                    className="controls__item"
-                    onClick={() => {
-                        SkipSong(Action.Backward);
-                    }}
-                >
-                    back
-                </div>
-                <div
-                    className="controls__item"
-                    onClick={() => {
-                        TogglePlay();
-                    }}
-                >
-                    stop/play
-                </div>
-
-                <input
-                    type="range"
-                    min={0}
-                    onChange={(e) => {
-                        SetSongTime(e);
-                    }}
-                    max={state.audio.duration == NaN ? 0 : state.audio.duration}
-                    value={state.audio.currentTime}
-                ></input>
-
-                <div
-                    className="controls__item"
-                    onClick={() => {
-                        SkipSong(Action.Forward);
-                    }}
-                >
-                    next
-                </div>
-                <img src={state.chosenSong.cover} style={{width: 100, height: 100}}/>
-                <label htmlFor="" className="">{state.chosenSong.title}</label>
-
-                {state.songs.map((song) => 
-                    <button onClick={() => {ChangeSong(song)}}>{song.title}</button>
+            <audio
+                ref={audioRef}
+                onTimeUpdate={(e) => {
+                    UpdateTime(e);
+                }}
+                src={state.chosenSong.source}
+                onLoadedData={() => audioRef.current!.play()}
+                onEnded={() => SkipSong(Action.Forward)}
+            ></audio>
+            <div className="winamp__container">
+                {style.dynamicMenu && (
+                    <div className="container__logo">
+                        <img src={winampicon} alt="" />
+                    </div>
                 )}
+
+                <Menu dynamicMenu={style.dynamicMenu} />
+
+                <div className="container__content">
+                    <img
+                        className="content__bg"
+                        src={state.chosenSong.cover}
+                        alt="cdcover"
+                    />
+                    <ControlBar {...controlBarProps} />
+                </div>
             </div>
         </div>
     );
@@ -111,6 +109,9 @@ function WinampApp(props: any) {
 export default React.memo(WinampApp, (prevProps, nextProps) => {
     return (
         prevProps.file === nextProps.file &&
-        prevProps.isClosed === nextProps.isClosed
+        prevProps.isClosed === nextProps.isClosed &&
+        prevProps.width === nextProps.width
     );
 });
+
+// export default WinampApp

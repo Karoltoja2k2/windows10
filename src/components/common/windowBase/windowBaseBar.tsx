@@ -1,5 +1,4 @@
 import React from "react";
-import "./windowBase.scss";
 import { useDispatch } from "react-redux";
 import { Icon } from "@iconify/react";
 import bxX from "@iconify/icons-bx/bx-x";
@@ -53,14 +52,14 @@ function WindowBaseBar(props: any) {
     }
 
     return (
-        <div className="bar">
-            <div
-                className="barTitle"
-                onMouseDown={(e: React.MouseEvent) => {
-                    e.preventDefault();
-                    StartDrag(e);
-                }}
-            >
+        <div
+            className="window__bar"
+            onMouseDown={(e: React.MouseEvent) => {
+                e.preventDefault();
+                StartDrag(e);
+            }}
+        >
+            <div className="bar__title">
                 <img src={props.file.iconsrc} alt="fileIcon" />
                 <label>{`${props.file.title}${
                     props.file.content?.file?.title
@@ -69,16 +68,18 @@ function WindowBaseBar(props: any) {
                 }`}</label>
             </div>
             <div
-                className="barButtons"
+                className="bar__buttons"
                 onMouseDown={(e) => {
+                    e.stopPropagation();
+
                     return;
                 }}
             >
                 <button
                     className={
                         props.state.properties.canClose
-                            ? "control"
-                            : "control disabled"
+                            ? "buttons__control"
+                            : "buttons__control buttons__disabled"
                     }
                     onClick={(e) => {
                         TriggerMinimize();
@@ -89,8 +90,8 @@ function WindowBaseBar(props: any) {
                 <button
                     className={
                         props.state.properties.canClose
-                            ? "control"
-                            : "control disabled"
+                            ? "buttons__control"
+                            : "buttons__control buttons__disabled"
                     }
                     onClick={(e) => {
                         TriggerFullscreen();
@@ -105,8 +106,8 @@ function WindowBaseBar(props: any) {
                 <button
                     className={
                         props.state.properties.canClose
-                            ? "exit"
-                            : "exit disabled"
+                            ? "buttons__exit"
+                            : "buttons__exit buttons__disabled"
                     }
                     onClick={(e) => {
                         if (props.state.properties.canClose) {

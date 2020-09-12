@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import "./windowBase.scss";
+import "./windowBaseStyles/classicWindow.scss";
+import "./windowBaseStyles/winampWindow.scss";
+
 import { Resizable } from "re-resizable";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -28,6 +30,9 @@ const WindowBase = (props: any) => {
             width: props.properties.width,
             height: props.properties.height,
         },
+        windowBaseStyle: props.windowBaseStyle
+            ? props.windowBaseStyle
+            : "classic",
     });
 
     useEffect(() => {
@@ -80,8 +85,11 @@ const WindowBase = (props: any) => {
 
     const resizableProps = {
         className: state.properties.isFocused
-            ? "resizableWindow focused"
-            : "resizableWindow",
+            ? `resizable--${state.windowBaseStyle} resizable--${state.windowBaseStyle}--focused`
+            : `resizable--${state.windowBaseStyle}`,
+        // className: state.properties.isFocused
+        //     ? "resizable--classic resizable--classic--focused"
+        //     : "resizable--classic",
         enable: {
             top: false,
             right:
@@ -119,8 +127,8 @@ const WindowBase = (props: any) => {
     return (
         <Resizable
             className={resizableProps.className}
-            minHeight={150}
-            minWidth={300}
+            minHeight={props.properties.minHeight ? props.properties.minHeight : 200}
+            minWidth={props.properties.minWidth ? props.properties.minWidth : 300}
             enable={resizableProps.enable}
             size={resizableProps.size}
             style={
@@ -161,7 +169,7 @@ const WindowBase = (props: any) => {
             }}
         >
             <div
-                className="resizableWindowContainer"
+                className="resizable__window"
                 onMouseDown={(e) => {
                     e.stopPropagation();
                     disptach(LmbDown());

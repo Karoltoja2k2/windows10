@@ -1,20 +1,45 @@
 .winamp {
     position: absolute;
-    top: 30px;
-    right: 1px;
-    bottom: 1px;
-    left: 1px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
 
-    background-color: red;
-
-    .winamp__controls{
+    .winamp__container {
         display: flex;
         flex-direction: row;
+        width: 100%;
+        height: 100%;
+        background-color: blue;        
 
-        .controls__item{
-            height: 30px;
-            background-color: blue;
-            margin: 5px;
+        .container__logo {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 10;
+            cursor: pointer;
+            img {
+                padding: 10px;
+                width: 50px;
+                height: 50px;
+            }
         }
+
+        .container__content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+            background-color: white;
+
+            .content__bg {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                filter: brightness(50%);
+            }            
+        }
+
     }
 }

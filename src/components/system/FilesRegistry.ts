@@ -29,7 +29,8 @@ import thiscomputericon from "../../media/thiscomputericon.png";
 import desktopicon from "../../media/desktopicon.png";
 import driveicon from "../../media/windrive.png";
 import robbyicon from "../../media/robbyicon.png";
-
+import winampicon from "../../media/images/winampicon.png";
+  
 import FileRegistry from "./FileRegistry";
 import DesktopIcon from "../common/icons/desktopIcon.component";
 
@@ -104,7 +105,7 @@ export const GetFileComponentById = (id: number): any => {
         case FileRegistry.Winamp:
             return {
                 component: Winamp,
-                iconsrc: logo192,
+                iconsrc: winampicon,
                 extension: ".exe",
             };
         case FileRegistry.Robby:

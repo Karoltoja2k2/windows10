@@ -295,6 +295,9 @@ const lancuch1audio: FileDto = {
     content: {
         cover: jarmark,
         source: lancuch1,
+        artist: "Taco Hemingway",
+        album: "Jarmark",
+        title: "Lancuch I Kiosk",
     },
 };
 
@@ -307,6 +310,9 @@ const lancuch2audio: FileDto = {
     content: {
         cover: jarmark,
         source: lancuch2,
+        artist: "Taco Hemingway",
+        album: "Jarmark",
+        title: "Lancuch 2 Korek",
     },
 };
 
@@ -319,6 +325,9 @@ const lancuch3audio: FileDto = {
     content: {
         cover: jarmark,
         source: lancuch3,
+        artist: "Taco Hemingway",
+        album: "Jarmark",
+        title: "Lancuch III Korpo",
     },
 };
 const luxembourgaudio: FileDto = {
@@ -330,6 +339,9 @@ const luxembourgaudio: FileDto = {
     content: {
         cover: europa,
         source: luxembourg,
+        artist: "Taco Hemingway",
+        album: "Europa",
+        title: "Luxembourg",
     },
 };
 const mebpaudio: FileDto = {
@@ -341,6 +353,9 @@ const mebpaudio: FileDto = {
     content: {
         cover: europa,
         source: mebp,
+        artist: "Taco Hemingway",
+        album: "Europa",
+        title: "Michael Essien Birthday Party",
     },
 };
 const czlowiekzaudio: FileDto = {
@@ -352,6 +367,9 @@ const czlowiekzaudio: FileDto = {
     content: {
         cover: pocztowkawwa,
         source: czlowiekz,
+        artist: "Taco Hemingway",
+        album: "Pocztówka z WWA, lato '19",
+        title: "Czlowiek z dziura zamiast krtani",
     },
 };
 const alertrcbaudio: FileDto = {
@@ -363,6 +381,9 @@ const alertrcbaudio: FileDto = {
     content: {
         cover: pocztowkawwa,
         source: alertrcb,
+        artist: "Taco Hemingway",
+        album: "Pocztówka z WWA, lato '19",
+        title: "Alert RCB",
     },
 };
 
@@ -375,6 +396,9 @@ const motorolaaudio: FileDto = {
     content: {
         cover: cafebelgacover,
         source: motorola,
+        artist: "Taco Hemingway",
+        album: "Café Belga",
+        title: "Motorola",
     },
 };
 
@@ -387,6 +411,9 @@ const cafebelga2031audio: FileDto = {
     content: {
         cover: cafebelgacover,
         source: cafebelga2031,
+        artist: "Taco Hemingway",
+        album: "Café Belga",
+        title: "2031",
     },
 };
 
@@ -399,6 +426,9 @@ const wszystkonanibyaudio: FileDto = {
     content: {
         cover: cafebelgacover,
         source: wszystkonaniby,
+        artist: "Taco Hemingway",
+        album: "Café Belga",
+        title: "Wszystko na niby",
     },
 };
 
@@ -411,6 +441,9 @@ const ztmaudio: FileDto = {
     content: {
         cover: cafebelgacover,
         source: ztm,
+        artist: "Taco Hemingway",
+        album: "Café Belga",
+        title: "ZTM",
     },
 };
 
@@ -423,6 +456,9 @@ const nostalgiaaudio: FileDto = {
     content: {
         cover: szprycer,
         source: nostalgia,
+        artist: "Taco Hemingway",
+        album: "Szprycer",
+        title: "Nostalgia",
     },
 };
 

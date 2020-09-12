@@ -4,16 +4,23 @@ import "./winamp.scss";
 import { useDispatch } from "react-redux";
 import WinampApp from "./winampApp.component";
 
-
 function Winamp(props: any) {
+    console.log("rerender winamp");
     return (
         <WindowBase
             id={props.id}
+            windowBaseStyle="winamp"
             file={{ ...props.file, title: "Winamp" }}
-            properties={props.properties}
+            properties={{ ...props.properties, minWidth: 500, minHeight: 300 }}
             mobileMode={props.mobileMode}
         >
-            <WinampApp id={props.id} file={props.file} isClosed={props.isClosed}/>
+            <WinampApp
+                id={props.id}
+                file={props.file}
+                isClosed={props.isClosed}
+                properties={props.properties}
+                mobileMode={props.mobileMode}
+            />
         </WindowBase>
     );
 }

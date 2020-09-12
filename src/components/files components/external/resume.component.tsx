@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { FinishCloseWindow } from "../../../actions/windowsActions";
 
 const Resume = (props: any) => {
-    console.log(props);
     const dispatch = useDispatch();
     useEffect(() => {
         if (props.isClosed) {
