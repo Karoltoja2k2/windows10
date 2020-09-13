@@ -1,7 +1,7 @@
 import React from "react";
 import { Action } from "./winamp.const";
 
-import './controlBar.scss'
+import "./controlBar.scss";
 
 function ControlBar(props: any) {
     function SetSongTime(e: React.ChangeEvent<HTMLInputElement>) {
@@ -18,34 +18,57 @@ function ControlBar(props: any) {
         }
     }
     return (
-        <div className="controlBar">
+        <div
+            className="controlBar"
+            onClick={(e) => {
+                e.stopPropagation();
+            }}
+        >
             <div className="controlBar__section--left">
-                <p>{props.chosenSong.artist}</p>
-                <p>{props.chosenSong.title}</p>
+                {/* <p>{props.chosenSong.artist}</p>
+                <p>{props.chosenSong.title}</p> */}
             </div>
             <div className="controlBar__section--middle">
                 <div className="section__top">
+                    <div className="top__item top__item--small">
+                        <i className="fas fa-random"></i>
+                    </div>
                     <div
-                        className="controls__item"
+                        className="top__item top__item--medium"
                         onClick={() => {
                             props.SkipSong(Action.Backward);
                         }}
-                    ></div>
+                    >
+                        <i className="fas fa-backward"></i>
+                    </div>
                     <div
-                        className="controls__item"
-                        onClick={() => {
+                        className="top__item"
+                        onClick={(e) => {
                             TogglePlay();
                         }}
-                    ></div>
+                    >
+                        <i
+                            className={`fas ${
+                                props.isPlaying ? "fa-pause" : "fa-play-circle"
+                            }`}
+                        ></i>
+                    </div>
                     <div
-                        className="controls__item"
+                        className="top__item top__item--medium"
                         onClick={() => {
                             props.SkipSong(Action.Forward);
                         }}
-                    ></div>
+                    >
+                        <i className="fas fa-forward"></i>
+                    </div>
+
+                    <div className="top__item top__item--small">
+                        <i className="fas fa-redo-alt"></i>
+                    </div>
                 </div>
                 <div className="section__bottom">
                     <input
+                        className="slider"
                         type="range"
                         min={0}
                         onChange={(e) => {
@@ -61,7 +84,10 @@ function ControlBar(props: any) {
                 </div>
             </div>
             <div className="controlBar__section--right">
-                <div className="controls__item"></div>
+                {/* <input className="slider" type="range" value={props.volume} min={0} max={1} step={0.01} onChange={(e) => {
+                    console.log(e.target.value)
+                    props.SetVolume(e.target.value)
+                }}/> */}
             </div>
         </div>
     );

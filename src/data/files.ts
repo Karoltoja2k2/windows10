@@ -297,6 +297,7 @@ const lancuch1audio: FileDto = {
         source: lancuch1,
         artist: "Taco Hemingway",
         album: "Jarmark",
+        albumId: 0,
         title: "Lancuch I Kiosk",
     },
 };
@@ -312,6 +313,8 @@ const lancuch2audio: FileDto = {
         source: lancuch2,
         artist: "Taco Hemingway",
         album: "Jarmark",
+        albumId: 0,
+
         title: "Lancuch 2 Korek",
     },
 };
@@ -327,6 +330,8 @@ const lancuch3audio: FileDto = {
         source: lancuch3,
         artist: "Taco Hemingway",
         album: "Jarmark",
+        albumId: 0,
+
         title: "Lancuch III Korpo",
     },
 };
@@ -341,6 +346,8 @@ const luxembourgaudio: FileDto = {
         source: luxembourg,
         artist: "Taco Hemingway",
         album: "Europa",
+        albumId: 1,
+
         title: "Luxembourg",
     },
 };
@@ -355,6 +362,8 @@ const mebpaudio: FileDto = {
         source: mebp,
         artist: "Taco Hemingway",
         album: "Europa",
+        albumId: 1,
+
         title: "Michael Essien Birthday Party",
     },
 };
@@ -369,6 +378,8 @@ const czlowiekzaudio: FileDto = {
         source: czlowiekz,
         artist: "Taco Hemingway",
         album: "Pocztówka z WWA, lato '19",
+        albumId: 2,
+
         title: "Czlowiek z dziura zamiast krtani",
     },
 };
@@ -383,6 +394,8 @@ const alertrcbaudio: FileDto = {
         source: alertrcb,
         artist: "Taco Hemingway",
         album: "Pocztówka z WWA, lato '19",
+        albumId: 2,
+
         title: "Alert RCB",
     },
 };
@@ -398,6 +411,8 @@ const motorolaaudio: FileDto = {
         source: motorola,
         artist: "Taco Hemingway",
         album: "Café Belga",
+        albumId: 3,
+
         title: "Motorola",
     },
 };
@@ -413,6 +428,8 @@ const cafebelga2031audio: FileDto = {
         source: cafebelga2031,
         artist: "Taco Hemingway",
         album: "Café Belga",
+        albumId: 3,
+
         title: "2031",
     },
 };
@@ -428,6 +445,8 @@ const wszystkonanibyaudio: FileDto = {
         source: wszystkonaniby,
         artist: "Taco Hemingway",
         album: "Café Belga",
+        albumId: 3,
+
         title: "Wszystko na niby",
     },
 };
@@ -443,6 +462,8 @@ const ztmaudio: FileDto = {
         source: ztm,
         artist: "Taco Hemingway",
         album: "Café Belga",
+        albumId: 3,
+
         title: "ZTM",
     },
 };
@@ -458,6 +479,8 @@ const nostalgiaaudio: FileDto = {
         source: nostalgia,
         artist: "Taco Hemingway",
         album: "Szprycer",
+        albumId: 4,
+
         title: "Nostalgia",
     },
 };
@@ -502,7 +525,7 @@ FilesDto.push(
     cafebelga2031audio,
     wszystkonanibyaudio,
     ztmaudio,
-    nostalgiaaudio,
+    nostalgiaaudio
 );
 
 export default FilesDto;

@@ -11,6 +11,11 @@ import bgedited from "../../../media/images/bgedited.jpg";
 import winampicon from "../../../media/images/winampicon.png";
 import ControlBar from "./controlBar.component";
 import Menu from "./menu.component";
+import Hamburger from "../../common/hamburger/hambuger.component";
+
+import "../../common/scrollbar--light.scss";
+import Album from "./album.component";
+
 
 function WinampApp(props: any) {
     const dispatch = useDispatch();
@@ -23,17 +28,19 @@ function WinampApp(props: any) {
         )
     );
 
-    const [style, setStyle] = useState({
-        dynamicMenu: props.width > 700,
-        isShown: false
+    console.log(state.albums)
+
+    const [dynamicMenu, setDynamicMenu] = useState({
+        isActive: props.width < 700,
+        isOpen: false,
     });
 
     useEffect(() => {
-        console.log('asd')
-        if (props.width > 700) {
-            setStyle({ ...style, dynamicMenu: false });
-        } else {
-            setStyle({ ...style, dynamicMenu: true });
+        let isActive = props.width < 700;
+        let isOpen = false;
+
+        if (isActive !== dynamicMenu.isActive) {
+            setDynamicMenu({ isActive, isOpen });
         }
     }, [props.width]);
 
@@ -48,8 +55,12 @@ function WinampApp(props: any) {
         }
     }, [props.isClosed]);
 
+    useEffect(() => {
+        audioRef.current!.volume = state.volume;
+    }, [state.volume]);
+
     function SkipSong(action: Action) {
-        let newSong = state.songs.find(
+        let newSong = state.chosenAlbum.songs.find(
             (x) => x.id === state.chosenSong.id + action
         );
         if (newSong) {
@@ -61,17 +72,45 @@ function WinampApp(props: any) {
         setState({ ...state, chosenSong: newSong });
     }
 
+    function SetAlbum(albumId: number){
+        let newAlbum = state.albums.find(x => x.id === albumId)!;
+        let chosenSong = newAlbum.songs[0]
+        setState({...state, chosenAlbum: newAlbum, chosenSong: chosenSong})
+    }
+
     function UpdateTime(e: React.SyntheticEvent<HTMLAudioElement, Event>) {
         setState({ ...state, currentTime: e.currentTarget.currentTime });
     }
 
+    function SetVolume(value: number) {
+        setState({ ...state, volume: value });
+    }
+
+    function TriggerMenu() {
+        setDynamicMenu({
+            ...dynamicMenu,
+            isOpen: !dynamicMenu.isOpen,
+        });
+    }
+
     const controlBarProps = {
         chosenSong: state.chosenSong,
+        chosenAlbum: state.chosenAlbum,
         currentTime: state.currentTime,
+        volume: state.volume,
         audioRef: audioRef,
+        isPlaying: !audioRef.current?.paused,
         SkipSong: SkipSong,
         ChangeSong: ChangeSong,
+        SetVolume: SetVolume,
     };
+
+    const menuProps = {
+        chosenAlbum: state.chosenAlbum,
+        SetAlbum: SetAlbum
+    }
+
+    console.log(dynamicMenu);
 
     return (
         <div className="winamp">
@@ -85,22 +124,30 @@ function WinampApp(props: any) {
                 onEnded={() => SkipSong(Action.Forward)}
             ></audio>
             <div className="winamp__container">
-                {style.dynamicMenu && (
+                {dynamicMenu.isActive && (
                     <div className="container__logo">
-                        <img src={winampicon} alt="" />
+                        <Hamburger
+                            isClicked={dynamicMenu.isOpen}
+                            action={TriggerMenu}
+                            color="white"
+                            clickedColor="black"
+                            gap={4}
+                            width={20}
+                            height={30}
+                            thickness={3}
+                            borderRadius={0}
+                        />
                     </div>
                 )}
 
-                <Menu dynamicMenu={style.dynamicMenu} />
+                <Menu
+                    isActive={dynamicMenu.isActive}
+                    isOpen={dynamicMenu.isOpen}
+                    albums={state.albums}
+                    {...menuProps}
+                />
 
-                <div className="container__content">
-                    <img
-                        className="content__bg"
-                        src={state.chosenSong.cover}
-                        alt="cdcover"
-                    />
-                    <ControlBar {...controlBarProps} />
-                </div>
+                <Album {...controlBarProps}/>
             </div>
         </div>
     );
