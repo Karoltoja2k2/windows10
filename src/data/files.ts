@@ -179,6 +179,14 @@ const wolfenstein: FileDto = {
     prevFolderId: desktop.fileId,
 };
 
+const vrecorder: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/",
+    title: "Voice recorder",
+    componentId: FileRegistry.Vrecorder,
+    prevFolderId: desktop.fileId,
+};
+
 //#endregion
 
 //#region IMAGES
@@ -491,20 +499,23 @@ FilesDto.push(
     driveC,
     thiscomp,
     desktop,
+    imagesFolder,
+    audioFolder,
+
     mineswepper,
     resume,
-    lennaimg,
     paint,
     hydra,
     winamp,
     robby,
     impersonator,
-    herakles,
+    vrecorder,
+    herakles,    
     snake,
-    Wallpaper,
     wolfenstein,
-    imagesFolder,
-    audioFolder,
+
+    Wallpaper,    
+    lennaimg,
     colorfullPixels,
     lens,
     tree,

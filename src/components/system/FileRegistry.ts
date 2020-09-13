@@ -16,6 +16,7 @@ enum FileRegistry {
     Impersonator,
     Audio,
     Winamp,
+    Vrecorder,
 }
 
 export default FileRegistry;

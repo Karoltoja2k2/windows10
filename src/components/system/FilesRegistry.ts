@@ -30,9 +30,12 @@ import desktopicon from "../../media/desktopicon.png";
 import driveicon from "../../media/windrive.png";
 import robbyicon from "../../media/robbyicon.png";
 import winampicon from "../../media/images/winampicon.png";
+import audioicon from "../../media/images/audioicon.png";
+
   
 import FileRegistry from "./FileRegistry";
 import DesktopIcon from "../common/icons/desktopIcon.component";
+import Vrecorder from "../files components/vrecorder/vrecorder.component";
 
 export const GetFileComponentById = (id: number): any => {
     switch (id) {
@@ -123,8 +126,14 @@ export const GetFileComponentById = (id: number): any => {
         case FileRegistry.Audio:
             return {
                 component: Winamp,
-                iconsrc: logo192,
+                iconsrc: audioicon,
                 extension: ".mp3",
             };
+        case FileRegistry.Vrecorder:
+            return{
+                component: Vrecorder,
+                iconsrc: logo192,
+                extension: '.exe'
+            }
     }
 };

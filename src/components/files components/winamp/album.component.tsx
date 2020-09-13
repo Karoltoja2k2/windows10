@@ -7,13 +7,13 @@ import "./album.scss";
 function Album(props: any) {
     console.log(props);
     return (
-        <div className="container__content" onClick={() => props.TriggerMenu(false)}>
+        <div className="container__album" onClick={() => props.TriggerMenu(false)}>
             <img
-                className="content__bg"
+                className="album__bg"
                 src={props.chosenAlbum.cover}
                 alt="cdcover"
             />
-            <div className="content__tracks scrollbar--light">
+            <div className="album__tracks scrollbar--light">
                 <div className="tracks__album">
                     {`${props.chosenSong.artist} - ${props.chosenSong.album}`}
                 </div>
