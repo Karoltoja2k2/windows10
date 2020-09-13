@@ -7,7 +7,7 @@ import "./album.scss";
 function Album(props: any) {
     console.log(props);
     return (
-        <div className="container__content">
+        <div className="container__content" onClick={() => props.TriggerMenu(false)}>
             <img
                 className="content__bg"
                 src={props.chosenAlbum.cover}

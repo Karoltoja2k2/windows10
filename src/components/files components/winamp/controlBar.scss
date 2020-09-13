@@ -8,29 +8,17 @@
 
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    .controlBar__section--left {
-        width: 25%;
-        margin-left: 10px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        p {
-            font-size: 16px;
-            font-weight: 300;
-            color: white;
-        }
-    }
 
-    .controlBar__section--middle {
+    .controlBar__controls {
         width: 50%;
 
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        .section__top {
+        .controls__top {
             width: 100%;
             margin-bottom: 5px;
 
@@ -45,11 +33,11 @@
                 color: white;
                 font-size: 22px;
                 margin: 0 10px;
-                cursor: pointer;
                 display: flex;
                 justify-content: center;
                 align-items: center;
 
+                transition: color 0.2s ease;
                 &:hover {
                     color: rgb(177, 224, 255);
                 }
@@ -75,20 +63,6 @@
                 pointer-events: auto;
             }
         }
-    }
-
-    .controlBar__section--right {
-        width: 25%;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-    }
-
-    .controls__item {
-        width: 30px;
-        height: 30px;
-        margin: 5px;
-        background-color: pink;
     }
 }
 
@@ -117,7 +91,7 @@
         transition: height 0.3s ease-out;
         &:hover {
             height: 17px;
-            background: rgb(177, 224, 255);
+            background: #b1e0ff;
         }
     }
 

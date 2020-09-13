@@ -16,7 +16,6 @@ import Hamburger from "../../common/hamburger/hambuger.component";
 import "../../common/scrollbar--light.scss";
 import Album from "./album.component";
 
-
 function WinampApp(props: any) {
     const dispatch = useDispatch();
     const audioRef = useRef<HTMLAudioElement>(null);
@@ -28,7 +27,7 @@ function WinampApp(props: any) {
         )
     );
 
-    console.log(state.albums)
+    console.log(state.albums);
 
     const [dynamicMenu, setDynamicMenu] = useState({
         isActive: props.width < 700,
@@ -72,10 +71,10 @@ function WinampApp(props: any) {
         setState({ ...state, chosenSong: newSong });
     }
 
-    function SetAlbum(albumId: number){
-        let newAlbum = state.albums.find(x => x.id === albumId)!;
-        let chosenSong = newAlbum.songs[0]
-        setState({...state, chosenAlbum: newAlbum, chosenSong: chosenSong})
+    function SetAlbum(albumId: number) {
+        let newAlbum = state.albums.find((x) => x.id === albumId)!;
+        let chosenSong = newAlbum.songs[0];
+        setState({ ...state, chosenAlbum: newAlbum, chosenSong: chosenSong });
     }
 
     function UpdateTime(e: React.SyntheticEvent<HTMLAudioElement, Event>) {
@@ -86,10 +85,12 @@ function WinampApp(props: any) {
         setState({ ...state, volume: value });
     }
 
-    function TriggerMenu() {
+    function TriggerMenu(openMenu?: boolean) {
+        let isOpen = openMenu != undefined ? openMenu : !dynamicMenu.isOpen;
+        console.log(isOpen, openMenu)
         setDynamicMenu({
             ...dynamicMenu,
-            isOpen: !dynamicMenu.isOpen,
+            isOpen,
         });
     }
 
@@ -103,12 +104,13 @@ function WinampApp(props: any) {
         SkipSong: SkipSong,
         ChangeSong: ChangeSong,
         SetVolume: SetVolume,
+        TriggerMenu: TriggerMenu,
     };
 
     const menuProps = {
         chosenAlbum: state.chosenAlbum,
-        SetAlbum: SetAlbum
-    }
+        SetAlbum: SetAlbum,
+    };
 
     console.log(dynamicMenu);
 
@@ -130,6 +132,7 @@ function WinampApp(props: any) {
                             isClicked={dynamicMenu.isOpen}
                             action={TriggerMenu}
                             color="white"
+                            hoverColor="#b1e0ff"
                             clickedColor="black"
                             gap={4}
                             width={20}
@@ -147,7 +150,7 @@ function WinampApp(props: any) {
                     {...menuProps}
                 />
 
-                <Album {...controlBarProps}/>
+                <Album {...controlBarProps} />
             </div>
         </div>
     );
