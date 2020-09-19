@@ -123,6 +123,14 @@ const word: FileDto = {
     prevFolderId: desktop.fileId,
 };
 
+const chrome: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/",
+    title: "Chrome",
+    componentId: FileRegistry.Chrome,
+    prevFolderId: desktop.fileId,
+};
+
 const snake: FileDto = {
     fileId: id++,
     path: "Drive C:/Desktop/",
@@ -572,6 +580,7 @@ FilesDto.push(
     robby,
     impersonator,
     // vrecorder,
+    chrome,
     herakles,
     word,
 

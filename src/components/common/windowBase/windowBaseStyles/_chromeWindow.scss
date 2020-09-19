@@ -1,10 +1,12 @@
-.resizable--word {
+.resizable--chrome {
     position: absolute;
     z-index: 3;
     overflow: hidden;
-    transition: background-color 0.2s ease;
-    border-radius: 2px;
     background-color: rgb(59, 59, 59);
+    border-radius: 2px;
+
+    transition: background-color 0.2s ease;
+    transition: box-shadow 0.5s ease;
 
     .resizable__window {
         position: absolute;
@@ -14,15 +16,16 @@
             position: absolute;
             top: 0px;
             left: 0px;
-            right: 0px;
+            width: 100%;
             height: 30px;
             z-index: 3;
+            margin: 0px;
+            background-color: rgba(255, 255, 255, 0);
 
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
-            cursor: move;
             .bar__title {
                 display: flex;
                 flex-direction: row;
@@ -47,10 +50,7 @@
                 }
             }
             .bar__buttons {
-                position: absolute;
-                top: 0px;
-                right: 0px;
-
+                height: 100%;
                 display: flex;
                 flex-direction: row;
                 justify-content: end;
@@ -83,6 +83,8 @@
     }
 }
 
-.resizable--word--focused {
+.resizable--chrome--focused {
     background-color: darkgreen;
+    -webkit-box-shadow: 0px 0px 15px -3px #000000; 
+box-shadow: 0px 0px 15px -3px #000000;
 }

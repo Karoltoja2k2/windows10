@@ -18,7 +18,6 @@ function Word(props: any) {
         <WindowBase
             id={props.id}
             file={{ ...props.file }}
-            windowBaseStyle="word"
             properties={{ ...props.properties, minWidth: 500, minHeight: 300 }}
             mobileMode={props.mobileMode}
         >

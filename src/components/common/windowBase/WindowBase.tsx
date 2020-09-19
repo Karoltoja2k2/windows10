@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import "./windowBaseStyles/classicWindow.scss";
-import "./windowBaseStyles/winampWindow.scss";
-import "./windowBaseStyles/wordWindow.scss";
+import "./windowBaseStyles/windowBase.scss";
 
 import { Resizable } from "re-resizable";
 

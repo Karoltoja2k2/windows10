@@ -21,6 +21,7 @@ enum FileRegistry {
     TextDisplay,
     Windows10,
     RecycleBin,
+    Chrome,
 }
 
 export default FileRegistry;

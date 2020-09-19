@@ -3,7 +3,6 @@ import File from "../../models/File";
 import Snake from "../files components/snake/snake.component";
 import FileExplorer from "../files components/FileExplorer/FileExplorer.component";
 import PhotoDisplay from "../files components/PhotoDisplay/PhotoDisplay";
-import Explorer from "../files components/Browser/Explorer";
 import Paint from "../files components/paint/paint.component";
 import Mineswepper from "../files components/external/mineswepper.component";
 import Hydra from "../files components/hydra/hydra.component";
@@ -14,12 +13,13 @@ import Winamp from "../files components/winamp/winamp.component";
 import Robby from "../files components/external/robby.component";
 import Impersonator from "../files components/external/impersonator.component";
 import windows93 from "../files components/external/windows93.component";
+import Chrome from "../files components/chrome/chrome.component";
 
 import logo192 from "../../media/logo192.png";
 import imgicon from "../../media/imgicon2.png";
 import snakeicon from "../../media/snakeicon.png";
 import resume from "../../media/resume.png";
-import chrome from "../../media/chrome.png";
+import chromeicon from "../../media/images/chromeicon.png";
 import foldericon from "../../media/folder.png";
 import mineswepperIcon from "../../media/mineswepper.png";
 import painticon from "../../media/painticon.png";
@@ -37,7 +37,6 @@ import wordicon from "../../media/images/wordicon.png";
 import texticon from "../../media/images/texticon.png";
 import win10icon from "../../media/images/win10icon.png";
 import binicon from "../../media/images/binicon.png";
-
 
 import FileRegistry from "./FileRegistry";
 import DesktopIcon from "../common/icons/desktopIcon.component";
@@ -60,8 +59,6 @@ export const GetFileComponentById = (id: number): any => {
                 iconsrc: imgicon,
                 extension: ".img",
             };
-        case FileRegistry.Browser:
-            return { component: Explorer, iconsrc: resume, extension: ".exe" };
         case FileRegistry.Paint:
             return { component: Paint, iconsrc: painticon, extension: ".exe" };
         case FileRegistry.Mineswepper:
@@ -164,6 +161,12 @@ export const GetFileComponentById = (id: number): any => {
             return {
                 component: FileExplorer,
                 iconsrc: binicon,
+                extension: ".fld",
+            };
+        case FileRegistry.Chrome:
+            return {
+                component: Chrome,
+                iconsrc: chromeicon,
                 extension: ".fld",
             };
     }

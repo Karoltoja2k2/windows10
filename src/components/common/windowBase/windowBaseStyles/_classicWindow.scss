@@ -6,6 +6,7 @@
     border-radius: 2px;
 
     transition: background-color 0.2s ease;
+    transition: box-shadow 0.5s ease;
 
     .resizable__window {
         position: absolute;
@@ -84,4 +85,6 @@
 
 .resizable--classic--focused {
     background-color: darkgreen;
+    -webkit-box-shadow: 0px 0px 15px -3px #000000;
+    box-shadow: 0px 0px 15px -3px #000000;
 }
