@@ -8,9 +8,10 @@ import File from "../../../models/File";
 import Bar from "./bar.component";
 import Content from "./content.component";
 import Footer from "./footer.component";
-import { Navigate, FinishCloseWindow } from "../../../actions/windowsActions";
+import { Navigate } from "../../../actions/windowsActions";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../reducers";
+import useSoftExit from "../../common/hooks/useSoftExit";
 
 const FileExplorer = (props: any) => {
     const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const FileExplorer = (props: any) => {
 
     const drive: File[] = useSelector((state: RootState) => state.driveReducer);
 
-    console.log("rerender fileexploer");
+    useSoftExit(props.isClosed, props.id);
 
     // THIS NEED CHANGES
     useEffect(() => {
@@ -41,12 +42,6 @@ const FileExplorer = (props: any) => {
         });
     }
     // END
-
-    useEffect(() => {
-        if (props.isClosed) {
-            dispatch(FinishCloseWindow(props.id));
-        }
-    }, [props.isClosed]);
 
     const previousFolder = () => {
         if (props.file.prevFolderId !== 0) {

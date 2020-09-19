@@ -1,11 +1,11 @@
-import React, { useState, useEffect, memo } from "react";
+import React, { useState} from "react";
 import WindowBase from "../../common/windowBase/WindowBase";
-import Logo from "../../media/win_logo.png";
 import "./photoDisplay.scss";
 import File from "../../../models/File";
 import { RootState } from "../../../reducers";
 import { useSelector, useDispatch } from "react-redux";
 import { OpenAs, FinishCloseWindow } from "../../../actions/windowsActions";
+import useSoftExit from "../../common/hooks/useSoftExit";
 
 const PhotoDisplay = (props: any) => {
     const dispatch = useDispatch();
@@ -15,11 +15,7 @@ const PhotoDisplay = (props: any) => {
 
     const [scale, setScale] = useState(1);
 
-    useEffect(() => {
-        if (props.isClosed) {
-            dispatch(FinishCloseWindow(props.id));
-        }
-    }, [props.isClosed]);
+    useSoftExit(props.isClosed, props.id);
 
     return (
         <WindowBase

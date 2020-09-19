@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./game.scss";
 
 import Field from "./snakeField.component";
-import { useInterval } from "../../common/useInterval";
+import { useInterval } from "../../common/hooks/useInterval";
 import BodyPart from "./models/BodyPart";
 import Fruit from "./models/Fruit";
 import { FRUITS, SNAKE, SIZE as SETTINGS, SPEED_CALC } from "./const";

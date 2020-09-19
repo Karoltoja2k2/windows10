@@ -52,7 +52,9 @@ const Herakles = (props: any) => {
             properties={{
                 ...props.properties,
                 width: 300,
+                minWidth: 300,
                 height: 150,
+                minHeight: 150,
                 isFullscreen: false,
                 isFixedSize: true,
                 canMinimize: false,
@@ -72,6 +74,7 @@ const Herakles = (props: any) => {
 export default React.memo(Herakles, (prevProps, nextProps) => {
     return (
         prevProps.file === nextProps.file &&
+        prevProps.isClosed === nextProps.isClosed &&
         prevProps.properties === nextProps.properties &&
         nextProps.properties.isDragged !== true &&
         prevProps.mobileMode === nextProps.mobileMode

@@ -1,23 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../../reducers";
 import FileRegistry from "../../system/FileRegistry";
-import { FinishCloseWindow } from "../../../actions/windowsActions";
 import File from "../../../models/File";
 import InitialState, { WinampState, Action, Song } from "./winamp.const";
 
-import winampflowersbg from "../../../media/images/winampflowersbgedited.jpg";
-import bgedited from "../../../media/images/bgedited.jpg";
-import winampicon from "../../../media/images/winampicon.png";
-import ControlBar from "./controlBar.component";
 import Menu from "./menu.component";
 import Hamburger from "../../common/hamburger/hambuger.component";
 
 import "../../common/scrollbar--light.scss";
 import Album from "./album.component";
+import useSoftExit from "../../common/hooks/useSoftExit";
 
 function WinampApp(props: any) {
-    const dispatch = useDispatch();
     const audioRef = useRef<HTMLAudioElement>(null);
     const drive: File[] = useSelector((state: RootState) => state.driveReducer);
     const [state, setState] = useState<WinampState>(
@@ -26,8 +21,6 @@ function WinampApp(props: any) {
             props.file
         )
     );
-
-    console.log(state.albums);
 
     const [dynamicMenu, setDynamicMenu] = useState({
         isActive: props.width < 700,
@@ -43,16 +36,12 @@ function WinampApp(props: any) {
         }
     }, [props.width]);
 
-    useEffect(() => {
-        if (props.isClosed) {
-            let audio = audioRef.current!;
+    useSoftExit(props.isClosed, props.id, () => {
+        let audio = audioRef.current!;
             if (!audio.paused) {
                 audio.pause();
             }
-            console.log("closing");
-            dispatch(FinishCloseWindow(props.id));
-        }
-    }, [props.isClosed]);
+    });
 
     useEffect(() => {
         audioRef.current!.volume = state.volume;

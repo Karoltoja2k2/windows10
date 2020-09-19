@@ -1,16 +1,11 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { FinishCloseWindow } from "../../../actions/windowsActions";
+import React from "react";
+import useSoftExit from "../../common/hooks/useSoftExit";
 import WindowBase from "../../common/windowBase/WindowBase";
 import IframeFocusable from "../../common/windowExtensions/iframeFocusable.component";
 
 function Windows10(props: any) {
-    const dispatch = useDispatch();
-    useEffect(() => {
-        if (props.isClosed) {
-            dispatch(FinishCloseWindow(props.id));
-        }
-    }, [props.isClosed]);
+    useSoftExit(props.isClosed, props.id);
+
     return (
         <WindowBase
             id={props.id}

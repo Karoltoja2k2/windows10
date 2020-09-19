@@ -1,26 +1,16 @@
-import React, { useState, useEffect, memo } from "react";
+import React, { useState, useEffect } from "react";
 import WindowBase from "../../common/windowBase/WindowBase";
-import Logo from "../../media/win_logo.png";
-import PaintContent from "./paintContent.component";
-import IMAGE from "../../../media/bg.jpg";
-import { Provider, useDispatch } from "react-redux";
-import PaintSettings from "./paintSettings.component";
 import PaintApp from "./paintApp.component";
-import { FinishCloseWindow } from "../../../actions/windowsActions";
+import useSoftExit from "../../common/hooks/useSoftExit";
 
 const Paint = (props: any) => {
     const [file, setFile] = useState(props.file);
     useEffect(() => {
-        setFile(props.file)
-        console.log(props.file)
-    }, [props.file])
+        setFile(props.file);
+        console.log(props.file);
+    }, [props.file]);
 
-    const dispatch = useDispatch()
-    useEffect(() => {
-        if (props.isClosed) {
-            dispatch(FinishCloseWindow(props.id));
-        }
-    }, [props.isClosed]);
+    useSoftExit(props.isClosed, props.id);
 
     return (
         <WindowBase
@@ -37,6 +27,7 @@ const Paint = (props: any) => {
 export default React.memo(Paint, (prevProps, nextProps) => {
     return (
         prevProps.file === nextProps.file &&
+        prevProps.isClosed === nextProps.isClosed &&
         prevProps.properties === nextProps.properties &&
         nextProps.properties.isDragged !== true &&
         prevProps.mobileMode === nextProps.mobileMode

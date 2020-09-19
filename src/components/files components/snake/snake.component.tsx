@@ -1,18 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import WindowBase from "../../common/windowBase/WindowBase";
 import Game from "./game.component";
-import { useDispatch } from "react-redux";
-import { FinishCloseWindow } from "../../../actions/windowsActions";
-import IframeFocusable from "../../common/windowExtensions/iframeFocusable.component";
+import useSoftExit from "../../common/hooks/useSoftExit";
 
 const Snake = (props: any) => {
-    const dispatch = useDispatch();
-    useEffect(() => {
-        if (props.isClosed) {
-            dispatch(FinishCloseWindow(props.id));
-        }
-    }, [props.isClosed]);
+    useSoftExit(props.isClosed, props.id);
+
     return (
         <WindowBase
             id={props.id}

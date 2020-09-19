@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import WindowBase from "../../common/windowBase/WindowBase";
-import RichTextEditor from "react-rte";
 
 import "./word.scss";
 import "../../common/scrollbar--dark.scss";
 import Editor from "./editor.component";
-import { useDispatch } from "react-redux";
-import { FinishCloseWindow } from "../../../actions/windowsActions";
+import useSoftExit from "../../common/hooks/useSoftExit";
 
 function Word(props: any) {
     const [state, setState] = useState({
@@ -14,12 +12,7 @@ function Word(props: any) {
         text: props.file.content?.text,
     });
 
-    const dispatch = useDispatch();
-    useEffect(() => {
-        if (props.isClosed) {
-            dispatch(FinishCloseWindow(props.id));
-        }
-    }, [props.isClosed]);
+    useSoftExit(props.isClosed, props.id);
 
     return (
         <WindowBase
@@ -29,7 +22,7 @@ function Word(props: any) {
             properties={{ ...props.properties, minWidth: 500, minHeight: 300 }}
             mobileMode={props.mobileMode}
         >
-            <Editor disabled={state.disabled} text={state.text}/>
+            <Editor disabled={state.disabled} text={state.text} />
         </WindowBase>
     );
 }

@@ -11,7 +11,9 @@ export interface WindowProperties {
     top?: number;
     left?: number;
     width?: number;
+    minWidth?: number;
     height?: number;
+    minHeight?: number;
     isDragged?: boolean;
     isFocused?: boolean;
     isMinimized?: boolean;

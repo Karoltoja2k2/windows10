@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TaskBarItem from "./TaskBarItem.component";
-import Clock from "../common/clock/Clock.component";
+import Clock from "../common/clock/clock";
 
 import "./taskbar.scss";
 

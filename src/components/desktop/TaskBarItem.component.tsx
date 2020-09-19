@@ -19,6 +19,7 @@ const TaskBarItem = (props: any) => {
     );
     const dispatch = useDispatch();
     const state = props.window.properties;
+    console.log(state)
 
     return (
         <div
@@ -27,13 +28,12 @@ const TaskBarItem = (props: any) => {
                 e.stopPropagation();
                 console.log(state);
                 if (state.isMinimized) {
-                    console.log("maximize");
                     dispatch(UnMinimizeWindow(props.id));
                 } else if (!state.isMinimized && state.isFocused) {
-                    console.log("minimizing");
-                    dispatch(MinimizeWindow(props.id));
+                    if (state.canMinimize) {
+                        dispatch(MinimizeWindow(props.id));
+                    }
                 } else {
-                    console.log("focus");
                     dispatch(FocusWindow(props.id));
                 }
             }}
@@ -44,4 +44,6 @@ const TaskBarItem = (props: any) => {
     );
 };
 
-export default TaskBarItem;
+export default React.memo(TaskBarItem, (prevProps, nextProps) => {
+    return prevProps.window === nextProps.window;
+});

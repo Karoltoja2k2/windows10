@@ -134,7 +134,7 @@ const windowsReducer = (state: WindowsManager = windowsState, action: any) => {
                     ...window,
                     properties: {
                         ...window.properties,
-                        isMinimized: true,
+                        isMinimized: window.properties.canMinimize,
                         isFocused: false,
                     },
                 })),

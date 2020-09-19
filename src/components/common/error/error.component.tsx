@@ -6,7 +6,7 @@ const windowserrorsound = require("../../../media/audio/windowserrorsound.wav");
 
 const ErrorContent = (props: any) => {
     useEffect(() => {
-        let audio = new Audio(windowserrorsound)
+        let audio = new Audio(windowserrorsound);
         audio.play();
     }, []);
     return (
@@ -18,8 +18,9 @@ const ErrorContent = (props: any) => {
                         <div
                             className="options__item"
                             onClick={() => option.action()}
+                            key={index}
                         >
-                            <label htmlFor="">{option.text}</label>
+                            <label>{option.text}</label>
                         </div>
                     ))}
                 </div>
