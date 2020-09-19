@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./windowBaseStyles/classicWindow.scss";
 import "./windowBaseStyles/winampWindow.scss";
+import "./windowBaseStyles/wordWindow.scss";
 
 import { Resizable } from "re-resizable";
 
@@ -127,8 +128,12 @@ const WindowBase = (props: any) => {
     return (
         <Resizable
             className={resizableProps.className}
-            minHeight={props.properties.minHeight ? props.properties.minHeight : 200}
-            minWidth={props.properties.minWidth ? props.properties.minWidth : 300}
+            minHeight={
+                props.properties.minHeight ? props.properties.minHeight : 200
+            }
+            minWidth={
+                props.properties.minWidth ? props.properties.minWidth : 300
+            }
             enable={resizableProps.enable}
             size={resizableProps.size}
             style={

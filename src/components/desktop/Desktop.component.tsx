@@ -51,12 +51,12 @@ function Desktop(props: any) {
 
     useEffect(() => {
         window.addEventListener("resize", (e) => HandleResize(e));
-        dispatch(
-            OpenWindow(
-                drive.find((x) => x.componentId === FileRegistry.Vrecorder)!,
-                { width: 600, height: 400 }
-            )
-        );
+        // dispatch(
+        //     OpenWindow(
+        //         drive.find((x) => x.componentId === FileRegistry.Word)!,
+        //         { width: 600, height: 400 }
+        //     )
+        // );
 
         let audio = new Audio(startupsound);
         audio.play();
@@ -107,11 +107,6 @@ function Desktop(props: any) {
                 </div>
             </div>
             <Taskbar />
-            {/* <DesktopIconContextMenu
-                file={files.find((x) => x.title === "Test folder")}
-                top={100}
-                left={600}
-            /> */}
         </div>
     );
 }

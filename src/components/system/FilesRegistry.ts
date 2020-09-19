@@ -13,6 +13,7 @@ import Resume from "../files components/external/resume.component";
 import Winamp from "../files components/winamp/winamp.component";
 import Robby from "../files components/external/robby.component";
 import Impersonator from "../files components/external/impersonator.component";
+import windows93 from "../files components/external/windows93.component";
 
 import logo192 from "../../media/logo192.png";
 import imgicon from "../../media/imgicon2.png";
@@ -31,11 +32,17 @@ import driveicon from "../../media/windrive.png";
 import robbyicon from "../../media/robbyicon.png";
 import winampicon from "../../media/images/winampicon.png";
 import audioicon from "../../media/images/audioicon.png";
+import impersonatoricon from "../../media/images/impersonatoricon.png";
+import wordicon from "../../media/images/wordicon.png";
+import texticon from "../../media/images/texticon.png";
+import win10icon from "../../media/images/win10icon.png";
+import binicon from "../../media/images/binicon.png";
 
-  
+
 import FileRegistry from "./FileRegistry";
 import DesktopIcon from "../common/icons/desktopIcon.component";
 import Vrecorder from "../files components/vrecorder/vrecorder.component";
+import Word from "../files components/word/word.component";
 
 export const GetFileComponentById = (id: number): any => {
     switch (id) {
@@ -120,7 +127,7 @@ export const GetFileComponentById = (id: number): any => {
         case FileRegistry.Impersonator:
             return {
                 component: Impersonator,
-                iconsrc: logo192,
+                iconsrc: impersonatoricon,
                 extension: ".exe",
             };
         case FileRegistry.Audio:
@@ -130,10 +137,34 @@ export const GetFileComponentById = (id: number): any => {
                 extension: ".mp3",
             };
         case FileRegistry.Vrecorder:
-            return{
+            return {
                 component: Vrecorder,
                 iconsrc: logo192,
-                extension: '.exe'
-            }
+                extension: ".exe",
+            };
+        case FileRegistry.Word:
+            return {
+                component: Word,
+                iconsrc: wordicon,
+                extension: ".exe",
+            };
+        case FileRegistry.TextDisplay:
+            return {
+                component: Word,
+                iconsrc: texticon,
+                extension: ".txt",
+            };
+        case FileRegistry.Windows10:
+            return {
+                component: windows93,
+                iconsrc: win10icon,
+                extension: ".exe",
+            };
+        case FileRegistry.RecycleBin:
+            return {
+                component: FileExplorer,
+                iconsrc: binicon,
+                extension: ".fld",
+            };
     }
 };

@@ -3,6 +3,7 @@ import "./iframeBase.scss";
 import WindowBase from "../../common/windowBase/WindowBase";
 import { useDispatch } from "react-redux";
 import { FinishCloseWindow } from "../../../actions/windowsActions";
+import IframeFocusable from "../../common/windowExtensions/iframeFocusable.component";
 
 const Wolfenstein = (props: any) => {
     const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const Wolfenstein = (props: any) => {
             properties={props.properties}
             mobileMode={props.mobileMode}
         >
+            <IframeFocusable isFocused={props.properties.isFocused} />
             <div className="container">
                 <iframe src="https://loadx.github.io/html5-wolfenstein3D/" />
             </div>

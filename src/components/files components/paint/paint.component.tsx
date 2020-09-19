@@ -3,9 +3,10 @@ import WindowBase from "../../common/windowBase/WindowBase";
 import Logo from "../../media/win_logo.png";
 import PaintContent from "./paintContent.component";
 import IMAGE from "../../../media/bg.jpg";
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import PaintSettings from "./paintSettings.component";
 import PaintApp from "./paintApp.component";
+import { FinishCloseWindow } from "../../../actions/windowsActions";
 
 const Paint = (props: any) => {
     const [file, setFile] = useState(props.file);
@@ -13,6 +14,13 @@ const Paint = (props: any) => {
         setFile(props.file)
         console.log(props.file)
     }, [props.file])
+
+    const dispatch = useDispatch()
+    useEffect(() => {
+        if (props.isClosed) {
+            dispatch(FinishCloseWindow(props.id));
+        }
+    }, [props.isClosed]);
 
     return (
         <WindowBase

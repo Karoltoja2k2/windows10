@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import "./index.scss";
 import * as serviceWorker from "./serviceWorker";
@@ -10,11 +10,10 @@ import { rootReducers } from "./reducers/index";
 let store = createStore(rootReducers);
 
 ReactDOM.render(
-    <React.StrictMode>
         <Provider store={store}>
             <App />
         </Provider>
-    </React.StrictMode>,
+    ,
     document.getElementById("root")
 );
 

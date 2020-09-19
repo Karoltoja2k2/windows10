@@ -84,12 +84,13 @@ const StartMenu = (props: any) => {
                 ))}
             </div>
             <div className="menu__column menu__column--right scrollbar--dark">
+                
                 <div className="column__section">
-                    <div className="section__title">Pictures</div>
+                    <div className="section__title">Apps</div>
                     <div className="section__grid">
                         {state.files &&
                             state.files
-                                .filter((x) => x.extension === ".img")
+                                .filter((x) => x.extension === ".exe")
                                 .map((file, index) => (
                                     <StartMenuIcon
                                         file={file}
@@ -101,11 +102,27 @@ const StartMenu = (props: any) => {
                     </div>
                 </div>
                 <div className="column__section">
-                    <div className="section__title">Apps</div>
+                    <div className="section__title">Audio</div>
                     <div className="section__grid">
                         {state.files &&
                             state.files
-                                .filter((x) => x.extension === ".exe")
+                                .filter((x) => x.extension === ".mp3")
+                                .map((file, index) => (
+                                    <StartMenuIcon
+                                        file={file}
+                                        key={index}
+                                        type={"squareIcon"}
+                                        Navigate={props.Navigate}
+                                    />
+                                ))}
+                    </div>
+                </div>
+                <div className="column__section">
+                    <div className="section__title">Pictures</div>
+                    <div className="section__grid">
+                        {state.files &&
+                            state.files
+                                .filter((x) => x.extension === ".img")
                                 .map((file, index) => (
                                     <StartMenuIcon
                                         file={file}

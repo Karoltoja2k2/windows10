@@ -13,6 +13,7 @@ import eyeimg from "../media/eye.png";
 import asiaimg from "../media/asia.jpg";
 import earthimg from "../media/earth.jpg";
 import img19 from "../media/19icon.png";
+import disjpg from "../media/images/dis.jpg";
 
 // Covers
 import cafebelgacover from "../media/images/covers/cafe.jpg";
@@ -95,6 +96,13 @@ const audioFolder: FileDto = {
     prevFolderId: desktop.fileId,
 };
 
+const recyclebin: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/",
+    title: "Recycle bin",
+    componentId: FileRegistry.RecycleBin,
+    prevFolderId: desktop.fileId,
+};
 //#endregion
 
 //#region FILES
@@ -107,11 +115,27 @@ const paint: FileDto = {
     prevFolderId: desktop.fileId,
 };
 
+const word: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/",
+    title: "Word",
+    componentId: FileRegistry.Word,
+    prevFolderId: desktop.fileId,
+};
+
 const snake: FileDto = {
     fileId: id++,
     path: "Drive C:/Desktop/",
     title: "Snake",
     componentId: FileRegistry.Snake,
+    prevFolderId: desktop.fileId,
+};
+
+const Windows10: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/",
+    title: "Windows10",
+    componentId: FileRegistry.Windows10,
     prevFolderId: desktop.fileId,
 };
 
@@ -185,6 +209,32 @@ const vrecorder: FileDto = {
     title: "Voice recorder",
     componentId: FileRegistry.Vrecorder,
     prevFolderId: desktop.fileId,
+};
+
+//#endregion
+
+//#region TEXT
+
+const credits: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/",
+    title: "Credits",
+    componentId: FileRegistry.TextDisplay,
+    prevFolderId: desktop.fileId,
+    content: {        
+        text: 
+        `
+        <h2>Sources</h2>        
+        <p>Word - <a href="https://github.com/sstur/react-rte" target="_blank">https://github.com/sstur/react-rte</a></p>
+        <p>Robby - <a href="http://www.nurykabe.com/" target="_blank">http://www.nurykabe.com/</a></p>
+        <p>Impersonator - <a href="http://www.nurykabe.com/" target="_blank">http://www.nurykabe.com/</a></p>
+        <p>Wolfenstein 3D - <a href="https://github.com/loadx/html5-wolfenstein3D" target="_blank">https://github.com/loadx/html5-wolfenstein3D</a></p>
+        <p>Albums - <a href="https://www.tacohemingway.store/taco-hemingway" target="_blank">https://www.tacohemingway.store/taco-hemingway</a></p>
+        <p>Inspiration - <a href="https://www.windows93.net/" target="_blank">https://www.windows93.net/</a></p>
+        
+        `
+        
+    }
 };
 
 //#endregion
@@ -287,6 +337,17 @@ const whyuopenthis: FileDto = {
     prevFolderId: idontthinkso.fileId,
     content: {
         source: img19,
+    },
+};
+
+const dis: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/Recycle bin/",
+    title: "trash",
+    componentId: FileRegistry.PhotoDisplay,
+    prevFolderId: recyclebin.fileId,
+    content: {
+        source: disjpg,
     },
 };
 
@@ -506,15 +567,20 @@ FilesDto.push(
     resume,
     paint,
     hydra,
+    snake,
     winamp,
     robby,
     impersonator,
-    vrecorder,
-    herakles,    
-    snake,
-    wolfenstein,
+    // vrecorder,
+    herakles,
+    word,
 
-    Wallpaper,    
+    wolfenstein,
+    Windows10,
+
+    credits,
+
+    Wallpaper,
     lennaimg,
     colorfullPixels,
     lens,
@@ -536,7 +602,10 @@ FilesDto.push(
     cafebelga2031audio,
     wszystkonanibyaudio,
     ztmaudio,
-    nostalgiaaudio
+    nostalgiaaudio,
+
+    recyclebin,
+    dis,
 );
 
 export default FilesDto;

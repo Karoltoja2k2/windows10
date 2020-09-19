@@ -3,6 +3,8 @@
     z-index: 3;
     overflow: hidden;
     background-color: rgb(59, 59, 59);
+    border-radius: 2px;
+
     transition: background-color 0.2s ease;
 
     .resizable__window {

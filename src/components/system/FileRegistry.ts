@@ -17,6 +17,10 @@ enum FileRegistry {
     Audio,
     Winamp,
     Vrecorder,
+    Word,
+    TextDisplay,
+    Windows10,
+    RecycleBin,
 }
 
 export default FileRegistry;

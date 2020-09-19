@@ -4,6 +4,7 @@ import WindowBase from "../../common/windowBase/WindowBase";
 import Game from "./game.component";
 import { useDispatch } from "react-redux";
 import { FinishCloseWindow } from "../../../actions/windowsActions";
+import IframeFocusable from "../../common/windowExtensions/iframeFocusable.component";
 
 const Snake = (props: any) => {
     const dispatch = useDispatch();

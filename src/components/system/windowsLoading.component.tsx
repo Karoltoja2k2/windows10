@@ -36,8 +36,8 @@ const SystemInitializer = (props: any) => {
             </div>
         );
     } else {
-        // return <WelcomeScreen />;
-        return <Desktop></Desktop>
+        return <WelcomeScreen />;
+        // return <Desktop />
     }
 };
 

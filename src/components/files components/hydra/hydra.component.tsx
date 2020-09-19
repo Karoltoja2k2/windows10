@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./hydra.scss";
 import WindowBase from "../../common/windowBase/WindowBase";
 import { useDispatch, useSelector } from "react-redux";
 import WindowsManager from "../../../models/WindowsManager";
@@ -31,8 +30,8 @@ const Hydra = (props: any) => {
                 OpenWindow(state.file, {
                     top: randomPos.Y,
                     left: randomPos.X,
-                    width: 300,
-                    height: 200,
+                    width: 150,
+                    height: 150,
                     isFixedSize: true,
                 })
             );
@@ -51,7 +50,7 @@ const Hydra = (props: any) => {
             file={props.file}
             properties={{
                 ...props.properties,
-                width: 300,
+                width: 150,
                 height: 150,
                 isFullscreen: false,
                 isFixedSize: true,

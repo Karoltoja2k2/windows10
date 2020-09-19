@@ -3,6 +3,7 @@ import "./iframeBase.scss";
 import WindowBase from "../../common/windowBase/WindowBase";
 import { useDispatch } from "react-redux";
 import { FinishCloseWindow } from "../../../actions/windowsActions";
+import IframeFocusable from "../../common/windowExtensions/iframeFocusable.component";
 
 const Mineswepper = (props: any) => {
     const dispatch = useDispatch();
@@ -18,11 +19,9 @@ const Mineswepper = (props: any) => {
             properties={props.properties}
             mobileMode={props.mobileMode}
         >
+            <IframeFocusable isFocused={props.properties.isFocused} />
             <div className="container">
-                <iframe
-                    src="https://karoltoja2k2.github.io/MineswepperTs/"
-                    onClick={() => console.log("clik iframe")}
-                />
+                <iframe src="https://karoltoja2k2.github.io/MineswepperTs/" />
             </div>
         </WindowBase>
     );

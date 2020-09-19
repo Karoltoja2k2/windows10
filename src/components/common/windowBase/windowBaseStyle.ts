@@ -1,4 +1,4 @@
-type WindowBaseStyle = "classic" | "winamp"
+type WindowBaseStyle = "classic" | "winamp" | "Word"
 
 
 export default WindowBaseStyle;
