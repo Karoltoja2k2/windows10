@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3465f0fe7cd319ba4eeefa5f05700d1c",
+    "revision": "be1e461b3b475d876a125066e3b8ac23",
     "url": "/windows95/index.html"
   },
   {
-    "revision": "e24a39e47e9d10737638",
-    "url": "/windows95/static/css/main.b2acd6df.chunk.css"
+    "revision": "9977126a037b54c5f9db",
+    "url": "/windows95/static/css/main.71cf0955.chunk.css"
   },
   {
-    "revision": "1ead66eaf71892608cc2",
-    "url": "/windows95/static/js/2.c28791d5.chunk.js"
+    "revision": "c9bf227ce5d2c9c7a23a",
+    "url": "/windows95/static/js/2.a003b40d.chunk.js"
   },
   {
-    "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/windows95/static/js/2.c28791d5.chunk.js.LICENSE.txt"
+    "revision": "e662b049f268d411c4f55f1154a689f2",
+    "url": "/windows95/static/js/2.a003b40d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "e24a39e47e9d10737638",
-    "url": "/windows95/static/js/main.9000ea74.chunk.js"
+    "revision": "9977126a037b54c5f9db",
+    "url": "/windows95/static/js/main.47106e2b.chunk.js"
   },
   {
     "revision": "9ba2c22b2460af08afd9",
@@ -80,8 +80,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/windows95/static/media/asia.50cea27f.jpg"
   },
   {
+    "revision": "677c79c92eabc9eddf1cfe2e1ecbe7b8",
+    "url": "/windows95/static/media/audioicon.677c79c9.png"
+  },
+  {
     "revision": "a5d4c02a582e4e379d0fe891984d5a0d",
     "url": "/windows95/static/media/bgedited.a5d4c02a.jpg"
+  },
+  {
+    "revision": "d9dc56339f059bf9ec574782005e118c",
+    "url": "/windows95/static/media/binicon.d9dc5633.png"
   },
   {
     "revision": "81156e34cd374ffd7a16df1010a8d695",
@@ -90,6 +98,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "ca17c1d0451117324666a90f7537cc91",
     "url": "/windows95/static/media/calibril.ca17c1d0.ttf"
+  },
+  {
+    "revision": "18bd536c965f8e351928ac38d20c16fe",
+    "url": "/windows95/static/media/dis.18bd536c.jpg"
   },
   {
     "revision": "38cb4efe49f4ef25ea09a7f98c1f2748",
@@ -124,6 +136,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/windows95/static/media/imgicon2.1e3a0c86.png"
   },
   {
+    "revision": "71fde89a568d9e648cd06dfada73ca39",
+    "url": "/windows95/static/media/impersonatoricon.71fde89a.png"
+  },
+  {
     "revision": "e34ee95812c03df44d1d487b75ea0748",
     "url": "/windows95/static/media/jarmark.e34ee958.jpg"
   },
@@ -148,6 +164,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/windows95/static/media/painticon.d3c77420.png"
   },
   {
+    "revision": "c671547236dafe521ce45f9ea5799131",
+    "url": "/windows95/static/media/personiconwhite.c6715472.png"
+  },
+  {
     "revision": "da8402d3cab54451ab1beef53c03bf3f",
     "url": "/windows95/static/media/pocztowkawwa.da8402d3.jpg"
   },
@@ -168,12 +188,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/windows95/static/media/szprycer.ea4e8e2f.jpg"
   },
   {
+    "revision": "b499f934cc017e290fad26d8e441327a",
+    "url": "/windows95/static/media/texticon.b499f934.png"
+  },
+  {
     "revision": "f42269c33c87e5563cc58ee124bb1be1",
     "url": "/windows95/static/media/thiscomputericon.f42269c3.png"
   },
   {
     "revision": "52261d36ba26c7d060b2f02bbe7e8fc6",
     "url": "/windows95/static/media/tree.52261d36.jpg"
+  },
+  {
+    "revision": "5a74eb7d0369c7c67194d3485f3258de",
+    "url": "/windows95/static/media/win10bg.5a74eb7d.jpg"
   },
   {
     "revision": "6c8fd8fc14e228f96debfb9a8a5a2b0e",
@@ -194,5 +222,9 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "c1bb435935aa8d64ca132db4e6af382b",
     "url": "/windows95/static/media/wolfensteinicon.c1bb4359.png"
+  },
+  {
+    "revision": "24ac7eb22065f81223f564a74472e814",
+    "url": "/windows95/static/media/wordicon.24ac7eb2.png"
   }
 ]);
