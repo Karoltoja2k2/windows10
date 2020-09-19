@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d82a14bbf914b3bccc571b7af3fcc228",
+    "revision": "a42ccfd21fafa78d0721a6d3fe5889aa",
     "url": "/windows95/index.html"
   },
   {
-    "revision": "a429c3024228f8a4728c",
-    "url": "/windows95/static/css/main.f0d88475.chunk.css"
+    "revision": "03676879098971d72c9e",
+    "url": "/windows95/static/css/main.abba8105.chunk.css"
   },
   {
-    "revision": "d1efc65b6412592dc25a",
-    "url": "/windows95/static/js/2.3fc74c4d.chunk.js"
+    "revision": "0fd8f4df708018b919a8",
+    "url": "/windows95/static/js/2.fc6a21d8.chunk.js"
   },
   {
     "revision": "e662b049f268d411c4f55f1154a689f2",
-    "url": "/windows95/static/js/2.3fc74c4d.chunk.js.LICENSE.txt"
+    "url": "/windows95/static/js/2.fc6a21d8.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "a429c3024228f8a4728c",
-    "url": "/windows95/static/js/main.cf363ec9.chunk.js"
+    "revision": "03676879098971d72c9e",
+    "url": "/windows95/static/js/main.ded99828.chunk.js"
   },
   {
     "revision": "9ba2c22b2460af08afd9",
@@ -100,6 +100,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/windows95/static/media/calibril.ca17c1d0.ttf"
   },
   {
+    "revision": "e78aa3b0ec413fea9edc27f6a09324bb",
+    "url": "/windows95/static/media/chromeicon.e78aa3b0.png"
+  },
+  {
     "revision": "18bd536c965f8e351928ac38d20c16fe",
     "url": "/windows95/static/media/dis.18bd536c.jpg"
   },
@@ -164,6 +168,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/windows95/static/media/painticon.d3c77420.png"
   },
   {
+    "revision": "c671547236dafe521ce45f9ea5799131",
+    "url": "/windows95/static/media/personiconwhite.c6715472.png"
+  },
+  {
     "revision": "da8402d3cab54451ab1beef53c03bf3f",
     "url": "/windows95/static/media/pocztowkawwa.da8402d3.jpg"
   },
@@ -194,6 +202,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "52261d36ba26c7d060b2f02bbe7e8fc6",
     "url": "/windows95/static/media/tree.52261d36.jpg"
+  },
+  {
+    "revision": "5a74eb7d0369c7c67194d3485f3258de",
+    "url": "/windows95/static/media/win10bg.5a74eb7d.jpg"
   },
   {
     "revision": "6c8fd8fc14e228f96debfb9a8a5a2b0e",
