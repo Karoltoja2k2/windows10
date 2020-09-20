@@ -3,20 +3,12 @@ import { useSelector } from "react-redux";
 import File from "../../../models/File";
 import { RootState } from "../../../reducers";
 import FileRegistry from "../../system/FileRegistry";
-import { MapSongsToAlbums } from "./winamp.const";
+import { Album, MapSongsToAlbums } from "./winamp.const";
 import WinampApp from "./winampApp.component";
 import winamplogo from "../../../media/images/winamplogo.png";
 
 import "./winampLoader.scss";
-import {
-    BarLoader,
-    BeatLoader,
-    BounceLoader,
-    ClimbingBoxLoader,
-    MoonLoader,
-    PacmanLoader,
-    PropagateLoader,
-} from "react-spinners";
+import { BarLoader } from "react-spinners";
 
 function WinampLoader(props: any) {
     const drive: File[] = useSelector((state: RootState) => state.driveReducer);
@@ -28,20 +20,26 @@ function WinampLoader(props: any) {
 
     function LoadAlbums() {
         var songs = drive.filter((x) => x.componentId === FileRegistry.Audio);
-        return MapSongsToAlbums(songs);
+        let albums = MapSongsToAlbums(songs);
+
+        let loadingStart = Date.now();
+        let loadedCovers = 0;
+        albums.forEach((album) => {
+            album.cover.onload = () => {
+                loadedCovers += 1;
+                if (loadedCovers === albums.length) {
+                    let span = Date.now() - loadingStart;
+                    let duration = span < 1000 ? 1000 - span : 0;
+                    setTimeout(() => {
+                        setState({ ...state, isLoaded: true });
+                    }, duration);
+                }
+            };
+        });
+
+        return albums;
     }
 
-    useEffect(() => {
-        console.log(state.albums);
-        if (state.albums.length > 0) {
-            setTimeout(() => {
-                setState({
-                    ...state,
-                    isLoaded: true,
-                });
-            }, 1000)
-        }
-    }, state.albums);
     return (
         <div>
             {state.isLoaded && <WinampApp {...props} albums={state.albums} />}

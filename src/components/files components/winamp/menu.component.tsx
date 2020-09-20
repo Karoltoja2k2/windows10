@@ -45,6 +45,7 @@ function Menu(props: any) {
                         onClick={() => {
                             props.SetAlbum(album.id);
                         }}
+                        key={index}
                     >
                         <img
                             className="album__cover"

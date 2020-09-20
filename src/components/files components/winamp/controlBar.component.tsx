@@ -2,6 +2,7 @@ import React from "react";
 import { Action } from "./winamp.const";
 
 import "./controlBar.scss";
+import { MoonLoader, ScaleLoader } from "react-spinners";
 
 function ControlBar(props: any) {
     function SetSongTime(e: React.ChangeEvent<HTMLInputElement>) {
@@ -17,6 +18,28 @@ function ControlBar(props: any) {
             audio.pause();
         }
     }
+
+    function RenderPlayBtn() {
+        return props.isLoading ? (
+            <div className="top__item">
+                <ScaleLoader color="white" height={15} width={2} margin={1} />
+            </div>
+        ) : (
+            <div
+                className="top__item"
+                onClick={(e) => {
+                    TogglePlay();
+                }}
+            >
+                <i
+                    className={`fas ${
+                        props.isPlaying ? "fa-pause" : "fa-play-circle"
+                    }`}
+                ></i>
+            </div>
+        );
+    }
+
     return (
         <div
             className="controlBar"
@@ -37,18 +60,7 @@ function ControlBar(props: any) {
                     >
                         <i className="fas fa-backward"></i>
                     </div>
-                    <div
-                        className="top__item"
-                        onClick={(e) => {
-                            TogglePlay();
-                        }}
-                    >
-                        <i
-                            className={`fas ${
-                                props.isPlaying ? "fa-pause" : "fa-play-circle"
-                            }`}
-                        ></i>
-                    </div>
+                    {RenderPlayBtn()}
                     <div
                         className="top__item top__item--medium"
                         onClick={() => {

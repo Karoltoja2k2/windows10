@@ -21,9 +21,6 @@ const profiles = [
 ];
 
 const WelcomeScreen = (props: any) => {
-    const dispatch = useDispatch();
-    const drive: File[] = useSelector((state: RootState) => state.driveReducer);
-
     const [state, setState] = useState({
         isLogged: false,
         chosenProfile: profiles[0],
@@ -36,12 +33,15 @@ const WelcomeScreen = (props: any) => {
     }
 
     if (state.isLogged) {
-        return <Desktop background={props.images.desktopImg}/>;
+        return <Desktop background={props.images.desktopImg} />;
     }
 
     return (
         <div className="welcomeScreen">
-            <img className="welcomeScreen__background" src={props.images.loginImg.src} />
+            <img
+                className="welcomeScreen__background"
+                src={props.images.loginImg.src}
+            />
             <div className="welcomeScreen__form">
                 <div className="form__photo">
                     <img src={personiconwhite} alt="" className="" />
@@ -52,11 +52,12 @@ const WelcomeScreen = (props: any) => {
                 </div>
             </div>
             <div className="welcomeScreen__accounts">
-                {profiles.map((profile: any) => (
+                {profiles.map((profile: any, index: number) => (
                     <AccountIem
                         profile={profile}
                         setState={setState}
                         state={state}
+                        key={index}
                     />
                 ))}
             </div>
@@ -64,7 +65,6 @@ const WelcomeScreen = (props: any) => {
                 <i className="fas fa-wifi"></i>
                 <i className="fas fa-cog"></i>
                 <i className="fas fa-power-off"></i>
-
             </div>
         </div>
     );

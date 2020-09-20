@@ -16,10 +16,7 @@ function WinampApp(props: any) {
     const audioRef = useRef<HTMLAudioElement>(null);
     const drive: File[] = useSelector((state: RootState) => state.driveReducer);
     const [state, setState] = useState<WinampState>(
-        InitialState(
-            props.albums,
-            props.file
-        )
+        InitialState(props.albums, props.file)
     );
 
     const [dynamicMenu, setDynamicMenu] = useState({
@@ -38,9 +35,9 @@ function WinampApp(props: any) {
 
     useSoftExit(props.isClosed, props.id, () => {
         let audio = audioRef.current!;
-            if (!audio.paused) {
-                audio.pause();
-            }
+        if (!audio.paused) {
+            audio.pause();
+        }
     });
 
     useEffect(() => {
@@ -76,7 +73,7 @@ function WinampApp(props: any) {
 
     function TriggerMenu(openMenu?: boolean) {
         let isOpen = openMenu != undefined ? openMenu : !dynamicMenu.isOpen;
-        console.log(isOpen, openMenu)
+        console.log(isOpen, openMenu);
         setDynamicMenu({
             ...dynamicMenu,
             isOpen,
@@ -90,6 +87,7 @@ function WinampApp(props: any) {
         volume: state.volume,
         audioRef: audioRef,
         isPlaying: !audioRef.current?.paused,
+        isLoading: state.isLoading,
         SkipSong: SkipSong,
         ChangeSong: ChangeSong,
         SetVolume: SetVolume,
@@ -101,6 +99,10 @@ function WinampApp(props: any) {
         SetAlbum: SetAlbum,
     };
 
+    useEffect(() => {
+        console.log(state.isLoading)
+    }, [state.isLoading])
+
     return (
         <div className="winamp">
             <audio
@@ -109,7 +111,16 @@ function WinampApp(props: any) {
                     UpdateTime(e);
                 }}
                 src={state.chosenSong.source}
-                onLoadedData={() => audioRef.current!.play()}
+                onLoadStart={() => {
+                    setState({...state, isLoading: true})
+                }}
+                onLoadedData={() => {                        
+                    audioRef.current!.play()
+                    setTimeout(() => {
+
+                        setState({...state, isLoading: false})
+                    }, 500)
+                }}
                 onEnded={() => SkipSong(Action.Forward)}
             ></audio>
             <div className="winamp__container">
