@@ -189,11 +189,12 @@ const WindowBase = (props: any) => {
                     setState={setState}
                     mobileMode={props.mobileMode}
                 />
-                {React.Children.map(props.children, (child) =>
-                    React.cloneElement(child, {
-                        ...resizableProps.contentDimensions,
-                    })
-                )}
+                
+                    {React.Children.map(props.children, (child) =>   
+                        React.cloneElement(child, {
+                            ...resizableProps.contentDimensions,
+                        })
+                    )}
             </div>
         </Resizable>
     );

@@ -11,6 +11,8 @@ export const DeleteFile = (fileToDelete: File) => {
 
 export const CreateFile = (fileDto: CreateFileDto) => {
     let data = GetFileComponentById(fileDto.componentId);
+    let icon = new Image()
+    icon.src = data.iconsrc
     var newFile: File = {
         fileId: fileDto.fileId !== null ? fileDto.fileId : 0,
         path: fileDto.path,
@@ -19,6 +21,7 @@ export const CreateFile = (fileDto: CreateFileDto) => {
         extension: data.extension,
         title: fileDto.title,
         iconsrc: data.iconsrc,
+        icon: icon,
         prevFolderId: fileDto.prevFolderId,
         // If new file is .img then this is base64 string
         // in future this should be only url to resource

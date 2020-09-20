@@ -38,7 +38,10 @@ const Taskbar = (props: any) => {
 
     return (
         <div className="taskBar">
-            <button className={`startBtn open--${state}`} onClick={() => setState(!state)}>
+            <button
+                className={`startBtn open--${state} taskBar__hoverable`}
+                onClick={() => setState(!state)}
+            >
                 <i className="fab fa-windows winLogo"></i>
             </button>
             {state && <StartMenu Navigate={NavigateStartMenu} />}
@@ -50,9 +53,18 @@ const Taskbar = (props: any) => {
                     ))}
             </div>
             <div className="toolBar">
-                <Clock />
+                <i className="fas fa-wifi toolBar__icon taskBar__hoverable"></i>
+                <i className="fas fa-volume-up toolBar__icon taskBar__hoverable"></i>
+                <div className="toolbar__lang taskBar__hoverable">
+                    <p>POL</p>
+                    <p>PLP</p>
+                </div>
+                <div className="toolBar__clock">
+                    <Clock />
+                </div>
+                <i className="far fa-comment-alt toolBar__icon taskBar__hoverable"></i>
                 <button
-                    className="minimizeAllBtn"
+                    className="minimizeAllBtn taskBar__hoverable"
                     onClick={() => dispatch(MinimizeAllWindows())}
                 ></button>
             </div>

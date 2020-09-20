@@ -36,12 +36,12 @@ const WelcomeScreen = (props: any) => {
     }
 
     if (state.isLogged) {
-        return <Desktop />;
+        return <Desktop background={props.images.desktopImg}/>;
     }
 
     return (
         <div className="welcomeScreen">
-            <img className="welcomeScreen__background" src={win10bg} />
+            <img className="welcomeScreen__background" src={props.images.loginImg.src} />
             <div className="welcomeScreen__form">
                 <div className="form__photo">
                     <img src={personiconwhite} alt="" className="" />

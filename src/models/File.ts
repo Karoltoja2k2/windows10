@@ -6,6 +6,7 @@ interface File {
     componentId: number;
     component: any;
     iconsrc: string;
+    icon: HTMLImageElement;
     prevFolderId?: number;
     content?: any;
 }

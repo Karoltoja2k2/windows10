@@ -13,7 +13,7 @@ const FileIcon = (props: any) => {
                 className="desktopIcon"
                 onDoubleClick={() => dispatch(OpenWindow(props.file))}
             >
-                <img src={props.file.iconsrc} />
+                <img src={props.file.icon.src} />
                 <label>{props.file.title}</label>
             </button>
         );
@@ -27,7 +27,7 @@ const FileIcon = (props: any) => {
                         : dispatch(OpenWindow(props.file));
                 }}
             >
-                <img src={props.file.iconsrc} />
+                <img src={props.file.icon.src} />
                 <label>{props.file.title}</label>
             </button>
         );
@@ -41,7 +41,7 @@ const FileIcon = (props: any) => {
                         : dispatch(OpenWindow(props.file));
                 }}
             >
-                <img src={props.file.iconsrc} />
+                <img src={props.file.icon.src} />
                 <label>{props.file.title}</label>
             </button>
         );

@@ -42,7 +42,6 @@ function Desktop(props: any) {
             dispatch(MobileMode(false));
         }
     }
-
     const [files, setFiles] = useState(drive.filter((x) => x.path === path));
     useEffect(() => {
         setFiles(drive.filter((x) => x.path === path));
@@ -53,8 +52,8 @@ function Desktop(props: any) {
         window.addEventListener("resize", (e) => HandleResize(e));
         // dispatch(
         //     OpenWindow(
-        //         drive.find((x) => x.componentId === FileRegistry.Word)!,
-        //         { width: 600, height: 400 }
+        //         drive.find((x) => x.componentId === FileRegistry.Winamp)!,
+        //         { width: 800, height: 400 }
         //     )
         // );
 
@@ -80,7 +79,7 @@ function Desktop(props: any) {
                     dispatch(SetPosition(e.pageY, e.pageX));
                 }}
             >
-                <img src={Background} className="desktopBackground" />
+                <img src={props.background.src} className="desktopBackground" />
                 <div className="iconGrid">
                     {files.map((obj: any, index: number) => (
                         <DesktopIcon file={obj} key={index} />

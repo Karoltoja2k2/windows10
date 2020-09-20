@@ -5,7 +5,7 @@
     bottom: 0px;
     height: 35px;
     width: 100%;
-    background: rgb(41, 41, 41);
+    background-color: rgba(0, 0, 0, 0.6);
     flex-direction: row;
     display: flex;
     justify-content: space-between;
@@ -13,30 +13,30 @@
 
     .startBtn {
         left: 0px;
-        width: 46px;
+        width: 50px;
         height: 100%;
         border: 0px;
-        background: rgb(41, 41, 41);
         outline: none;
         display: flex;
         justify-content: center;
         align-items: center;
+        background-color: rgba(0, 0, 0, 0);
+
         .winLogo {
             font-size: 18px;
             color: white;
         }
-        &:hover {
-            background-color: rgba(255, 255, 255, 0.109);
-        }
     }
 
     .open--true {
+        background-color: rgba(255, 255, 255, 0.109);
+
         .winLogo {
             color: green;
         }
     }
     .taskBarItems {
-        height: 90%;
+        height: 100%;
         width: 100%;
         display: flex;
         flex-direction: row;
@@ -51,13 +51,45 @@
         flex-direction: row;
         justify-content: flex-end;
         align-items: center;
+        color: white;
+        font-size: 16px;
+
+        .toolBar__icon {
+            width: 35px;
+            height: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .toolbar__lang{
+            width: 35px;
+            height: 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .toolBar__clock {
+            margin-right: 5px;
+        }
 
         .minimizeAllBtn {
             height: 100%;
             width: 5px;
-            background: rgb(41, 41, 41);
+            background-color: rgb(15, 15, 15);
             border: 0px;
+            margin-left: 10px;
             border-left: gray 1px solid;
+            outline: none;
+        }
+    }
+
+    .taskBar__hoverable {
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.109);
         }
     }
 }

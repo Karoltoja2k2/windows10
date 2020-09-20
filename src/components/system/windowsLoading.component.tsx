@@ -8,11 +8,20 @@ import Desktop from "../desktop/Desktop.component";
 import WelcomeScreen from "./welcomeScreen.component";
 import { MoonLoader } from "react-spinners";
 
+import desktopBgImg from "../../media/winxpbg.jpg";
+import welcomeScreenBgImg from "../../media/win10bg.jpg";
+
 const SystemInitializer = (props: any) => {
     const dispatch = useDispatch();
     const drive: File[] = useSelector((state: RootState) => state.driveReducer);
 
-    const [loading, setLoading] = useState(true);
+    const [state, setState] = useState({
+        isLoaded: false,
+        images: {
+            desktopImg: new Image(),
+            loginImg: new Image(),
+        },
+    });
 
     useEffect(() => {
         dispatch(LoadFiles());
@@ -20,13 +29,19 @@ const SystemInitializer = (props: any) => {
 
     useEffect(() => {
         if (drive.length > 0) {
-            setTimeout(() => {
-                setLoading(false);
-            }, 1000);
+            state.images.loginImg.src = welcomeScreenBgImg;
+            state.images.desktopImg.src = desktopBgImg;
+            setState({
+                ...state,
+                isLoaded: true,
+            });
         }
     }, [drive]);
 
-    if (loading) {
+    if (state.isLoaded) {
+        // return <WelcomeScreen images={state.images}/>;
+        return <Desktop background={state.images.desktopImg}/>;
+    } else {
         return (
             <div className="winLoading">
                 <div className="winLoading__logo">
@@ -35,9 +50,6 @@ const SystemInitializer = (props: any) => {
                 <MoonLoader color={"white"} size={25} />
             </div>
         );
-    } else {
-        // return <WelcomeScreen />;
-        return <Desktop />;
     }
 };
 

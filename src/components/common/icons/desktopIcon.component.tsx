@@ -9,7 +9,6 @@ import File from "../../../models/File";
 const DesktopIcon = (props: any) => {
     const dispatch = useDispatch();
     const drive: File[] = useSelector((state: RootState) => state.driveReducer)!;
-
     return (
         <button
             className="desktopIcon"
@@ -17,7 +16,8 @@ const DesktopIcon = (props: any) => {
             onDoubleClick={() => dispatch(OpenWindow(props.file))}
 
         >
-            <img src={props.file.iconsrc} />
+            
+            <img src={props.file.icon.src} />
             <label>{props.file.title}</label>
         </button>
     );

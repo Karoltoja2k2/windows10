@@ -8,6 +8,8 @@ const driveReducer = (state: File[] = [], action: any) => {
         case "LOAD": {
             return FilesDto.map((file: FileDto) => {
                 let data = GetFileComponentById(file.componentId);
+                let icon = new Image()
+                icon.src = data.iconsrc
                 return {
                     fileId: file.fileId,
                     path: file.path,
@@ -16,6 +18,7 @@ const driveReducer = (state: File[] = [], action: any) => {
                     componentId: file.componentId,
                     component: data.component,
                     iconsrc: data.iconsrc,
+                    icon: icon,
                     prevFolderId: file.prevFolderId,
                     content: file.content,
                 };

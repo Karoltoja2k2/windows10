@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import winamplogo from "../../../media/images/winamplogo2.png";
+import winamplogo from "../../../media/images/winamplogo.png";
 
 import "../../common/scrollbar--dark.scss";
 import "./menu.scss";
@@ -48,7 +48,7 @@ function Menu(props: any) {
                     >
                         <img
                             className="album__cover"
-                            src={album.cover}
+                            src={album.cover.src}
                             alt="albumCover"
                         />
                         <div className="album__dsc">

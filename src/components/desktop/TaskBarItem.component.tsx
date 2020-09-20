@@ -19,11 +19,9 @@ const TaskBarItem = (props: any) => {
     );
     const dispatch = useDispatch();
     const state = props.window.properties;
-    console.log(state)
-
     return (
         <div
-            className={state.isFocused ? "taskBarItem selected" : "taskBarItem"}
+            className={state.isFocused ? "taskBarItem selected taskBar__hoverable" : "taskBarItem taskBar__hoverable"}
             onClick={(e) => {
                 e.stopPropagation();
                 console.log(state);

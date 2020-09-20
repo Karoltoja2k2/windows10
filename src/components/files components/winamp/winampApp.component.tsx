@@ -17,7 +17,7 @@ function WinampApp(props: any) {
     const drive: File[] = useSelector((state: RootState) => state.driveReducer);
     const [state, setState] = useState<WinampState>(
         InitialState(
-            drive.filter((x) => x.componentId === FileRegistry.Audio),
+            props.albums,
             props.file
         )
     );
@@ -100,8 +100,6 @@ function WinampApp(props: any) {
         chosenAlbum: state.chosenAlbum,
         SetAlbum: SetAlbum,
     };
-
-    console.log(dynamicMenu);
 
     return (
         <div className="winamp">

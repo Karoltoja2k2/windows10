@@ -16,7 +16,7 @@ const FolderIcon = (props: any) => {
                     : dispatch(OpenWindow(props.file));
             }}
         >
-            <img src={props.file.iconsrc} />
+            <img src={props.file.icon.src} />
             <label>{props.file.title}</label>
         </button>
 

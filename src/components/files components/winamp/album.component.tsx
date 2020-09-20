@@ -5,12 +5,11 @@ import { Song } from "./winamp.const";
 import "./album.scss";
 
 function Album(props: any) {
-    console.log(props);
     return (
         <div className="container__album" onClick={() => props.TriggerMenu(false)}>
             <img
                 className="album__bg"
-                src={props.chosenAlbum.cover}
+                src={props.chosenAlbum.cover.src}
                 alt="cdcover"
             />
             <div className="album__tracks scrollbar--light">

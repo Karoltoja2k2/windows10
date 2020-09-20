@@ -1,0 +1,24 @@
+.winampLoader{
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;    
+    // background-color: rgb(243, 240, 207);
+    // background-color: rgb(226, 187, 226);
+background-color: papayawhip;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .winampLoader__logo{
+        width: 200px;
+        margin-top: -40px;
+    }
+
+    .winampLoader__progress{
+        width: 200px;
+    }
+}

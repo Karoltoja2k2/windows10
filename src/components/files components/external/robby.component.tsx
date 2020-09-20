@@ -16,7 +16,7 @@ const Robby = (props: any) => {
         >
             <IframeFocusable isFocused={props.properties.isFocused} />
             <div className="container">
-                <iframe src="http://www.nurykabe.com/dump/games/robby/web/index.html" />
+                <iframe src="https://www.nurykabe.com/dump/games/robby/web/index.html" />
             </div>
         </WindowBase>
     );

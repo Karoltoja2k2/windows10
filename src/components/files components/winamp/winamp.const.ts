@@ -2,38 +2,9 @@ import { Dictionary } from "@reduxjs/toolkit";
 import File from "../../../models/File";
 
 export default function InitialState(
-    audioFiles: File[],
+    albums: Album[],
     file: File
-): WinampState {
-    let counter = 0;
-    let albums: Album[] = [];
-    let songs = audioFiles.map((song: File) => {
-        let albumId = song.content.albumId;
-        if (albums[albumId] == undefined) {
-            albums = [
-                ...albums,
-                {
-                    id: albumId,
-                    title: song.content.album,
-                    artist: song.content.artist,
-                    cover: song.content.cover,
-                    songs: [],
-                },
-            ];
-        }
-
-        counter++;
-        albums[albumId].songs.push({
-            id: counter,
-            fileId: song.fileId,
-            source: song.content.source,
-            title: song.content.title,
-            artist: song.content.artist,
-            album: song.content.album,
-        });
-
-    });
-
+): WinampState {    
     let chosenAlbum = albums[0];
     let song = chosenAlbum.songs[0];
 
@@ -50,6 +21,40 @@ export default function InitialState(
         currentTime: 0,
         volume: 1,
     };
+}
+
+export function MapSongsToAlbums(audioFiles: File[]){
+    let counter = 0;
+    let albums: Album[] = [];
+    audioFiles.forEach((song: File) => {
+        let albumId = song.content.albumId;
+        if (albums[albumId] == undefined) {
+            let cover = new Image()
+            cover.src = song.content.cover
+            albums = [
+                ...albums,
+                {
+                    id: albumId,
+                    title: song.content.album,
+                    artist: song.content.artist,
+                    cover: cover,
+                    songs: [],
+                },
+            ];
+        }
+
+        counter++;
+        albums[albumId].songs.push({
+            id: counter,
+            fileId: song.fileId,
+            source: song.content.source,
+            title: song.content.title,
+            artist: song.content.artist,
+            album: song.content.album,
+        });
+    });
+
+    return albums;
 }
 
 export enum Action {
@@ -70,7 +75,7 @@ export interface Album {
     id: number;
     title: string;
     artist: string;
-    cover: string;
+    cover: HTMLImageElement;
     songs: Song[];
 }
 
