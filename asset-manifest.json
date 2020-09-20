@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/windows95/static/css/main.abba8105.chunk.css",
-    "main.js": "/windows95/static/js/main.ded99828.chunk.js",
-    "main.js.map": "/windows95/static/js/main.ded99828.chunk.js.map",
+    "main.css": "/windows95/static/css/main.c355aa37.chunk.css",
+    "main.js": "/windows95/static/js/main.5f440448.chunk.js",
+    "main.js.map": "/windows95/static/js/main.5f440448.chunk.js.map",
     "runtime-main.js": "/windows95/static/js/runtime-main.2a9bf908.js",
     "runtime-main.js.map": "/windows95/static/js/runtime-main.2a9bf908.js.map",
-    "static/js/2.fc6a21d8.chunk.js": "/windows95/static/js/2.fc6a21d8.chunk.js",
-    "static/js/2.fc6a21d8.chunk.js.map": "/windows95/static/js/2.fc6a21d8.chunk.js.map",
+    "static/js/2.be97daf4.chunk.js": "/windows95/static/js/2.be97daf4.chunk.js",
+    "static/js/2.be97daf4.chunk.js.map": "/windows95/static/js/2.be97daf4.chunk.js.map",
     "index.html": "/windows95/index.html",
-    "precache-manifest.aa6718dace8a77ca6a7b1fda2ad71d27.js": "/windows95/precache-manifest.aa6718dace8a77ca6a7b1fda2ad71d27.js",
+    "precache-manifest.ab0865edac7ea91eec46f8ba8fa91b61.js": "/windows95/precache-manifest.ab0865edac7ea91eec46f8ba8fa91b61.js",
     "service-worker.js": "/windows95/service-worker.js",
-    "static/css/main.abba8105.chunk.css.map": "/windows95/static/css/main.abba8105.chunk.css.map",
-    "static/js/2.fc6a21d8.chunk.js.LICENSE.txt": "/windows95/static/js/2.fc6a21d8.chunk.js.LICENSE.txt",
+    "static/css/main.c355aa37.chunk.css.map": "/windows95/static/css/main.c355aa37.chunk.css.map",
+    "static/js/2.be97daf4.chunk.js.LICENSE.txt": "/windows95/static/js/2.be97daf4.chunk.js.LICENSE.txt",
     "static/media/19icon.png": "/windows95/static/media/19icon.5afcf90b.png",
     "static/media/Taco Hemingway - 2031.mp3": "/windows95/static/media/Taco Hemingway - 2031.9dcc41c1.mp3",
     "static/media/Taco Hemingway - Alert RCB feat. schafter.mp3": "/windows95/static/media/Taco Hemingway - Alert RCB feat. schafter.1f3796ce.mp3",
@@ -48,7 +48,6 @@
     "static/media/levelupsound.wav": "/windows95/static/media/levelupsound.d1d60a4b.wav",
     "static/media/mineswepper.png": "/windows95/static/media/mineswepper.3d57e02a.png",
     "static/media/painticon.png": "/windows95/static/media/painticon.d3c77420.png",
-    "static/media/personiconwhite.png": "/windows95/static/media/personiconwhite.c6715472.png",
     "static/media/pocztowkawwa.jpg": "/windows95/static/media/pocztowkawwa.da8402d3.jpg",
     "static/media/random-pixels-wallpaper-big.jpg": "/windows95/static/media/random-pixels-wallpaper-big.8fffecf1.jpg",
     "static/media/robbyicon.png": "/windows95/static/media/robbyicon.900333ff.png",
@@ -57,7 +56,6 @@
     "static/media/texticon.png": "/windows95/static/media/texticon.b499f934.png",
     "static/media/thiscomputericon.png": "/windows95/static/media/thiscomputericon.f42269c3.png",
     "static/media/tree.jpg": "/windows95/static/media/tree.52261d36.jpg",
-    "static/media/win10bg.jpg": "/windows95/static/media/win10bg.5a74eb7d.jpg",
     "static/media/win10startupsound.mp3": "/windows95/static/media/win10startupsound.6c8fd8fc.mp3",
     "static/media/winamplogo2.png": "/windows95/static/media/winamplogo2.dce77d6d.png",
     "static/media/windowserrorsound.wav": "/windows95/static/media/windowserrorsound.022ebfe0.wav",
@@ -67,8 +65,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.2a9bf908.js",
-    "static/js/2.fc6a21d8.chunk.js",
-    "static/css/main.abba8105.chunk.css",
-    "static/js/main.ded99828.chunk.js"
+    "static/js/2.be97daf4.chunk.js",
+    "static/css/main.c355aa37.chunk.css",
+    "static/js/main.5f440448.chunk.js"
   ]
 }
