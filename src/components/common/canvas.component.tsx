@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import Point from "./Point";
+import IPoint from "./Point";
 import History from "../files components/paint/models/History";
 import Tool from "../files components/paint/models/Tool";
 
@@ -47,7 +47,7 @@ const Canvas = (props: CanvasProps) => {
         RenderImage();
     }, [props.img, props.properties.width, props.properties.height])
 
-    function CalculateOffset(e: React.MouseEvent): Point {
+    function CalculateOffset(e: React.MouseEvent): IPoint {
         return {
             X:
                 e.pageX -
@@ -60,7 +60,7 @@ const Canvas = (props: CanvasProps) => {
         };
     }
 
-    function Draw(context: CanvasRenderingContext2D, point: Point) {
+    function Draw(context: CanvasRenderingContext2D, point: IPoint) {
         context.strokeStyle = props.tool.strokeStyle;
         context.lineWidth = props.tool.lineWidth;
         context.lineJoin = context.lineCap = props.tool.lineStyle;

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../reducers";
 import { LoadFiles } from "../../actions/driveActions";
 import File from "../../models/File";
-import Desktop from "../desktop/Desktop.component";
+import Monitor from "../desktop/monitor.component";
 
 import win10bg from "../../media/win10bg.jpg";
 import personiconwhite from "../../media/personiconwhite.png";
@@ -33,7 +33,7 @@ const WelcomeScreen = (props: any) => {
     }
 
     if (state.isLogged) {
-        return <Desktop background={props.images.desktopImg} />;
+        return <Monitor background={props.images.desktopImg} />;
     }
 
     return (

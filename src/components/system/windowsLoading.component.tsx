@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../reducers";
 import { LoadFiles } from "../../actions/driveActions";
 import File from "../../models/File";
-import Desktop from "../desktop/Desktop.component";
+import Monitor from "../desktop/monitor.component";
 import WelcomeScreen from "./welcomeScreen.component";
 import { MoonLoader } from "react-spinners";
 
@@ -64,8 +64,8 @@ const SystemInitializer = (props: any) => {
     }
 
     if (isLoaded) {
-        return <WelcomeScreen images={{desktopImg: additionalImgs.desktopImg, loginImg: additionalImgs.loginImg}} />;
-        // return <Desktop background={desktopImg}/>;
+        // return <WelcomeScreen images={{desktopImg: additionalImgs.desktopImg, loginImg: additionalImgs.loginImg}} />;
+        return <Monitor background={additionalImgs.desktopImg}/>;
     } else {
         return (
             <div className="winLoading">

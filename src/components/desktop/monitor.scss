@@ -1,0 +1,32 @@
+* {
+	box-sizing: border-box;
+	margin: 0px;
+    padding: 0px;
+}
+
+@font-face {
+    font-family: myFirstFont;
+    src: url(../../media/calibril.ttf);
+  }
+
+.monitor{
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+
+    color: white;
+
+    .monitor__bg{
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+    }
+
+
+
+    
+}
+
+
+

@@ -8,7 +8,7 @@ import { OpenWindow, FinishCloseWindow } from "../../../actions/windowsActions";
 import ErrorContent from "../../common/error/error.component";
 import File from "../../../models/File";
 import FileRegistry from "../../system/FileRegistry";
-import Point, { RandomPoint } from "../../common/Point";
+import IPoint, { RandomPoint } from "../../common/Point";
 
 const Hydra = (props: any) => {
     const dispatch = useDispatch();
@@ -16,14 +16,14 @@ const Hydra = (props: any) => {
 
     function CutHead() {
         dispatch(FinishCloseWindow(props.id));
-        let boundriesFrom: Point = { X: 0, Y: 0 };
-        let boundriesTo: Point = {
+        let boundriesFrom: IPoint = { X: 0, Y: 0 };
+        let boundriesTo: IPoint = {
             X: window.innerWidth - 300,
             Y: window.innerHeight - 180,
         };
         let times = 0;
         while (times < 2) {
-            let randomPos: Point = RandomPoint(boundriesFrom, boundriesTo);
+            let randomPos: IPoint = RandomPoint(boundriesFrom, boundriesTo);
             console.log(randomPos);
 
             dispatch(

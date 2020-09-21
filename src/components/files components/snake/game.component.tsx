@@ -6,7 +6,7 @@ import { useInterval } from "../../common/hooks/useInterval";
 import BodyPart from "./models/BodyPart";
 import Fruit from "./models/Fruit";
 import { FRUITS, SNAKE, SIZE as SETTINGS, SPEED_CALC } from "./const";
-import Point, { AddPoints, PointsEqual, RandomPoint } from "../../common/Point";
+import IPoint, { AddPoints, PointsEqual, RandomPoint } from "../../common/Point";
 import SnakeGameState from "./models/SnakeGameState";
 import DynamicGrid from "../../common/dynamicGrid/dynamicGrid.component";
 import { FRUIT_TYPE } from "./models/FRUIT_TYPE";
@@ -139,7 +139,7 @@ const Game = (props: any) => {
         }
     }
 
-    function CheckCollisionWithSnake(cords: Point): boolean {
+    function CheckCollisionWithSnake(cords: IPoint): boolean {
         for (let body of state.snake) {
             if (PointsEqual(body.cords, cords)) {
                 return true;
@@ -148,7 +148,7 @@ const Game = (props: any) => {
         return false;
     }
 
-    function CheckOutOfBorder(cords: Point): Point {
+    function CheckOutOfBorder(cords: IPoint): IPoint {
         let nextCords = cords;
         if (cords.X <= 0) {
             nextCords = { ...cords, X: state.settings.size.X };

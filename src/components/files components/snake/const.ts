@@ -1,6 +1,6 @@
 import BodyPart from "./models/BodyPart";
 import Fruit from "./models/Fruit";
-import Point from "../../common/Point";
+import IPoint from "../../common/Point";
 
 function SNAKE(): BodyPart[] {
     return [
@@ -36,7 +36,7 @@ function FRUITS(): Fruit[] {
     ];
 }
 
-function SIZE(): { size: Point; speed: number } {
+function SIZE(): { size: IPoint; speed: number } {
     return {
         size: {
             X: 25,

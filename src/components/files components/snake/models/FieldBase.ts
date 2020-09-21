@@ -1,5 +1,5 @@
-import Point from "../../../common/Point";
+import IPoint from "../../../common/Point";
 
 export default interface FieldBase {
-    cords: Point;
+    cords: IPoint;
 }

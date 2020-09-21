@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import "./desktop.scss";
+import "./monitor.scss";
 import "../common/noselect.scss";
 import FileIcon from "../common/icons/FileIcon.component";
 import Taskbar from "./Taskbar.component";
@@ -21,10 +21,12 @@ import {
 import { LmbUp, SetPosition, LmbDown } from "../../actions/mouseActions";
 import DesktopIcon from "../common/icons/desktopIcon.component";
 import FileRegistry from "../system/FileRegistry";
+import Desktop from "./desktopModes/desktop.component";
+import GravityDesktop from "./desktopModes/gravityDesktop.component";
 
 const startupsound = require("../../media/win10startupsound.mp3");
 
-function Desktop(props: any) {
+function Monitor(props: any) {
     const dispatch = useDispatch();
     const path = "Drive C:/Desktop/";
 
@@ -65,8 +67,7 @@ function Desktop(props: any) {
     return (
         <div className="noselect">
             <div
-                className="desktop"
-                id="desktop"
+                className="monitor"
                 onMouseDown={() => {
                     dispatch(LmbDown());
                     dispatch(UnFocusWindows());
@@ -79,12 +80,9 @@ function Desktop(props: any) {
                     dispatch(SetPosition(e.pageY, e.pageX));
                 }}
             >
-                <img src={props.background.src} className="desktopBackground" />
-                <div className="iconGrid">
-                    {files.map((obj: any, index: number) => (
-                        <DesktopIcon file={obj} key={index} />
-                    ))}
-                </div>
+                <img src={props.background.src} className="monitor__bg" />
+                <GravityDesktop files={files} />
+
 
                 {windowManager.openWindows.length > 0 &&
                     windowManager.openWindows.map((window: Window) => (
@@ -97,17 +95,10 @@ function Desktop(props: any) {
                             mobileMode={windowManager.mobileMode}
                         />
                     ))}
-
-                <div className="activateWindows">
-                    <p className="top">Aktywuj system Windows</p>
-                    <p className="down">
-                        Przejdź do ustawień, aby aktywować system Windows.
-                    </p>
-                </div>
             </div>
             <Taskbar />
         </div>
     );
 }
 
-export default Desktop;
+export default Monitor;

@@ -1,7 +1,7 @@
-import Point from "../../../common/Point";
+import IPoint from "../../../common/Point";
 import Tool from "./Tool";
 
 export default interface HistoryElem {
-    points: Point[];
+    points: IPoint[];
     tool: Tool;
 }

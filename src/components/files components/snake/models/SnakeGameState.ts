@@ -1,6 +1,6 @@
 import Fruit from "./Fruit";
 import BodyPart from "./BodyPart";
-import Point from "../../../common/Point";
+import IPoint from "../../../common/Point";
 
 export default interface SnakeGameState {
     run: boolean;
@@ -10,11 +10,11 @@ export default interface SnakeGameState {
     maxLength: number,
     snake: BodyPart[];
     direction: {
-        cords: Point;
+        cords: IPoint;
         angle: number;
     };
     settings: {
-        size: Point;
+        size: IPoint;
         speed: number;
     };
 }
