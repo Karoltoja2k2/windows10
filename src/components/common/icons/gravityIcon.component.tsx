@@ -52,7 +52,9 @@ function GravityIcon(props: any) {
         <button
             className="gravityIcon"
             style={{ top: props.rb.pos.Y, left: props.rb.pos.X }}
-            // onDoubleClick={() => dispatch(OpenAs(props.file, drive.find(x => x.title === "Paint")!))}
+            onMouseDown={() => {
+                console.log(props)
+                props.setDrag({id: props.rb.id})}}
             onDoubleClick={() => dispatch(OpenWindow(props.rb.file))}
         >
             <img src={props.rb.file.icon.src} />

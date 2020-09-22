@@ -243,6 +243,22 @@ const windowsReducer = (state: WindowsManager = windowsState, action: any) => {
                 ),
             };
 
+        case "SETDIMENSIONS":
+            return {
+                ...state,
+                openWindows: state.openWindows.map((window) =>
+                    window.id === action.payload.windowId
+                        ? {
+                              ...window,
+                              properties: {
+                                  ...window.properties,
+                                  ...action.payload.dimensions,
+                              },
+                          }
+                        : window
+                ),
+            };
+
         case "MOBILE_MODE":
             console.log(action.payload.stateToSet);
             return {

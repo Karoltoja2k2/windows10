@@ -59,6 +59,7 @@ const FileExplorer = (props: any) => {
             id={props.id}
             file={props.file}
             properties={props.properties}
+            mouseState={props.mouseState}
             mobileMode={props.mobileMode}
         >
             <div className="fileExplorer__container">
@@ -88,7 +89,8 @@ export default React.memo(FileExplorer, (prevProps, nextProps) => {
         prevProps.file === nextProps.file &&
         prevProps.isClosed === nextProps.isClosed &&
         prevProps.properties === nextProps.properties &&
-        nextProps.properties.isDragged !== true &&
+        (prevProps.mouseState === nextProps.mouseState ||
+            nextProps.properties.isDragged !== true) &&
         prevProps.mobileMode === nextProps.mobileMode
     );
 });

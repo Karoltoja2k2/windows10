@@ -113,6 +113,13 @@ export const EndDragWindow = () => {
     };
 };
 
+export const SetDimensions = (windowId: number, dimensions: {top: number, left: number, width: number, height: number}) => {
+    return {
+        type: "SETDIMENSIONS",
+        payload: {windowId, dimensions}
+    }
+}
+
 export const MobileMode = (stateToSet: boolean) => {
     return {
         type: "MOBILE_MODE",

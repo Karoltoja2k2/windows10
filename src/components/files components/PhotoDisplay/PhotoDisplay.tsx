@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import WindowBase from "../../common/windowBase/WindowBase";
 import "./photoDisplay.scss";
 import File from "../../../models/File";
@@ -22,6 +22,7 @@ const PhotoDisplay = (props: any) => {
             id={props.id}
             file={props.file}
             properties={props.properties}
+            mouseState={props.mouseState}
             mobileMode={props.mobileMode}
         >
             <div className="content">
@@ -73,7 +74,8 @@ export default React.memo(PhotoDisplay, (prevProps, nextProps) => {
         prevProps.isClosed === nextProps.isClosed &&
         prevProps.file.content.source === nextProps.file.content.source &&
         prevProps.properties === nextProps.properties &&
-        nextProps.properties.isDragged !== true &&
+        (prevProps.mouseState === nextProps.mouseState ||
+            nextProps.properties.isDragged !== true) &&
         prevProps.mobileMode === nextProps.mobileMode
     );
 });

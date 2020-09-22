@@ -42,11 +42,10 @@ function WindowBaseBar(props: any) {
                 ...props.state,
                 drag: {
                     dragging: true,
-                    offsetTop: e.pageY - props.state.dimensions.top,
-                    offsetLeft: e.pageX - props.state.dimensions.left,
+                    offsetTop: e.pageY - props.state.properties.top,
+                    offsetLeft: e.pageX - props.state.properties.left,
                 },
             });
-            dispatch(LmbDown());
             dispatch(DragWindow(props.id));
         }
     }

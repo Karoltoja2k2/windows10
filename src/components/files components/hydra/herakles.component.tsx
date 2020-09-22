@@ -60,6 +60,7 @@ const Herakles = (props: any) => {
                 canMinimize: false,
                 canClose: false,
             }}
+            mouseState={props.mouseState}
             mobileMode={false}
         >
             <ErrorContent
@@ -76,7 +77,8 @@ export default React.memo(Herakles, (prevProps, nextProps) => {
         prevProps.file === nextProps.file &&
         prevProps.isClosed === nextProps.isClosed &&
         prevProps.properties === nextProps.properties &&
-        nextProps.properties.isDragged !== true &&
+        (prevProps.mouseState === nextProps.mouseState ||
+            nextProps.properties.isDragged !== true) &&
         prevProps.mobileMode === nextProps.mobileMode
     );
 });

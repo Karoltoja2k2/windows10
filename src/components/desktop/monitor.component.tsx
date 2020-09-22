@@ -44,7 +44,15 @@ function Monitor(props: any) {
             dispatch(MobileMode(false));
         }
     }
-    const [files, setFiles] = useState(drive.filter((x) => x.path === path));
+    const [files, setFiles] = useState(
+        drive.filter((x) => x.path === path).filter((x) => x.fileId < 100)
+    );
+    const [mouseState, setMouseState] = useState({
+        top: 0,
+        left: 0,
+        lmbDown: false,
+        rmbDown: false,
+    });
     useEffect(() => {
         setFiles(drive.filter((x) => x.path === path));
         console.log(drive);
@@ -63,7 +71,6 @@ function Monitor(props: any) {
         audio.play();
     }, []);
 
-    console.log("rerender desktop");
     return (
         <div className="noselect">
             <div
@@ -77,12 +84,12 @@ function Monitor(props: any) {
                     dispatch(EndDragWindow());
                 }}
                 onMouseMove={(e) => {
-                    dispatch(SetPosition(e.pageY, e.pageX));
+                    setMouseState({...mouseState, top: e.pageY, left: e.pageX});
                 }}
             >
                 <img src={props.background.src} className="monitor__bg" />
-                <GravityDesktop files={files} />
-
+                <Desktop files={files} />
+                {/* <GravityDesktop files={files} mouseState={mouseState}/> */}
 
                 {windowManager.openWindows.length > 0 &&
                     windowManager.openWindows.map((window: Window) => (
@@ -92,6 +99,7 @@ function Monitor(props: any) {
                             id={window.id}
                             isClosed={window.isClosed}
                             properties={window.properties}
+                            mouseState={mouseState}
                             mobileMode={windowManager.mobileMode}
                         />
                     ))}

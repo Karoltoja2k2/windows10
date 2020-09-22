@@ -12,6 +12,7 @@ function Winamp(props: any) {
             windowBaseStyle="winamp"
             file={{ ...props.file, title: "Winamp" }}
             properties={{ ...props.properties, minWidth: 500, minHeight: 300 }}
+            mouseState={props.mouseState}
             mobileMode={props.mobileMode}
         >
             <WinampLoader {...props} />
@@ -25,7 +26,8 @@ export default React.memo(Winamp, (prevProps, nextProps) => {
         prevProps.isClosed === nextProps.isClosed &&
         prevProps.file.content?.source === nextProps.file.content?.source &&
         prevProps.properties === nextProps.properties &&
-        nextProps.properties.isDragged !== true &&
+        (prevProps.mouseState === nextProps.mouseState ||
+            nextProps.properties.isDragged !== true) &&
         prevProps.mobileMode === nextProps.mobileMode
     );
 });

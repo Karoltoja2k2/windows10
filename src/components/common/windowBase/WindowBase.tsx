@@ -3,31 +3,20 @@ import "./windowBaseStyles/windowBase.scss";
 
 import { Resizable } from "re-resizable";
 
-import { useDispatch, useSelector } from "react-redux";
-import { FocusWindow } from "../../../actions/windowsActions";
-import { RootState } from "../../../reducers";
-import { LmbDown } from "../../../actions/mouseActions";
-import MouseState from "../../../models/MouseState";
+import { useDispatch } from "react-redux";
+import { FocusWindow, SetDimensions } from "../../../actions/windowsActions";
 import WindowBaseBar from "./windowBaseBar";
 
 const WindowBase = (props: any) => {
-    const disptach = useDispatch();
-    const mouseState: MouseState = useSelector(
-        (state: RootState) => state.mouseReducer
-    );
+console.log('rerender', props.file.title)
 
+    const dispatch = useDispatch();
     const [state, setState] = useState({
         properties: { ...props.properties },
         drag: {
             dragging: false,
             offsetTop: 0,
             offsetLeft: 0,
-        },
-        dimensions: {
-            top: props.properties.top,
-            left: props.properties.left,
-            width: props.properties.width,
-            height: props.properties.height,
         },
         windowBaseStyle: props.windowBaseStyle
             ? props.windowBaseStyle
@@ -51,16 +40,16 @@ const WindowBase = (props: any) => {
 
     useEffect(() => {
         if (props.properties.isDragged) {
-            setState({
-                ...state,
-                dimensions: {
-                    ...state.dimensions,
-                    top: mouseState.position.top - state.drag.offsetTop,
-                    left: mouseState.position.left - state.drag.offsetLeft,
-                },
-            });
+            dispatch(
+                SetDimensions(props.id, {
+                    width: state.properties.width,
+                    height: state.properties.height,
+                    top: props.mouseState.top - state.drag.offsetTop,
+                    left: props.mouseState.left - state.drag.offsetLeft
+                })
+            );
         }
-    }, [mouseState.position]);
+    }, [props.mouseState.top, props.mouseState.left]);
 
     useEffect(() => {
         if (!props.properties.isDragged) {
@@ -104,8 +93,8 @@ const WindowBase = (props: any) => {
         },
         size: !state.properties.isFullscreen
             ? {
-                  width: state.dimensions.width,
-                  height: state.dimensions.height,
+                  width: state.properties.width,
+                  height: state.properties.height,
               }
             : {
                   width: window.innerWidth,
@@ -114,12 +103,12 @@ const WindowBase = (props: any) => {
         contentDimensions: {
             width: state.properties.isFullscreen
                 ? window.innerWidth
-                : state.dimensions.width,
+                : state.properties.width,
             height: state.properties.isFullscreen
                 ? window.innerHeight - 35
-                : state.dimensions.height,
-            left: state.properties.isFullscreen ? 0 : state.dimensions.left,
-            top: state.properties.isFullscreen ? 0 : state.dimensions.top,
+                : state.properties.height,
+            left: state.properties.isFullscreen ? 0 : state.properties.left,
+            top: state.properties.isFullscreen ? 0 : state.properties.top,
         },
     };
 
@@ -137,7 +126,11 @@ const WindowBase = (props: any) => {
             style={
                 !state.properties.isFullscreen
                     ? {
-                          ...state.dimensions,
+                          top: state.properties.top,
+                          left: state.properties.left,
+                          height: state.properties.height,
+                          width: state.properties.width,
+
                           position: "absolute",
                           zIndex: state.properties.isFocused ? 4 : 3,
                           visibility: state.properties.isMinimized
@@ -157,30 +150,28 @@ const WindowBase = (props: any) => {
             onResizeStart={(e) => {
                 e.stopPropagation();
                 if (!state.properties.isFocused) {
-                    disptach(FocusWindow(props.id));
+                    dispatch(FocusWindow(props.id));
                 }
             }}
             onResizeStop={(e, direction, ref, d) => {
-                setState({
-                    ...state,
-                    dimensions: {
-                        ...state.dimensions,
-                        width: state.dimensions.width + d.width,
-                        height: state.dimensions.height + d.height,
-                    },
-                });
+                dispatch(
+                    SetDimensions(props.id, {
+                        width: state.properties.width + d.width,
+                        height: state.properties.height + d.height,
+                        top: state.properties.top,
+                        left: state.properties.left
+                    })
+                );
             }}
         >
             <div
                 className="resizable__window"
                 onMouseDown={(e) => {
                     e.stopPropagation();
-                    disptach(LmbDown());
                     if (!state.properties.isFocused) {
-                        disptach(FocusWindow(props.id));
+                        dispatch(FocusWindow(props.id));
                     }
                 }}
-                onMouseUp={(e) => {}}
             >
                 <WindowBaseBar
                     id={props.id}
@@ -189,12 +180,12 @@ const WindowBase = (props: any) => {
                     setState={setState}
                     mobileMode={props.mobileMode}
                 />
-                
-                    {React.Children.map(props.children, (child) =>   
-                        React.cloneElement(child, {
-                            ...resizableProps.contentDimensions,
-                        })
-                    )}
+
+                {React.Children.map(props.children, (child) =>
+                    React.cloneElement(child, {
+                        ...resizableProps.contentDimensions,
+                    })
+                )}
             </div>
         </Resizable>
     );

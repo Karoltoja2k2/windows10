@@ -17,6 +17,7 @@ const Paint = (props: any) => {
             id={props.id}
             file={file}
             properties={props.properties}
+            mouseState={props.mouseState}
             mobileMode={props.mobileMode}
         >
             <PaintApp id={props.id} file={file} setFile={setFile} />
@@ -29,6 +30,7 @@ export default React.memo(Paint, (prevProps, nextProps) => {
         prevProps.file === nextProps.file &&
         prevProps.isClosed === nextProps.isClosed &&
         prevProps.properties === nextProps.properties &&
+        prevProps.mouseState === nextProps.mouseState &&
         nextProps.properties.isDragged !== true &&
         prevProps.mobileMode === nextProps.mobileMode
     );

@@ -17,8 +17,8 @@ export function AddPoints(point1: IPoint, point2: IPoint): IPoint {
     };
 }
 
-export function Scalar(scalar: number, point: IPoint) : IPoint {
-    return Point(scalar * point.X, scalar * point.Y)
+export function Scalar(scalar: number, point: IPoint): IPoint {
+    return Point(scalar * point.X, scalar * point.Y);
 }
 
 export function PointsEqual(point1: IPoint, point2: IPoint): boolean {
@@ -34,7 +34,7 @@ export function RandomPoint(rangeFrom: IPoint, rangeTo: IPoint): IPoint {
     };
 }
 
-export function InRange(range: number, rangeFrom: number, rangeTo: number){
+export function InRange(range: number, rangeFrom: number, rangeTo: number) {
     return range >= rangeFrom && range <= rangeTo;
 }
 
@@ -43,6 +43,31 @@ export function Distance(pointFrom: IPoint, pointTo: IPoint): number {
         Math.pow(pointFrom.X - pointTo.X, 2) +
             Math.pow(pointFrom.Y - pointTo.Y, 2)
     );
+}
+
+export function Vector(pointFrom: IPoint, pointTo: IPoint): IPoint {
+    return {
+        X: pointTo.X - pointFrom.X,
+        Y: pointTo.Y - pointFrom.Y,
+    };
+}
+
+export function VectorLen(vector: IPoint): number {
+    return Math.sqrt(Math.pow(vector.X, 2) + Math.pow(vector.Y, 2));
+}
+
+export function NormalizeVector(vector: IPoint, vectorLen: number): IPoint {
+    return {
+        X: vector.X / vectorLen,
+        Y: vector.Y / vectorLen,
+    };
+}
+
+export function ReverseVector(vector: IPoint): IPoint {
+    return {
+        X: vector.X * -1,
+        Y: vector.Y * -1,
+    };
 }
 
 /** Calculates angle in deg between line and positive X axis */

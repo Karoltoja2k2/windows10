@@ -50,6 +50,7 @@ const Hydra = (props: any) => {
         file: drive.find((x) => x.componentId === FileRegistry.Hydra)!,
     });
 
+
     return (
         <WindowBase
             id={props.id}
@@ -66,6 +67,7 @@ const Hydra = (props: any) => {
                 canFullscreen: false,
                 canClose: false,
             }}
+            mouseState={props.mouseState}
             mobileMode={false}
         >
             <ErrorContent
@@ -82,7 +84,8 @@ export default React.memo(Hydra, (prevProps, nextProps) => {
         prevProps.file === nextProps.file &&
         prevProps.isClosed === nextProps.isClosed &&
         prevProps.properties === nextProps.properties &&
-        nextProps.properties.isDragged !== true &&
+        (prevProps.mouseState === nextProps.mouseState ||
+            nextProps.properties.isDragged !== true) &&
         prevProps.mobileMode === nextProps.mobileMode
     );
 });

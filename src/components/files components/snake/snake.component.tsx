@@ -12,6 +12,7 @@ const Snake = (props: any) => {
             id={props.id}
             file={props.file}
             properties={props.properties}
+            mouseState={props.mouseState}
             mobileMode={props.mobileMode}
         >
             <Game />
@@ -24,7 +25,8 @@ export default React.memo(Snake, (prevProps, nextProps) => {
         prevProps.file === nextProps.file &&
         prevProps.isClosed === nextProps.isClosed &&
         prevProps.properties === nextProps.properties &&
-        nextProps.properties.isDragged !== true &&
+        (prevProps.mouseState === nextProps.mouseState ||
+            nextProps.properties.isDragged !== true) &&
         prevProps.mobileMode === nextProps.mobileMode
     );
 });

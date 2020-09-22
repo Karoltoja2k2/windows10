@@ -10,6 +10,7 @@ function Chrome(props: any) {
             file={props.file}
             windowBaseStyle="chrome"
             properties={props.properties}
+            mouseState={props.mouseState}
             mobileMode={props.mobileMode}
         ></WindowBase>
     );
@@ -20,7 +21,8 @@ export default React.memo(Chrome, (prevProps, nextProps) => {
         prevProps.file === nextProps.file &&
         prevProps.isClosed === nextProps.isClosed &&
         prevProps.properties === nextProps.properties &&
-        nextProps.properties.isDragged !== true &&
+        (prevProps.mouseState === nextProps.mouseState ||
+            nextProps.properties.isDragged !== true) &&
         prevProps.mobileMode === nextProps.mobileMode
     );
 });
