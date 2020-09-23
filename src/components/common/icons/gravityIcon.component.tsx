@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./gravityIcon.scss";
+import "../noselect.scss";
 
 import { useDispatch, useSelector } from "react-redux";
 import { OpenWindow, OpenAs } from "../../../actions/windowsActions";
@@ -50,14 +51,12 @@ function GravityIcon(props: any) {
 
     return (
         <button
-            className="gravityIcon"
+            className="gravityIcon noselect"
             style={{ top: props.rb.pos.Y, left: props.rb.pos.X }}
-            onMouseDown={() => {
-                console.log(props)
-                props.setDrag({id: props.rb.id})}}
+            onMouseDown={() => props.StartDrag(props.rb.id)}
             onDoubleClick={() => dispatch(OpenWindow(props.rb.file))}
         >
-            <img src={props.rb.file.icon.src} />
+            <img draggable={false} src={props.rb.file.icon.src} />
             <label>{props.rb.file.title}</label>
         </button>
     );

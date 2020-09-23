@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./desktopIcon.scss";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -12,15 +12,14 @@ const DesktopIcon = (props: any) => {
     return (
         <button
             className="desktopIcon"
-            // onDoubleClick={() => dispatch(OpenAs(props.file, drive.find(x => x.title === "Paint")!))}
-            onDoubleClick={() => dispatch(OpenWindow(props.file))}
-
+            style={{ top: props.rb.pos.Y, left: props.rb.pos.X }}
+            onMouseDown={() => props.StartDrag(props.rb.id)}
+            onDoubleClick={() => dispatch(OpenWindow(props.rb.file))}
         >
-            
-            <img src={props.file.icon.src} />
-            <label>{props.file.title}</label>
+            <img draggable={false} src={props.rb.file.icon.src} />
+            <label>{props.rb.file.title}</label>
         </button>
     );
 };
 
-export default DesktopIcon;
+export default DesktopIcon

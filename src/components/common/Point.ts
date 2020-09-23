@@ -3,6 +3,8 @@ export default interface IPoint {
     Y: number;
 }
 
+export const Point0 = Point(0, 0);
+
 export function Point(X: number, Y: number): IPoint {
     return {
         X,
@@ -14,6 +16,16 @@ export function AddPoints(point1: IPoint, point2: IPoint): IPoint {
     return {
         X: point1.X + point2.X,
         Y: point1.Y + point2.Y,
+    };
+}
+
+export function SubtractPoints(
+    pointSubtractFrom: IPoint,
+    pointToSubtract: IPoint
+): IPoint {
+    return {
+        X: pointSubtractFrom.X - pointToSubtract.X,
+        Y: pointSubtractFrom.Y - pointToSubtract.Y,
     };
 }
 

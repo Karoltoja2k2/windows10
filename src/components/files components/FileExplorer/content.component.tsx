@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import FileIcon from "../../common/icons/FileIcon.component";
 import "./content.scss";
 import FolderIcon from "../../common/icons/folderIcon.component";
 import { useSelector } from "react-redux";

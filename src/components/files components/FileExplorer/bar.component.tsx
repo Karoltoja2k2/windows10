@@ -10,7 +10,6 @@ import {
     faAngleDown,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import FileIcon from "../../common/icons/FileIcon.component";
 import { useDispatch, useSelector } from "react-redux";
 import { OpenWindow, Navigate } from "../../../actions/windowsActions";
 import SearchResultIcon from "../../common/icons/searchResultIcon.component";
