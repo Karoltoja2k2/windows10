@@ -33,7 +33,7 @@ const WelcomeScreen = (props: any) => {
     }
 
     if (state.isLogged) {
-        return <Monitor background={props.images.desktopImg} />;
+        return <Monitor background={props.images.loginImg} />;
     }
 
     return (

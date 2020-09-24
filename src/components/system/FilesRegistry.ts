@@ -42,6 +42,7 @@ import FileRegistry from "./FileRegistry";
 import DesktopIcon from "../common/icons/desktopIcon.component";
 import Vrecorder from "../files components/vrecorder/vrecorder.component";
 import Word from "../files components/word/word.component";
+import Gravity from "../files components/virus/gravity.component";
 
 export const GetFileComponentById = (id: number): any => {
     switch (id) {
@@ -168,6 +169,12 @@ export const GetFileComponentById = (id: number): any => {
                 component: Chrome,
                 iconsrc: chromeicon,
                 extension: ".fld",
+            };
+        case FileRegistry.Gravity:
+            return {
+                component: Gravity,
+                iconsrc: chromeicon,
+                extension: ".xD",
             };
     }
 };

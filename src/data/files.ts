@@ -105,6 +105,18 @@ const recyclebin: FileDto = {
 };
 //#endregion
 
+//#region MALWARE
+
+const gravity: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/",
+    title: "Gravity",
+    componentId: FileRegistry.Gravity,
+    prevFolderId: desktop.fileId,
+};
+
+//#endregion
+
 //#region FILES
 
 const paint: FileDto = {
@@ -583,6 +595,7 @@ FilesDto.push(
     chrome,
     herakles,
     word,
+    gravity,
 
     wolfenstein,
     Windows10,

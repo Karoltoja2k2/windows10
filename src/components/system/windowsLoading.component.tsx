@@ -65,7 +65,7 @@ const SystemInitializer = (props: any) => {
 
     if (isLoaded) {
         // return <WelcomeScreen images={{desktopImg: additionalImgs.desktopImg, loginImg: additionalImgs.loginImg}} />;
-        return <Monitor background={additionalImgs.desktopImg}/>;
+        return <Monitor background={additionalImgs.loginImg}/>;
     } else {
         return (
             <div className="winLoading">

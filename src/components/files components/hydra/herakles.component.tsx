@@ -7,6 +7,7 @@ import { FinishCloseWindow } from "../../../actions/windowsActions";
 import WindowsManager from "../../../models/WindowsManager";
 import { RootState } from "../../../reducers";
 import FileRegistry from "../../system/FileRegistry";
+import { CUSTOM_PROPS } from "./customProps";
 
 const Herakles = (props: any) => {
     const dispatch = useDispatch();
@@ -51,14 +52,7 @@ const Herakles = (props: any) => {
             file={props.file}
             properties={{
                 ...props.properties,
-                width: 300,
-                minWidth: 300,
-                height: 150,
-                minHeight: 150,
-                isFullscreen: false,
-                isFixedSize: true,
-                canMinimize: false,
-                canClose: false,
+                ...CUSTOM_PROPS
             }}
             mouseState={props.mouseState}
             mobileMode={false}

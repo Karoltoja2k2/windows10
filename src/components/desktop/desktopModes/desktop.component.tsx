@@ -13,18 +13,6 @@ import { MapFilesToRbs } from "./desktop.const";
 import "./desktop.scss";
 import RigidBody from "./models/RigidBody";
 
-interface DragState2 {
-    id: number | null;
-    offset: IPoint;
-}
-
-interface SelectState2 {
-    active: boolean;
-    start: IPoint;
-    end: IPoint;
-    icons: number[];
-}
-
 interface Drag {
     id: number;
     offset: IPoint;
@@ -39,14 +27,6 @@ interface SelectState {
 
 function Desktop(props: any) {
     const [state, setstate] = useState<RigidBody[]>([]);
-
-    const [select2, setSelect2] = useState<SelectState2>({
-        active: false,
-        start: Point0,
-        end: Point0,
-        icons: [],
-    });
-
     const [select, setSelect] = useState<SelectState>({
         active: false,
         start: Point0,
@@ -54,30 +34,16 @@ function Desktop(props: any) {
         selected: [],
     });
 
-    const [drag2, setDrag2] = useState<Drag[]>([]);
-
-    const [drag, setDrag] = useState<DragState2>({
-        id: null,
-        offset: Point0,
-    });
+    const [drag, setDrag] = useState<Drag[]>([]);
 
     function StartDrag(id: number) {
-        let rb = state.find((x) => x.id === id)!;
-        let offset = SubtractPoints(
-            rb.pos,
-            Point(props.mouseState.left, props.mouseState.top)
-        );
-        setDrag({
-            id: id,
-            offset,
-        });
+        let selected = select.selected
+        if (selected.find(x => x === id) == null){
+            selected = [id]
+        }
 
-        setSelect2({
-            ...select2,
-            icons: [id],
-        });
-
-        let drag: Drag[] = select.selected.map((id) => {
+        setSelect({...select, selected})
+        let drag: Drag[] = selected.map((id) => {
             return {
                 id: id,
                 offset: SubtractPoints(
@@ -86,8 +52,9 @@ function Desktop(props: any) {
                 ),
             };
         });
+
         if (drag.length > 0) {
-            setDrag2(drag);
+            setDrag(drag);
         }
     }
 
@@ -114,13 +81,15 @@ function Desktop(props: any) {
     }, []);
 
     useEffect(() => {
-        if (drag.id != null) {
+        if (drag.length > 0) {
             let rbs = state.slice();
+            console.log(drag)
             rbs = rbs.map((rb: RigidBody) => {
-                if (rb.id === drag.id) {
+                let dragged = drag.find(x => x.id === rb.id)
+                if (dragged != null) {
                     rb.pos = {
-                        X: props.mouseState.left + drag.offset.X,
-                        Y: props.mouseState.top + drag.offset.Y,
+                        X: props.mouseState.left + dragged.offset.X,
+                        Y: props.mouseState.top + dragged.offset.Y,
                     };
                 }
 
@@ -133,25 +102,25 @@ function Desktop(props: any) {
 
     function HandleSelectChange() {
         let newEnd = Point(props.mouseState.left, props.mouseState.top);
-        let focusedIcons: number[] = [];
+        let selected: number[] = [];
         state.forEach((rb: RigidBody) => {
-            if (PointBetweenPoints(rb.pos, select2.start, newEnd)) {
-                focusedIcons.push(rb.id);
+            if (PointBetweenPoints(rb.pos, select.start, newEnd)) {
+                selected.push(rb.id);
             }
         });
 
-        setSelect2({ ...select2, end: newEnd, icons: focusedIcons });
+        setSelect({ ...select, end: newEnd, selected: selected });
     }
 
     function CalculateSelect() {
         let start = Point(
-            select2.start.X > select2.end.X ? select2.end.X : select2.start.X,
-            select2.start.Y > select2.end.Y ? select2.end.Y : select2.start.Y
+            select.start.X > select.end.X ? select.end.X : select.start.X,
+            select.start.Y > select.end.Y ? select.end.Y : select.start.Y
         );
 
         let end = Point(
-            select2.start.X > select2.end.X ? select2.start.X : select2.end.X,
-            select2.start.Y > select2.end.Y ? select2.start.Y : select2.end.Y
+            select.start.X > select.end.X ? select.start.X : select.end.X,
+            select.start.Y > select.end.Y ? select.start.Y : select.end.Y
         );
 
         let absDims = SubtractPoints(end, start);
@@ -168,25 +137,25 @@ function Desktop(props: any) {
             <div
                 className="desktop__icons"
                 onMouseUp={() => {
-                    setDrag({ id: null, offset: Point0 });
-                    setSelect2({ ...select2, active: false });
+                    setDrag([]);
+                    setSelect({ ...select, active: false });
                 }}
                 onMouseLeave={() => {
-                    setDrag({ id: null, offset: Point0 });
+                    setDrag([]);
                 }}
                 onMouseDown={() =>
-                    setSelect2({
+                    setSelect({
                         active: true,
                         start: Point(
                             props.mouseState.left,
                             props.mouseState.top
                         ),
                         end: Point(props.mouseState.left, props.mouseState.top),
-                        icons: [],
+                        selected: [],
                     })
                 }
                 onMouseMove={() => {
-                    if (select2.active) {
+                    if (select.active) {
                         HandleSelectChange();
                     }
                 }}
@@ -197,14 +166,13 @@ function Desktop(props: any) {
                         rb={rb}
                         StartDrag={StartDrag}
                         isSelected={
-                            select2.icons.find((x) => x === rb.id) != null
+                            select.selected.find((x) => x === rb.id) != null
                         }
-                        dragId={drag.id}
                     />
                 ))}
             </div>
 
-            {select2.active && (
+            {select.active && (
                 <div
                     className="desktop__select"
                     style={CalculateSelect()}

@@ -27,16 +27,24 @@ import { Point, RandomPoint } from "../common/Point";
 import { icon } from "@fortawesome/fontawesome-svg-core";
 
 const startupsound = require("../../media/win10startupsound.mp3");
+const path = "Drive C:/Desktop/";
 
 function Monitor(props: any) {
     const dispatch = useDispatch();
-    const path = "Drive C:/Desktop/";
-
     const drive: File[] = useSelector((state: RootState) => state.driveReducer);
-
     const windowManager: WindowsManager = useSelector(
         (state: RootState) => state.windowsReducer
     );
+    const [files, setFiles] = useState(
+        drive.filter((x) => x.path === path && x.extension !== ".xD")
+    );
+    const [startMenu, setStartMenu] = useState(false);
+    const [mouseState, setMouseState] = useState({
+        top: 0,
+        left: 0,
+        lmbDown: false,
+        rmbDown: false,
+    });
 
     function HandleResize(e: UIEvent) {
         if (window.innerWidth < 700) {
@@ -48,19 +56,19 @@ function Monitor(props: any) {
     }
 
     useEffect(() => {
-        let newFiles = drive.filter((x) => x.path === path);
-        if (newFiles.length !== files.length){
-            setFiles(newFiles)
+        if (startMenu) {
+            setStartMenu(false);
         }
-    }, [drive])
+    }, [mouseState.lmbDown, mouseState.rmbDown]);
 
-    const [files, setFiles] = useState(drive.filter((x) => x.path === path));
-    const [mouseState, setMouseState] = useState({
-        top: 0,
-        left: 0,
-        lmbDown: false,
-        rmbDown: false,
-    });
+    useEffect(() => {
+        let newFiles = drive.filter(
+            (x) => x.path === path && x.extension !== ".xD"
+        );
+        if (newFiles.length !== files.length) {
+            setFiles(newFiles);
+        }
+    }, [drive]);
 
     useEffect(() => {
         window.addEventListener("resize", (e) => HandleResize(e));
@@ -81,9 +89,17 @@ function Monitor(props: any) {
                 className="monitor"
                 onMouseDown={() => {
                     dispatch(UnFocusWindows());
+                    setMouseState({
+                        ...mouseState,
+                        lmbDown: true,
+                    });
                 }}
                 onMouseUp={() => {
                     dispatch(EndDragWindow());
+                    setMouseState({
+                        ...mouseState,
+                        lmbDown: false,
+                    });
                 }}
                 onMouseMove={(e) => {
                     setMouseState({
@@ -96,7 +112,11 @@ function Monitor(props: any) {
                 <img src={props.background.src} className="monitor__bg" />
                 {/* <Desktop files={files} /> */}
                 {files.length > 0 && (
-                    <Desktop files={files} mouseState={mouseState} />
+                    <Desktop
+                        files={files}
+                        mouseState={mouseState}
+                        setMouseState={setMouseState}
+                    />
                 )}
                 {windowManager.openWindows.length > 0 &&
                     windowManager.openWindows.map((window: Window) => (
@@ -111,7 +131,7 @@ function Monitor(props: any) {
                         />
                     ))}
             </div>
-            <Taskbar />
+            <Taskbar startMenu={startMenu} setStartMenu={setStartMenu} />
         </div>
     );
 }

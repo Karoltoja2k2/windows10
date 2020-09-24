@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import WindowBase from "../../common/windowBase/WindowBase";
 import { useDispatch, useSelector } from "react-redux";
-import WindowsManager from "../../../models/WindowsManager";
 import { RootState } from "../../../reducers";
-import NewErrorOption, { ErrorOption } from "../../common/error/errorOption";
+import NewErrorOption from "../../common/error/errorOption";
 import { OpenWindow, FinishCloseWindow } from "../../../actions/windowsActions";
 import ErrorContent from "../../common/error/error.component";
 import File from "../../../models/File";
 import FileRegistry from "../../system/FileRegistry";
 import IPoint, { RandomPoint } from "../../common/Point";
+import { CUSTOM_PROPS } from "./customProps";
 
 const Hydra = (props: any) => {
     const dispatch = useDispatch();
@@ -28,17 +28,9 @@ const Hydra = (props: any) => {
 
             dispatch(
                 OpenWindow(state.file, {
+                    ...CUSTOM_PROPS,
                     top: randomPos.Y,
-                    left: randomPos.X,
-                    width: 300,
-                    minWidth: 300,
-                    height: 150,
-                    minHeight: 150,
-                    isFullscreen: false,
-                    isFixedSize: true,
-                    canMinimize: false,
-                    canFullscreen: false,
-                    canClose: false,
+                    left: randomPos.X,                    
                 })
             );
             times++;
@@ -50,22 +42,13 @@ const Hydra = (props: any) => {
         file: drive.find((x) => x.componentId === FileRegistry.Hydra)!,
     });
 
-
     return (
         <WindowBase
             id={props.id}
             file={props.file}
             properties={{
                 ...props.properties,
-                width: 300,
-                minWidth: 300,
-                height: 150,
-                minHeight: 150,
-                isFullscreen: false,
-                isFixedSize: true,
-                canMinimize: false,
-                canFullscreen: false,
-                canClose: false,
+                ...CUSTOM_PROPS,
             }}
             mouseState={props.mouseState}
             mobileMode={false}

@@ -22,6 +22,7 @@ enum FileRegistry {
     Windows10,
     RecycleBin,
     Chrome,
+    Gravity
 }
 
 export default FileRegistry;
