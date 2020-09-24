@@ -11,12 +11,25 @@
         height: 100%;
     }
 
+    .desktop__select{
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        top: 0px;
+        left: 0px;
+        background-color: rgba(87, 165, 255, 0.5);
+        border: 2px solid rgba(44, 142, 255, 0.582);
+        border-radius: 2px;
+        pointer-events: none;
+    }
+
     .desktop__activate{
         position: absolute;
         right: 60px;
         bottom: 50px;
         color: white;
         opacity: 0.5;
+        pointer-events: none;
         .top{
             font-size: 24px;
         }

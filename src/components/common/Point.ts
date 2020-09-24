@@ -37,6 +37,10 @@ export function PointsEqual(point1: IPoint, point2: IPoint): boolean {
     return point1.X === point2.X && point1.Y === point2.Y;
 }
 
+export function PointBetweenPoints(point: IPoint, pointFrom: IPoint, pointTo: IPoint) : boolean {
+    return InRange(point.X, pointFrom.X, pointTo.X) && InRange(point.Y, pointFrom.Y, pointTo.Y);
+}
+
 export function RandomPoint(rangeFrom: IPoint, rangeTo: IPoint): IPoint {
     let x = Math.round(Math.random() * (rangeTo.X - rangeFrom.X) + rangeFrom.X);
     let y = Math.round(Math.random() * (rangeTo.Y - rangeFrom.Y) + rangeFrom.Y);
@@ -46,9 +50,14 @@ export function RandomPoint(rangeFrom: IPoint, rangeTo: IPoint): IPoint {
     };
 }
 
-export function InRange(range: number, rangeFrom: number, rangeTo: number) {
-    return range >= rangeFrom && range <= rangeTo;
+export function InRange(x: number, min: number, max: number) {
+    return ((x-min)*(x-max) <= 0);
 }
+
+
+// export function InRange(range: number, rangeFrom: number, rangeTo: number) {
+//     return range >= rangeFrom && range <= rangeTo;
+// }
 
 export function Distance(pointFrom: IPoint, pointTo: IPoint): number {
     return Math.sqrt(

@@ -11,9 +11,9 @@ const DesktopIcon = (props: any) => {
     const drive: File[] = useSelector((state: RootState) => state.driveReducer)!;
     return (
         <button
-            className="desktopIcon"
+            className={`desktop-icon ${props.isSelected ? 'desktop-icon--selected' : ''}`}
             style={{ top: props.rb.pos.Y, left: props.rb.pos.X }}
-            onMouseDown={() => props.StartDrag(props.rb.id)}
+            onMouseDown={(e) => {e.stopPropagation(); props.StartDrag(props.rb.id)}}
             onDoubleClick={() => dispatch(OpenWindow(props.rb.file))}
         >
             <img draggable={false} src={props.rb.file.icon.src} />
