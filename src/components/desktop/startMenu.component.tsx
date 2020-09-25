@@ -18,7 +18,6 @@ interface State {
 }
 
 const StartMenu = (props: any) => {
-    const drive: File[] = useSelector((state: RootState) => state.driveReducer);
 
     // THIS COMPONENT LOGIC HAS TO BE CHANGED AS SOON AS THE API WILL BE DONE
     function GroupFilesByLetter(files: File[]) {
@@ -30,6 +29,7 @@ const StartMenu = (props: any) => {
             }
             groupedCollection[firstLetter].push(files[i]);
         }
+
         return groupedCollection;
     }
 
@@ -37,7 +37,7 @@ const StartMenu = (props: any) => {
 
     function InitState(): State {
         let path = "";
-        let files = drive;
+        let files = props.files;
         let groupedFiles = GroupFilesByLetter(files);
         return {
             path: path,

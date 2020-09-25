@@ -20,7 +20,7 @@ const driveReducer = (state: File[] = [], action: any) => {
                     iconsrc: data.iconsrc,
                     icon: icon,
                     prevFolderId: file.prevFolderId,
-                    content: file.content,
+                    content: {...file.content, ...data.content},
                 };
             });
         }

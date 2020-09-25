@@ -12,7 +12,7 @@ import StartMenu from "./startMenu.component";
 import File from "../../models/File";
 
 const Taskbar = (props: any) => {
-        const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const windowManager: WindowsManager = useSelector(
         (state: RootState) => state.windowsReducer
     );
@@ -32,7 +32,9 @@ const Taskbar = (props: any) => {
             >
                 <i className="fab fa-windows winLogo"></i>
             </button>
-            {props.startMenu && <StartMenu Navigate={NavigateStartMenu} />}
+            {props.startMenu && (
+                <StartMenu Navigate={NavigateStartMenu} files={props.files} />
+            )}
 
             <div className="taskBarItems">
                 {windowManager.openWindows.length > 0 &&

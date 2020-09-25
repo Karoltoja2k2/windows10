@@ -115,6 +115,24 @@ const gravity: FileDto = {
     prevFolderId: desktop.fileId,
 };
 
+const flatEarth: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/",
+    title: "Flat earth",
+    componentId: FileRegistry.FlatEarth,
+    prevFolderId: desktop.fileId,
+};
+
+const wannaJump: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/",
+    title: "Wanna jump?",
+    componentId: FileRegistry.WannaJump,
+    prevFolderId: desktop.fileId,
+};
+
+
+
 //#endregion
 
 //#region FILES
@@ -241,9 +259,8 @@ const credits: FileDto = {
     title: "Credits",
     componentId: FileRegistry.TextDisplay,
     prevFolderId: desktop.fileId,
-    content: {        
-        text: 
-        `
+    content: {
+        text: `
         <h2>Sources</h2>        
         <p>Word - <a href="https://github.com/sstur/react-rte" target="_blank">https://github.com/sstur/react-rte</a></p>
         <p>Robby - <a href="http://www.nurykabe.com/" target="_blank">http://www.nurykabe.com/</a></p>
@@ -252,9 +269,8 @@ const credits: FileDto = {
         <p>Albums - <a href="https://www.tacohemingway.store/taco-hemingway" target="_blank">https://www.tacohemingway.store/taco-hemingway</a></p>
         <p>Inspiration - <a href="https://www.windows93.net/" target="_blank">https://www.windows93.net/</a></p>
         
-        `
-        
-    }
+        `,
+    },
 };
 
 //#endregion
@@ -595,7 +611,10 @@ FilesDto.push(
     chrome,
     herakles,
     word,
+
     gravity,
+    flatEarth,
+    wannaJump,
 
     wolfenstein,
     Windows10,
@@ -627,7 +646,7 @@ FilesDto.push(
     nostalgiaaudio,
 
     recyclebin,
-    dis,
+    dis
 );
 
 export default FilesDto;

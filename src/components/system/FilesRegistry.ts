@@ -1,5 +1,3 @@
-import File from "../../models/File";
-
 import Snake from "../files components/snake/snake.component";
 import FileExplorer from "../files components/FileExplorer/FileExplorer.component";
 import PhotoDisplay from "../files components/PhotoDisplay/PhotoDisplay";
@@ -14,6 +12,11 @@ import Robby from "../files components/external/robby.component";
 import Impersonator from "../files components/external/impersonator.component";
 import windows93 from "../files components/external/windows93.component";
 import Chrome from "../files components/chrome/chrome.component";
+import Vrecorder from "../files components/vrecorder/vrecorder.component";
+import Word from "../files components/word/word.component";
+import Gravity from "../files components/virus/gravity.component";
+import FlatEarth from "../files components/virus/flatEarth.component";
+import WannaJump from "../files components/virus/wannaJump.component";
 
 import logo192 from "../../media/logo192.png";
 import imgicon from "../../media/imgicon2.png";
@@ -37,12 +40,11 @@ import wordicon from "../../media/images/wordicon.png";
 import texticon from "../../media/images/texticon.png";
 import win10icon from "../../media/images/win10icon.png";
 import binicon from "../../media/images/binicon.png";
+import gravityicon from "../../media/images/gravityicon.png";
+import flatearthicon from "../../media/images/flatearthicon.png";
+import wannajumpicon from "../../media/images/wannajumpicon.png";
 
 import FileRegistry from "./FileRegistry";
-import DesktopIcon from "../common/icons/desktopIcon.component";
-import Vrecorder from "../files components/vrecorder/vrecorder.component";
-import Word from "../files components/word/word.component";
-import Gravity from "../files components/virus/gravity.component";
 
 export const GetFileComponentById = (id: number): any => {
     switch (id) {
@@ -173,7 +175,19 @@ export const GetFileComponentById = (id: number): any => {
         case FileRegistry.Gravity:
             return {
                 component: Gravity,
-                iconsrc: chromeicon,
+                iconsrc: gravityicon,
+                extension: ".xD",
+            };
+        case FileRegistry.FlatEarth:
+            return {
+                component: FlatEarth,
+                iconsrc: flatearthicon,
+                extension: ".xD",
+            };
+        case FileRegistry.WannaJump:
+            return {
+                component: WannaJump,
+                iconsrc: wannajumpicon,
                 extension: ".xD",
             };
     }

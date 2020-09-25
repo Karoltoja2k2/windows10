@@ -8,8 +8,8 @@ import Monitor from "../desktop/monitor.component";
 import WelcomeScreen from "./welcomeScreen.component";
 import { MoonLoader } from "react-spinners";
 
-import desktopBgImg from "../../media/winxpbg.jpg";
-import welcomeScreenBgImg from "../../media/win10bg.jpg";
+import desktopBgImg from "../../media/images/win10bg.jpg";
+import welcomeScreenBgImg from "../../media/images/win10bg.jpg";
 
 let loadedImages = 0
 let additionalImgs = {
