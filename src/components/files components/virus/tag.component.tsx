@@ -6,6 +6,7 @@ import WindowsManager from "../../../models/WindowsManager";
 import { RootState } from "../../../reducers";
 import JustDesktop from "../../desktop/desktopModes/justDesktop.component";
 import TagDesktop from "../../desktop/desktopModes/tagDesktop";
+import FileRegistry from "../../system/FileRegistry";
 
 function Tag(props: any) {
     const dispatch = useDispatch();
@@ -17,7 +18,7 @@ function Tag(props: any) {
         if (typeof props.file.content?.setDesktopType === "function") {
             props.file.content?.setDesktopType({desktopComponent: TagDesktop});
             let viursWindows = windowManager.openWindows.filter(
-                (x) => x.file.extension === ".xD"
+                (x) => x.file.extension === ".xD" && x.file.componentId !== FileRegistry.Tag
             );
 
             viursWindows.forEach((window: Window) => {
