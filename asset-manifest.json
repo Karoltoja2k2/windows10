@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/windows95/static/css/main.8b52c0d7.chunk.css",
-    "main.js": "/windows95/static/js/main.520b5ff4.chunk.js",
-    "main.js.map": "/windows95/static/js/main.520b5ff4.chunk.js.map",
+    "main.js": "/windows95/static/js/main.537ea57b.chunk.js",
+    "main.js.map": "/windows95/static/js/main.537ea57b.chunk.js.map",
     "runtime-main.js": "/windows95/static/js/runtime-main.2a9bf908.js",
     "runtime-main.js.map": "/windows95/static/js/runtime-main.2a9bf908.js.map",
     "static/js/2.26f8a114.chunk.js": "/windows95/static/js/2.26f8a114.chunk.js",
     "static/js/2.26f8a114.chunk.js.map": "/windows95/static/js/2.26f8a114.chunk.js.map",
     "index.html": "/windows95/index.html",
-    "precache-manifest.c7d1fe07bd8a098ba0678edb0914a19d.js": "/windows95/precache-manifest.c7d1fe07bd8a098ba0678edb0914a19d.js",
+    "precache-manifest.57e95d8a62a2feed2db9c90251b37a6e.js": "/windows95/precache-manifest.57e95d8a62a2feed2db9c90251b37a6e.js",
     "service-worker.js": "/windows95/service-worker.js",
     "static/css/main.8b52c0d7.chunk.css.map": "/windows95/static/css/main.8b52c0d7.chunk.css.map",
     "static/js/2.26f8a114.chunk.js.LICENSE.txt": "/windows95/static/js/2.26f8a114.chunk.js.LICENSE.txt",
@@ -72,6 +72,6 @@
     "static/js/runtime-main.2a9bf908.js",
     "static/js/2.26f8a114.chunk.js",
     "static/css/main.8b52c0d7.chunk.css",
-    "static/js/main.520b5ff4.chunk.js"
+    "static/js/main.537ea57b.chunk.js"
   ]
 }
