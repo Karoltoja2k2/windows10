@@ -160,4 +160,4 @@ function DesktopBase(props: any) {
     );
 }
 
-export default DesktopBase;
+export default DesktopBase

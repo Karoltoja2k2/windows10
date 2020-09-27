@@ -8,7 +8,7 @@ import ErrorContent from "../../common/error/error.component";
 import File from "../../../models/File";
 import FileRegistry from "../../system/FileRegistry";
 import IPoint, { RandomPoint } from "../../common/Point";
-import { CUSTOM_PROPS } from "./customProps";
+import { SMALL_ERROR } from "../../common/error/error.const";
 
 const Hydra = (props: any) => {
     const dispatch = useDispatch();
@@ -28,9 +28,9 @@ const Hydra = (props: any) => {
 
             dispatch(
                 OpenWindow(state.file, {
-                    ...CUSTOM_PROPS,
+                    ...SMALL_ERROR,
                     top: randomPos.Y,
-                    left: randomPos.X,                    
+                    left: randomPos.X,
                 })
             );
             times++;
@@ -48,7 +48,7 @@ const Hydra = (props: any) => {
             file={props.file}
             properties={{
                 ...props.properties,
-                ...CUSTOM_PROPS,
+                ...SMALL_ERROR,
             }}
             mouseState={props.mouseState}
             mobileMode={false}

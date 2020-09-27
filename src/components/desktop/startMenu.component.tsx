@@ -46,7 +46,6 @@ const StartMenu = (props: any) => {
         };
     }
 
-    console.log("rerender start menu");
     return (
         <div
             className="menu"

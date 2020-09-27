@@ -24,7 +24,9 @@ enum FileRegistry {
     Chrome,
     Gravity,
     FlatEarth,
-    WannaJump
+    WannaJump,
+    Tag,
+    PETeacher,
 }
 
 export default FileRegistry;

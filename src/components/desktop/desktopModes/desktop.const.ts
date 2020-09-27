@@ -3,7 +3,7 @@ import IPoint, { Point, Point0, RandomPoint, SubtractPoints } from "../../common
 import RigidBody from "./models/RigidBody";
 import SelectState from "./models/SelectState";
 
-export const DIMS = {
+export var DIMS = {
     boundryFrom: Point0,
     boundryTo: Point(window.innerWidth, window.innerHeight),
     iconWidth: 75,
@@ -11,15 +11,18 @@ export const DIMS = {
     iconRadius: 80,
 };
 
-export const CONST: IConst = {
+export var CONST: IConst = {
     boundryFrom: Point0,
     boundryTo: Point(window.innerWidth, window.innerHeight),
     iconWidth: 75,
     iconHeight: 85,
+    taskbarHeight: 35,
     iconRadius: 80,
     fps: 60,
-    energyLoss: 0.85,
-    gravity: Point(0, 10),
+    energyLossFrom: 0.85,
+    energyLossTo: 0.85,
+    friction: 0.8,
+    gravity: Point(0, 1000),
 };
 
 export interface IConst {
@@ -27,9 +30,12 @@ export interface IConst {
     boundryTo: IPoint;
     iconWidth: number;
     iconHeight: number;
+    taskbarHeight: number;
     iconRadius: number;
     fps: number;
-    energyLoss: number;
+    energyLossFrom: number
+    energyLossTo: number;
+    friction: number;
     gravity: IPoint;
 }
 
@@ -59,7 +65,7 @@ export function MapFilesToRbs(files: File[]): RigidBody[] {
             id: index,
             file: file,
             pos: pos,
-            vel: RandomPoint(Point(-20, -20), Point(20, 20)),
+            vel: Point0,
             acc: Point0,
         };
 

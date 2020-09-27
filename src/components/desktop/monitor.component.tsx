@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./monitor.scss";
 import "../common/noselect.scss";
 import Taskbar from "./Taskbar.component";
@@ -17,7 +17,6 @@ import {
 import JustDesktop from "./desktopModes/justDesktop.component";
 import RigidBody from "./desktopModes/models/RigidBody";
 import { MapFilesToRbs } from "./desktopModes/desktop.const";
-import GravityDesktop from "./desktopModes/gravityDesktop.component";
 import DesktopBase from "./desktopModes/desktopBase.component";
 
 const startupsound = require("../../media/win10startupsound.mp3");
@@ -43,8 +42,10 @@ function Monitor(props: any) {
         rmbDown: false,
     });
 
+    const desktopTypeRef = useRef<Function>()
+    desktopTypeRef.current = desktopType.desktopComponent
     const MalwareProps = {
-        desktopType,
+        desktopType: desktopTypeRef,
         setDesktopType,
     };
 

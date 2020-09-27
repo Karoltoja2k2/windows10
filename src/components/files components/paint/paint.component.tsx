@@ -5,9 +5,9 @@ import useSoftExit from "../../common/hooks/useSoftExit";
 
 const Paint = (props: any) => {
     const [file, setFile] = useState(props.file);
+
     useEffect(() => {
         setFile(props.file);
-        console.log(props.file);
     }, [props.file]);
 
     useSoftExit(props.isClosed, props.id);

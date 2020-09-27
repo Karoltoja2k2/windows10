@@ -131,7 +131,21 @@ const wannaJump: FileDto = {
     prevFolderId: desktop.fileId,
 };
 
+const tag: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/",
+    title: "Let's play tag",
+    componentId: FileRegistry.Tag,
+    prevFolderId: desktop.fileId,
+};
 
+const peTeacher: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/",
+    title: "P.E. Teacher",
+    componentId: FileRegistry.PETeacher,
+    prevFolderId: desktop.fileId,
+};
 
 //#endregion
 
@@ -615,6 +629,8 @@ FilesDto.push(
     gravity,
     flatEarth,
     wannaJump,
+    tag,
+    peTeacher,
 
     wolfenstein,
     Windows10,

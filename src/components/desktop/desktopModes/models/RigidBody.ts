@@ -8,5 +8,7 @@ export default interface RigidBody {
     pos: IPoint;
     vel: IPoint;
     acc: IPoint;
+    onGround?: boolean;
+    collided?: boolean;
     drag?: Drag;
 }

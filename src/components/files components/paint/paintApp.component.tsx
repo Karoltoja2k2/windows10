@@ -1,15 +1,11 @@
-import React, { useState, useEffect, memo, useRef } from "react";
-import WindowBase from "../../common/windowBase/WindowBase";
-import Logo from "../../media/win_logo.png";
+import React, { useState, useRef } from "react";
 import PaintContent from "./paintContent.component";
-import IMAGE from "../../../media/bg.jpg";
-import { Provider, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PaintSettings from "./paintSettings.component";
 import { OverwriteContent, CreateFile } from "../../../actions/driveActions";
 import CreateFileDto from "../../../models/CreateFileDto";
 import { RootState } from "../../../reducers";
 import File from "../../../models/File";
-import Content from "../FileExplorer/content.component";
 
 const PaintApp = (props: any) => {
     const imgRef = useRef<HTMLImageElement>(null);
@@ -78,10 +74,10 @@ const PaintApp = (props: any) => {
     const [state, setState] = useState({
         file: props.file,
         threadedFile: props.file.content?.file,
-        imgSource: props.file.content?.file.content?.source,
+        imgSource: props.file.content?.file?.content?.source,
         img: imgRef.current,
         setup:
-            props.file.content?.file.content?.source !== undefined
+            props.file.content?.file?.content?.source !== undefined
                 ? false
                 : true,
         width: 600,

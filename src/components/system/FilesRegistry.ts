@@ -17,6 +17,7 @@ import Word from "../files components/word/word.component";
 import Gravity from "../files components/virus/gravity.component";
 import FlatEarth from "../files components/virus/flatEarth.component";
 import WannaJump from "../files components/virus/wannaJump.component";
+import PETeacher from "../files components/virus/peTeacher.component";
 
 import logo192 from "../../media/logo192.png";
 import imgicon from "../../media/imgicon2.png";
@@ -43,8 +44,11 @@ import binicon from "../../media/images/binicon.png";
 import gravityicon from "../../media/images/gravityicon.png";
 import flatearthicon from "../../media/images/flatearthicon.png";
 import wannajumpicon from "../../media/images/wannajumpicon.png";
+import tagiconpng from "../../media/images/tagiconpng.png";
+import peteachericon from "../../media/images/peteachericon.png";
 
 import FileRegistry from "./FileRegistry";
+import Tag from "../files components/virus/tag.component";
 
 export const GetFileComponentById = (id: number): any => {
     switch (id) {
@@ -188,6 +192,18 @@ export const GetFileComponentById = (id: number): any => {
             return {
                 component: WannaJump,
                 iconsrc: wannajumpicon,
+                extension: ".xD",
+            };
+        case FileRegistry.Tag:
+            return {
+                component: Tag,
+                iconsrc: tagiconpng,
+                extension: ".xD",
+            };
+        case FileRegistry.PETeacher:
+            return {
+                component: PETeacher,
+                iconsrc: peteachericon,
                 extension: ".xD",
             };
     }
