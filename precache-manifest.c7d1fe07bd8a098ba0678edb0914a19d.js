@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "83750e0080205cf200e2662210c5b77d",
+    "revision": "6cdd0377fff67ec164cd76c23522407a",
     "url": "/windows95/index.html"
   },
   {
-    "revision": "2e1b4e842a74d1e9d864",
+    "revision": "a887c98bd93cd7286171",
     "url": "/windows95/static/css/main.8b52c0d7.chunk.css"
   },
   {
-    "revision": "fb9e0cfdb2a2384a060d",
-    "url": "/windows95/static/js/2.39889470.chunk.js"
+    "revision": "28befcb726e1603d0503",
+    "url": "/windows95/static/js/2.26f8a114.chunk.js"
   },
   {
     "revision": "e662b049f268d411c4f55f1154a689f2",
-    "url": "/windows95/static/js/2.39889470.chunk.js.LICENSE.txt"
+    "url": "/windows95/static/js/2.26f8a114.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "2e1b4e842a74d1e9d864",
-    "url": "/windows95/static/js/main.e6c9150e.chunk.js"
+    "revision": "a887c98bd93cd7286171",
+    "url": "/windows95/static/js/main.520b5ff4.chunk.js"
   },
   {
     "revision": "9ba2c22b2460af08afd9",
@@ -172,6 +172,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/windows95/static/media/painticon.d3c77420.png"
   },
   {
+    "revision": "f3ec86c25718c7b1d88bea7a3e77aa85",
+    "url": "/windows95/static/media/peteachericon.f3ec86c2.png"
+  },
+  {
     "revision": "7f9cf2dd29bde971a222c39c4ec2649a",
     "url": "/windows95/static/media/pocztowkawwa.7f9cf2dd.jpg"
   },
@@ -192,6 +196,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/windows95/static/media/szprycer.0ddb2aa7.jpg"
   },
   {
+    "revision": "024f1b337d8642f7d128800024d65f85",
+    "url": "/windows95/static/media/tagiconpng.024f1b33.png"
+  },
+  {
     "revision": "b499f934cc017e290fad26d8e441327a",
     "url": "/windows95/static/media/texticon.b499f934.png"
   },
@@ -204,8 +212,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/windows95/static/media/tree.52261d36.jpg"
   },
   {
-    "revision": "5a74eb7d0369c7c67194d3485f3258de",
-    "url": "/windows95/static/media/win10bg.5a74eb7d.jpg"
+    "revision": "12e4183500396bccc0f6cea1d90663e7",
+    "url": "/windows95/static/media/wannajumpicon.12e41835.png"
+  },
+  {
+    "revision": "693ee60d5a9a8ecd827edd6bddd37a1a",
+    "url": "/windows95/static/media/win10bg.693ee60d.jpg"
   },
   {
     "revision": "6c8fd8fc14e228f96debfb9a8a5a2b0e",
