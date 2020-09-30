@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "83132f76a2244474cae7f9c27ea9e6dd",
+    "revision": "e8aef664810f87ceaf18c06fa27c1faa",
     "url": "/windows10/index.html"
   },
   {
-    "revision": "ab1a906f659ff8c00791",
-    "url": "/windows10/static/css/main.444cc77c.chunk.css"
+    "revision": "1589a2b1158bbd24dd94",
+    "url": "/windows10/static/css/main.92d5bf56.chunk.css"
   },
   {
-    "revision": "087c4ce58d240a989288",
-    "url": "/windows10/static/js/2.15642c14.chunk.js"
+    "revision": "83e1372e3ad84491e652",
+    "url": "/windows10/static/js/2.81a59129.chunk.js"
   },
   {
     "revision": "e662b049f268d411c4f55f1154a689f2",
-    "url": "/windows10/static/js/2.15642c14.chunk.js.LICENSE.txt"
+    "url": "/windows10/static/js/2.81a59129.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "ab1a906f659ff8c00791",
-    "url": "/windows10/static/js/main.62a72179.chunk.js"
+    "revision": "1589a2b1158bbd24dd94",
+    "url": "/windows10/static/js/main.72b7244f.chunk.js"
   },
   {
     "revision": "a3a48c18206005cc8d42",
@@ -100,10 +100,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/windows10/static/media/chromeicon.e78aa3b0.png"
   },
   {
-    "revision": "18bd536c965f8e351928ac38d20c16fe",
-    "url": "/windows10/static/media/dis.18bd536c.jpg"
-  },
-  {
     "revision": "38cb4efe49f4ef25ea09a7f98c1f2748",
     "url": "/windows10/static/media/earth.38cb4efe.jpg"
   },
@@ -170,6 +166,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "d3c774203182c389629dbd94c0db4dfa",
     "url": "/windows10/static/media/painticon.d3c77420.png"
+  },
+  {
+    "revision": "c671547236dafe521ce45f9ea5799131",
+    "url": "/windows10/static/media/personiconwhite.c6715472.png"
   },
   {
     "revision": "f3ec86c25718c7b1d88bea7a3e77aa85",
