@@ -112,6 +112,7 @@ function DesktopBase(props: any) {
                 }}
                 onMouseLeave={() => {
                     EndDrag();
+                    setSelect({ ...select, active: false });
                 }}
                 onMouseDown={() =>
                     setSelect({

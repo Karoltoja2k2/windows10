@@ -31,9 +31,9 @@ function FlatEarth(props: any) {
                 viursWindows.forEach((window: Window) => {
                     dispatch(FinishCloseWindow(window.id));
                 });
-
-                dispatch(FinishCloseWindow(props.id));
             }
+
+            dispatch(FinishCloseWindow(props.id));
         }
     }, []);
 

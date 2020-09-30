@@ -16,7 +16,7 @@ const profiles = [
     },
     {
         Id: 2,
-        Name: "Cowboy",
+        Name: "Admin",
     },
 ];
 

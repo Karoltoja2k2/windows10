@@ -4,8 +4,6 @@ import FileRegistry from "../components/system/FileRegistry";
 // Images
 import winxpbg from "../media/winxpbg.jpg";
 import lenna from "../media/lenna.jpg";
-import xd from "../media/xd.png";
-import papa from "../media/yellowman.jpg";
 import colorfullPixelsimg from "../media/random-pixels-wallpaper-big.jpg";
 import lensimg from "../media/lens.jpg";
 import treeimg from "../media/tree.jpg";
@@ -13,7 +11,6 @@ import eyeimg from "../media/eye.png";
 import asiaimg from "../media/asia.jpg";
 import earthimg from "../media/earth.jpg";
 import img19 from "../media/19icon.png";
-import disjpg from "../media/images/dis.jpg";
 
 // Covers
 import cafebelgacover from "../media/images/covers/cafe.jpg";
@@ -103,6 +100,15 @@ const recyclebin: FileDto = {
     componentId: FileRegistry.RecycleBin,
     prevFolderId: desktop.fileId,
 };
+
+const deletedfolder: FileDto = {
+    fileId: id++,
+    path: "Drive C:/Desktop/Recycle bin/",
+    title: "Folder",
+    componentId: FileRegistry.FileExplorer,
+    prevFolderId: recyclebin.fileId,
+};
+
 //#endregion
 
 //#region MALWARE
@@ -390,14 +396,14 @@ const whyuopenthis: FileDto = {
     },
 };
 
-const dis: FileDto = {
+const deletedimg: FileDto = {
     fileId: id++,
-    path: "Drive C:/Desktop/Recycle bin/",
-    title: "trash",
+    path: "Drive C:/Desktop/Squares/",
+    title: "Squares",
     componentId: FileRegistry.PhotoDisplay,
     prevFolderId: recyclebin.fileId,
     content: {
-        source: disjpg,
+        source: colorfullPixelsimg,
     },
 };
 
@@ -612,6 +618,7 @@ FilesDto.push(
     desktop,
     imagesFolder,
     audioFolder,
+    deletedfolder,
 
     mineswepper,
     resume,
@@ -622,7 +629,7 @@ FilesDto.push(
     robby,
     impersonator,
     // vrecorder,
-    chrome,
+    // chrome,
     herakles,
     word,
 
@@ -662,7 +669,7 @@ FilesDto.push(
     nostalgiaaudio,
 
     recyclebin,
-    dis
+    deletedimg
 );
 
 export default FilesDto;
