@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/windows10/static/css/main.92d5bf56.chunk.css",
-    "main.js": "/windows10/static/js/main.72b7244f.chunk.js",
-    "main.js.map": "/windows10/static/js/main.72b7244f.chunk.js.map",
+    "main.css": "/windows10/static/css/main.ef9397c1.chunk.css",
+    "main.js": "/windows10/static/js/main.711126fa.chunk.js",
+    "main.js.map": "/windows10/static/js/main.711126fa.chunk.js.map",
     "runtime-main.js": "/windows10/static/js/runtime-main.2384b3c9.js",
     "runtime-main.js.map": "/windows10/static/js/runtime-main.2384b3c9.js.map",
     "static/js/2.81a59129.chunk.js": "/windows10/static/js/2.81a59129.chunk.js",
     "static/js/2.81a59129.chunk.js.map": "/windows10/static/js/2.81a59129.chunk.js.map",
     "index.html": "/windows10/index.html",
-    "precache-manifest.a666f32e8ab6a0ec77d9e0923a8b39ab.js": "/windows10/precache-manifest.a666f32e8ab6a0ec77d9e0923a8b39ab.js",
+    "precache-manifest.a2ac5ad44d77f5afda96bafd1d2f7929.js": "/windows10/precache-manifest.a2ac5ad44d77f5afda96bafd1d2f7929.js",
     "service-worker.js": "/windows10/service-worker.js",
-    "static/css/main.92d5bf56.chunk.css.map": "/windows10/static/css/main.92d5bf56.chunk.css.map",
+    "static/css/main.ef9397c1.chunk.css.map": "/windows10/static/css/main.ef9397c1.chunk.css.map",
     "static/js/2.81a59129.chunk.js.LICENSE.txt": "/windows10/static/js/2.81a59129.chunk.js.LICENSE.txt",
     "static/media/19icon.png": "/windows10/static/media/19icon.5afcf90b.png",
     "static/media/Taco Hemingway - 2031.mp3": "/windows10/static/media/Taco Hemingway - 2031.dccd22db.mp3",
@@ -71,7 +71,7 @@
   "entrypoints": [
     "static/js/runtime-main.2384b3c9.js",
     "static/js/2.81a59129.chunk.js",
-    "static/css/main.92d5bf56.chunk.css",
-    "static/js/main.72b7244f.chunk.js"
+    "static/css/main.ef9397c1.chunk.css",
+    "static/js/main.711126fa.chunk.js"
   ]
 }
