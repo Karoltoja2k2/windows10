@@ -13,11 +13,13 @@ import {
     UnFocusWindows,
     EndDragWindow,
     MobileMode,
+    OpenWindow,
 } from "../../actions/windowsActions";
 import JustDesktop from "./desktopModes/justDesktop.component";
 import RigidBody from "./desktopModes/models/RigidBody";
 import { MapFilesToRbs } from "./desktopModes/desktop.const";
 import DesktopBase from "./desktopModes/desktopBase.component";
+import FileRegistry from "../system/FileRegistry";
 
 const startupsound = require("../../media/win10startupsound.mp3");
 const path = "Drive C:/Desktop/";
@@ -69,12 +71,14 @@ function Monitor(props: any) {
         setRigidBodies(rbs);
 
         window.addEventListener("resize", (e) => HandleResize(e));
-        // dispatch(
-        //     OpenWindow(
-        //         files.find((x) => x.componentId === FileRegistry.Winamp)!,
-        //         { width: 800, height: 400 }
-        //     )
-        // );
+        let resumeWidth = window.innerWidth / 1.5;
+        let resumeHeight = window.innerHeight / 1.5
+         dispatch(
+             OpenWindow(
+                 files.find((x) => x.componentId === FileRegistry.Resume)!,
+                 { top: (window.innerHeight - resumeHeight) / 2, left: (window.innerWidth - resumeWidth) / 2, width: resumeWidth, height: resumeHeight }
+             )
+         );
 
         let audio = new Audio(startupsound);
         audio.play();

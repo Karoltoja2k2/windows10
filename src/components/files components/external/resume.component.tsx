@@ -17,7 +17,8 @@ const Resume = (props: any) => {
         >
             <IframeFocusable isFocused={props.properties.isFocused} />
             <div className="container">
-                <iframe src="https://karoltoja2k2.github.io/MyResume/" />
+                <iframe src="https://karoltoja2k2.github.io/MyResume/"/>
+                {/*<iframe src="https://karoltoja2k2.github.io/portfolio/" />*/}
             </div>
         </WindowBase>
     );
